@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 import com.utn.models.User;
 
@@ -35,8 +37,29 @@ public class UserRepo implements IUserRepo {
 		User aux;
 
 		this.manager.getTransaction().begin();
-		aux = (User) this.manager.createQuery("FROM users u WHERE u.id = "+id.toString()).getSingleResult();
+		aux = (User) this.manager.createQuery("FROM User u WHERE u.id = " + id.toString()).getSingleResult();
 		this.manager.getTransaction().commit();
 		return aux;
+	}
+
+	@Override
+	public User CreateUser(User user) {
+
+		this.manager.getTransaction().begin();
+		this.manager.persist(user);
+		this.manager.flush();
+		this.manager.getTransaction().commit();
+
+		return user;
+	}
+
+	@Override
+	public User UpdateUser(User user) {
+		return null;
+	}
+
+	@Override
+	public void DeleteUser(Integer id) {
+
 	}
 }

@@ -1,10 +1,8 @@
 package com.utn.controllers;
 
+import com.utn.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.utn.services.IUserService;
 
@@ -16,12 +14,29 @@ public class APIRestController {
 	IUserService userService;
 	
 	@GetMapping("users")
-	public String GetUsers() {
-		return userService.GetUsers().toString();
+	public Iterable<User> GetUsers() {
+		return userService.GetUsers();
 	}
 	
 	@GetMapping("users/{id}")
-	public String GetUserById(@PathVariable Integer id) {
-		return userService.GetUserById(id).toString();
+	public User GetUserById(@PathVariable Integer id) {
+		return userService.GetUserById(id);
 	}
+
+	@PostMapping("users")
+	public User Create(@RequestBody User user) {
+		return userService.Create(user);
+	}
+
+	/*
+	@PutMapping("/{id}")
+	public Car Update(@RequestBody Car car, @PathVariable Integer id) {
+		return carService.Update(car);
+	}
+
+	@DeleteMapping("/{id}")
+	public void Delete(@PathVariable Integer id) {
+		carService.Delete(id);
+	}
+	*/
 }

@@ -6,4 +6,12 @@ public interface IUserService {
 	public Iterable<User> GetUsers();
 
 	public User GetUserById(Integer id);
+
+	public User Create (User user);
+
+	/*
+	public User Update (User user);
+
+	public void Delete (Integer id);
+	*/
 }

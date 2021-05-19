@@ -29,6 +29,7 @@ public class UserRepo implements IUserRepo {
 		this.manager.getTransaction().begin();
 		aux = this.manager.createQuery("FROM User").getResultList();
 		this.manager.getTransaction().commit();
+
 		return aux;
 	}
 
@@ -39,6 +40,7 @@ public class UserRepo implements IUserRepo {
 		this.manager.getTransaction().begin();
 		aux = (User) this.manager.createQuery("FROM User u WHERE u.id = " + id.toString()).getSingleResult();
 		this.manager.getTransaction().commit();
+
 		return aux;
 	}
 
@@ -55,6 +57,7 @@ public class UserRepo implements IUserRepo {
 
 	@Override
 	public User UpdateUser(User user, Integer id) {
+
 		User userToUpdate = this.GetUserById(id);
 
 		this.manager.getTransaction().begin();
@@ -62,18 +65,8 @@ public class UserRepo implements IUserRepo {
 		userToUpdate.setLastName(user.getLastName());
 		userToUpdate.setRace(user.getRace());
 		this.manager.flush();
-
-		// User mergedUser = (User) this.manager.merge(user);
-
-		/*
-		Query query = this.manager.createQuery("update User set name=:n where id=:i");
-		query.setParameter("n","Udit Kumar");
-		query.setParameter("i",111);
-		query.setParameter("i",111);
-		query.executeUpdate();
-		*/
-
 		this.manager.getTransaction().commit();
+
 		return userToUpdate;
 	}
 

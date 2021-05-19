@@ -28,12 +28,10 @@ public class APIRestController {
 		return userService.Create(user);
 	}
 
-	/*
-	@PutMapping("/{id}")
-	public Car Update(@RequestBody Car car, @PathVariable Integer id) {
-		return userService.Update(car);
+	@PutMapping("users/{id}")
+	public User Update(@RequestBody User user, @PathVariable Integer id) {
+		return userService.Update(user, id);
 	}
-	*/
 
 	@DeleteMapping("users/{id}")
 	public void Delete(@PathVariable Integer id) {

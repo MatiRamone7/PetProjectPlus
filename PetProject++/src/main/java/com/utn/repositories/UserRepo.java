@@ -54,20 +54,27 @@ public class UserRepo implements IUserRepo {
 	}
 
 	@Override
-	public User UpdateUser(User user) {
+	public User UpdateUser(User user, Integer id) {
+		User userToUpdate = this.GetUserById(id);
 
 		this.manager.getTransaction().begin();
+		userToUpdate.setFirstName(user.getFirstName());
+		userToUpdate.setLastName(user.getLastName());
+		userToUpdate.setRace(user.getRace());
+		this.manager.flush();
 
+		// User mergedUser = (User) this.manager.merge(user);
+
+		/*
 		Query query = this.manager.createQuery("update User set name=:n where id=:i");
 		query.setParameter("n","Udit Kumar");
 		query.setParameter("i",111);
 		query.setParameter("i",111);
 		query.executeUpdate();
+		*/
 
 		this.manager.getTransaction().commit();
-
-
-		return user;
+		return userToUpdate;
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface IUserRepo {
 
 	public User CreateUser(User user);
 
-	public User UpdateUser(User user);
+	public User UpdateUser(User user, Integer id);
 
 	public void DeleteUser(Integer id);
 }

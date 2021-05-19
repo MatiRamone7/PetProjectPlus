@@ -9,9 +9,7 @@ public interface IUserService {
 
 	public User Create (User user);
 
-	/*
-	public User Update (User user);
-	*/
+	public User Update (User user, Integer id);
 
 	public void Delete (Integer id);
 }

@@ -50,16 +50,15 @@ public class UserService implements IUserService {
 		return userRepo.CreateUser(user);
 	}
 
-	/*
 	/**
 	 * Actualiza user existente.
 	 *
 	 * @param user user a actualizar
 	 * @return user actualizado
-	public User update(User user) {
-		return repository.updateUser(user);
+	 */
+	public User Update(User user, Integer id) {
+		return userRepo.UpdateUser(user, id);
 	}
-	*/
 
 	/**
 	 * Borra user existente.

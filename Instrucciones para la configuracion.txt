@@ -1,0 +1,15 @@
+1. Una vez descargado el repositorio debe crearse la base de datos que vayamos a usar y agregar los datos del archivo data.sql que se encuentra para generar unas tablas de ejemplo.
+
+2. Luego ir a PetProjectPlus\PetProject++\src\main\resources\META-INF\persistence.xml
+Allí dentro deben ingresar su respectivo usuario y contraseña de SQL server. 
+Además en la property javax.persistence.jdbc.url deben reemplazar la url con las respectivas de su computadora.
+en databaseName claramente va el nombre de la base de datos y en "jdbc:sqlserver://" deben poner el nombre del servidor.
+
+3. Con esto cambiado ya deberian poder correr el comando, pero por si por alguna razon dentro del archivo pom.xml, el ultimo comando les tira un error es porque deben agregar la version (<version>${project.parent.version}</version>)
+
+4. Luego deben abrir un git bash dentro de PetProjectPlus\PetProject++ y ejecutar el comando "mvn spring-boot:run"
+
+5. Si la ejecucion del comando les tira errores de conexion con el servidor SQL o sobre la configuracion de TCP/IP pueden entrar a la aplicacion "Sql Server Configuration Manager" -> "SQL Server Services" y fijarse que tanto "SQL Server" como "SQL Server Browser" se encuentren en estado Running. Si no es así pueden activarlos.
+Luego pueden ir a la seccion "SQL Server Network Configuration" -> "Protocols for ......" Y asegurarse que el TCP/IP se encuentre activado.
+
+6. Con eso activado ya deberia poder ejecutarse el comando correctamente.

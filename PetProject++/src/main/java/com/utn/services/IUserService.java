@@ -11,7 +11,7 @@ public interface IUserService {
 
 	/*
 	public User Update (User user);
+	*/
 
 	public void Delete (Integer id);
-	*/
 }

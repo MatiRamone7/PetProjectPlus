@@ -59,13 +59,14 @@ public class UserService implements IUserService {
 	public User update(User user) {
 		return repository.updateUser(user);
 	}
+	*/
 
 	/**
 	 * Borra user existente.
 	 *
 	 * @param id id de user a eliminar
-	public void delete(Integer id) {
-		repository.deleteUserById(id);
+	 */
+	public void Delete(Integer id) {
+		userRepo.DeleteUser(id);
 	}
-	*/
 }

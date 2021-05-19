@@ -55,11 +55,28 @@ public class UserRepo implements IUserRepo {
 
 	@Override
 	public User UpdateUser(User user) {
-		return null;
+
+		this.manager.getTransaction().begin();
+
+		Query query = this.manager.createQuery("update User set name=:n where id=:i");
+		query.setParameter("n","Udit Kumar");
+		query.setParameter("i",111);
+		query.setParameter("i",111);
+		query.executeUpdate();
+
+		this.manager.getTransaction().commit();
+
+
+		return user;
 	}
 
 	@Override
 	public void DeleteUser(Integer id) {
+
+		this.manager.getTransaction().begin();
+		Query query = this.manager.createQuery("delete from User WHERE id = " + id.toString());
+		query.executeUpdate();
+		this.manager.getTransaction().commit();
 
 	}
 }

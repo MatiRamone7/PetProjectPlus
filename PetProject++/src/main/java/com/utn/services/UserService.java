@@ -8,7 +8,7 @@ import com.utn.models.User;
 import com.utn.repositories.IUserRepo;
 
 /**
- * Servicios de cars.
+ * Servicios de users.
  *
  * @author Grupo 14
  * @see User

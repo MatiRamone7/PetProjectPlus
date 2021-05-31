@@ -1,38 +1,17 @@
 package com.utn.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name="usuario")
 public class User implements Serializable{
 	public User() {}
 
 	private static final long serialVersionUID = 1L;
-
-	public User(Integer id, String firstName, String lastName, String race) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.race = race;
-	}
-
-	@Override
-	public String toString() {
-		return "User{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", race='" + race + '\'' +
-				'}';
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,14 +19,28 @@ public class User implements Serializable{
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "nombre")
+	private String nombre;
 
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "password")
+	private String password;
 
-	@Column(name = "race")
-	private String race;
+	@Column(name = "apellido")
+	private String apellido;
+
+	@Column(name = "fechaNacimiento")
+	private String fechaNacimiento;
+
+	@Column(name = "tipoDocumento")
+	private String tipoDocumento;
+
+	@Column(name = "numeroDocumento")
+	private String numeroDocumento;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ongId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Ong ong;
 
 	public Integer getId() {
 		return id;
@@ -57,27 +50,59 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getRace() {
-		return race;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setRace(String race) {
-		this.race = race;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
+
+	public Ong getOng() {
+		return ong;
+	}
+
+	public void setOng(Ong ong) {
+		this.ong = ong;
 	}
 }

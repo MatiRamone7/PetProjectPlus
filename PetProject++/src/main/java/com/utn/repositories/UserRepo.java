@@ -61,9 +61,13 @@ public class UserRepo implements IUserRepo {
 		User userToUpdate = this.GetUserById(id);
 
 		this.manager.getTransaction().begin();
-		userToUpdate.setFirstName(user.getFirstName());
-		userToUpdate.setLastName(user.getLastName());
-		userToUpdate.setRace(user.getRace());
+		userToUpdate.setNombre(user.getNombre());
+		userToUpdate.setPassword(user.getPassword());
+		userToUpdate.setApellido(user.getApellido());
+		userToUpdate.setFechaNacimiento(user.getFechaNacimiento());
+		userToUpdate.setTipoDocumento(user.getTipoDocumento());
+		userToUpdate.setNumeroDocumento(user.getNumeroDocumento());
+		userToUpdate.setOng(user.getOng());
 		this.manager.flush();
 		this.manager.getTransaction().commit();
 

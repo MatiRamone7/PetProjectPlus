@@ -1,7 +1,12 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.utn.contactservices.Mail;
+import com.utn.contactservices.SMS;
+import com.utn.contactservices.Whatsapp;
+import com.utn.contactservices.WhatsappWaboxService;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -41,7 +46,6 @@ public class User implements Serializable{
 	@JoinColumn(name = "ongId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Ong ong;
-
 	public Integer getId() {
 		return id;
 	}
@@ -104,5 +108,30 @@ public class User implements Serializable{
 
 	public void setOng(Ong ong) {
 		this.ong = ong;
+	}
+
+	private SMS sms;
+	private Mail mail;
+	private Whatsapp whats;
+
+	public String contactar(String medioContacto) throws IOException {
+		String asunto = "Hola";
+		String cuerpo = "Mundo";
+		String casilla = "mail@mail.com";
+		String celular = "1162423315";
+
+		switch (medioContacto) {
+			case "sms":
+				SMS.enviarMensajeConVonage(celular, cuerpo);
+				return "Contacto hecho por SMS";
+			case "mail":
+				Mail.enviarMail(casilla, asunto, cuerpo);
+				return "Contacto hecho por Mail";
+			case "whatsapp":
+				whats.contactar(celular, cuerpo);
+				return "Contacto hecho por Whatsapp";
+			default:
+				return "No se pudo hacer contacto";
+		}
 	}
 }

@@ -111,11 +111,12 @@ public class User implements Serializable{
 		this.ong = ong;
 	}
 
-	private SMS sms;
-	private Mail mail;
-	private Whatsapp whats;
-
 	public String contactar(String medioContacto) throws IOException {
+
+		SMS sms = new SMS();
+		Mail mail = new Mail();
+		Whatsapp whats = new Whatsapp();
+
 		String asunto = "Hola";
 		String cuerpo = "Mundo";
 		String casilla = "mail@mail.com";

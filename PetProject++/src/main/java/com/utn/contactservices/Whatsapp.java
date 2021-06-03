@@ -12,7 +12,7 @@ public class Whatsapp {
     private static final String urlApi = "https://www.waboxapp.com/api/send/chat";
     private Retrofit retrofit;
 
-    private Whatsapp() {
+    public Whatsapp() {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlApi)
                 .addConverterFactory(GsonConverterFactory.create())

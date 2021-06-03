@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS ong;
 DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS rescatista;
+DROP TABLE IF EXISTS publicacion;
 
 CREATE TABLE [ong] (
 	id int primary Key identity(1,1),

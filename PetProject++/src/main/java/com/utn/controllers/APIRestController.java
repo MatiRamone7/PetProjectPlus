@@ -5,7 +5,10 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.models.Publication;
 import com.utn.models.User;
+import com.utn.repositories.UserRepo;
+import com.utn.services.IPublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,9 @@ import java.io.IOException;
 @RequestMapping("/")
 public class APIRestController {
 
+	/**
+	 * Controlador de users.
+	 */
 	private static final int qrTamAncho = 400;
 	private static final int qrTamAlto = 400;
 	private static final String formato = "png";
@@ -90,4 +96,36 @@ public class APIRestController {
 		//System.out.println("Listo!");
 		qrCode.close();
 	}
+
+	/**
+	 * Controlador de publications.
+	 */
+	@Autowired
+	IPublicationService publicationService;
+
+	@GetMapping("publications")
+	public Iterable<Publication> GetPublications() {
+		return publicationService.GetPublications();
+	}
+
+	@GetMapping("publications/{id}")
+	public Publication GetPublicationById(@PathVariable Integer id) {
+		return publicationService.GetPublicationById(id);
+	}
+
+	@PostMapping("publications")
+	public Publication CreatePublication(@RequestBody Publication publication) {
+		return publicationService.CreatePublication(publication);
+	}
+
+	@PutMapping("publications/{id}")
+	public Publication UpdatePublication(@RequestBody Publication publication, @PathVariable Integer id) {
+		return publicationService.UpdatePublication(publication, id);
+	}
+
+	@DeleteMapping("publications/{id}")
+	public void DeletePublication(@PathVariable Integer id) {
+		publicationService.DeletePublication(id);
+	}
+
 }

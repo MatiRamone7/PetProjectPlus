@@ -40,12 +40,13 @@ public class User implements Serializable{
 	private String tipoDocumento;
 
 	@Column(name = "numeroDocumento")
-	private String numeroDocumento;
+	private Integer numeroDocumento;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ongId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Ong ong;
+
 	public Integer getId() {
 		return id;
 	}
@@ -94,11 +95,11 @@ public class User implements Serializable{
 		this.tipoDocumento = tipoDocumento;
 	}
 
-	public String getNumeroDocumento() {
+	public Integer getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(String numeroDocumento) {
+	public void setNumeroDocumento(Integer numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 

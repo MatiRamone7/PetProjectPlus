@@ -65,7 +65,6 @@ INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
   ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
   
 
-
 CREATE TABLE [mascota] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
@@ -76,13 +75,12 @@ CREATE TABLE [mascota] (
 	foto varchar(255),
 	qr varchar(255)
 )
+
 INSERT INTO mascota(nombre, apodo, fechaDeNacimiento, sexo, especie, foto, qr) VALUES
   ('Timoteo', 'Timi', GetDate(), 'Macho', 'Perro', '\Archivos\FotosPerros\1.png', '\Archivos\QRPerros\1.png'),
   ('Nala', 'Nala', GetDate(), 'Hembra', 'Gato', '\Archivos\FotosPerros\2.png', '\Archivos\QRGatos\2.png'),
   ('Luna', 'Lunita', GetDate(), 'Hemrbra', 'Gato', '\Archivos\FotosGatos\3.png', '\Archivos\QRGatos\3.png'),
   ('Bolt', 'Bolt', GetDate(), 'Macho', 'Perro', '\Archivos\FotosGatos\4.png', '\Archivos\QRGatos\4.png');
-
-
 
 CREATE TABLE [caracteristica] (
 	id int primary Key identity(1,1),
@@ -100,8 +98,6 @@ INSERT INTO caracteristica(valor, categoria) VALUES
   ('Café con leche', 'Color'),	--7
   ('Blanco', 'Color'),			--8
   ('manso', 'Caracteristica');	--9
-
-
 
 CREATE TABLE [caracteristicaxmascota] (
 	id int primary Key identity(1,1),
@@ -126,7 +122,6 @@ INSERT INTO caracteristicaxmascota(mascotaId, caracteristicaId) VALUES
   (4, 1),
   (4, 4),
   (4, 8);
-
 
  select * from ong;
  select * from usuario;

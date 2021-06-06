@@ -1,6 +1,8 @@
 package com.utn.services;
 
 import com.utn.repositories.UserRepo;
+import com.utn.utils.HashUtils;
+import com.utn.utils.IValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,19 @@ public class UserService implements IUserService {
 	 * @param user user a crear
 	 * @return nuevo user
 	 */
-	public User Create(User user) {
+	private IValidationSesion validationSesion;
+
+	public User Create(User user)
+	{
+		String name = user.getNombre();
+		String password = user.getPassword();
+		String hpass;
+
+		if (validationSesion.validarUsuarioyPass(name, password).isStatus()) {
+			hpass = HashUtils.get_SHA_512_SecurePassword(password);
+			user.setPassword(hpass);
+		}
+
 		return userRepo.CreateUser(user);
 	}
 

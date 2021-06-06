@@ -111,7 +111,7 @@ public class User implements Serializable{
 		this.ong = ong;
 	}
 
-	public String contactar(String medioContacto) throws IOException {
+	public void contactar() throws IOException {
 
 		SMS sms = new SMS();
 		Mail mail = new Mail();
@@ -122,18 +122,8 @@ public class User implements Serializable{
 		String casilla = "mail@mail.com";
 		String celular = "1162423315";
 
-		switch (medioContacto) {
-			case "sms":
-				SMS.enviarMensajeConVonage(celular, cuerpo);
-				return "Contacto hecho por SMS";
-			case "mail":
-				Mail.enviarMail(casilla, asunto, cuerpo);
-				return "Contacto hecho por Mail";
-			case "whatsapp":
-				whats.contactar(celular, cuerpo);
-				return "Contacto hecho por Whatsapp";
-			default:
-				return "No se pudo hacer contacto";
-		}
+		SMS.enviarMensajeConVonage(celular, cuerpo);
+		Mail.enviarMail(casilla, asunto, cuerpo);
+		whats.contactar(celular, cuerpo);
 	}
 }

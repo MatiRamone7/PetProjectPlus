@@ -5,9 +5,11 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.models.Pet;
 import com.utn.models.Publication;
 import com.utn.models.User;
 import com.utn.repositories.UserRepo;
+import com.utn.services.IPetService;
 import com.utn.services.IPublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/")
@@ -126,6 +129,31 @@ public class APIRestController {
 	@DeleteMapping("publications/{id}")
 	public void DeletePublication(@PathVariable Integer id) {
 		publicationService.DeletePublication(id);
+	}
+
+	/**
+	 * Controlador de pets.
+	 */
+	@Autowired
+	IPetService petService;
+
+	@PostMapping("pets")
+	public Pet CreatePet(@RequestBody Pet pet) {
+		return petService.CreatePet(pet);
+	}
+
+	/**
+	 * Contacto con el dueño por QR de mascota.
+	 */
+	@GetMapping("/notificarUsuario/{idMascota}")
+	public void NotifyUser(HashMap map, @PathVariable Integer idMascota) {
+		//Get Mascota por Id
+		// Pet mascota =
+
+		String texto = (String) map.get(0);
+
+		//Get Usuario por id de mascota
+		// User usuario =
 	}
 
 }

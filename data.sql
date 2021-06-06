@@ -64,6 +64,8 @@ INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
   ('Foto Perro', 'Encontrado en Villa Crespo', 1, 1),
   ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
   
+
+
 CREATE TABLE [mascota] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
@@ -74,12 +76,32 @@ CREATE TABLE [mascota] (
 	foto varchar(255),
 	qr varchar(255)
 )
+INSERT INTO mascota(nombre, apodo, fechaDeNacimiento, sexo, especie, foto, qr) VALUES
+  ('Timoteo', 'Timi', GetDate(), 'Macho', 'Perro', '\Archivos\FotosPerros\1.png', '\Archivos\QRPerros\1.png'),
+  ('Nala', 'Nala', GetDate(), 'Hembra', 'Gato', '\Archivos\FotosPerros\2.png', '\Archivos\QRGatos\2.png'),
+  ('Luna', 'Lunita', GetDate(), 'Hemrbra', 'Gato', '\Archivos\FotosGatos\3.png', '\Archivos\QRGatos\3.png'),
+  ('Bolt', 'Bolt', GetDate(), 'Macho', 'Perro', '\Archivos\FotosGatos\4.png', '\Archivos\QRGatos\4.png');
+
+
 
 CREATE TABLE [caracteristica] (
 	id int primary Key identity(1,1),
 	valor varchar(255),
 	categoria varchar(255)
 )
+
+INSERT INTO caracteristica(valor, categoria) VALUES
+  ('Chico', 'Tamaño'),			--1
+  ('Mediano', 'Tamaño'),		--2
+  ('True', 'Castracion'),		--3
+  ('False', 'Castracion'),		--4
+  ('Gris', 'Color'),			--5
+  ('Negro', 'Color'),			--6
+  ('Café con leche', 'Color'),	--7
+  ('Blanco', 'Color'),			--8
+  ('manso', 'Caracteristica');	--9
+
+
 
 CREATE TABLE [caracteristicaxmascota] (
 	id int primary Key identity(1,1),
@@ -89,6 +111,22 @@ CREATE TABLE [caracteristicaxmascota] (
 	mascotaId int,
 	CONSTRAINT FK_MASCOTA FOREIGN KEY (mascotaId) REFERENCES mascota(id)
 )
+
+INSERT INTO caracteristicaxmascota(mascotaId, caracteristicaId) VALUES
+  (1, 2),
+  (1, 3),
+  (1, 7),
+  (1, 9),
+  (2, 2),
+  (2, 3),
+  (2, 5),
+  (3, 1),
+  (3, 4),
+  (3, 6),
+  (4, 1),
+  (4, 4),
+  (4, 8);
+
 
  select * from ong;
  select * from usuario;

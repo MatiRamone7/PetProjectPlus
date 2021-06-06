@@ -63,6 +63,32 @@ CREATE TABLE [publicacion] (
 INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
   ('Foto Perro', 'Encontrado en Villa Crespo', 1, 1),
   ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
+  
+CREATE TABLE [mascota] (
+	id int primary Key identity(1,1),
+	nombre varchar(255),
+	apodo varchar(255),
+	fechaDeNacimiento DateTime2,
+	sexo varchar(255),
+	especie varchar(255),
+	foto varchar(255),
+	qr varchar(255)
+)
+
+CREATE TABLE [caracteristica] (
+	id int primary Key identity(1,1),
+	valor varchar(255),
+	categoria varchar(255)
+)
+
+CREATE TABLE [caracteristicaxmascota] (
+	id int primary Key identity(1,1),
+	--FK
+	caracteristicaId int,
+	CONSTRAINT FK_CARACTERISTICA FOREIGN KEY (caracteristicaId) REFERENCES caracteristica(id),
+	mascotaId int,
+	CONSTRAINT FK_MASCOTA FOREIGN KEY (mascotaId) REFERENCES mascota(id)
+)
 
  select * from ong;
  select * from usuario;

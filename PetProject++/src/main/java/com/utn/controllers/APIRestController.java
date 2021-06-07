@@ -142,6 +142,11 @@ public class APIRestController {
 		return petService.CreatePet(pet);
 	}
 
+	@GetMapping("pets/{id}")
+	public Pet GetPetById(@PathVariable Integer id) {
+		return petService.GetPetById(id);
+	}
+
 	/**
 	 * Contacto con el dueño por QR de mascota.
 	 */

@@ -28,4 +28,15 @@ public class PetRepo implements IPetRepo{
 
         return pet;
     }
+
+    @Override
+    public Pet GetUserById(Integer id) {
+        Pet aux;
+
+        this.manager.getTransaction().begin();
+        aux = (Pet) this.manager.createQuery("FROM Pet u WHERE u.id = " + id.toString()).getSingleResult();
+        this.manager.getTransaction().commit();
+
+        return aux;
+    }
 }

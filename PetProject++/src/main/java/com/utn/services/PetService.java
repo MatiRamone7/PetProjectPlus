@@ -27,4 +27,15 @@ public class PetService implements IPetService{
     public Pet CreatePet(Pet pet) {
         return petRepo.CreatePet(pet);
     }
+
+    /**
+     * Busca una pet por Id.
+     *
+     * @param id id de user a buscar
+     * @return user existente
+     */
+    @Override
+    public Pet GetPetById(Integer id) {
+        return petRepo.GetPetById(id);
+    }
 }

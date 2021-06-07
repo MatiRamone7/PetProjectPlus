@@ -1,7 +1,9 @@
-DROP TABLE IF EXISTS ong;
-DROP TABLE IF EXISTS usuario;
-DROP TABLE IF EXISTS rescatista;
-DROP TABLE IF EXISTS publicacion;
+use DDS
+
+--DROP TABLE IF EXISTS ong;
+--DROP TABLE IF EXISTS usuario;
+--DROP TABLE IF EXISTS rescatista;
+--DROP TABLE IF EXISTS publicacion;
 
 CREATE TABLE [ong] (
 	id int primary Key identity(1,1),
@@ -13,6 +15,18 @@ INSERT INTO ong (nombre, estandarizacionDeImagen) VALUES
   ('Pets Corp', 'Imagen Grande'),
   ('Partners of Pets', 'Imagen Mediana'),
   ('Pets Refugee', 'Imagen Chica');
+
+
+CREATE TABLE [rol] (
+	id int primary Key identity(1,1),
+	nombre varchar(255)
+)
+
+INSERT INTO rol (nombre) VALUES
+  ('USER'),
+  ('VOLUTEER'),
+  ('ADMIN');
+
  
 CREATE TABLE [usuario] (
 	id int primary Key identity(1,1),
@@ -24,7 +38,9 @@ CREATE TABLE [usuario] (
 	numeroDocumento int,
 	--FK
 	ongId int,
-	CONSTRAINT FK_ONG FOREIGN KEY (ongId) REFERENCES ONG(id)
+	CONSTRAINT FK_ONG FOREIGN KEY (ongId) REFERENCES ONG(id),
+	rolId int,
+	CONSTRAINT FK_ROL FOREIGN KEY (rolId) REFERENCES ROL(id)
 )
 
 INSERT INTO usuario (nombre, password, apellido, fechaDeNacimiento, tipoDocumento, numeroDocumento, ongId) VALUES
@@ -82,6 +98,7 @@ INSERT INTO mascota(nombre, apodo, fechaDeNacimiento, sexo, especie, foto, qr) V
   ('Luna', 'Lunita', GetDate(), 'Hemrbra', 'Gato', '\Archivos\FotosGatos\3.png', '\Archivos\QRGatos\3.png'),
   ('Bolt', 'Bolt', GetDate(), 'Macho', 'Perro', '\Archivos\FotosGatos\4.png', '\Archivos\QRGatos\4.png');
 
+
 CREATE TABLE [caracteristica] (
 	id int primary Key identity(1,1),
 	valor varchar(255),
@@ -98,6 +115,7 @@ INSERT INTO caracteristica(valor, categoria) VALUES
   ('Café con leche', 'Color'),	--7
   ('Blanco', 'Color'),			--8
   ('manso', 'Caracteristica');	--9
+
 
 CREATE TABLE [caracteristicaxmascota] (
 	id int primary Key identity(1,1),
@@ -122,6 +140,7 @@ INSERT INTO caracteristicaxmascota(mascotaId, caracteristicaId) VALUES
   (4, 1),
   (4, 4),
   (4, 8);
+
 
  select * from ong;
  select * from usuario;

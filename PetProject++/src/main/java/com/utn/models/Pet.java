@@ -2,9 +2,12 @@ package com.utn.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="mascota")
@@ -42,6 +45,13 @@ public class Pet implements Serializable {
     @JoinColumn(name = "usuarioId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User usuarioId;
+
+    @ManyToMany
+    @NotNull
+    @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
+                inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Set<Characteristic> caracteristicSet = new HashSet<>();
 
     public Integer getId() {
         return id;

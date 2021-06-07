@@ -1,9 +1,13 @@
-use DDS
+DROP TABLE IF EXISTS ong;
+DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS rescatista;
+DROP TABLE IF EXISTS publicacion;
+DROP TABLE IF EXISTS caracteristicaxmascota;
+DROP TABLE IF EXISTS mascota;
+DROP TABLE IF EXISTS caracteristica;
+DROP TABLE IF EXISTS rol;
 
---DROP TABLE IF EXISTS ong;
---DROP TABLE IF EXISTS usuario;
---DROP TABLE IF EXISTS rescatista;
---DROP TABLE IF EXISTS publicacion;
+
 
 CREATE TABLE [ong] (
 	id int primary Key identity(1,1),
@@ -17,6 +21,7 @@ INSERT INTO ong (nombre, estandarizacionDeImagen) VALUES
   ('Pets Refugee', 'Imagen Chica');
 
 
+ 
 CREATE TABLE [rol] (
 	id int primary Key identity(1,1),
 	nombre varchar(255)
@@ -27,6 +32,7 @@ INSERT INTO rol (nombre) VALUES
   ('VOLUTEER'),
   ('ADMIN');
 
+ 
  
 CREATE TABLE [usuario] (
 	id int primary Key identity(1,1),
@@ -49,6 +55,8 @@ INSERT INTO usuario (nombre, password, apellido, fechaDeNacimiento, tipoDocument
   ('Urdnot', 'Pass3', 'Wrex', GetDate(), 'DNI', 23344444, 3),
   ('Mordin', 'Pass4', 'Solus', GetDate(), 'DNI', 34379899, 1);
 
+ 
+ 
 CREATE TABLE [rescatista] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
@@ -65,6 +73,8 @@ INSERT INTO rescatista (nombre, apellido, tipoDocumento, numeroDocumento, direcc
   ('Encontré', 'Una tortuga', 'DNI', 3455234, 'Av. Corrientes 577', '4988-3244'),
   ('Encontré', 'Un puma', 'DNI', 30665190, 'Florida 201', 'Rescatador@gmail.com');
  
+ 
+ 
 CREATE TABLE [publicacion] (
 	id int primary Key identity(1,1),
 	foto varchar(255),
@@ -79,8 +89,9 @@ CREATE TABLE [publicacion] (
 INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
   ('Foto Perro', 'Encontrado en Villa Crespo', 1, 1),
   ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
+ 
   
-
+  
 CREATE TABLE [mascota] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
@@ -89,16 +100,19 @@ CREATE TABLE [mascota] (
 	sexo varchar(255),
 	especie varchar(255),
 	foto varchar(255),
-	qr varchar(255)
+	qr varchar(255),
+    usuarioId int,
+    CONSTRAINT FK_USUARIO FOREIGN KEY (usuarioId) REFERENCES usuario(id)
 )
 
-INSERT INTO mascota(nombre, apodo, fechaDeNacimiento, sexo, especie, foto, qr) VALUES
-  ('Timoteo', 'Timi', GetDate(), 'Macho', 'Perro', '\Archivos\FotosPerros\1.png', '\Archivos\QRPerros\1.png'),
-  ('Nala', 'Nala', GetDate(), 'Hembra', 'Gato', '\Archivos\FotosPerros\2.png', '\Archivos\QRGatos\2.png'),
-  ('Luna', 'Lunita', GetDate(), 'Hemrbra', 'Gato', '\Archivos\FotosGatos\3.png', '\Archivos\QRGatos\3.png'),
-  ('Bolt', 'Bolt', GetDate(), 'Macho', 'Perro', '\Archivos\FotosGatos\4.png', '\Archivos\QRGatos\4.png');
+INSERT INTO mascota(nombre, apodo, fechaDeNacimiento, sexo, especie, foto, qr, usuarioId) VALUES
+  ('Timoteo', 'Timi', GetDate(), 'Macho', 'Perro', '\Archivos\FotosPerros\1.png', '\Archivos\QRPerros\1.png', 1),
+  ('Nala', 'Nala', GetDate(), 'Hembra', 'Gato', '\Archivos\FotosPerros\2.png', '\Archivos\QRGatos\2.png', 1),
+  ('Luna', 'Lunita', GetDate(), 'Hemrbra', 'Gato', '\Archivos\FotosGatos\3.png', '\Archivos\QRGatos\3.png', 2),
+  ('Bolt', 'Bolt', GetDate(), 'Macho', 'Perro', '\Archivos\FotosGatos\4.png', '\Archivos\QRGatos\4.png', 3);
 
 
+ 
 CREATE TABLE [caracteristica] (
 	id int primary Key identity(1,1),
 	valor varchar(255),
@@ -117,6 +131,7 @@ INSERT INTO caracteristica(valor, categoria) VALUES
   ('manso', 'Caracteristica');	--9
 
 
+  
 CREATE TABLE [caracteristicaxmascota] (
 	id int primary Key identity(1,1),
 	--FK

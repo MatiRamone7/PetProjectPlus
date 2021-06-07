@@ -30,7 +30,7 @@ public class PetRepo implements IPetRepo{
     }
 
     @Override
-    public Pet GetUserById(Integer id) {
+    public Pet GetPetById(Integer id) {
         Pet aux;
 
         this.manager.getTransaction().begin();

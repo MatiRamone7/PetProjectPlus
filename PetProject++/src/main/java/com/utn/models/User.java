@@ -47,6 +47,11 @@ public class User implements Serializable{
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Ong ong;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rolId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Rol rol;
+
 	public Integer getId() {
 		return id;
 	}

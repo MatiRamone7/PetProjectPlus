@@ -1,6 +1,8 @@
 package com.utn.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -35,6 +37,11 @@ public class Pet implements Serializable {
 
     @Column(name = "qr")
     private String qr;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuarioId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User usuarioId;
 
     public Integer getId() {
         return id;
@@ -98,5 +105,13 @@ public class Pet implements Serializable {
 
     public void setQr(String qr) {
         this.qr = qr;
+    }
+
+    public User getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(User usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }

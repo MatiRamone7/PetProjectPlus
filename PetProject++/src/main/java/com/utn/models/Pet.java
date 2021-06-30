@@ -124,4 +124,12 @@ public class Pet implements Serializable {
     public void setUsuarioId(User usuarioId) {
         this.usuarioId = usuarioId;
     }
+
+    public Set<Characteristic> getCaracteristicSet() {
+        return caracteristicSet;
+    }
+
+    public void setCaracteristicSet(Set<Characteristic> caracteristicSet) {
+        this.caracteristicSet = caracteristicSet;
+    }
 }

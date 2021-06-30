@@ -13,14 +13,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="usuario")
-public class User implements Serializable{
-	public User() {}
+public class User implements Serializable {
+	public User() {
+	}
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 
@@ -117,6 +118,8 @@ public class User implements Serializable{
 	}
 
 	public void contactar() throws IOException {
+
+		// Desarrollar test unitario
 
 		SMS sms = new SMS();
 		Mail mail = new Mail();

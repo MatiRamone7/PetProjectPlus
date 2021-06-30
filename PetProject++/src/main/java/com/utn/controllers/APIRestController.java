@@ -150,7 +150,7 @@ public class APIRestController {
 	 */
 	@PostMapping("/notificarUsuario/{idMascota}")
 	public void NotifyUser(@RequestBody HashMap map, @PathVariable Integer idMascota) throws IOException {
-		String texto = (String) map.get(0);
+		String texto = (String) map.get("texto");
 		Pet mascota = this.GetPetById(idMascota);
 		User usuarioAContactar = mascota.getUsuarioId();
 

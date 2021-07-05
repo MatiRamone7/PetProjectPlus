@@ -34,6 +34,9 @@ public class APIRestController {
 	@Autowired
 	IPetService petService;
 
+	@Autowired
+	IPublicationService publicationService;
+
 	@GetMapping("generarQRFormulario")
 	public void GenerateQR() throws IOException {
 		//es donde se aloja la informacion del qr
@@ -71,15 +74,32 @@ public class APIRestController {
 	}
 
 	/**
+	 * Informar sobre mascota perdida.
+	 */
+	@PostMapping("/informarMascotaPerdida/{idMascota}")
+	public void InformPet(@PathVariable Integer idMascota) throws IOException {
+		Pet mascota = petService.GetPetById(idMascota);
+
+		HashMap<String, String> defaultMessage = new HashMap<>();
+		defaultMessage.put("texto", "Se le notifica al usuario que se encontró su mascota");
+
+		Publication nuevaPubli = new Publication();
+
+		if (mascota.getQr() == null) {
+			publicationService.CreatePublication(nuevaPubli);
+		} else if (mascota.getQr() != null) {
+			this.NotifyUser(defaultMessage, idMascota);
+		}
+	}
+
+	/**
 	 * Contacto con el dueño por QR de mascota.
 	 */
-	@PostMapping("/notificarUsuario/{idMascota}")
-	public void NotifyUser(@RequestBody HashMap map, @PathVariable Integer idMascota) throws IOException {
+	public void NotifyUser(HashMap map, Integer idMascota) throws IOException {
 		String texto = (String) map.get("texto");
 		Pet mascota = petService.GetPetById(idMascota);
 		User usuarioAContactar = mascota.getUsuarioId();
 
 		usuarioAContactar.contactar();
 	}
-
 }

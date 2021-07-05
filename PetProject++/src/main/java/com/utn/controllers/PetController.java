@@ -5,10 +5,10 @@ import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/pets")
 public class PetController {
+
     @Autowired
     IPetService petService;
 
@@ -21,5 +21,4 @@ public class PetController {
     public Pet GetPetById(@PathVariable Integer id) {
         return petService.GetPetById(id);
     }
-
 }

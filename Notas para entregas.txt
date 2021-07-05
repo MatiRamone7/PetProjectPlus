@@ -1,0 +1,16 @@
+1. Se debe permitir que una persona informe que encontró una mascota perdida (con chapita) y que el
+sistema le notifique al dueño de esta situación.
+2. Se debe permitir que una persona informe que encontró una mascota perdida (sin chapita) y que el
+sistema genere una publicación.
+3. Se debe permitir generar usuarios Voluntarios, los cuales podrán aprobar y gestionar las
+publicaciones de mascotas perdidas.
+4. Se debe permitir que el sistema ofrezca posibles hogares de tránsito a los rescatistas de mascotas.
+Existe una API REST que ofrece un listado de hogares de tránsito.
+5. Se debe permitir que una persona busque a su mascota perdida en la plataforma y que pueda
+contactarse con el rescatista en caso de encontrarla.
+
+Punto 1 hecho con InformPet en NotifyUser en el controller
+Punto 2 hecho con InformPet en CreatePublication en el controller
+punto 3 hecho con Create en UserController (pasarle parametros de rol para que sea admin)
+
+punto 5 hecho con GetPets en PetController

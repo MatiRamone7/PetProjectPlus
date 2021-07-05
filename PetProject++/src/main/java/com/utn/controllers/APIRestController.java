@@ -25,9 +25,6 @@ import java.util.HashMap;
 @RequestMapping("/")
 public class APIRestController {
 
-	/**
-	 * Controlador de users.
-	 */
 	private static final int qrTamAncho = 400;
 	private static final int qrTamAlto = 400;
 	private static final String formato = "png";
@@ -35,32 +32,7 @@ public class APIRestController {
 	private static final String pathFormulario = "https://aulasvirtuales.frba.utn.edu.ar/";
 
 	@Autowired
-	IUserService userService;
-
-	@GetMapping("users")
-	public Iterable<User> GetUsers() {
-		return userService.GetUsers();
-	}
-
-	@GetMapping("users/{id}")
-	public User GetUserById(@PathVariable Integer id) {
-		return userService.GetUserById(id);
-	}
-
-	@PostMapping("users")
-	public User Create(@RequestBody User user) {
-		return userService.Create(user);
-	}
-
-	@PutMapping("users/{id}")
-	public User Update(@RequestBody User user, @PathVariable Integer id) {
-		return userService.Update(user, id);
-	}
-
-	@DeleteMapping("users/{id}")
-	public void Delete(@PathVariable Integer id) {
-		userService.Delete(id);
-	}
+	IPetService petService;
 
 	@GetMapping("generarQRFormulario")
 	public void GenerateQR() throws IOException {
@@ -99,59 +71,12 @@ public class APIRestController {
 	}
 
 	/**
-	 * Controlador de publications.
-	 */
-	@Autowired
-	IPublicationService publicationService;
-
-	@GetMapping("publications")
-	public Iterable<Publication> GetPublications() {
-		return publicationService.GetPublications();
-	}
-
-	@GetMapping("publications/{id}")
-	public Publication GetPublicationById(@PathVariable Integer id) {
-		return publicationService.GetPublicationById(id);
-	}
-
-	@PostMapping("publications")
-	public Publication CreatePublication(@RequestBody Publication publication) {
-		return publicationService.CreatePublication(publication);
-	}
-
-	@PutMapping("publications/{id}")
-	public Publication UpdatePublication(@RequestBody Publication publication, @PathVariable Integer id) {
-		return publicationService.UpdatePublication(publication, id);
-	}
-
-	@DeleteMapping("publications/{id}")
-	public void DeletePublication(@PathVariable Integer id) {
-		publicationService.DeletePublication(id);
-	}
-
-	/**
-	 * Controlador de pets.
-	 */
-	@Autowired
-	IPetService petService;
-
-	@PostMapping("pets")
-	public Pet CreatePet(@RequestBody Pet pet) {
-		return petService.CreatePet(pet);
-	}
-
-	@GetMapping("pets/{id}")
-	public Pet GetPetById(@PathVariable Integer id) {
-		return petService.GetPetById(id);
-	}
-
-	/**
 	 * Contacto con el dueño por QR de mascota.
 	 */
 	@PostMapping("/notificarUsuario/{idMascota}")
 	public void NotifyUser(@RequestBody HashMap map, @PathVariable Integer idMascota) throws IOException {
 		String texto = (String) map.get("texto");
-		Pet mascota = this.GetPetById(idMascota);
+		Pet mascota = petService.GetPetById(idMascota);
 		User usuarioAContactar = mascota.getUsuarioId();
 
 		usuarioAContactar.contactar();

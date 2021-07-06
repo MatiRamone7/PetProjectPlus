@@ -5,8 +5,13 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.models.MascotaPerdida.FormLostPet;
 import com.utn.models.Pet;
 import com.utn.models.Publication;
+import com.utn.models.TransitHomes.Home;
+import com.utn.models.TransitHomes.RefugeeList;
+import com.utn.models.TransitHomes.ServiceRefugios;
+import com.utn.models.TransitHomes.Ubication;
 import com.utn.models.User;
 import com.utn.services.IPetService;
 import com.utn.services.IPublicationService;
@@ -19,7 +24,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/")
@@ -101,5 +109,39 @@ public class APIRestController {
 		User usuarioAContactar = mascota.getUsuarioId();
 
 		usuarioAContactar.contactar();
+	}
+
+	public static void main(String[] args) throws IOException {
+		ServiceRefugios serviciosRefugios = ServiceRefugios.getInstancia();
+
+		List<String> listaDeCaracteristicas = new ArrayList<String>();
+		//listaDeCaracteristicas.add("manso");
+		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
+		FormLostPet unaFormularioMascotaPerdida = new FormLostPet("Perro", "Grande", lugar, listaDeCaracteristicas);
+		List<Home> listadaAuxiliar = new ArrayList<>();
+
+		RefugeeList listadoDeRefugios;
+		int offset = 0;
+		try {
+			while (true) {
+				offset++;
+
+				listadoDeRefugios = serviciosRefugios.listadoDeRefugios(offset);
+				listadaAuxiliar.addAll(listadoDeRefugios.hogares.stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(unaFormularioMascotaPerdida)).collect(Collectors.toList()));
+			}
+		} catch (Exception e) {
+		}
+
+		for (Home unHogar : listadaAuxiliar) {
+			System.out.println(
+					"Nombre del hogar de transito: " + unHogar.getNombre() +
+							"\nUbicación: " + unHogar.getUbicacion().getDireccion() + //    telefono lugaresDisponibles
+							"\nTelefono: " + unHogar.getTelefono() +
+							"\nLugaresDisponibles: " + unHogar.getLugaresDisponibles() +
+							"\nLatitud del hogar de transito: " + Double.toString(unHogar.getUbicacion().getLat()) +
+							"\n-----------------------------------------------------------------------------------");
+		}
+		System.out.println("Fin");
+		return;
 	}
 }

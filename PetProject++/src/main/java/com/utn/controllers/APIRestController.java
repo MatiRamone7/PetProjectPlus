@@ -10,6 +10,10 @@ import com.utn.models.Publication;
 import com.utn.models.User;
 import com.utn.services.IPetService;
 import com.utn.services.IPublicationService;
+import com.utn.transithomes.Home;
+import com.utn.transithomes.RefugeeList;
+import com.utn.transithomes.ServiceRefugios;
+import com.utn.transithomes.Ubication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +23,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/")
@@ -101,5 +108,32 @@ public class APIRestController {
 		User usuarioAContactar = mascota.getUsuarioId();
 
 		//usuarioAContactar.contactar();
+	}
+
+	/**
+	 * Llamar a API de hogares de transito.
+	 */
+	@GetMapping("getHogaresTransito")
+	public static void getHogaresTransito() throws IOException {
+		ServiceRefugios serviciosRefugios = ServiceRefugios.getInstancia();
+
+		List<String> listaDeCaracteristicas = new ArrayList<>();
+		//listaDeCaracteristicas.add("manso");
+		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
+		FormLostPet unaFormularioMascotaPerdida = new FormLostPet("Perro", "Grande", lugar, listaDeCaracteristicas);
+		List<Home> listadaAuxiliar = new ArrayList<>();
+
+		RefugeeList listadoDeRefugios;
+		int offset = 0;
+		try {
+			while (true) {
+				offset++;
+
+				listadoDeRefugios = serviciosRefugios.listadoDeRefugios(offset);
+				listadaAuxiliar.addAll(listadoDeRefugios.hogares.stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(unaFormularioMascotaPerdida)).collect(Collectors.toList()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

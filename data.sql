@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS ong;
 DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS ong;
 DROP TABLE IF EXISTS rescatista;
 DROP TABLE IF EXISTS publicacion;
 DROP TABLE IF EXISTS caracteristicaxmascota;
@@ -12,14 +12,14 @@ DROP TABLE IF EXISTS rol;
 CREATE TABLE [ong] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
-	estandarizacionDeImagen varchar(255)
+	estandarizacionDeImagen varchar(255),
+	imagen varbinary(max)
 )
 
 INSERT INTO ong (nombre, estandarizacionDeImagen) VALUES
   ('Pets Corp', 'Imagen Grande'),
   ('Partners of Pets', 'Imagen Mediana'),
   ('Pets Refugee', 'Imagen Chica');
-
 
  
 CREATE TABLE [rol] (
@@ -77,7 +77,7 @@ INSERT INTO rescatista (nombre, apellido, tipoDocumento, numeroDocumento, direcc
  
 CREATE TABLE [publicacion] (
 	id int primary Key identity(1,1),
-	foto varchar(255),
+	foto varbinary(255),
 	lugarEncuentro varchar(255),
 	--FK
 	ongId int,
@@ -89,7 +89,6 @@ CREATE TABLE [publicacion] (
 INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
   ('Foto Perro', 'Encontrado en Villa Crespo', 1, 1),
   ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
- 
   
   
 CREATE TABLE [mascota] (

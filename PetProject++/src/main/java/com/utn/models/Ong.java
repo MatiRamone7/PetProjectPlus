@@ -21,6 +21,9 @@ public class Ong implements Serializable {
     @Column(name = "estandarizacionDeImagen")
     private String estandarizacionDeImagen;
 
+    @Column(name = "imagen")
+    private byte[] imagen;
+
     public Integer getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class Ong implements Serializable {
 
     public void setEstandarizacionDeImagen(String estandarizacionDeImagen) {
         this.estandarizacionDeImagen = estandarizacionDeImagen;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

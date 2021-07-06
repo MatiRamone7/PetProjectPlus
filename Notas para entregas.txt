@@ -14,3 +14,5 @@ Punto 2 hecho con InformPet en CreatePublication en el controller
 punto 3 hecho con Create en UserController (pasarle parametros de rol para que sea admin)
 
 punto 5 hecho con GetPets en PetController
+
+Conversor para pasar imagenes como byte[] = http://base64.wutils.com/encoding-online/

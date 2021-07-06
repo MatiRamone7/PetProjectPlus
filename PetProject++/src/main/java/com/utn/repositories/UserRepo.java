@@ -66,6 +66,7 @@ public class UserRepo implements IUserRepo {
 		userToUpdate.setTipoDocumento(user.getTipoDocumento());
 		userToUpdate.setNumeroDocumento(user.getNumeroDocumento());
 		userToUpdate.setOng(user.getOng());
+		userToUpdate.setRol(user.getRol());
 		this.manager.flush();
 		this.manager.getTransaction().commit();
 

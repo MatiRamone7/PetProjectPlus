@@ -117,6 +117,14 @@ public class User implements Serializable {
 		this.ong = ong;
 	}
 
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	public void contactar() throws IOException {
 
 		// Desarrollar test unitario

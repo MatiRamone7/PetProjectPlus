@@ -36,4 +36,10 @@ public class PublicationController {
     public void DeletePublication(@PathVariable Integer id) {
         publicationService.DeletePublication(id);
     }
+
+
+
+
+
+
 }

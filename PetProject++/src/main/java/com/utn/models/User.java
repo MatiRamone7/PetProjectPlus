@@ -5,9 +5,12 @@ import com.utn.contactservices.Mail;
 import com.utn.contactservices.SMS;
 import com.utn.contactservices.Whatsapp;
 import com.utn.contactservices.WhatsappWaboxService;
+import com.utn.models.DarEnAdopcion.FormGiveAdoption;
+import com.utn.models.DarEnAdopcion.PublicationGiveAdoption;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -142,4 +145,33 @@ public class User implements Serializable {
 		Mail.enviarMail(casilla, asunto, cuerpo);
 		whats.contactar(celular, cuerpo);
 	}
+
+
+
+
+
+
+
+
+
+	public void aprobarPublicacion(PublicationGiveAdoption unaPublicaicon){
+		//TODO: cambiar el estado de una formulario de NO revisado por un voluntario a revisado.
+	}
+
+	public void rechazarPublicacion(PublicationGiveAdoption unaPublicacion){
+		//TODO: Borrar el formulario de la base de datos
+	}
+
+
+	public void darMascotaEnAdopcion(Integer petID, List<String> caracteristicasDeLaPublicacion){
+		//FormGiveAdoption unFormulario = new FormGiveAdoption(this, petID, caracteristicasDeLaPublicacion);
+		//cargarEnBaseDeDatos(unFormulario);
+	}
+
+	public void cargarEnBaseDeDatos(FormGiveAdoption unFormulario){
+		//@loquesea
+	}
+
+
+
 }

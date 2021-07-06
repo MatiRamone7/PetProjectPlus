@@ -125,6 +125,7 @@ public class User implements Serializable {
 		this.rol = rol;
 	}
 
+	/*
 	public void contactar() throws IOException {
 
 		// Desarrollar test unitario
@@ -142,4 +143,6 @@ public class User implements Serializable {
 		Mail.enviarMail(casilla, asunto, cuerpo);
 		whats.contactar(celular, cuerpo);
 	}
+	*/
+
 }

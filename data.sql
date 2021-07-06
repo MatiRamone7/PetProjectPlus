@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS usuario;
-DROP TABLE IF EXISTS ong;
-DROP TABLE IF EXISTS rescatista;
 DROP TABLE IF EXISTS publicacion;
 DROP TABLE IF EXISTS caracteristicaxmascota;
 DROP TABLE IF EXISTS mascota;
+DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS ong;
+DROP TABLE IF EXISTS rescatista;
 DROP TABLE IF EXISTS caracteristica;
 DROP TABLE IF EXISTS rol;
 
@@ -32,14 +32,13 @@ INSERT INTO rol (nombre) VALUES
   ('VOLUTEER'),
   ('ADMIN');
 
- 
- 
+
 CREATE TABLE [usuario] (
 	id int primary Key identity(1,1),
 	nombre varchar(255),
 	password varchar(255),
 	apellido varchar(255),
-	fechaDeNacimiento DateTime2,
+	fechaNacimiento DateTime2,
 	tipoDocumento varchar(255),
 	numeroDocumento int,
 	--FK
@@ -49,11 +48,11 @@ CREATE TABLE [usuario] (
 	CONSTRAINT FK_ROL FOREIGN KEY (rolId) REFERENCES ROL(id)
 )
 
-INSERT INTO usuario (nombre, password, apellido, fechaDeNacimiento, tipoDocumento, numeroDocumento, ongId) VALUES
-  ('Commander', 'Pass1', 'Shepard', GetDate(), 'DNI', 38789348, 1),
-  ('Garrus', 'Pass2', 'Vakarian', GetDate(), 'DNI', 44344242, 2),
-  ('Urdnot', 'Pass3', 'Wrex', GetDate(), 'DNI', 23344444, 3),
-  ('Mordin', 'Pass4', 'Solus', GetDate(), 'DNI', 34379899, 1);
+INSERT INTO usuario (nombre, password, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, ongId, RolId) VALUES
+  ('Commander', 'Pass1', 'Shepard', GetDate(), 'DNI', 38789348, 1, 1),
+  ('Garrus', 'Pass2', 'Vakarian', GetDate(), 'DNI', 44344242, 2, 1),
+  ('Urdnot', 'Pass3', 'Wrex', GetDate(), 'DNI', 23344444, 3, 2),
+  ('Mordin', 'Pass4', 'Solus', GetDate(), 'DNI', 34379899, 1, 3);
 
  
  
@@ -87,8 +86,8 @@ CREATE TABLE [publicacion] (
 )
 
 INSERT INTO publicacion (foto, lugarEncuentro, ongId, rescatistaId) VALUES
-  ('Foto Perro', 'Encontrado en Villa Crespo', 1, 1),
-  ('Foto Gato', 'Encontrado en Plaza Miserere', 2, 2)
+  (null, 'Encontrado en Villa Crespo', 1, 1),
+  (null, 'Encontrado en Plaza Miserere', 2, 2)
   
   
 CREATE TABLE [mascota] (

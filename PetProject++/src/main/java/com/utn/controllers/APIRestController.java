@@ -100,6 +100,6 @@ public class APIRestController {
 		Pet mascota = petService.GetPetById(idMascota);
 		User usuarioAContactar = mascota.getUsuarioId();
 
-		usuarioAContactar.contactar();
+		//usuarioAContactar.contactar();
 	}
 }

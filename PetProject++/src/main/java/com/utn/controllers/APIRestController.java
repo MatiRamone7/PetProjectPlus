@@ -5,6 +5,7 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.transithomes.MascotaPerdida.FormLostPet;
 import com.utn.models.Pet;
 import com.utn.models.Publication;
 import com.utn.models.User;
@@ -13,11 +14,8 @@ import com.utn.services.IPublicationService;
 import com.utn.transithomes.Home;
 import com.utn.transithomes.RefugeeList;
 import com.utn.transithomes.ServiceRefugios;
-import com.utn.transithomes.Ubication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.utn.services.IUserService;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -119,8 +117,7 @@ public class APIRestController {
 
 		List<String> listaDeCaracteristicas = new ArrayList<>();
 		//listaDeCaracteristicas.add("manso");
-		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
-		FormLostPet unaFormularioMascotaPerdida = new FormLostPet("Perro", "Grande", lugar, listaDeCaracteristicas);
+		FormLostPet unaFormularioMascotaPerdida = new FormLostPet("Perro", "Grande", -34.634306, -58.511310, listaDeCaracteristicas);
 		List<Home> listadaAuxiliar = new ArrayList<>();
 
 		RefugeeList listadoDeRefugios;

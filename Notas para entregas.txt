@@ -19,6 +19,12 @@ punto 5 hecho con GetPets en PetController.
 
 Conversor para pasar imagenes como byte[] = http://base64.wutils.com/encoding-online/
 
+/*
+	Usuario crearia formulario de adoptar o dar en adopcion, invitado crearia formulario de mascota perdida
+	Todos los formularios tendrian mascota y ubicacion, dependiendo de si son aprobados o no (por un voluntario)
+	pasan a ser Publicaciones y eso es lo que se muestra al publico
+*/
+
 Entrega 3
 
 1. Se debe permitir que una persona genere una publicación para dar en adopción a su mascota.
@@ -31,4 +37,6 @@ adoptarla.
 una mascota, teniendo en cuenta sus preferencias y comodidades.
 5. Se deben generar y enviar recomendaciones semanales de adopción de mascotas.
 
-1. 
+2. Las preguntas de la ONG estan asociadas a la ong del usuario
+3. Notificaciones estan asociadas a ContactoUnico de Usuario
+4. FormularioQuererAdoptar

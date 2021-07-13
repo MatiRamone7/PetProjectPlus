@@ -98,36 +98,6 @@ public class APIRestController {
 		qrCode.close();
 	}
 
-	/**
-	 * Controlador de publications.
-	 */
-	@Autowired
-	IPublicationService publicationService;
-
-	@GetMapping("publications")
-	public Iterable<Publication> GetPublications() {
-		return publicationService.GetPublications();
-	}
-
-	@GetMapping("publications/{id}")
-	public Publication GetPublicationById(@PathVariable Integer id) {
-		return publicationService.GetPublicationById(id);
-	}
-
-	@PostMapping("publications")
-	public Publication CreatePublication(@RequestBody Publication publication) {
-		return publicationService.CreatePublication(publication);
-	}
-
-	@PutMapping("publications/{id}")
-	public Publication UpdatePublication(@RequestBody Publication publication, @PathVariable Integer id) {
-		return publicationService.UpdatePublication(publication, id);
-	}
-
-	@DeleteMapping("publications/{id}")
-	public void DeletePublication(@PathVariable Integer id) {
-		publicationService.DeletePublication(id);
-	}
 
 	/**
 	 * Controlador de pets.

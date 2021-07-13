@@ -2,7 +2,8 @@ package com.utn.services;
 
 import com.utn.models.Publication;
 
-public interface IPublicationService {
+public interface
+IPublicationService {
     public Iterable<Publication> GetPublications();
 
     public Publication GetPublicationById(Integer id);

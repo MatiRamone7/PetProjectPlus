@@ -53,6 +53,14 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
+	//Implementacion de ContactoUnico
+	/*
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rolId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private ContactoUnico contacto;
+	*/
+
 	public Integer getId() {
 		return id;
 	}

@@ -1,3 +1,5 @@
+Entrega 2
+
 1. Se debe permitir que una persona informe que encontró una mascota perdida (con chapita) y que el
 sistema le notifique al dueño de esta situación.
 2. Se debe permitir que una persona informe que encontró una mascota perdida (sin chapita) y que el
@@ -12,7 +14,21 @@ contactarse con el rescatista en caso de encontrarla.
 Punto 1 hecho con InformPet en NotifyUser en el controller
 Punto 2 hecho con InformPet en CreatePublication en el controller
 punto 3 hecho con Create en UserController (pasarle parametros de rol para que sea admin)
-
-punto 5 hecho con GetPets en PetController
+punto 4 hecho con getHogaresTransito en APIRestController
+punto 5 hecho con GetPets en PetController.
 
 Conversor para pasar imagenes como byte[] = http://base64.wutils.com/encoding-online/
+
+Entrega 3
+
+1. Se debe permitir que una persona genere una publicación para dar en adopción a su mascota.
+2. Se debe permitir que cada organización defina las preguntas que le realizará al dueño cuando éste
+quiera dar en adopción a su mascota. Se debe tener en cuenta que las preguntas podrían llegar a
+variar en cualquier momento.
+3. Se debe enviar una notificación al dueño actual de la mascota cuando aparezca algún interesado en
+adoptarla.
+4. Se debe permitir que una persona genere una publicación que demuestre su intención de adoptar
+una mascota, teniendo en cuenta sus preferencias y comodidades.
+5. Se deben generar y enviar recomendaciones semanales de adopción de mascotas.
+
+1. 

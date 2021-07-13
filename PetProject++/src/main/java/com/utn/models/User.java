@@ -53,13 +53,11 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
-	//Implementacion de ContactoUnico
-	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rolId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private ContactoUnico contacto;
-	*/
+
 
 	public Integer getId() {
 		return id;
@@ -133,24 +131,12 @@ public class User implements Serializable {
 		this.rol = rol;
 	}
 
-	/*
+
 	public void contactar() throws IOException {
+		String asunto = TipoDeComunicacion.asunto("CODIGO");
+		String cuerpo = TipoDeComunicacion.cuerpo("CODIGO", This);
 
-		// Desarrollar test unitario
-
-		SMS sms = new SMS();
-		Mail mail = new Mail();
-		Whatsapp whats = new Whatsapp();
-
-		String asunto = "Hola";
-		String cuerpo = "Mundo";
-		String casilla = "mail@mail.com";
-		String celular = "1162423315";
-
-		SMS.enviarMensajeConVonage(celular, cuerpo);
-		Mail.enviarMail(casilla, asunto, cuerpo);
-		whats.contactar(celular, cuerpo);
+		This.contacto.contactar(asunto,cuerpo);
 	}
-	*/
 
 }

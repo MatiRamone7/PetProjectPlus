@@ -10,7 +10,7 @@ package com.utn.contactservices;
  *
  * */
 
-public class Mail {
+public class MMail implements IMedio{
     public static void contactar(String destinatario, String asunto, String cuerpo){
         String remitente = "";  //Lo que va adelante del @gmail.com
         JavaMail.enviarMail(destinatario,asunto,cuerpo,remitente);

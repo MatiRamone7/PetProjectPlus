@@ -1,6 +1,6 @@
 package com.utn.contactservices;
 
-public class Whatsapp {
+public class MWhatsapp implements IMedio{
     public void contactar(String destinatario, String asunto, String cuerpo) throws IOException {
         String token = "token de wabox";
         String numero = "minumero";

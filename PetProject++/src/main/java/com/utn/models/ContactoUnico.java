@@ -2,8 +2,9 @@ package com.utn.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import com.utn.contactservices;
+import com.utn.contactservices.*;
 
+import java.io.IOException;
 @Entity
 @Table(name="contacto")
 public class ContactoUnico implements Serializable {
@@ -45,7 +46,7 @@ public class ContactoUnico implements Serializable {
     public void contactar(String asunto, String cuerpo) throws IOException {
         MMail.contactar(mail,asunto,cuerpo);
         MSMS.contactar(celular,asunto,cuerpo);
-        MWhatsapp.contactar(celular,asunto,cuerpo);
+       // MWhatsapp.contactar(celular,asunto,cuerpo);
     }
 
 }

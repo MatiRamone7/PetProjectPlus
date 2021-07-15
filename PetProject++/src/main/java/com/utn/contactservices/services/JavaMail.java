@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.contactservices.services;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

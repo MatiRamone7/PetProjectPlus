@@ -1,5 +1,7 @@
 package com.utn.contactservices;
 
+import com.utn.contactservices.services.JavaMail;
+
 /*
  * DETALLES:
  *

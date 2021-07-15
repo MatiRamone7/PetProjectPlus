@@ -1,14 +1,11 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.contactservices.Mail;
-import com.utn.contactservices.SMS;
-import com.utn.contactservices.Whatsapp;
-import com.utn.contactservices.WhatsappWaboxService;
+import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
+import com.utn.contactservices.mensajesPredeterminados.TipoDeComunicacion;
 
 import java.io.IOException;
 import java.io.Serializable;
-
 import javax.persistence.*;
 
 @Entity
@@ -134,9 +131,9 @@ public class User implements Serializable {
 
 	public void contactar() throws IOException {
 		String asunto = TipoDeComunicacion.asunto("CODIGO");
-		String cuerpo = TipoDeComunicacion.cuerpo("CODIGO", This);
+		String cuerpo = TipoDeComunicacion.cuerpo("CODIGO", new CQRScaneado());
 
-		This.contacto.contactar(asunto,cuerpo);
+		this.contacto.contactar(asunto,cuerpo);
 	}
 
 }

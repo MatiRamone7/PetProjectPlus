@@ -1,5 +1,7 @@
-package com.utn.contactservices;
+package com.utn.contactservices.mensajesPredeterminados;
 
+import com.utn.models.User;
+import java.util.*;
 public class TipoDeComunicacion {
     public static String asunto(String situacion) {
         switch (situacion) {
@@ -30,34 +32,40 @@ public class TipoDeComunicacion {
                 System.out.print("Redacte su mensaje para el rescatista: \t ");
                 inputDeUsuario = scanner.nextLine();
                 cuerpoDeMensaje = "Mascota reconocida por el dueño \t " + inputDeUsuario;
+                scanner.close();
                 return cuerpoDeMensaje;
+
+            default:
+                inputDeUsuario = scanner.nextLine();
+                scanner.close();
+                return inputDeUsuario;
         }
     };
     //Construir bien los mensajes con datos de formularios y publicaciones
-    public static String cuerpo(String situacion, Usuario usuario) {
-        String cuerpoDeMensaje;
+    public static String cuerpo(String mensajeDeUsuario, IMensajePredet situacion) {
         String inputDeUsuario;
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Redacte su mensaje para el dueño de la mascota\t: ");
+        inputDeUsuario = scanner.nextLine();
+        scanner.close();
+        return situacion.mensajePredet(inputDeUsuario);
 
-        switch (situacion) {
-            case "M-QREscaneado":
-                System.out.print("Redacte su mensaje para el dueño de la mascota\t: ")
+          /*  case "M-InteresDeAdopcion":
+                System.out.print("Redacte su mensaje para el dueño de la mascota\t: ");
                 inputDeUsuario = scanner.nextLine();
-                return "Se ha escaneado el QR de su mascota \t " + inputDeUsuario;
-
-            case "M-InteresDeAdopcion":
-                System.out.print("Redacte su mensaje para el dueño de la mascota\t: ")
-                inputDeUsuario = scanner.nextLine();
-                String datosInteresado = This.obtenerDatosInteresado(Usuario);
+                String datosInteresado = TipoDeComunicacion.obtenerDatosInteresado(usuario);
+                scanner.close();
                 cuerpoDeMensaje = "Un usuario ha mostrado interés en adoptar su mascota \t " + inputDeUsuario + datosInteresado;
                 return cuerpoDeMensaje;
 
             case "M-SugerenciasAdopcion":
-                return /*This.armarListaSugerencias(usuario)*/ " ";
+                scanner.close();
+                return /*this.armarListaSugerencias(usuario)*/
+        
+    }
 
-            default:
-                inputDeUsuario = scanner.nextLine();
-                return inputDeUsuario;
-        }
+    public static String obtenerDatosInteresado(User usuario){
+        //OBTENER DATOS NECESARIOS Y ARMAR MAIL
+        return "aaa";
     }
 }

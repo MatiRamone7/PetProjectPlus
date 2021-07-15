@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.contactservices.services;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -6,21 +6,23 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
+import com.utn.contactservices.MWhatsapp;
+
 public class Wabox {
-    private static Whatsapp instancia = null;
+    private static MWhatsapp instancia = null;
     private static final String urlApi = "https://www.waboxapp.com/api/send/chat";
     private Retrofit retrofit;
 
-    public Whatsapp() {
+    public Wabox() {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlApi)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public static Whatsapp instancia(){
+    public static MWhatsapp instancia(){
         if(instancia== null){
-            instancia = new Whatsapp();
+            instancia = new MWhatsapp();
         }
         return instancia;
     }

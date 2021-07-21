@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.contactservices.services;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -8,20 +8,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-/*
- * DETALLES:
- *
- * 1. Necesario que la cuenta de mail del remitente tenga habilitado el "Acceso de apps menos seguras"
- * 2. Ver alguna manera de guardar mejor la contraseÃ±a del remitente q con un string en el cÃ³digo
- * 3. Crear una cuenta de mail/alias para usar como remitente
- * 4. Ver de configurar el estilo del mail ya que existe una manera de ponerle formato con html
- *
- * */
-
-public class Mail {
-    public static void enviarMail(String destinatario, String asunto, String cuerpo){
-        String remitente = "";  //Lo que va adelante del @gmail.com
-
+public class JavaMail {
+    public static void enviarMail(String destinatario, String asunto, String cuerpo, String remitente){
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //Servidor SMTP de Google
         props.put("mail.smtp.user", remitente);
@@ -43,8 +31,7 @@ public class Mail {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }
-        catch (
-                MessagingException me) {
+        catch (MessagingException me) {
             me.printStackTrace();
         }
     }

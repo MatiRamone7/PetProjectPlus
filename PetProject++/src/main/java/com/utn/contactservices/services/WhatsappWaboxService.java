@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.contactservices.services;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

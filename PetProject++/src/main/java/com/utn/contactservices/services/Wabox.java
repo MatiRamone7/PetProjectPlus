@@ -1,27 +1,28 @@
-package com.utn.contactservices;
+package com.utn.contactservices.services;
 
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 import java.io.IOException;
 
-public class Whatsapp {
-    private static Whatsapp instancia = null;
+import com.utn.contactservices.MWhatsapp;
+
+public class Wabox {
+    private static MWhatsapp instancia = null;
     private static final String urlApi = "https://www.waboxapp.com/api/send/chat";
     private Retrofit retrofit;
 
-    public Whatsapp() {
+    public Wabox() {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlApi)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public static Whatsapp instancia(){
+    public static MWhatsapp instancia(){
         if(instancia== null){
-            instancia = new Whatsapp();
+            instancia = new MWhatsapp();
         }
         return instancia;
     }
@@ -32,11 +33,4 @@ public class Whatsapp {
         Response<WhatsappRespuesta> responseRespuesta = respuesta.execute();
         return responseRespuesta.body();
     }
-
-    public void contactar(String destinatario, String cuerpo) throws IOException {
-        String token = "token de wabox";
-        String numero = "minumero";
-        String id = "id unico de mensaje";
-        this.enviarWhatsapp(token, numero, destinatario, id, cuerpo);
-    } //no anda al no haber cuenta de wabox
 }

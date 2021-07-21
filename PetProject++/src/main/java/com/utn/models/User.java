@@ -1,14 +1,12 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.contactservices.Mail;
-import com.utn.contactservices.SMS;
-import com.utn.contactservices.Whatsapp;
-import com.utn.contactservices.WhatsappWaboxService;
+import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
+import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
+import com.utn.contactservices.mensajesPredeterminados.TipoDeComunicacion;
 
 import java.io.IOException;
 import java.io.Serializable;
-
 import javax.persistence.*;
 
 @Entity
@@ -53,13 +51,11 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
-	//Implementacion de ContactoUnico
-	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rolId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private ContactoUnico contacto;
-	*/
+
 
 	public Integer getId() {
 		return id;
@@ -133,24 +129,12 @@ public class User implements Serializable {
 		this.rol = rol;
 	}
 
-	/*
-	public void contactar() throws IOException {
 
-		// Desarrollar test unitario
+	public void contactar(IMensajePredet situacion) throws IOException {
+		String asunto = TipoDeComunicacion.asunto(situacion);
+		String cuerpo = TipoDeComunicacion.cuerpo(situacion);
 
-		SMS sms = new SMS();
-		Mail mail = new Mail();
-		Whatsapp whats = new Whatsapp();
-
-		String asunto = "Hola";
-		String cuerpo = "Mundo";
-		String casilla = "mail@mail.com";
-		String celular = "1162423315";
-
-		SMS.enviarMensajeConVonage(celular, cuerpo);
-		Mail.enviarMail(casilla, asunto, cuerpo);
-		whats.contactar(celular, cuerpo);
+		this.contacto.contactar(asunto,cuerpo);
 	}
-	*/
 
 }

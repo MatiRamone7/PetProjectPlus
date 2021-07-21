@@ -12,13 +12,28 @@ public class PetController {
     @Autowired
     IPetService petService;
 
-    @PostMapping
-    public Pet CreatePet(@RequestBody Pet pet) {
-        return petService.CreatePet(pet);
+    @GetMapping
+    public Iterable<Pet> GetPets() {
+        return petService.GetPets();
     }
 
     @GetMapping("/{id}")
     public Pet GetPetById(@PathVariable Integer id) {
         return petService.GetPetById(id);
+    }
+
+    @PostMapping
+    public Pet CreatePet(@RequestBody Pet pet) {
+        return petService.CreatePet(pet);
+    }
+
+    @PutMapping("/{id}")
+    public Pet UpdatePet(@RequestBody Pet pet, @PathVariable Integer id) {
+        return petService.UpdatePet(pet, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void DeletePet(@PathVariable Integer id) {
+        petService.DeletePet(id);
     }
 }

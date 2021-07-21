@@ -19,13 +19,13 @@ public class PetService implements IPetService{
     IPetRepo petRepo;
 
     /**
-     * Crea un nuevo pet.
+     * Retorna la lista de pets.
      *
-     * @param pet pet a crear
-     * @return nuevo pet
+     * @return lista de pets
      */
-    public Pet CreatePet(Pet pet) {
-        return petRepo.CreatePet(pet);
+    @Override
+    public Iterable<Pet> GetPets() {
+        return petRepo.GetPets();
     }
 
     /**
@@ -38,4 +38,34 @@ public class PetService implements IPetService{
     public Pet GetPetById(Integer id) {
         return petRepo.GetPetById(id);
     }
+
+    /**
+     * Crea un nuevo pet.
+     *
+     * @param pet pet a crear
+     * @return nuevo pet
+     */
+    public Pet CreatePet(Pet pet) {
+        return petRepo.CreatePet(pet);
+    }
+
+    /**
+     * Actualiza pet existente.
+     *
+     * @param pet pet a actualizar
+     * @return pet actualizado
+     */
+    public Pet UpdatePet(Pet pet, Integer id) {
+        return petRepo.UpdatePet(pet, id);
+    }
+
+    /**
+     * Borra pet existente.
+     *
+     * @param id id de pet a eliminar
+     */
+    public void DeletePet(Integer id) {
+        petRepo.DeletePet(id);
+    }
+
 }

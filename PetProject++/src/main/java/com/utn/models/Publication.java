@@ -27,11 +27,6 @@ public class Publication implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Ong ong;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rescatistaId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Rescatist rescatist;
-
     public Integer getId() {
         return id;
     }
@@ -62,13 +57,5 @@ public class Publication implements Serializable {
 
     public void setOng(Ong ong) {
         this.ong = ong;
-    }
-
-    public Rescatist getRescatist() {
-        return rescatist;
-    }
-
-    public void setRescatist(Rescatist rescatist) {
-        this.rescatist = rescatist;
     }
 }

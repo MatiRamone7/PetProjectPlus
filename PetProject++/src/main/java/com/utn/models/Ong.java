@@ -24,6 +24,8 @@ public class Ong implements Serializable {
     @Column(name = "imagen")
     private byte[] imagen;
 
+    private String[] preguntas;
+
     public Integer getId() {
         return id;
     }

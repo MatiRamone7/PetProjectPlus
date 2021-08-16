@@ -62,7 +62,6 @@ public class PublicationRepo implements IPublicationRepo{
         publicationToUpdate.setFoto(publication.getFoto());
         publicationToUpdate.setLugarEncuentro(publication.getLugarEncuentro());
         publicationToUpdate.setOng(publication.getOng());
-        publicationToUpdate.setRescatist(publication.getRescatist());
         this.manager.flush();
         this.manager.getTransaction().commit();
 

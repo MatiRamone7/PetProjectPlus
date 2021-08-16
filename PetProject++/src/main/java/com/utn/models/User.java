@@ -51,11 +51,12 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
+	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rolId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private ContactoUnico contacto;
-
+	*/
 
 	public Integer getId() {
 		return id;
@@ -134,7 +135,7 @@ public class User implements Serializable {
 		String asunto = TipoDeComunicacion.asunto(situacion);
 		String cuerpo = TipoDeComunicacion.cuerpo(situacion);
 
-		this.contacto.contactar(asunto,cuerpo);
+		//this.contacto.contactar(asunto,cuerpo);
 	}
 
 }

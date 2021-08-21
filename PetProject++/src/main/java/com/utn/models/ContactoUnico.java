@@ -22,6 +22,9 @@ public class ContactoUnico implements Serializable {
     @Column(name = "celular")
     public String celular;
 
+    @Column(name = "medio")
+    public IMedio medio;
+
     public Integer getId() {
         return id;
     }
@@ -43,10 +46,12 @@ public class ContactoUnico implements Serializable {
         this.celular = unCelular;
     }
 
+    public void cambiarMedio(IMedio nmedio){
+        medio = nmedio;
+    }
+
     public void contactar(String asunto, String cuerpo) throws IOException {
-        MMail.contactar(mail,asunto,cuerpo);
-        MSMS.contactar(celular,asunto,cuerpo);
-       // MWhatsapp.contactar(celular,asunto,cuerpo);
+        IMedio.contactar(asunto,cuerpo,this);
     }
 
 }

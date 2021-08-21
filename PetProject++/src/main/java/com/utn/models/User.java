@@ -3,7 +3,6 @@ package com.utn.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
 import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
-import com.utn.contactservices.mensajesPredeterminados.TipoDeComunicacion;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -129,12 +128,8 @@ public class User implements Serializable {
 		this.rol = rol;
 	}
 
-
 	public void contactar(IMensajePredet situacion) throws IOException {
-		String asunto = TipoDeComunicacion.asunto(situacion);
-		String cuerpo = TipoDeComunicacion.cuerpo(situacion);
-
-		this.contacto.contactar(asunto,cuerpo);
+		this.contacto.contactar(situacion.asunto(),situacion.cuerpo());
 	}
 
 }

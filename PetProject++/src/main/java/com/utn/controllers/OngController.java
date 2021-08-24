@@ -1,6 +1,6 @@
 package com.utn.controllers;
 
-import com.utn.models.Ong;
+import com.utn.models.Organizacion;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ public class OngController {
     IOngService ongService;
 
     @PostMapping
-    public Ong Create(@RequestBody Ong ong) throws IOException {
+    public Organizacion Create(@RequestBody Organizacion ong) throws IOException {
         return ongService.Create(ong);
     }
 }

@@ -1,6 +1,9 @@
 package com.utn.models;
 
 import javax.persistence.*;
+
+import com.utn.models.Componentes.CaracteristicaPet;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +24,7 @@ public class FormQuererAdoptar extends Form{
             joinColumns = { @JoinColumn(name = "idAviso") },
             inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
     )
-    private Set<Characteristic> caracteristicSet = new HashSet<>();
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -31,7 +34,7 @@ public class FormQuererAdoptar extends Form{
         return user;
     }
 
-    public Set<Characteristic> getCaracteristicSet() {
+    public Set<CaracteristicaPet> getCaracteristicSet() {
         return caracteristicSet;
     }
 }

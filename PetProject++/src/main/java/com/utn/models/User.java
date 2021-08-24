@@ -1,9 +1,7 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
-import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
-import com.utn.contactservices.mensajesPredeterminados.TipoDeComunicacion;
+import com.utn.contactservices.mensajesPredeterminados.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -44,7 +42,7 @@ public class User implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ongId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Ong ong;
+	private Organizacion ong;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rolId")
@@ -109,11 +107,11 @@ public class User implements Serializable {
 		this.numeroDocumento = numeroDocumento;
 	}
 
-	public Ong getOng() {
+	public Organizacion getOng() {
 		return ong;
 	}
 
-	public void setOng(Ong ong) {
+	public void setOng(Organizacion ong) {
 		this.ong = ong;
 	}
 

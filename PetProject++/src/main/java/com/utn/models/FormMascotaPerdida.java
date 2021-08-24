@@ -2,6 +2,7 @@ package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.transithomes.Ubication;
+import com.utn.models.Componentes.*;
 import sun.security.util.BitArray;
 
 import javax.persistence.*;
@@ -64,7 +65,7 @@ public class FormMascotaPerdida extends Form implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ongId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ong ong;
+    private Organizacion ong;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -72,7 +73,7 @@ public class FormMascotaPerdida extends Form implements Serializable {
             joinColumns = { @JoinColumn(name = "idAviso") },
             inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
     )
-    private Set<Characteristic> caracteristicSet = new HashSet<>();
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
 
 }

@@ -25,7 +25,7 @@ public class Publication implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ongId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ong ong;
+    private Organizacion ong;
 
     public Integer getId() {
         return id;
@@ -51,11 +51,11 @@ public class Publication implements Serializable {
         this.lugarEncuentro = lugarEncuentro;
     }
 
-    public Ong getOng() {
+    public Organizacion getOng() {
         return ong;
     }
 
-    public void setOng(Ong ong) {
+    public void setOng(Organizacion ong) {
         this.ong = ong;
     }
 }

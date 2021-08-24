@@ -1,17 +1,19 @@
 package com.utn.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import com.utn.models.Componentes.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="mascota")
-public class Pet implements Serializable {
+public class Mascota implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -26,32 +28,37 @@ public class Pet implements Serializable {
     @Column(name = "apodo")
     private String apodo;
 
-    @Column(name = "sexo")
-    private String sexo;
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
 
-    @Column(name = "especie")
-    private String especie;
+    @Enumerated(EnumType.STRING)
+    private Especie especie;
 
     @Column(name = "fechaDeNacimiento")
-    private String fechaDeNacimiento;
+    private LocalDate fechaDeNacimiento;
 
-    @Column(name = "foto")
-    private String foto;
+    //@ElementCollection
+    //@Column
+    private List<Foto> fotos;
 
     @Column(name = "qr")
     private String qr;
+
+    @Column(name = "descripcion")
+    private String descripcionFisica;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User usuarioId;
 
-    @ManyToMany
-    @NotNull
+    /* @OneToMany
     @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
-                inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Set<Characteristic> caracteristicSet = new HashSet<>();
+    inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) esto lo dejo x ahora xq no se si sirve o no, creo q no igual
+    @ElementCollection
+    @NotNull*/
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -77,36 +84,36 @@ public class Pet implements Serializable {
         this.apodo = apodo;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
-    public String getEspecie() {
+    public Especie getEspecie() {
         return especie;
     }
 
-    public void setEspecie(String especie) {
+    public void setEspecie(Especie especie) {
         this.especie = especie;
     }
 
-    public String getFechaDeNacimiento() {
+    public LocalDate getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(String fechaDeNacimiento) {
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
-    public String getFoto() {
-        return foto;
+    public List<Foto> getFotos() {
+        return fotos;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFoto(List<Foto> list) {
+         list.stream().forEach((unaFoto)-> {fotos.add(unaFoto);});
     }
 
     public String getQr() {
@@ -117,6 +124,10 @@ public class Pet implements Serializable {
         this.qr = qr;
     }
 
+    public boolean tieneQr() {
+        return (qr != null) ? true : false;
+    }
+
     public User getUsuarioId() {
         return usuarioId;
     }
@@ -125,11 +136,11 @@ public class Pet implements Serializable {
         this.usuarioId = usuarioId;
     }
 
-    public Set<Characteristic> getCaracteristicSet() {
+    public Set<CaracteristicaPet> getCaracteristicSet() {
         return caracteristicSet;
     }
 
-    public void setCaracteristicSet(Set<Characteristic> caracteristicSet) {
+    public void setCaracteristicSet(Set<CaracteristicaPet> caracteristicSet) {
         this.caracteristicSet = caracteristicSet;
     }
 }

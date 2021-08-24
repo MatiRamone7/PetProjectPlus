@@ -1,7 +1,7 @@
 package com.utn.repositories;
 
 
-import com.utn.models.Ong;
+import com.utn.models.Organizacion;
 import com.utn.models.User;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +21,7 @@ public class OngRepo implements IOngRepo{
     }
 
     @Override
-    public Ong CreateOng(Ong ong) {
+    public Organizacion CreateOng(Organizacion ong) {
 
         this.manager.getTransaction().begin();
         this.manager.persist(ong);

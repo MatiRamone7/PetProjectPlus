@@ -1,6 +1,6 @@
 package com.utn.controllers;
 
-import com.utn.models.Pet;
+import com.utn.models.Mascota;
 import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,22 +13,22 @@ public class PetController {
     IPetService petService;
 
     @GetMapping
-    public Iterable<Pet> GetPets() {
+    public Iterable<Mascota> GetPets() {
         return petService.GetPets();
     }
 
     @GetMapping("/{id}")
-    public Pet GetPetById(@PathVariable Integer id) {
+    public Mascota GetPetById(@PathVariable Integer id) {
         return petService.GetPetById(id);
     }
 
     @PostMapping
-    public Pet CreatePet(@RequestBody Pet pet) {
+    public Mascota CreatePet(@RequestBody Mascota pet) {
         return petService.CreatePet(pet);
     }
 
     @PutMapping("/{id}")
-    public Pet UpdatePet(@RequestBody Pet pet, @PathVariable Integer id) {
+    public Mascota UpdatePet(@RequestBody Mascota pet, @PathVariable Integer id) {
         return petService.UpdatePet(pet, id);
     }
 

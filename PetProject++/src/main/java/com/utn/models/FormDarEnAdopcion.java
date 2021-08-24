@@ -18,7 +18,7 @@ public class FormDarEnAdopcion extends Form{
     @Id
     @JoinColumn(name = "petID")
     @OneToOne(cascade = { CascadeType.ALL })
-    private Pet pet;
+    private Mascota pet;
 
     /*
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -32,5 +32,5 @@ public class FormDarEnAdopcion extends Form{
 
     private String[] preguntasGenericas;
 
-    private Ong ong;
+    private Organizacion ong;
 }

@@ -1,15 +1,22 @@
 package com.utn.models.Componentes;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
+import javax.persistence.*;
+@Entity
+@Table(name="preguntas_adopcion")
 public class PreguntaAdoptante {
-    public int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
 
+    @Column(name = "pregunta")
     public String pregunta;
 
+    @Enumerated(EnumType.STRING)
     public TipoPregunta tipoPregunta;
 
+    @Column(name = "id_organizacion") //puede ser esto un many to one?
     public int idOrganzacion;
     
     public void setTipoPregunta(TipoPregunta t) {

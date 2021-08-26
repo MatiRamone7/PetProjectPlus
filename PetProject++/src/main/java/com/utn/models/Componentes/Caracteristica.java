@@ -2,7 +2,6 @@ package com.utn.models.Componentes;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 @Entity
 @Table(name="caracteristica")
 public class Caracteristica implements Serializable {

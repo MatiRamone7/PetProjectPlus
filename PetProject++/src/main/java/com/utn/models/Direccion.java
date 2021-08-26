@@ -1,7 +1,9 @@
 package com.utn.models;
 
-import javax.persistence.Embeddable;
-@Embeddable
+import javax.persistence.Entity;
+import javax.persistence.Table;
+@Entity
+@Table(name="mascota")
 public class Direccion {
     private String calle;
     private int numero;

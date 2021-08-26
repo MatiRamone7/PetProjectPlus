@@ -1,12 +1,19 @@
 package com.utn.models.Componentes;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-
-@Embeddable
+import javax.persistence.*;
 @Entity
-public class Foto {
+@Table(name="fotos")
+public class Foto {   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+
+    //PERSISTIR
     public byte[] imagenByteArray;
+
+    @Column(name = "descripcion")
     public String descripcion;
 
     public void describir(String ndescripcion){

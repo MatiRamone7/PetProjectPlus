@@ -34,11 +34,10 @@ public class Mascota implements Serializable {
     @Enumerated(EnumType.STRING)
     private Especie especie;
 
-    @Column(name = "fechaDeNacimiento")
+    //@Column(name = "fechaDeNacimiento")
     private LocalDate fechaDeNacimiento;
 
-    //@ElementCollection
-    //@Column
+    //RELACION
     private List<Foto> fotos;
 
     @Column(name = "qr")

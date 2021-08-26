@@ -21,35 +21,19 @@ public class Organizacion implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride( name = "imagenByteArray", column = @Column(name = "imagen")),
-        @AttributeOverride( name = "descripcion", column = @Column(name = "descripcion")),
-    })
+    //@OneToOne
     private Foto imagen;
     
-    @OneToMany(mappedBy = "id")
+   // @OneToMany(mappedBy = "id")
     public Set<User> voluntarios = new HashSet<>();;
 
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride( name = "calle", column = @Column(name = "calle")),
-        @AttributeOverride( name = "numero", column = @Column(name = "numero")),
-        @AttributeOverride( name = "departamento", column = @Column(name = "departamento")),
-        @AttributeOverride( name = "codigoPostal", column = @Column(name = "codigoPostal")),
-        @AttributeOverride( name = "barrio", column = @Column(name = "barrio")),
-        @AttributeOverride( name = "provincia", column = @Column(name = "provincia")),
-    })
+   // @OneToOne
     public Direccion direccion;
 
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride( name = "nivelCalidad", column = @Column(name = "sizeFoto")),
-        @AttributeOverride( name = "sizeFoto", column = @Column(name = "tamanio")),
-    })
+    //@OneToOne
     public CharsFoto especificacionesFotos;
 
-    @Embedded
+    //@Embedded
     public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion = new HashSet<>();
 
     public Integer getId() {

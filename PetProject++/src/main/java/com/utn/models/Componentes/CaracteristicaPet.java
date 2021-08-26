@@ -1,16 +1,22 @@
 package com.utn.models.Componentes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-
+import javax.persistence.*;
 @Entity
+@Table(name="caracteristicas_de_mascota")
 public class CaracteristicaPet{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+
+    //RELACION
     public Caracteristica tipoCaracteristica;
 
-    @Column(name = "VALOR")
+    @Column(name = "valor")
     public String valor;
 
-    @Column(name = "ID_MASCOTA")
+    @Column(name = "id_mascota")
     public Integer idMascota;
 
     public Integer getId() {

@@ -1,9 +1,16 @@
 package com.utn.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class EstadoFormulario {
     private Estado estado;
 
-    private Date fecha;
+    private LocalDate fechaHora;
+
+    private IUserLog user;
+
+    public String logEstado(){
+        //TODO
+        return estado.getNombre();
+    }
 }

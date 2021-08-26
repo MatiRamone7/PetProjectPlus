@@ -2,9 +2,10 @@ package com.utn.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class FormDarEnAdopcion extends Form{
+public class FormularioQuererAdoptar{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -13,24 +14,28 @@ public class FormDarEnAdopcion extends Form{
 
     @JoinColumn(name = "userID")
     @OneToOne(cascade = { CascadeType.ALL })
-    private User user;
+    private User solicitante;
 
-    @Id
-    @JoinColumn(name = "petID")
-    @OneToOne(cascade = { CascadeType.ALL })
-    private Mascota pet;
-
-    /*
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "caracteristicaXaviso",
+            name = "Caracteristica x FormularioAdoptar",
             joinColumns = { @JoinColumn(name = "idAviso") },
             inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
     )
-    private Set<Characteristic> caracteristicasEspecialesPorONG = new HashSet<>();
-    */
 
-    private String[] preguntasGenericas;
+    private List<EstadoFormulario> estado;
 
-    private Organizacion ong;
+    private Set<Characteristic> preferencias = new HashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return solicitante;
+    }
+
+    public Set<Characteristic> getCaracteristicSet() {
+        return preferencias;
+    }
 }

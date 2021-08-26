@@ -10,7 +10,8 @@ public class Foto {
     @Column(name = "id")
     private Integer id;
 
-    //PERSISTIR
+    @Lob
+    @Column(name = "imagen", columnDefinition="BLOB")
     public byte[] imagenByteArray;
 
     @Column(name = "descripcion")

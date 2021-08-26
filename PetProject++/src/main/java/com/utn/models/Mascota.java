@@ -6,6 +6,7 @@ import com.utn.models.Componentes.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -34,10 +35,11 @@ public class Mascota implements Serializable {
     @Enumerated(EnumType.STRING)
     private Especie especie;
 
-    //@Column(name = "fechaDeNacimiento")
+    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
     private LocalDate fechaDeNacimiento;
 
-    //RELACION
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fotos")
     private List<Foto> fotos;
 
     @Column(name = "qr")
@@ -47,16 +49,18 @@ public class Mascota implements Serializable {
     private String descripcionFisica;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioId")
+    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User usuarioId;
 
-    /* @OneToMany
+   /* @OneToMany
     @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
     inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) esto lo dejo x ahora xq no se si sirve o no, creo q no igual
-    @ElementCollection
-    @NotNull*/
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    @ElementCollection*/
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "caracteristica_por_mascota_id", referencedColumnName = "id")
+    @NotNull
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Integer getId() {

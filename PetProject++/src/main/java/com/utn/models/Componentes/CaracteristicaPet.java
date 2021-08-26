@@ -10,7 +10,8 @@ public class CaracteristicaPet{
     @Column(name = "id")
     private Integer id;
 
-    //RELACION
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "caracteristica_id", referencedColumnName = "id")
     public Caracteristica tipoCaracteristica;
 
     @Column(name = "valor")

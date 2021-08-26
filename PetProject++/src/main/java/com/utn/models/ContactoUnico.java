@@ -22,7 +22,7 @@ public class ContactoUnico implements Serializable {
     @Column(name = "celular")
     public String celular;
 
-    @Column(name = "medio")
+    @Convert(converter = MedioConverter.class)
     public IMedio medio;
 
     public Integer getId() {

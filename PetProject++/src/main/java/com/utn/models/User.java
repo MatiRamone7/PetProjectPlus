@@ -48,6 +48,7 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
+	//
 	private ContactoUnico contacto;
 
 	public Integer getId() {

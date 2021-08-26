@@ -21,19 +21,24 @@ public class Organizacion implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    //@OneToOne
+    @OneToOne
+    @JoinColumn(name="foto", referencedColumnName = "id")
     private Foto imagen;
     
-   // @OneToMany(mappedBy = "id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     public Set<User> voluntarios = new HashSet<>();;
 
-   // @OneToOne
+    @OneToOne
+    @JoinColumn(name="direccion")
     public Direccion direccion;
 
-    //@OneToOne
+    @OneToOne
+    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
     public CharsFoto especificacionesFotos;
 
-    //@Embedded
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
     public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion = new HashSet<>();
 
     public Integer getId() {

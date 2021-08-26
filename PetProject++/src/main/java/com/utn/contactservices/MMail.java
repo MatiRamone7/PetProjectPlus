@@ -1,6 +1,7 @@
 package com.utn.contactservices;
 
 import com.utn.contactservices.services.JavaMail;
+import com.utn.models.ContactoUnico;
 
 /*
  * DETALLES:
@@ -13,8 +14,10 @@ import com.utn.contactservices.services.JavaMail;
  * */
 
 public class MMail implements IMedio{
-    public static void contactar(String destinatario, String asunto, String cuerpo){
+    public static JavaMail mail = new JavaMail();
+
+    public static void contactar(String asunto, String cuerpo, ContactoUnico contacto){
         String remitente = "";  //Lo que va adelante del @gmail.com
-        JavaMail.enviarMail(destinatario,asunto,cuerpo,remitente);
+        mail.enviarMail(contacto.mail,asunto,cuerpo,remitente);
     }
 }

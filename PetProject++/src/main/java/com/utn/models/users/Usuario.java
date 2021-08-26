@@ -1,10 +1,10 @@
 package com.utn.models.users;
 
 import com.utn.models.*;
-import com.utn.models.formularios.FormularioMascotaPerdida;
-import com.utn.models.interfaces.IUserLog;
+import com.utn.models.FormularioMascotaPerdida;
+import com.utn.models.IUserLog;
 import com.utn.models.roles.LogRol;
-import com.utn.models.utilities.TipoDocumento;
+import com.utn.models.Componentes.TipoDocumento;
 
 import java.io.Serializable;
 import java.time.LocalDate;

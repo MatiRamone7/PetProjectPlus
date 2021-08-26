@@ -1,9 +1,9 @@
 package com.utn.models.users;
 
 import com.utn.models.ContactoUnico;
-import com.utn.models.utilities.Direccion;
+import com.utn.models.Direccion;
 import com.utn.models.Sesion;
-import com.utn.models.utilities.TipoDocumento;
+import com.utn.models.Componentes.TipoDocumento;
 
 import javax.persistence.*;
 import java.io.Serializable;

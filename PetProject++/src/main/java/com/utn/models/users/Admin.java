@@ -1,5 +1,5 @@
 package com.utn.models.users;
-import com.utn.models.CaracteristicaPet;
+import com.utn.models.Componentes.CaracteristicaPet;
 import com.utn.models.roles.Rol;
 import com.utn.models.Sesion;
 import com.utn.models.utilities.TipoDocumento;

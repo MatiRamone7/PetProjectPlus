@@ -1,9 +1,9 @@
 package com.utn.repositories;
 
 
-import com.utn.models.Ong;
+import com.utn.models.Organizacion;
 
 public interface IOngRepo {
-    public Ong CreateOng(Ong ong);
+    public Organizacion CreateOng(Organizacion ong);
 
 }

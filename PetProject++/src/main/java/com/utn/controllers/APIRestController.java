@@ -5,7 +5,7 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.utn.models.Pet;
+import com.utn.models.Mascota;
 import com.utn.models.Publication;
 import com.utn.models.User;
 import com.utn.services.IPetService;
@@ -82,7 +82,7 @@ public class APIRestController {
 	 */
 	@PostMapping("/informarMascotaPerdida/{idMascota}")
 	public void InformPet(@PathVariable Integer idMascota) throws IOException {
-		Pet mascota = petService.GetPetById(idMascota);
+		Mascota mascota = petService.GetPetById(idMascota);
 
 		HashMap<String, String> defaultMessage = new HashMap<>();
 		defaultMessage.put("texto", "Se le notifica al usuario que se encontró su mascota");
@@ -101,7 +101,7 @@ public class APIRestController {
 	 */
 	public void NotifyUser(HashMap map, Integer idMascota) throws IOException {
 		String texto = (String) map.get("texto");
-		Pet mascota = petService.GetPetById(idMascota);
+		Mascota mascota = petService.GetPetById(idMascota);
 		User usuarioAContactar = mascota.getUsuarioId();
 
 		//usuarioAContactar.contactar();

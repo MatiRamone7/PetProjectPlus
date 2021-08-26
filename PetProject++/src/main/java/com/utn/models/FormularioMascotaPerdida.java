@@ -1,8 +1,9 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.transithomes.Ubication;
-import sun.security.util.BitArray;
+import com.utn.models.Componentes.*;
+import com.utn.transithomes.Hogar;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FormMascotaPerdida extends Form implements Serializable {
+public class FormularioMascotaPerdida extends PersonaFormulario implements Serializable {
 
     /*
     Datos de Rescatista
@@ -52,11 +53,13 @@ public class FormMascotaPerdida extends Form implements Serializable {
     private String patronDistintivo;
 
     @Column(name = "lugarEncontrado")
-    private Ubication lugarEncontrado;
+    private Direccion lugarEncontrado;
 
     private List<String> caracteristicasDeLaPublicacionDelHogar;
 
-    private List<BitArray> fotos;
+    private List<Foto> fotos;
+
+    private String tamanio;
 
     /*
     Datos de FormMascotaPerdida
@@ -64,7 +67,7 @@ public class FormMascotaPerdida extends Form implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ongId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ong ong;
+    private Organizacion organizacion;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -72,7 +75,8 @@ public class FormMascotaPerdida extends Form implements Serializable {
             joinColumns = { @JoinColumn(name = "idAviso") },
             inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
     )
-    private Set<Characteristic> caracteristicSet = new HashSet<>();
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
-
+    private int idMascota;
+    private HogarDeTransito hogarDeTransito;
 }

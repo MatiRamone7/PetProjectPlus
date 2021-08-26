@@ -1,6 +1,6 @@
 package com.utn.services;
 
-import com.utn.models.Pet;
+import com.utn.models.Mascota;
 import com.utn.repositories.IPetRepo;
 import com.utn.repositories.PetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Servicios de pets.
  *
  * @author Grupo 14
- * @see Pet
+ * @see Mascota
  * @see PetRepo
  */
 @Service
@@ -24,7 +24,7 @@ public class PetService implements IPetService{
      * @return lista de pets
      */
     @Override
-    public Iterable<Pet> GetPets() {
+    public Iterable<Mascota> GetPets() {
         return petRepo.GetPets();
     }
 
@@ -35,7 +35,7 @@ public class PetService implements IPetService{
      * @return user existente
      */
     @Override
-    public Pet GetPetById(Integer id) {
+    public Mascota GetPetById(Integer id) {
         return petRepo.GetPetById(id);
     }
 
@@ -45,7 +45,7 @@ public class PetService implements IPetService{
      * @param pet pet a crear
      * @return nuevo pet
      */
-    public Pet CreatePet(Pet pet) {
+    public Mascota CreatePet(Mascota pet) {
         return petRepo.CreatePet(pet);
     }
 
@@ -55,7 +55,7 @@ public class PetService implements IPetService{
      * @param pet pet a actualizar
      * @return pet actualizado
      */
-    public Pet UpdatePet(Pet pet, Integer id) {
+    public Mascota UpdatePet(Mascota pet, Integer id) {
         return petRepo.UpdatePet(pet, id);
     }
 

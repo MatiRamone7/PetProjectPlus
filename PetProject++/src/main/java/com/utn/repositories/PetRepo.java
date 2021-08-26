@@ -1,6 +1,6 @@
 package com.utn.repositories;
 
-import com.utn.models.Pet;
+import com.utn.models.Mascota;
 import com.utn.models.Publication;
 import org.springframework.stereotype.Repository;
 
@@ -22,8 +22,8 @@ public class PetRepo implements IPetRepo{
 
     @SuppressWarnings("unchecked")
     @Override
-    public Iterable<Pet> GetPets() {
-        Iterable<Pet> aux;
+    public Iterable<Mascota> GetPets() {
+        Iterable<Mascota> aux;
 
         this.manager.getTransaction().begin();
         aux = this.manager.createQuery("FROM Pet").getResultList();
@@ -33,18 +33,18 @@ public class PetRepo implements IPetRepo{
     }
 
     @Override
-    public Pet GetPetById(Integer id) {
-        Pet aux;
+    public Mascota GetPetById(Integer id) {
+        Mascota aux;
 
         this.manager.getTransaction().begin();
-        aux = (Pet) this.manager.createQuery("FROM Pet u WHERE u.id = " + id.toString()).getSingleResult();
+        aux = (Mascota) this.manager.createQuery("FROM Pet u WHERE u.id = " + id.toString()).getSingleResult();
         this.manager.getTransaction().commit();
 
         return aux;
     }
 
     @Override
-    public Pet CreatePet(Pet pet) {
+    public Mascota CreatePet(Mascota pet) {
 
         this.manager.getTransaction().begin();
         this.manager.persist(pet);
@@ -55,9 +55,9 @@ public class PetRepo implements IPetRepo{
     }
 
     @Override
-    public Pet UpdatePet(Pet pet, Integer id) {
+    public Mascota UpdatePet(Mascota pet, Integer id) {
 
-        Pet petToUpdate = this.GetPetById(id);
+        Mascota petToUpdate = this.GetPetById(id);
 
         this.manager.getTransaction().begin();
         petToUpdate.setNombre(pet.getNombre());
@@ -65,7 +65,7 @@ public class PetRepo implements IPetRepo{
         petToUpdate.setSexo(pet.getSexo());
         petToUpdate.setEspecie(pet.getEspecie());
         petToUpdate.setFechaDeNacimiento(pet.getFechaDeNacimiento());
-        petToUpdate.setFoto(pet.getFoto());
+        petToUpdate.setFoto(pet.getFotos());
         petToUpdate.setQr(pet.getQr());
         petToUpdate.setUsuarioId(pet.getUsuarioId());
         petToUpdate.setCaracteristicSet(pet.getCaracteristicSet());

@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class JavaMail {
-    public static void enviarMail(String destinatario, String asunto, String cuerpo, String remitente){
+    public void enviarMail(String destinatario, String asunto, String cuerpo, String remitente){
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //Servidor SMTP de Google
         props.put("mail.smtp.user", remitente);

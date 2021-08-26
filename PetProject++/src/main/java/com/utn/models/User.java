@@ -1,9 +1,8 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
-import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
-import com.utn.contactservices.mensajesPredeterminados.TipoDeComunicacion;
+import com.utn.contactservices.mensajesPredeterminados.*;
+import com.utn.models.Componentes.TipoDocumento;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -36,7 +35,7 @@ public class User implements Serializable {
 	private String fechaNacimiento;
 
 	@Column(name = "tipoDocumento")
-	private String tipoDocumento;
+	private TipoDocumento tipoDocumento;
 
 	@Column(name = "numeroDocumento")
 	private Integer numeroDocumento;
@@ -44,13 +43,14 @@ public class User implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ongId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Ong ong;
+	private Organizacion ong;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rolId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 
+	//
 	private ContactoUnico contacto;
 
 	public Integer getId() {
@@ -93,11 +93,11 @@ public class User implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(String tipoDocumento) {
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 
@@ -109,11 +109,11 @@ public class User implements Serializable {
 		this.numeroDocumento = numeroDocumento;
 	}
 
-	public Ong getOng() {
+	public Organizacion getOng() {
 		return ong;
 	}
 
-	public void setOng(Ong ong) {
+	public void setOng(Organizacion ong) {
 		this.ong = ong;
 	}
 
@@ -125,12 +125,8 @@ public class User implements Serializable {
 		this.rol = rol;
 	}
 
-
 	public void contactar(IMensajePredet situacion) throws IOException {
-		String asunto = TipoDeComunicacion.asunto(situacion);
-		String cuerpo = TipoDeComunicacion.cuerpo(situacion);
-
-		this.contacto.contactar(asunto,cuerpo);
+		this.contacto.contactar(situacion.asunto(),situacion.cuerpo());
 	}
 
 }

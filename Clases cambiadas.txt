@@ -1,0 +1,6 @@
+mati p: 
+-organizacion
+-mascota
+-caracteristica
+-foto
+-compontentes de mascota y organizacion como sexo, raza, preguntaAdoptante, caracteristicaXMascota

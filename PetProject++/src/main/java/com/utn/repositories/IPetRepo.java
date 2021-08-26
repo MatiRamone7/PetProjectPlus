@@ -1,15 +1,15 @@
 package com.utn.repositories;
 
-import com.utn.models.Pet;
+import com.utn.models.Mascota;
 
 public interface IPetRepo {
-    public Iterable<Pet> GetPets();
+    public Iterable<Mascota> GetPets();
 
-    public Pet GetPetById(Integer id);
+    public Mascota GetPetById(Integer id);
 
-    public Pet CreatePet(Pet pet);
+    public Mascota CreatePet(Mascota pet);
 
-    public Pet UpdatePet(Pet pet, Integer id);
+    public Mascota UpdatePet(Mascota pet, Integer id);
 
     public void DeletePet(Integer id);
 }

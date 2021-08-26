@@ -1,7 +1,7 @@
 package com.utn.services;
 
 
-import com.utn.models.Ong;
+import com.utn.models.Organizacion;
 import com.utn.repositories.IOngRepo;
 import com.utn.repositories.OngRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.io.IOException;
  * Servicios de ongs.
  *
  * @author Grupo 14
- * @see Ong
+ * @see Organizacion
  * @see OngRepo
  */
 @Service
@@ -29,7 +29,7 @@ public class OngService implements IOngService{
      * @param ong ong a crear
      * @return nuevo ong
      */
-    public Ong Create(Ong ong) throws IOException {
+    public Organizacion Create(Organizacion ong) throws IOException {
         /*
         byte[] imagen = ong.getImagen();
 
@@ -41,7 +41,7 @@ public class OngService implements IOngService{
         ong.setImagen(imagen);
         */
 
-        Ong ongADevolver = ongRepo.CreateOng(ong);
+        Organizacion ongADevolver = ongRepo.CreateOng(ong);
         return ongADevolver;
     }
 }

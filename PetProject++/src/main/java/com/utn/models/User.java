@@ -2,6 +2,8 @@ package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.contactservices.mensajesPredeterminados.*;
+import com.utn.models.Componentes.TipoDocumento;
+
 import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -33,7 +35,7 @@ public class User implements Serializable {
 	private String fechaNacimiento;
 
 	@Column(name = "tipoDocumento")
-	private String tipoDocumento;
+	private TipoDocumento tipoDocumento;
 
 	@Column(name = "numeroDocumento")
 	private Integer numeroDocumento;
@@ -91,11 +93,11 @@ public class User implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(String tipoDocumento) {
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 

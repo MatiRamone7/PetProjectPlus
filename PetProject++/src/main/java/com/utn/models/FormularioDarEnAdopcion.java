@@ -1,6 +1,7 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.utn.models.Componentes.TipoDocumento;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,12 +22,12 @@ public class FormularioDarEnAdopcion implements IUserLog{
     @Id
     @JoinColumn(name = "petID")
     @OneToOne(cascade = { CascadeType.ALL })
-    private Pet mascota;
+    private Mascota mascota;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ongId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ong organizacion;
+    private Organizacion organizacion;
 
     private List<EstadoFormulario> estado;
 

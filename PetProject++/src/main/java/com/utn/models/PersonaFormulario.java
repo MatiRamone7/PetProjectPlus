@@ -3,6 +3,8 @@ package com.utn.models;
 import java.time.LocalDate;
 import java.util.Date;
 
+import com.utn.models.Componentes.TipoDocumento;
+
 public abstract class PersonaFormulario implements IUserLog{
     private String apellido;
     private String nombre;

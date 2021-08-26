@@ -53,11 +53,12 @@ public class Mascota implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User usuarioId;
 
-   /* @OneToMany
+   /*@OneToMany
     @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
     inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     @ElementCollection*/
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "caracteristica_por_mascota_id", referencedColumnName = "id")
     @NotNull

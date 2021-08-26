@@ -1,5 +1,7 @@
 package com.utn.models;
 
+import com.utn.models.Componentes.TipoDocumento;
+
 public interface IUserLog {
     public String apellido();
 

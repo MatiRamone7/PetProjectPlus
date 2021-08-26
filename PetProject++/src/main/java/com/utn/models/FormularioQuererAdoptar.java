@@ -1,6 +1,9 @@
 package com.utn.models;
 
 import javax.persistence.*;
+
+import com.utn.models.Componentes.CaracteristicaPet;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +28,7 @@ public class FormularioQuererAdoptar{
 
     private List<EstadoFormulario> estado;
 
-    private Set<Characteristic> preferencias = new HashSet<>();
+    private Set<CaracteristicaPet> preferencias = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -35,7 +38,7 @@ public class FormularioQuererAdoptar{
         return solicitante;
     }
 
-    public Set<Characteristic> getCaracteristicSet() {
+    public Set<CaracteristicaPet> getCaracteristicSet() {
         return preferencias;
     }
 }

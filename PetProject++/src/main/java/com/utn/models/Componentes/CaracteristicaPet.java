@@ -17,7 +17,8 @@ public class CaracteristicaPet{
     @Column(name = "valor")
     public String valor;
 
-    @Column(name = "id_mascota")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_mascota", referencedColumnName = "id")
     public Integer idMascota;
 
     public Integer getId() {

@@ -1,7 +1,9 @@
 package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.utn.models.Componentes.*;
 import com.utn.transithomes.Hogar;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -65,7 +67,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ongId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ong organizacion;
+    private Organizacion organizacion;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -73,7 +75,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
             joinColumns = { @JoinColumn(name = "idAviso") },
             inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
     )
-    private Set<Characteristic> caracteristicSet = new HashSet<>();
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     private int idMascota;
     private HogarDeTransito hogarDeTransito;

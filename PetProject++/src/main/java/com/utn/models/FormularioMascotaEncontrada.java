@@ -2,6 +2,8 @@ package com.utn.models;
 
 import java.time.LocalDate;
 
+import com.utn.models.Componentes.TipoDocumento;
+
 public class FormularioMascotaEncontrada implements IUserLog{
     private LocalDate fechaHora;
     private FormularioMascotaPerdida formularioMascotaPerdida;

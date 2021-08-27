@@ -43,7 +43,7 @@ public class Usuario extends Persona implements Serializable, IUserLog {
 		this.mascotas.remove(mascota);
 	}
 
-	public void agregarPublicacion(FormularioMascotaPerdida publicacion){ this.publicacionesAAprobar.add(publicacion) }
+	public void agregarPublicacion(FormularioMascotaPerdida publicacion){ this.publicacionesAAprobar.add(publicacion); }
 	public void quitarPublicacion(FormularioMascotaPerdida publicacion){
 		this.publicacionesAAprobar.remove(publicacion);
 	}

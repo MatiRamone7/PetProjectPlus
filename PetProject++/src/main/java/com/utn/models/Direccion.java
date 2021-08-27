@@ -1,23 +1,33 @@
 package com.utn.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 @Entity
-@Table(name="mascota")
+@Table(name="direccion")
 public class Direccion {
-    private String calle;
-    private int numero;
-    private String departamento;
-    private String codigoPostal;
-    private String barrio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Column
     private String provincia;
+    @Column
+    private String departamento;
+    @Column
+    private String ciudad;
+    @Column
+    private String calle;
+    @Column
+    private int numero;
+    @Column
+    private String codigoPostal;
 
-    public Direccion(String calle, int numero, String departamento, String codigoPostal, String barrio, String provincia) {
+    public Direccion(String calle, int numero, String departamento, String codigoPostal, String ciudad, String provincia) {
         this.calle = calle;
         this.numero = numero;
         this.departamento = departamento;
         this.codigoPostal = codigoPostal;
-        this.barrio = barrio;
+        this.ciudad = ciudad;
         this.provincia = provincia;
     }
 
@@ -53,12 +63,12 @@ public class Direccion {
         this.codigoPostal = codigoPostal;
     }
 
-    public String getBarrio() {
-        return barrio;
+    public String getCiudad() {
+        return ciudad;
     }
 
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public String getProvincia() {

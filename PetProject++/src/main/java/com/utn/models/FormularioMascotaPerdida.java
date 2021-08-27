@@ -2,10 +2,7 @@ package com.utn.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.models.Componentes.*;
-import com.utn.transithomes.Hogar;
-import com.utn.transithomes.HogarDeTransito;
-
-
+import com.utn.transithomes.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

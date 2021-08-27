@@ -1,8 +1,8 @@
 package com.utn.models.users;
 import com.utn.models.Componentes.CaracteristicaPet;
 import com.utn.models.roles.Rol;
-import com.utn.models.Sesion;
-import com.utn.models.utilities.TipoDocumento;
+//import com.utn.models.Sesion;
+import com.utn.models.Componentes.TipoDocumento;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;

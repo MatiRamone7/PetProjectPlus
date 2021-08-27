@@ -3,6 +3,7 @@ package com.utn.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.models.Componentes.*;
 import com.utn.transithomes.Hogar;
+import com.utn.transithomes.HogarDeTransito;
 
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FormularioMascotaPerdida extends PersonaFormulario implements Serializable {
 
@@ -78,5 +80,32 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     private int idMascota;
-    private HogarDeTransito hogarDeTransito;
+
+    private List<EstadoFormulario> estado;
+
+    private Especie especie;
+
+    private Hogar hogar;
+
+
+    public List<EstadoFormulario> getEstado() {
+        return estado;
+    }
+
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public String getTamanio() {
+        return tamanio;
+    }
+
+    public List<String> getCaracteristicasDeLaPublicacionDelHogar() {
+        return caracteristicasDeLaPublicacionDelHogar;
+    }
+
+    public void asignarHogar(){
+        HogarDeTransito hogarDeTransito = new HogarDeTransito();
+        this.hogar = hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList()).get(0);
+    }
 }

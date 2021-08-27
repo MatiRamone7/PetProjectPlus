@@ -5,7 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface RefugiosService {
+public interface ServiciosRefugios {
     @GET("hogares")
-    Call<RefugeeList> hogares(@Header("Authorization") String authorization, @Query("offset") int offset);
+    Call<ListadoDeRefugios> hogares(@Header("Authorization") String authorization, @Query("offset") int offset);
 }

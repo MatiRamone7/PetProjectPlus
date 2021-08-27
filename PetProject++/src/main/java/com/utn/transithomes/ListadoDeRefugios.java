@@ -2,8 +2,8 @@ package com.utn.transithomes;
 
 import java.util.List;
 
-public class RefugeeList {
+public class ListadoDeRefugios {
     public int total;
     public String offset;
-    public List<Home> hogares;
+    public List<Hogar> hogares;
 }

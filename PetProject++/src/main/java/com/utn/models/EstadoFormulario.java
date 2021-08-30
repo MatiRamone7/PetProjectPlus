@@ -1,13 +1,27 @@
 package com.utn.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 public class EstadoFormulario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private int id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoID", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Estado estado;
 
+    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
     private LocalDate fechaHora;
 
-    private IUserLog user;
+    @Column(name = "usuario")
+    private String usuario;
 
     public String logEstado(){
         //TODO

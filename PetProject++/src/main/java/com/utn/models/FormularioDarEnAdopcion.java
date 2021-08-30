@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FormularioDarEnAdopcion implements IUserLog{
+public class FormularioDarEnAdopcion{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -47,27 +47,22 @@ public class FormularioDarEnAdopcion implements IUserLog{
 
 
 
-    @Override
     public String apellido() {
         return null;
     }
 
-    @Override
     public String nombre() {
         return null;
     }
 
-    @Override
     public int nroDocumento() {
         return 0;
     }
 
-    @Override
     public TipoDocumento tipoDocumento() {
         return null;
     }
 
-    @Override
     public String usuario() {
         return null;
     }

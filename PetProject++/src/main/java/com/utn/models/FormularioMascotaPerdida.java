@@ -5,43 +5,10 @@ import com.utn.models.Componentes.*;
 import com.utn.transithomes.*;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FormularioMascotaPerdida extends PersonaFormulario implements Serializable {
-
-    /*
-    Datos de Rescatista
-    */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "apellido")
-    private String apellido;
-
-    @Column(name = "fechaDeNacimiento")
-    private Date fechaDeNacimiento;
-
-    @Column(name = "tipoDocumento")
-    private String tipoDocumento;
-
-    @Column(name = "nroDocumento")
-    private int nroDocumento;
-
-    @Column(name = "direccion")
-    private Direccion direccion;
-
-    private ContactoUnico contactoUnico;
-
     /*
     Datos de Mascota
     */
@@ -54,11 +21,14 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     @Column(name = "lugarEncontrado")
     private Direccion lugarEncontrado;
 
+    @Transient
     private List<String> caracteristicasDeLaPublicacionDelHogar;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fotoId", referencedColumnName = "id")
     private List<Foto> fotos;
 
-    private String tamanio;
+
 
     /*
     Datos de FormMascotaPerdida
@@ -68,20 +38,33 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Organizacion organizacion;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "caracteristicaXaviso",
-            joinColumns = { @JoinColumn(name = "idAviso") },
-            inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
+            joinColumns = {@JoinColumn(name = "idAviso")},
+            inverseJoinColumns = {@JoinColumn(name = "caracteristicaId")}
     )
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
-    private int idMascota;
+    @Transient
+    private CaracteristicaPet tamanio = caracteristicSet.stream()
+                                        .filter(caracteristica -> caracteristica.getTipoCaracteristica().getdescripcion().equals("Tamaño"))
+                                        .findFirst()
+                                        .orElse(null);
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mascotaId", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Mascota idMascota;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoFormularioId", referencedColumnName = "id")
     private List<EstadoFormulario> estado;
 
+    @Enumerated(EnumType.STRING)
     private Especie especie;
 
+    @Transient
     private Hogar hogar;
 
 
@@ -94,15 +77,15 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     }
 
     public String getTamanio() {
-        return tamanio;
+        return tamanio.getvalor();
     }
 
     public List<String> getCaracteristicasDeLaPublicacionDelHogar() {
         return caracteristicasDeLaPublicacionDelHogar;
     }
 
-    public void asignarHogar(){
+    public void mostrarHogares(){
         HogarDeTransito hogarDeTransito = new HogarDeTransito();
-        this.hogar = hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList()).get(0);
+        hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
     }
 }

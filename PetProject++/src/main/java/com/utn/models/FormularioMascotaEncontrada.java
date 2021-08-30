@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.utn.models.Componentes.TipoDocumento;
 
-public class FormularioMascotaEncontrada implements IUserLog{
+public class FormularioMascotaEncontrada{
     private LocalDate fechaHora;
     private FormularioMascotaPerdida formularioMascotaPerdida;
     private int id;

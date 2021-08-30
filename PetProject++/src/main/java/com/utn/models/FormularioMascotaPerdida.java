@@ -28,8 +28,6 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     @JoinColumn(name = "fotoId", referencedColumnName = "id")
     private List<Foto> fotos;
 
-
-
     /*
     Datos de FormMascotaPerdida
     */
@@ -87,5 +85,10 @@ public class FormularioMascotaPerdida extends PersonaFormulario implements Seria
     public void mostrarHogares(){
         HogarDeTransito hogarDeTransito = new HogarDeTransito();
         hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
+    }
+
+    public Ubication getLugarEncontrado() {
+        // TODO
+        return null;
     }
 }

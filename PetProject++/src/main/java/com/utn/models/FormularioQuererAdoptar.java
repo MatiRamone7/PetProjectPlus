@@ -3,11 +3,14 @@ package com.utn.models;
 import javax.persistence.*;
 
 import com.utn.models.Componentes.CaracteristicaPet;
+import com.utn.models.users.Usuario;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Entity
+@Table(name="mascotas_en_adopcion")
 public class FormularioQuererAdoptar{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,30 +18,50 @@ public class FormularioQuererAdoptar{
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "userID")
     @OneToOne(cascade = { CascadeType.ALL })
-    private User solicitante;
+    @JoinColumn(name = "userID")
+    private Usuario solicitante;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "Caracteristica x FormularioAdoptar",
+    @JoinTable(name = "Caracteristica x FormularioAdoptar",
             joinColumns = { @JoinColumn(name = "idAviso") },
-            inverseJoinColumns = { @JoinColumn(name="caracteristicaId") }
-    )
-
+            inverseJoinColumns = { @JoinColumn(name="caracteristicaId")})
     private List<EstadoFormulario> estado;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preferencias_usuario", referencedColumnName = "id")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
 
     public Integer getId() {
         return id;
     }
 
-    public User getUser() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario getSolicitante() {
         return solicitante;
     }
 
-    public Set<CaracteristicaPet> getCaracteristicSet() {
+    public void setSolicitante(Usuario solicitante) {
+        this.solicitante = solicitante;
+    }
+
+    public List<EstadoFormulario> getEstado() {
+        return estado;
+    }
+
+    public void setEstado(List<EstadoFormulario> estado) {
+        this.estado = estado;
+    }
+
+    public Set<CaracteristicaPet> getPreferencias() {
         return preferencias;
     }
+
+    public void setPreferencias(Set<CaracteristicaPet> preferencias) {
+        this.preferencias = preferencias;
+    }
+
 }

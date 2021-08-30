@@ -3,10 +3,10 @@ package com.utn.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import com.utn.models.Componentes.*;
+import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +39,7 @@ public class Mascota implements Serializable {
     private LocalDate fechaDeNacimiento;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fotos")
+    @JoinColumn(name = "fotos", referencedColumnName = "id")
     private List<Foto> fotos;
 
     @Column(name = "qr")
@@ -51,7 +51,7 @@ public class Mascota implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private User usuarioId;
+    private Usuario usuarioId;
 
    /*@OneToMany
     @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
@@ -63,6 +63,19 @@ public class Mascota implements Serializable {
     @JoinColumn(name = "caracteristica_por_mascota_id", referencedColumnName = "id")
     @NotNull
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
+
+    public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,
+            String descripcionFisica, Usuario usuarioId,
+            Set<CaracteristicaPet> caracteristicSet) {
+        this.nombre = nombre;
+        this.apodo = apodo;
+        this.sexo = sexo;
+        this.especie = especie;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.descripcionFisica = descripcionFisica;
+        this.usuarioId = usuarioId;
+        this.caracteristicSet = caracteristicSet;
+    }
 
     public Integer getId() {
         return id;
@@ -132,11 +145,11 @@ public class Mascota implements Serializable {
         return (qr != null) ? true : false;
     }
 
-    public User getUsuarioId() {
+    public Usuario getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(User usuarioId) {
+    public void setUsuarioId(Usuario usuarioId) {
         this.usuarioId = usuarioId;
     }
 

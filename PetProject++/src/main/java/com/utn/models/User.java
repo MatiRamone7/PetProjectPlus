@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.*;
 
+//TODO: ver si esta clase ya se puede eliminar, cambiar todos los "User" por "Usuario"
 @Entity
 @Table(name="usuario")
 public class User implements Serializable {

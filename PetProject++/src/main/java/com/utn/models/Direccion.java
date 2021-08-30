@@ -2,7 +2,7 @@ package com.utn.models;
 
 import javax.persistence.*;
 @Entity
-@Table(name="direccion")
+@Table(name="direcciones")
 public class Direccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +11,7 @@ public class Direccion {
     private Integer id;
     @Column
     private String provincia;
-    @Column
+    @Column(name = "departamento/municipio/comuna")
     private String departamento;
     @Column
     private String ciudad;

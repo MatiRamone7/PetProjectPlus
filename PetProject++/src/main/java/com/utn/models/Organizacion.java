@@ -1,6 +1,7 @@
 package com.utn.models;
 
 import com.utn.models.Componentes.*;
+import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +28,7 @@ public class Organizacion implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    public Set<User> voluntarios = new HashSet<>();;
+    public Set<Usuario> voluntarios = new HashSet<>();;
 
     @OneToOne
     @JoinColumn(name="direccion")
@@ -40,6 +41,16 @@ public class Organizacion implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
     public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion = new HashSet<>();
+
+    public Organizacion(String nombre, Foto imagen, Set<Usuario> voluntarios, Direccion direccion,
+            CharsFoto especificacionesFotos, Set<PreguntaAdoptante> preguntasIntencionDeAdopcion) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.voluntarios = voluntarios;
+        this.direccion = direccion;
+        this.especificacionesFotos = especificacionesFotos;
+        this.preguntasIntencionDeAdopcion = preguntasIntencionDeAdopcion;
+    }
 
     public Integer getId() {
         return id;
@@ -73,11 +84,11 @@ public class Organizacion implements Serializable {
         this.imagen = imagen;
     }
 
-    public void agregarVoluntario(User usuario){
+    public void agregarVoluntario(Usuario usuario){
         voluntarios.add(usuario);
     }
 
-    public void quitarVoluntario(User usuario){
+    public void quitarVoluntario(Usuario usuario){
         voluntarios.remove(usuario);
     }
 

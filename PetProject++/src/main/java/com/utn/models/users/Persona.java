@@ -1,11 +1,14 @@
 package com.utn.models.users;
 
+import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.ContactoUnico;
 import com.utn.models.Direccion;
 //import com.utn.models.Sesion;
 import com.utn.models.Componentes.TipoDocumento;
 
 import javax.persistence.*;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.*;
 
@@ -17,7 +20,7 @@ public abstract class Persona implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    private Integer id;
 
     @Column(name = "apellido", length = 40)
     protected String apellido;
@@ -26,7 +29,7 @@ public abstract class Persona implements Serializable{
     @PrimaryKeyJoinColumn
     protected ContactoUnico contacto;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fechaNacimiento", columnDefinition = "DATE")
     protected LocalDate fechaNacimiento;
 
     @Column(name = "nombre", length = 40)
@@ -70,11 +73,8 @@ public abstract class Persona implements Serializable{
 
     }
 
-
-
-
     //getter and setter
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
@@ -88,13 +88,8 @@ public abstract class Persona implements Serializable{
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public int getNroDocumento() {
-        return nroDocumento;
-    }
-
-    public void setNroDocumento(int nroDocumento) {
-        this.nroDocumento = nroDocumento;
-    }
+    public int getNroDocumento() {return nroDocumento;}
+    public void setNroDocumento(int nroDocumento) {this.nroDocumento = nroDocumento;}
 
     public TipoDocumento getTipoDocumento() { return tipoDocumento; }
     public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipoDocumento = tipoDocumento; }
@@ -105,4 +100,7 @@ public abstract class Persona implements Serializable{
     public Direccion getDireccion() { return direccion; }
     public void setDireccion(Direccion direccion) { this.direccion = direccion; }
 
+    public void contactar(IMensajePredet situacion) throws IOException {
+        this.contacto.contactar(situacion.asunto(),situacion.cuerpo());
+	}
 }

@@ -1,8 +1,8 @@
 package com.utn.models;
 
 import javax.persistence.*;
-import java.util.Date;
-
+@Entity
+@Table(name="estados")
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

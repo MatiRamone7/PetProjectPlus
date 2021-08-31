@@ -1,7 +1,5 @@
 package com.utn.models.roles;
 
-import com.utn.models.roles.Permiso;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

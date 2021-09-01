@@ -5,10 +5,10 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.utn.models.hogaresTransito.Home;
-import com.utn.models.hogaresTransito.RefugeeList;
-import com.utn.models.hogaresTransito.ServiceRefugios;
-import com.utn.models.mascotas.Mascota;
+import com.utn.models.FormularioMascotaPerdida;
+import com.utn.models.Mascota;
+import com.utn.models.Publication;
+import com.utn.models.User;
 import com.utn.services.IPetService;
 import com.utn.services.IPublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,16 +109,16 @@ public class APIRestController {
 	 * Llamar a API de hogares de transito.
 	 */
 	@GetMapping("getHogaresTransito")
-	public static List<Home>  getHogaresTransito() throws IOException {
-		ServiceRefugios serviciosRefugios = ServiceRefugios.getInstancia();
+	public static List<Hogar>  getHogaresTransito() throws IOException {
+		AdapterApiRestHogaresDeTransito serviciosRefugios = AdapterApiRestHogaresDeTransito.getInstancia();
 
 		List<String> listaDeCaracteristicas = new ArrayList<>();
 		listaDeCaracteristicas.add("manso");
 		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
-		FormLostPet unaFormularioMascotaPerdida = new FormLostPet("Perro", "Grande", lugar, listaDeCaracteristicas);
-		List<Home> listadaAuxiliar = new ArrayList<>();
+		FormularioMascotaPerdida unaFormularioMascotaPerdida = new FormularioMascotaPerdida("Perro", "Grande", lugar, listaDeCaracteristicas);	 //ejemplo de formulario que ya no se va ausar creo --> ver la clase Hogar
+		List<Hogar> listadaAuxiliar = new ArrayList<>();
 
-		RefugeeList listadoDeRefugios;
+		ListadoDeRefugios listadoDeRefugios;
 
 		List listaFiltrada;
 		int offset = 0;

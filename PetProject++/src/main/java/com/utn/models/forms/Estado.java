@@ -1,8 +1,16 @@
 package com.utn.models.forms;
 
-import java.util.Date;
-
+import javax.persistence.*;
+@Entity
+@Table(name="estados")
 public class Estado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id", unique = true, nullable = false)
+    private int id;
+
+    @Column(name = "nombre")
     private String nombre;
 
     public String getNombre() {

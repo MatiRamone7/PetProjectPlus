@@ -1,6 +1,6 @@
 package com.utn.repositories;
 
-import com.utn.models.Mascota;
+import com.utn.models.mascotas.Mascota;
 
 public interface IPetRepo {
     public Iterable<Mascota> GetPets();

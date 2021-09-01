@@ -1,8 +1,7 @@
 package com.utn.repositories;
 
 
-import com.utn.models.Organizacion;
-import com.utn.models.User;
+import com.utn.models.ongs.Organizacion;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

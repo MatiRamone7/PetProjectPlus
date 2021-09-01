@@ -18,6 +18,7 @@ punto 4 hecho con getHogaresTransito en APIRestController
 punto 5 hecho con GetPets en PetController.
 
 Conversor para pasar imagenes como byte[] = http://base64.wutils.com/encoding-online/
+https://www.motobit.com/util/base64-decoder-encoder.asp
 
 /*
 	Usuario crearia formulario de adoptar o dar en adopcion, invitado crearia formulario de mascota perdida

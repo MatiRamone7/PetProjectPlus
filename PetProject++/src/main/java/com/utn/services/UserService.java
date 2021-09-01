@@ -1,12 +1,10 @@
 package com.utn.services;
 
 import com.utn.repositories.UserRepo;
-import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utn.models.User;
 import com.utn.repositories.IUserRepo;
 
 /**

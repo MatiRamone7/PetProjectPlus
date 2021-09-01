@@ -5,16 +5,14 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.utn.models.Mascota;
-import com.utn.models.Publication;
-import com.utn.models.User;
+import com.utn.models.hogaresTransito.Home;
+import com.utn.models.hogaresTransito.RefugeeList;
+import com.utn.models.hogaresTransito.ServiceRefugios;
+import com.utn.models.mascotas.Mascota;
 import com.utn.services.IPetService;
 import com.utn.services.IPublicationService;
-import com.utn.transithomes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.utn.services.IUserService;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

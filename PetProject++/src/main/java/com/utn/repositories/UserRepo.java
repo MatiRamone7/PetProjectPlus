@@ -6,7 +6,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
-import com.utn.models.User;
 
 @Repository
 public class UserRepo implements IUserRepo {

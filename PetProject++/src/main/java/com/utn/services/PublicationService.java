@@ -1,6 +1,5 @@
 package com.utn.services;
 
-import com.utn.models.Publication;
 import com.utn.repositories.IPublicationRepo;
 import com.utn.repositories.PublicationRepo;
 import org.springframework.beans.factory.annotation.Autowired;

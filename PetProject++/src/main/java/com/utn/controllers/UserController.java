@@ -1,6 +1,5 @@
 package com.utn.controllers;
 
-import com.utn.models.User;
 import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

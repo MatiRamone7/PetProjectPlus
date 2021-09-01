@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.utn.contactservices.services.Wabox;
 import com.utn.contactservices.services.WhatsappRespuesta;
-import com.utn.models.ContactoUnico;
+import com.utn.models.users.ContactoUnico;
 public class MWhatsapp implements IMedio{
     private String numero;
     public static Wabox wp = new Wabox();

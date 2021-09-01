@@ -1,14 +1,12 @@
 package com.utn.services;
 
 
-import com.utn.models.Organizacion;
+import com.utn.models.ongs.Organizacion;
 import com.utn.repositories.IOngRepo;
 import com.utn.repositories.OngRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**

@@ -1,8 +1,7 @@
 package com.utn.services;
 
-import com.utn.models.Organizacion;
+import com.utn.models.ongs.Organizacion;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface IOngService {

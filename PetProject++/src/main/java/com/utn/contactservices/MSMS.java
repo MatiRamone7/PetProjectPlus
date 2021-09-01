@@ -1,7 +1,7 @@
 package com.utn.contactservices;
 
 import com.utn.contactservices.services.Vonage;
-import com.utn.models.ContactoUnico;
+import com.utn.models.users.ContactoUnico;
 
 public class MSMS implements IMedio{
     public static Vonage sms = new Vonage();

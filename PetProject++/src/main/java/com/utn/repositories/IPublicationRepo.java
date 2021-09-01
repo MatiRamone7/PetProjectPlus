@@ -1,7 +1,5 @@
 package com.utn.repositories;
 
-import com.utn.models.Publication;
-
 public interface IPublicationRepo {
     public Iterable<Publication> GetPublications();
 

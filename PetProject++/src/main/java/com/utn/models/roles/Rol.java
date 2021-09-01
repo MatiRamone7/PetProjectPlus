@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name ="Rol")
-public class Rol implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Rol{
+
+    private String descripcion;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,20 +19,9 @@ public class Rol implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "nombre")
-    private String nombre;
-
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) //EAGER => los permisos se recuperan al mismo tiempo que el ROL
     private List<Permiso> permisos;
 
-
-    public Rol() {}
-
-    public Rol(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-        this.permisos =  new ArrayList<>();
-    }
 
     public void agregarPermiso(Permiso permiso){
         this.permisos.add(permiso);
@@ -44,20 +34,5 @@ public class Rol implements Serializable {
 
     public List<Permiso> listarPermisos() {
         return permisos;
-    }
-
-    //getters and setters
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 }

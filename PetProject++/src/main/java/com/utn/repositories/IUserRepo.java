@@ -1,13 +1,15 @@
 package com.utn.repositories;
 
+import com.utn.models.users.Usuario;
+
 public interface IUserRepo {
-	public Iterable<User> GetUsers();
+	public Iterable<Usuario> GetUsers();
 
-	public User GetUserById(Integer id);
+	public Usuario GetUserById(Integer id);
 
-	public User CreateUser(User user);
+	public Usuario CreateUser(Usuario user);
 
-	public User UpdateUser(User user, Integer id);
+	public Usuario UpdateUser(Usuario user, Integer id);
 
 	public void DeleteUser(Integer id);
 }

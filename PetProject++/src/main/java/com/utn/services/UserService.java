@@ -1,5 +1,6 @@
 package com.utn.services;
 
+import com.utn.models.users.Usuario;
 import com.utn.repositories.UserRepo;
 import com.utn.utils.IValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import com.utn.repositories.IUserRepo;
  * Servicios de users.
  *
  * @author Grupo 14
- * @see User
+ * @see com.utn.models.users.Usuario
  * @see UserRepo
  */
 @Service
@@ -25,7 +26,7 @@ public class UserService implements IUserService {
 	 * @return lista de users
 	 */
 	@Override
-	public Iterable<User> GetUsers() {		
+	public Iterable<Usuario> GetUsers() {
 		return userRepo.GetUsers();
 	}
 
@@ -36,7 +37,7 @@ public class UserService implements IUserService {
 	 * @return user existente
 	 */
 	@Override
-	public User GetUserById(Integer id) {
+	public Usuario GetUserById(Integer id) {
 		return userRepo.GetUserById(id);
 	}
 
@@ -48,7 +49,7 @@ public class UserService implements IUserService {
 	 */
 	private IValidationSesion validationSesion;
 
-	public User Create(User user)
+	public Usuario Create(Usuario user)
 	{
 		String name = user.getNombre();
 		String password = user.getPassword();
@@ -70,7 +71,7 @@ public class UserService implements IUserService {
 	 * @param user user a actualizar
 	 * @return user actualizado
 	 */
-	public User Update(User user, Integer id) {
+	public Usuario Update(Usuario user, Integer id) {
 		return userRepo.UpdateUser(user, id);
 	}
 

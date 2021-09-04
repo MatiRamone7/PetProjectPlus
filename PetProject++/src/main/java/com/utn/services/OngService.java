@@ -1,7 +1,6 @@
 package com.utn.services;
 
 
-import com.utn.models.ongs.Organizacion;
 import com.utn.repositories.IOngRepo;
 import com.utn.repositories.OngRepo;
 import org.springframework.beans.factory.annotation.Autowired;

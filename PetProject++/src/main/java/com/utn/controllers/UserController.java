@@ -1,5 +1,6 @@
 package com.utn.controllers;
 
+import com.utn.models.users.Usuario;
 import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,22 +13,22 @@ public class UserController {
     IUserService userService;
 
     @GetMapping
-    public Iterable<User> GetUsers() {
+    public Iterable<Usuario> GetUsers() {
         return userService.GetUsers();
     }
 
     @GetMapping("/{id}")
-    public User GetUserById(@PathVariable Integer id) {
+    public Usuario GetUserById(@PathVariable Integer id) {
         return userService.GetUserById(id);
     }
 
     @PostMapping
-    public User Create(@RequestBody User user) {
+    public Usuario Create(@RequestBody Usuario user) {
         return userService.Create(user);
     }
 
     @PutMapping("/{id}")
-    public User Update(@RequestBody User user, @PathVariable Integer id) {
+    public Usuario Update(@RequestBody Usuario user, @PathVariable Integer id) {
         return userService.Update(user, id);
     }
 

@@ -1,13 +1,15 @@
 package com.utn.services;
 
+import com.utn.models.users.Usuario;
+
 public interface IUserService {
-	public Iterable<User> GetUsers();
+	public Iterable<Usuario> GetUsers();
 
-	public User GetUserById(Integer id);
+	public Usuario GetUserById(Integer id);
 
-	public User Create (User user);
+	public Usuario Create (Usuario user);
 
-	public User Update (User user, Integer id);
+	public Usuario Update (Usuario user, Integer id);
 
 	public void Delete (Integer id);
 }

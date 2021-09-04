@@ -1,26 +1,16 @@
 package com.utn.models.ongs;
 
 import com.utn.models.forms.Direccion;
-import com.utn.models.users.Persona;
+import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.HashSet;
 
 @Entity
-@Table(name="ong")
-public class Organizacion implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @OneToOne
-    @JoinColumn(name="direccion")
-    private Direccion direccion;
-
-    @OneToOne
-    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
-    public CharsFoto especificacionesFotos;
+@Table(name="organizacion")
+public class Organizacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,21 +21,58 @@ public class Organizacion implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Usuario> voluntarios;
+
+    @OneToOne
+    @JoinColumn(name="direccion")
+    public Direccion direccion;
+
+    @OneToOne
+    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
+    public CharsFoto especificacionesFotos;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
     public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
 
-    public Set<Persona> voluntarios;;
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public CharsFoto getEspecificacionesFotos() {
+        return especificacionesFotos;
+    }
+
+    public void setEspecificacionesFotos(CharsFoto especificacionesFotos) {
+        this.especificacionesFotos = especificacionesFotos;
+    }
+
+    public void agregarVoluntario(Usuario usuario){
+        voluntarios.add(usuario);
+    }
+
+    public void quitarVoluntario(Usuario usuario){
+        voluntarios.remove(usuario);
+    }
 
     public void agregarPreguntaAdopcion(String pregunta){
         PreguntaAdoptante nPregunta = new PreguntaAdoptante();
         nPregunta.setPregunta(pregunta);
         preguntasIntencionDeAdopcion.add(nPregunta);
     }
-
-    public void agregarVoluntario(Persona persona){}
 
     public void quitarPreguntaAdopcion(String pregunta){
         for (PreguntaAdoptante unaPregunta : preguntasIntencionDeAdopcion){
@@ -55,7 +82,4 @@ public class Organizacion implements Serializable {
         }
     }
 
-    public void quitarVoluntario(Persona persona){
-        voluntarios.remove(persona);
-    }
 }

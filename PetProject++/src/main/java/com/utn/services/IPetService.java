@@ -1,7 +1,6 @@
 package com.utn.services;
 
 
-import com.utn.models.mascotas.Mascota;
 public interface IPetService {
     public Iterable<Mascota> GetPets();
 

@@ -1,7 +1,8 @@
 package com.utn.transithomes;
 
 import com.utn.models.Componentes.Especie;
-import com.utn.models.FormularioMascotaPerdida;
+import com.utn.models.mascotas.Mascota;
+import com.utn.models.forms.FormularioMascotaPerdida;
 
 import java.util.List;
 
@@ -101,8 +102,8 @@ public class Hogar {
                 cumpleCaracteristicas(formularioMascotaPerdida.getCaracteristicasDeLaPublicacionDelHogar()));        //Otras Caracteristicas
     }
 
-    private boolean aceptaEspecie(Especie especie){                 //Especie
-        if(especie == Especie.PERRO){                               // Retorna dependiendo de si el hogar acepta (admisiones) o no a los perros o a los gatos
+    private boolean aceptaEspecie(Mascota.Especie especie){                 //Especie
+        if(especie == Mascota.Especie.PERRO){                               // Retorna dependiendo de si el hogar acepta (admisiones) o no a los perros o a los gatos
             return this.admisiones.perros;
         }
         else{

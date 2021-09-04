@@ -1,9 +1,6 @@
 package com.utn.models.users;
 
-import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.forms.IUserLog;
-import com.utn.models.mascotas.Mascota;
-import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
 
 import java.io.Serializable;

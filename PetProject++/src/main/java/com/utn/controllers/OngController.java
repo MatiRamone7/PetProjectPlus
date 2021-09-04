@@ -1,6 +1,5 @@
 package com.utn.controllers;
 
-import com.utn.models.ongs.Organizacion;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

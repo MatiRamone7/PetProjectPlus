@@ -1,6 +1,5 @@
 package com.utn.services;
 
-import com.utn.models.mascotas.Mascota;
 import com.utn.repositories.IPetRepo;
 import com.utn.repositories.PetRepo;
 import org.springframework.beans.factory.annotation.Autowired;

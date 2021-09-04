@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.utn.models.users.Usuario;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,29 +21,29 @@ public class UserRepo implements IUserRepo {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<User> GetUsers() {
-		Iterable<User> aux;
+	public Iterable<Usuario> GetUsers() {
+		Iterable<Usuario> aux;
 
 		this.manager.getTransaction().begin();
-		aux = this.manager.createQuery("FROM User").getResultList();
+		aux = this.manager.createQuery("FROM Usuario").getResultList();
 		this.manager.getTransaction().commit();
 
 		return aux;
 	}
 
 	@Override
-	public User GetUserById(Integer id) {
-		User aux;
+	public Usuario GetUserById(Integer id) {
+		Usuario aux;
 
 		this.manager.getTransaction().begin();
-		aux = (User) this.manager.createQuery("FROM User u WHERE u.id = " + id.toString()).getSingleResult();
+		aux = (Usuario) this.manager.createQuery("FROM Usuario u WHERE u.id = " + id.toString()).getSingleResult();
 		this.manager.getTransaction().commit();
 
 		return aux;
 	}
 
 	@Override
-	public User CreateUser(User user) {
+	public Usuario CreateUser(Usuario user) {
 
 		this.manager.getTransaction().begin();
 		this.manager.persist(user);
@@ -53,10 +54,13 @@ public class UserRepo implements IUserRepo {
 	}
 
 	@Override
-	public User UpdateUser(User user, Integer id) {
+	public Usuario UpdateUser(Usuario user, Integer id) {
 
-		User userToUpdate = this.GetUserById(id);
+		Usuario userToUpdate = this.GetUserById(id);
 
+		/* TODO poner los parametros correctos */
+
+		/*
 		this.manager.getTransaction().begin();
 		userToUpdate.setNombre(user.getNombre());
 		userToUpdate.setPassword(user.getPassword());
@@ -66,6 +70,7 @@ public class UserRepo implements IUserRepo {
 		userToUpdate.setNumeroDocumento(user.getNumeroDocumento());
 		userToUpdate.setOng(user.getOng());
 		userToUpdate.setRol(user.getRol());
+		*/
 		this.manager.flush();
 		this.manager.getTransaction().commit();
 
@@ -76,7 +81,7 @@ public class UserRepo implements IUserRepo {
 	public void DeleteUser(Integer id) {
 
 		this.manager.getTransaction().begin();
-		Query query = this.manager.createQuery("delete from User WHERE id = " + id.toString());
+		Query query = this.manager.createQuery("delete from Usuario WHERE id = " + id.toString());
 		query.executeUpdate();
 		this.manager.getTransaction().commit();
 

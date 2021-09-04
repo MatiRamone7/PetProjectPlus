@@ -1,43 +1,108 @@
 package com.utn.models.forms;
 
-import com.utn.models.users.ContactoUnico;
-import com.utn.models.users.TipoDocumento;
-
 import java.time.LocalDate;
 
-public abstract class PersonaFormulario implements IUserLog {
+import com.utn.models.Componentes.TipoDocumento;
+import com.utn.models.forms.Direccion;
 
+import javax.persistence.*;
+
+@MappedSuperclass
+public abstract class PersonaFormulario{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "apellido")
     private String apellido;
 
-    private ContactoUnico contacto;
-
-    private Direccion direccion;
-
-    private LocalDate fechaNacimiento;
-
+    @Column(name = "nombre")
     private String nombre;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="contactoID", referencedColumnName = "id")
+    private ContactoUnico contacto;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="direccionID", referencedColumnName = "id")
+    private Direccion direccion;
+
+    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    private LocalDate fechaNacimiento;
+
+    @Column(name = "nroDocumento")
     private int nroDocumento;
 
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
 
-    public String apellido(){
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getApellido() {
         return apellido;
     }
 
-    public String nombre(){
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public int nroDocumento(){
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ContactoUnico getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(ContactoUnico contacto) {
+        this.contacto = contacto;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getNroDocumento() {
         return nroDocumento;
     }
 
-    public TipoDocumento tipoDocumento(){
+    public void setNroDocumento(int nroDocumento) {
+        this.nroDocumento = nroDocumento;
+    }
+
+    public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public String usuario(){
-        return "Ejemplo";
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getFullName() {
+        return this.id.toString() + this.nombre + this.apellido;
     }
 }

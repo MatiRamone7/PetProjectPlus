@@ -1,5 +1,7 @@
 package com.utn.models.forms;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 @Entity
 @Table(name="direccion")
@@ -17,8 +19,10 @@ public class Direccion {
     @Column(name = "departamento/municipio/comuna")
     private String departamento;
 
-    @Column
-    private String ciudad;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ciudadID", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Ciudad ciudad;
 
     @Column
     private String calle;
@@ -35,7 +39,7 @@ public class Direccion {
     @Transient
     private double longitud;
 
-    public Direccion(Integer id, String provincia, String departamento, String ciudad, String calle, int numero, String codigoPostal, double latitud, double longitud) {
+    public Direccion(Integer id, String provincia, String departamento, Ciudad ciudad, String calle, int numero, String codigoPostal, double latitud, double longitud) {
         this.id = id;
         this.provincia = provincia;
         this.departamento = departamento;
@@ -47,13 +51,7 @@ public class Direccion {
         this.longitud = longitud;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Direccion(){}
 
     public String getCalle() {
         return calle;
@@ -87,11 +85,11 @@ public class Direccion {
         this.codigoPostal = codigoPostal;
     }
 
-    public String getCiudad() {
+    public Ciudad getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(String ciudad) {
+    public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
 

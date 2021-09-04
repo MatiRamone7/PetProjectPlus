@@ -22,19 +22,19 @@ public class Organizacion {
     private String nombre;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<Usuario> voluntarios;
+    private Set<Usuario> voluntarios;
 
     @OneToOne
     @JoinColumn(name="direccion")
-    public Direccion direccion;
+    private Direccion direccion;
 
     @OneToOne
     @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
-    public CharsFoto especificacionesFotos;
+    private CharsFoto especificacionesFotos;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
-    public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
+    private Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
 
     public Integer getId() {
         return id;

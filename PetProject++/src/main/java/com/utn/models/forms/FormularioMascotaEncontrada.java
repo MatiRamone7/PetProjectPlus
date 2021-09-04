@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.utn.models.Componentes.TipoDocumento;
 import com.utn.models.users.Usuario;
 
 @Entity

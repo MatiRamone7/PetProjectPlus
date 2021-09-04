@@ -2,8 +2,7 @@ package com.utn.models.mascotas;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
-import com.utn.models.Componentes.*;
-import com.utn.models.Componentes.CaracteristicaPet;
+import com.utn.models.forms.Foto;
 import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
@@ -15,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="mascota")
-public class Mascota {
+public class Mascota implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,20 +64,21 @@ public class Mascota {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "caracteristica_por_mascota_id", referencedColumnName = "id")
     @NotNull
-    private Set<com.utn.models.Componentes.CaracteristicaPet> caracteristicSet = new HashSet<>();
+    private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,
             String descripcionFisica, Usuario usuarioId,
-            Set<com.utn.models.Componentes.CaracteristicaPet> caracteristicSet) {
+            Set<CaracteristicaPet> caracteristicSet) {
         this.nombre = nombre;
         this.apodo = apodo;
         this.sexo = sexo;
         this.especie = especie;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.descripcionFisica = descripcionFisica;
-        this.usuarioId = usuarioId;
+        this.duenio = usuarioId;
         this.caracteristicSet = caracteristicSet;
     }
+    public Mascota(){}
 
     public Integer getId() {
         return id;
@@ -149,14 +149,14 @@ public class Mascota {
     }
 
     public Usuario getUsuarioId() {
-        return usuarioId;
+        return duenio;
     }
 
     public void setUsuarioId(Usuario usuarioId) {
-        this.usuarioId = usuarioId;
+        this.duenio = usuarioId;
     }
 
-    public Set<com.utn.models.Componentes.CaracteristicaPet> getCaracteristicSet() {
+    public Set<CaracteristicaPet> getCaracteristicSet() {
         return caracteristicSet;
     }
 

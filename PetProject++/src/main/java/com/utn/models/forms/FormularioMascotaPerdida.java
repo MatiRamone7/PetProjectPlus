@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name="formularioMascotaPerdida")
 public class FormularioMascotaPerdida extends PersonaFormulario {
 
     /*
@@ -17,7 +19,8 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "lugarEncuentroMascota")
+    @OneToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "direccionID")
     private Direccion lugarEncuentroMascota;
 
     @Transient
@@ -70,14 +73,12 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     @Enumerated(EnumType.STRING)
     private Mascota.Especie especie;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "hogarId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Hogar hogar;
+    @Column
+    private String hogar;
 
-    public void mostrarHogares(){
+    public List<Hogar> mostrarHogares(){
         HogarDeTransito hogarDeTransito = new HogarDeTransito();
-        hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
+        return hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
     }
 
     /* TODO DANI
@@ -151,19 +152,26 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
         this.estado = estado;
     }
 
-    public Especie getEspecie() {
+    public Mascota.Especie getEspecie() {
         return especie;
     }
 
-    public void setEspecie(Especie especie) {
+    public void setEspecie(Mascota.Especie especie) {
         this.especie = especie;
     }
 
-    public Hogar getHogar() {
+    public String getHogar() {
         return hogar;
     }
 
-    public void setHogar(Hogar hogar) {
+    public void setHogar(String hogar) {
         this.hogar = hogar;
+    }
+
+
+    public Ubication getLugarEncontrado(){
+        //TODO: Ver la API para obtener coordenadas
+        Ubication ejemplo = new Ubication();
+        return ejemplo;
     }
 }

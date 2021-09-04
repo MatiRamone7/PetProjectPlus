@@ -6,25 +6,26 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-@Table(name ="Rol")
+@Table(name ="rol")
 public class Rol{
-
-    private String descripcion;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) //EAGER => los permisos se recuperan al mismo tiempo que el ROL
+    @Column
+    private String descripcion;
+
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY) //EAGER => los permisos se recuperan al mismo tiempo que el ROL
     private List<Permiso> permisos;
 
+
+    public Rol() { this.permisos = new ArrayList<>(); }
 
     public void agregarPermiso(Permiso permiso){
         this.permisos.add(permiso);
     }
-
     public void quitarPermiso(Permiso permiso){
         int indice = permisos.indexOf(permiso);
         this.permisos.remove(indice);
@@ -33,4 +34,11 @@ public class Rol{
     public List<Permiso> listarPermisos() {
         return permisos;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

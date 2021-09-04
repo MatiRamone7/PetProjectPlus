@@ -2,8 +2,8 @@ package com.utn.models.forms;
 
 import java.time.LocalDate;
 
-import com.utn.models.Componentes.TipoDocumento;
-import com.utn.models.forms.Direccion;
+import com.utn.models.users.ContactoUnico;
+import com.utn.models.users.TipoDocumento;
 
 import javax.persistence.*;
 
@@ -103,6 +103,6 @@ public abstract class PersonaFormulario{
     }
 
     public String getFullName() {
-        return this.id.toString() + this.nombre + this.apellido;
+        return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido();
     }
 }

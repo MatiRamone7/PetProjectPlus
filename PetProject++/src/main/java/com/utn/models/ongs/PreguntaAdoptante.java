@@ -20,4 +20,31 @@ public class PreguntaAdoptante {
     public TipoPregunta tipoPregunta;
 
 
+    public PreguntaAdoptante(){}
+
+    public int getIdOrganizacion() {
+        return idOrganizacion;
+    }
+
+    public void setIdOrganizacion(int idOrganizacion) {
+        this.idOrganizacion = idOrganizacion;
+    }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public TipoPregunta getTipoPregunta() {
+        return tipoPregunta;
+    }
+
+    public void setTipoPregunta(TipoPregunta tipoPregunta) {
+        this.tipoPregunta = tipoPregunta;
+    }
+
+
 }

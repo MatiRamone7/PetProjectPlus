@@ -6,7 +6,7 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
   <persistence-unit name="Persistencia">
-  	
+
   	<class>com.utn.models.Roles</class>
 
     <properties>
@@ -17,6 +17,11 @@
 
         <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
         <property name="hibernate.hbm2ddl.auto" value="update" />
+
+        <property name="hibernate.show_sql" value="true" />
+        <property name="hibernate.format_sql" value="true" />
+        <property name="use_sql_comments" value="true" />
+
     </properties>
   </persistence-unit>
 

@@ -1,7 +1,9 @@
 package com.utn.models.forms;
 
 import javax.persistence.*;
-import com.utn.models.Componentes.PreguntaAdoptante;
+
+import com.utn.models.ongs.PreguntaAdoptante;
+
 @Entity
 @Table(name="preguntaRespuestaAdoptante")
 public class PreguntaRespuestaAdoptante {
@@ -11,9 +13,13 @@ public class PreguntaRespuestaAdoptante {
     @Column(name = "id")
     private Integer id;
 
-    private Integer idFormulario;
+    @ManyToOne
+    @JoinColumn(name = "formularioID", referencedColumnName = "id")
+    private FormularioDarEnAdopcion idFormulario;
 
-    private Integer idPregunta;
+    @ManyToOne
+    @JoinColumn(name = "preguntaID", referencedColumnName = "id")
+    private PreguntaAdoptante idPregunta;
 
     @Column(name = "respuesta")
     private String rta;
@@ -22,12 +28,20 @@ public class PreguntaRespuestaAdoptante {
         return id;
     }
 
+    public FormularioDarEnAdopcion getIdFormulario() {
+        return idFormulario;
+    }
+
+    public void setIdFormulario(FormularioDarEnAdopcion idFormulario) {
+        this.idFormulario = idFormulario;
+    }
+
     public PreguntaAdoptante getPregunta() {
-        return pregunta;
+        return idPregunta;
     }
 
     public void setPregunta(PreguntaAdoptante pregunta) {
-        this.pregunta = pregunta;
+        this.idPregunta = pregunta;
     }
 
     public String getRta() {

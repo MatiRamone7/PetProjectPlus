@@ -2,7 +2,7 @@ package com.utn.models.forms;
 
 import javax.persistence.*;
 
-import com.utn.models.Componentes.CaracteristicaPet;
+import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.users.Usuario;
 
 import java.util.HashSet;

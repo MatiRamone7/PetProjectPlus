@@ -1,5 +1,6 @@
 package com.utn.repositories;
 
+import com.utn.models.mascotas.Mascota;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

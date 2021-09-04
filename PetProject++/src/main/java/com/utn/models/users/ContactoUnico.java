@@ -9,7 +9,6 @@ import java.io.IOException;
 @Table(name="contacto")
 public class ContactoUnico implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -24,6 +23,13 @@ public class ContactoUnico implements Serializable {
 
     @Convert(converter = MedioConverter.class)
     public IMedio medio;
+
+    public ContactoUnico(String unMail, String unCelular){
+        this.mail = unMail;
+        this.celular = unCelular;
+    }
+
+    public ContactoUnico(){}
 
     public Integer getId() {
         return id;
@@ -41,10 +47,6 @@ public class ContactoUnico implements Serializable {
 
     public String getCelular() { return celular; }
 
-    public ContactoUnico(String unMail, String unCelular){
-        this.mail = unMail;
-        this.celular = unCelular;
-    }
 
     public void cambiarMedio(IMedio nmedio){
         medio = nmedio;

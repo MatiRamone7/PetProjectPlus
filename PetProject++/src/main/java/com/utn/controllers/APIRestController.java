@@ -6,6 +6,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.utn.models.forms.FormularioMascotaPerdida;
+import com.utn.transithomes.Hogar;
+import com.utn.transithomes.Ubication;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.Publication;
 import com.utn.services.IPetService;

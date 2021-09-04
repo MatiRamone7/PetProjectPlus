@@ -1,5 +1,6 @@
 package com.utn.controllers;
 
+import com.utn.models.mascotas.Mascota;
 import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -35,8 +35,8 @@ public class User implements Serializable {
 	@Column(name = "fechaNacimiento")
 	private String fechaNacimiento;
 
-	@Column(name = "tipoDocumento")
-	private TipoDocumento tipoDocumento;
+	/*@Column(name = "tipoDocumento")
+	private TipoDocumento tipoDocumento;*/
 
 	@Column(name = "numeroDocumento")
 	private Integer numeroDocumento;
@@ -46,13 +46,9 @@ public class User implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Organizacion ong;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rolId")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Rol rol;
 
-	//
-	private ContactoUnico contacto;
+
+
 
 	public Integer getId() {
 		return id;
@@ -94,14 +90,14 @@ public class User implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public TipoDocumento getTipoDocumento() {
+	/*public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
 
 	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-
+*/
 	public Integer getNumeroDocumento() {
 		return numeroDocumento;
 	}
@@ -118,16 +114,10 @@ public class User implements Serializable {
 		this.ong = ong;
 	}
 
-	public Rol getRol() {
-		return rol;
-	}
 
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-
+/*
 	public void contactar(IMensajePredet situacion) throws IOException {
 		this.contacto.contactar(situacion.asunto(),situacion.cuerpo());
 	}
-
+*/
 }

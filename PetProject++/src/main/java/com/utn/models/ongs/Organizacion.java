@@ -2,6 +2,7 @@ package com.utn.models.ongs;
 
 import com.utn.models.forms.Direccion;
 import com.utn.models.users.Persona;
+import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,17 +12,6 @@ import java.util.Set;
 @Table(name="ong")
 public class Organizacion implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @OneToOne
-    @JoinColumn(name="direccion")
-    private Direccion direccion;
-
-    @OneToOne
-    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
-    public CharsFoto especificacionesFotos;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -31,11 +21,20 @@ public class Organizacion implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Usuario> voluntarios;;
+
+    @OneToOne
+    @JoinColumn(name="direccion_id")
+    private Direccion direccion;
+
+    @OneToOne
+    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
+    public CharsFoto especificacionesFotos;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
     public Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
-
-    public Set<Persona> voluntarios;;
 
 
 
@@ -44,9 +43,6 @@ public class Organizacion implements Serializable {
         nPregunta.setPregunta(pregunta);
         preguntasIntencionDeAdopcion.add(nPregunta);
     }
-
-    public void agregarVoluntario(Persona persona){}
-
     public void quitarPreguntaAdopcion(String pregunta){
         for (PreguntaAdoptante unaPregunta : preguntasIntencionDeAdopcion){
             if (unaPregunta.getPregunta().equals(pregunta)){
@@ -55,7 +51,20 @@ public class Organizacion implements Serializable {
         }
     }
 
+    public void agregarVoluntario(Persona persona){}
     public void quitarVoluntario(Persona persona){
         voluntarios.remove(persona);
     }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public Direccion getDireccion() { return direccion; }
+    public void setDireccion(Direccion direccion) { this.direccion = direccion; }
+
+    public CharsFoto getEspecificacionesFotos() { return especificacionesFotos; }
+    public void setEspecificacionesFotos(CharsFoto especificacionesFotos) {
+        this.especificacionesFotos = especificacionesFotos;
+    }
 }
+

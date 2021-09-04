@@ -1,62 +1,50 @@
 package com.utn.models.users;
 
 import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
-import com.utn.models.ContactoUnico;
 import com.utn.models.Direccion;
-//import com.utn.models.Sesion;
-import com.utn.models.Componentes.TipoDocumento;
 
 import javax.persistence.*;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.*;
 
-@Entity
-@Table(name = "Persona")
-@Inheritance(strategy= InheritanceType.JOINED)
-public abstract class Persona implements Serializable{
+@MappedSuperclass
+public abstract class Persona {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "apellido", length = 40)
+    @Column(name = "apellido")
     protected String apellido;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contacto_id")
     protected ContactoUnico contacto;
 
     @Column(name = "fechaNacimiento", columnDefinition = "DATE")
     protected LocalDate fechaNacimiento;
 
-    @Column(name = "nombre", length = 40)
+    @Column(name = "nombre")
     protected String nombre;
 
     @Column(name = "nroDocumento")
     protected int nroDocumento;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     protected TipoDocumento tipoDocumento;
 
     //no se que tipo de mapeo debe llevar
+    @Transient
     protected Sesion usuario;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "direccion_id")
     protected Direccion direccion;
 
-    public Persona() {
-    }
+    public Persona() {     }
 
-    public Persona(int id) {
-        this.id = id;
-    }
-
-    public Persona(int id, String apellido, LocalDate fechaNacimiento, String nombre, int nroDocumento, TipoDocumento tipoDocumento, Sesion usuario) {
-        this.id = id;
+    public Persona(String apellido, LocalDate fechaNacimiento, String nombre, int nroDocumento, TipoDocumento tipoDocumento, Sesion usuario) {
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
@@ -74,8 +62,6 @@ public abstract class Persona implements Serializable{
     }
 
     //getter and setter
-    public Integer getId() { return id; }
-
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
 

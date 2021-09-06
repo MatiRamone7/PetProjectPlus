@@ -60,17 +60,22 @@ public class UserRepo implements IUserRepo {
 
 		/* TODO poner los parametros correctos */
 
-		/*
 		this.manager.getTransaction().begin();
-		userToUpdate.setNombre(user.getNombre());
-		userToUpdate.setPassword(user.getPassword());
+		// User
+		userToUpdate.setComodidades(user.getComodidades());
+		userToUpdate.setLogRol(user.getLogRol());
+		userToUpdate.setMascotas(user.getMascotas());
+		userToUpdate.setOrganizacion(user.getOrganizacion());
+		userToUpdate.setPublicacionesAAprobar(user.getPublicacionesAAprobar());
+		// Persona
 		userToUpdate.setApellido(user.getApellido());
+		userToUpdate.setContacto(user.getContacto());
 		userToUpdate.setFechaNacimiento(user.getFechaNacimiento());
+		userToUpdate.setNombre(user.getNombre());
+		userToUpdate.setNroDocumento(user.getNroDocumento());
 		userToUpdate.setTipoDocumento(user.getTipoDocumento());
-		userToUpdate.setNumeroDocumento(user.getNumeroDocumento());
-		userToUpdate.setOng(user.getOng());
-		userToUpdate.setRol(user.getRol());
-		*/
+		userToUpdate.setUsuario(user.getUsuario());
+		userToUpdate.setDireccion(user.getDireccion());
 		this.manager.flush();
 		this.manager.getTransaction().commit();
 

@@ -26,4 +26,13 @@ public class OngController {
         return ongService.Update(ong, id);
     }
 
+    @PutMapping("/{id}")
+    public Organizacion AgregarPregunta(@RequestBody String pregunta, @PathVariable Integer id) {
+        return ongService.AgregarPregunta(pregunta, id);
+    }
+
+    @PutMapping("/{id}")
+    public Organizacion QuitarPregunta(@RequestBody String pregunta, @PathVariable Integer id) {
+        return ongService.QuitarPregunta(pregunta, id);
+    }
 }

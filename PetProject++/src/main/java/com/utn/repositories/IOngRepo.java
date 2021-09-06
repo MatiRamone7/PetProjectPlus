@@ -10,4 +10,8 @@ public interface IOngRepo {
     public Organizacion CreateOng(Organizacion ong);
 
     public Organizacion UpdateOng(Organizacion ong, Integer id);
+
+    public Organizacion AgregarPregunta(String pregunta, Integer id);
+
+    public Organizacion QuitarPregunta(String pregunta, Integer id);
 }

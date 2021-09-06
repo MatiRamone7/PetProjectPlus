@@ -79,4 +79,20 @@ public class Usuario extends Persona implements Serializable {
 	//Login y Logout
 
 	public String getFullName() { return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido(); } //TODO: completar funcion
+
+	public void setComodidades(Set<Comodidad> comodidades) {
+		this.comodidades = comodidades;
+	}
+
+	public void setLogRol(List<LogRol> logRol) {
+		this.logRol = logRol;
+	}
+
+	public void setMascotas(Set<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+
+	public void setPublicacionesAAprobar(List<FormularioMascotaPerdida> publicacionesAAprobar) {
+		this.publicacionesAAprobar = publicacionesAAprobar;
+	}
 }

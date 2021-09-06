@@ -40,4 +40,23 @@ public class OngService implements IOngService{
         return ongRepo.UpdateOng(ong, id);
     }
 
+    /**
+     * Actualiza preguntas de ong existente.
+     *
+     * @param pregunta a actualizar, id de la ong
+     * @return ong actualizado
+     */
+    public Organizacion AgregarPregunta(String pregunta, Integer id) {
+        return ongRepo.AgregarPregunta(pregunta, id);
+    };
+
+    /**
+     * Actualiza preguntas de ong existente.
+     *
+     * @param pregunta a actualizar, id de la ong
+     * @return ong actualizado
+     */
+    public Organizacion QuitarPregunta(String pregunta, Integer id) {
+        return ongRepo.QuitarPregunta(pregunta, id);
+    };
 }

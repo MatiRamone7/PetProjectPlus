@@ -7,6 +7,7 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
 import com.utn.models.forms.Direccion;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.users.Usuario;
@@ -15,6 +16,8 @@ import com.utn.transithomes.Hogar;
 import com.utn.transithomes.ListadoDeRefugios;
 import com.utn.transithomes.Ubication;
 import com.utn.models.mascotas.Mascota;
+import com.utn.services.FormService;
+import com.utn.services.IFormService;
 import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -87,7 +90,7 @@ public class APIRestController {
 
 	/*
 	@Autowired
-	IPublicationService publicationService;
+	IFormService publicationService;
 
 	@PostMapping("/informarMascotaPerdida/{idMascota}")
 	public void InformPet(@PathVariable Integer idMascota) throws IOException {
@@ -96,10 +99,10 @@ public class APIRestController {
 		HashMap<String, String> defaultMessage = new HashMap<>();
 		defaultMessage.put("texto", "Se le notifica al usuario que se encontró su mascota");
 
-		Publication nuevaPubli = new Publication();
+		FormularioMascotaPerdida nuevoForm = new FormularioMascotaPerdida();
 
 		if (mascota.getQr() == null) {
-			publicationService.CreatePublication(nuevaPubli);
+			publicationService.CreateFormMascotaPerdida(nuevoForm);
 		} else if (mascota.getQr() != null) {
 			this.NotifyUser(defaultMessage, idMascota);
 		}
@@ -114,7 +117,9 @@ public class APIRestController {
 		Mascota mascota = petService.GetPetById(idMascota);
 		Usuario usuarioAContactar = mascota.getUsuarioId();
 
-		//usuarioAContactar.contactar();
+		//TODO meter el input de usuario de alguna manera 
+		CQRScaneado msg = new CQRScaneado("Input de usuario aca");
+		usuarioAContactar.contactar(msg);
 	}
 
 	/**

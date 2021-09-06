@@ -6,12 +6,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.utn.models.forms.FormularioMascotaPerdida;
+import com.utn.models.users.Usuario;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
 import com.utn.transithomes.Hogar;
 import com.utn.transithomes.ListadoDeRefugios;
 import com.utn.transithomes.Ubication;
 import com.utn.models.mascotas.Mascota;
-import com.utn.models.Publication;
 import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +34,6 @@ public class APIRestController {
 	private static final String formato = "png";
 	private static final String ruta = "C:\\Users\\matil\\Desktop\\miCodigoQR3.png";
 	private static final String pathFormulario = "https://aulasvirtuales.frba.utn.edu.ar/";
-
-	@Autowired
-	IPetService petService;
-
-	@Autowired
-	IPublicationService publicationService;
 
 	@GetMapping("generarQRFormulario")
 	public void GenerateQR() throws IOException {
@@ -80,6 +74,13 @@ public class APIRestController {
 	/**
 	 * Informar sobre mascota perdida.
 	 */
+
+	@Autowired
+	IPetService petService;
+
+	@Autowired
+	IPublicationService publicationService;
+
 	@PostMapping("/informarMascotaPerdida/{idMascota}")
 	public void InformPet(@PathVariable Integer idMascota) throws IOException {
 		Mascota mascota = petService.GetPetById(idMascota);
@@ -102,14 +103,14 @@ public class APIRestController {
 	public void NotifyUser(HashMap map, Integer idMascota) throws IOException {
 		String texto = (String) map.get("texto");
 		Mascota mascota = petService.GetPetById(idMascota);
-		User usuarioAContactar = mascota.getUsuarioId();
+		Usuario usuarioAContactar = mascota.getUsuarioId();
 
 		//usuarioAContactar.contactar();
 	}
 
 	/**
-	 * Llamar a API de hogares de transito.
-	 */
+	 * Llamar a API de hogares de transito. Esto se movió a el FormularioMascotaPerdida pero dejo esto por si tenemos problemas con el formulario
+
 	@GetMapping("getHogaresTransito")
 	public static List<Hogar>  getHogaresTransito() throws IOException {
 		AdapterApiRestHogaresDeTransito serviciosRefugios = AdapterApiRestHogaresDeTransito.getInstancia();
@@ -139,5 +140,5 @@ public class APIRestController {
 		}
 
 		return listadaAuxiliar;
-	}
+	}*/
 }

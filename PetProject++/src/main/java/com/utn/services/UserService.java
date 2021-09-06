@@ -51,11 +51,11 @@ public class UserService implements IUserService {
 
 	public Usuario Create(Usuario user)
 	{
+		/*
 		String name = user.getNombre();
 		String password = user.getPassword();
 		String hpass;
 
-		/*
 		if (validationSesion.validarUsuarioyPass(name, password).isStatus()) {
 			hpass = HashUtils.get_SHA_512_SecurePassword(password);
 			user.setPassword(hpass);

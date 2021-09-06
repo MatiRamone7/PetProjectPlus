@@ -85,6 +85,7 @@ public class APIRestController {
 	@Autowired
 	IPetService petService;
 
+	/*
 	@Autowired
 	IPublicationService publicationService;
 
@@ -103,6 +104,7 @@ public class APIRestController {
 			this.NotifyUser(defaultMessage, idMascota);
 		}
 	}
+	*/
 
 	/**
 	 * Contacto con el dueño por QR de mascota.

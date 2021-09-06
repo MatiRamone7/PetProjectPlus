@@ -6,8 +6,7 @@ DROP TABLE IF EXISTS ong;
 DROP TABLE IF EXISTS rescatista;
 DROP TABLE IF EXISTS caracteristica;
 DROP TABLE IF EXISTS rol;
-
-
+DROP TABLE IF EXISTS contacto;
 
 CREATE TABLE [ong] (
 	id int primary Key identity(1,1),

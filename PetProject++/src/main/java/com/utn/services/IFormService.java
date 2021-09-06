@@ -17,7 +17,7 @@ public interface IFormService {
     public void DeleteFormMascotaPerdida(Integer id);
 
     /*
-        Form FormularioMascotaPerdida Encontrada
+        Form Mascota Encontrada
     */
 
     /*

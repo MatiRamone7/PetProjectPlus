@@ -42,7 +42,7 @@ public class FormController {
     }
 
     /*
-        Form FormularioMascotaPerdida Encontrada
+        Form Mascota Encontrada
     */
 
     /*

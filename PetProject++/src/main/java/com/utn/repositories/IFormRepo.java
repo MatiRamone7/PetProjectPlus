@@ -20,7 +20,7 @@ public interface IFormRepo {
     public void DeleteFormMascotaPerdida(Integer id);
 
     /*
-        Form FormularioMascotaPerdida Encontrada
+        Form Mascota Encontrada
     */
 
     /*

@@ -7,8 +7,6 @@ import com.utn.repositories.OngRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
 /**
  * Servicios de ongs.
  *
@@ -27,19 +25,19 @@ public class OngService implements IOngService{
      * @param ong ong a crear
      * @return nuevo ong
      */
-    public Organizacion Create(Organizacion ong) throws IOException {
-        /*
-        byte[] imagen = ong.getImagen();
-
-        FileInputStream fileInputStream = new FileInputStream(String.valueOf(imagen));
-
-        fileInputStream.read(imagen);
-        fileInputStream.close();
-
-        ong.setImagen(imagen);
-        */
-
+    public Organizacion Create(Organizacion ong){
         Organizacion ongADevolver = ongRepo.CreateOng(ong);
         return ongADevolver;
     }
+
+    /**
+     * Actualiza ong existente.
+     *
+     * @param ong ong a actualizar
+     * @return ong actualizado
+     */
+    public Organizacion Update(Organizacion ong, Integer id) {
+        return ongRepo.UpdateOng(ong, id);
+    }
+
 }

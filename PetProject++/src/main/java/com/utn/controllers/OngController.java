@@ -1,12 +1,11 @@
 package com.utn.controllers;
 
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
+import com.utn.models.users.Usuario;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -21,4 +20,10 @@ public class OngController {
     public Organizacion Create(@RequestBody Organizacion ong) throws IOException {
         return ongService.Create(ong);
     }
+
+    @PutMapping("/{id}")
+    public Organizacion Update(@RequestBody Organizacion ong, @PathVariable Integer id) {
+        return ongService.Update(ong, id);
+    }
+
 }

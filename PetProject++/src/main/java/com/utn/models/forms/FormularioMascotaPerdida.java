@@ -47,7 +47,6 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
             inverseJoinColumns = {@JoinColumn(name = "caracteristicaId")}
     )
     private Set<CaracteristicaPet> caracteristicSet;
-
     */
 
     /*

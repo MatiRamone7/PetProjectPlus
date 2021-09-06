@@ -4,15 +4,13 @@ import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
-
-import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="persona")
-public class Usuario extends Persona implements Serializable {
+public class Usuario extends Persona {
 	//ver como queda esta entidad
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "comodidad_id", referencedColumnName = "id")
@@ -79,4 +77,20 @@ public class Usuario extends Persona implements Serializable {
 	//Login y Logout
 
 	public String getFullName() { return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido(); } //TODO: completar funcion
+
+	public void setComodidades(Set<Comodidad> comodidades) {
+		this.comodidades = comodidades;
+	}
+
+	public void setLogRol(List<LogRol> logRol) {
+		this.logRol = logRol;
+	}
+
+	public void setMascotas(Set<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+
+	public void setPublicacionesAAprobar(List<FormularioMascotaPerdida> publicacionesAAprobar) {
+		this.publicacionesAAprobar = publicacionesAAprobar;
+	}
 }

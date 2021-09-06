@@ -47,22 +47,41 @@ public class OngRepo implements IOngRepo{
 
         Organizacion ongToUpdate = this.GetOngById(id);
 
-        /* TODO poner los parametros correctos */
-
-		/*
-		this.manager.getTransaction().begin();
-		userToUpdate.setNombre(user.getNombre());
-		userToUpdate.setPassword(user.getPassword());
-		userToUpdate.setApellido(user.getApellido());
-		userToUpdate.setFechaNacimiento(user.getFechaNacimiento());
-		userToUpdate.setTipoDocumento(user.getTipoDocumento());
-		userToUpdate.setNumeroDocumento(user.getNumeroDocumento());
-		userToUpdate.setOng(user.getOng());
-		userToUpdate.setRol(user.getRol());
-		*/
+        this.manager.getTransaction().begin();
+        ongToUpdate.setNombre(ong.getNombre());
+        ongToUpdate.setVoluntarios(ong.getVoluntarios());
+        ongToUpdate.setDireccion(ong.getDireccion());
+        ongToUpdate.setEspecificacionesFotos(ong.getEspecificacionesFotos());
+        ongToUpdate.setPreguntasIntencionDeAdopcion(ong.getPreguntasIntencionDeAdopcion());
         this.manager.flush();
         this.manager.getTransaction().commit();
 
         return ongToUpdate;
     }
+
+    @Override
+    public Organizacion AgregarPregunta(String pregunta, Integer id) {
+
+        Organizacion ongToUpdate = this.GetOngById(id);
+        this.manager.getTransaction().begin();
+        ongToUpdate.agregarPreguntaAdopcion(pregunta);
+        this.manager.flush();
+        this.manager.getTransaction().commit();
+
+        return ongToUpdate;
+    };
+
+    @Override
+    public Organizacion QuitarPregunta(String pregunta, Integer id) {
+
+        Organizacion ongToUpdate = this.GetOngById(id);
+        this.manager.getTransaction().begin();
+        ongToUpdate.quitarPreguntaAdopcion(pregunta);
+        this.manager.flush();
+        this.manager.getTransaction().commit();
+
+        return ongToUpdate;
+    };
+
+
 }

@@ -82,4 +82,27 @@ public class Organizacion {
         }
     }
 
+    public Set<Usuario> getVoluntarios() {
+        return voluntarios;
+    }
+
+    public void setVoluntarios(Set<Usuario> voluntarios) {
+        this.voluntarios = voluntarios;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public Set<PreguntaAdoptante> getPreguntasIntencionDeAdopcion() {
+        return preguntasIntencionDeAdopcion;
+    }
+
+    public void setPreguntasIntencionDeAdopcion(Set<PreguntaAdoptante> preguntasIntencionDeAdopcion) {
+        this.preguntasIntencionDeAdopcion = preguntasIntencionDeAdopcion;
+    }
 }

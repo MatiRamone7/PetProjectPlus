@@ -1,6 +1,7 @@
 package com.utn.models.forms;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.utn.controllers.APIRestController;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.transithomes.*;
@@ -170,7 +171,10 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
 
     public Ubication getLugarEncontrado(){
         //TODO: Ver la API para obtener coordenadas
-        Ubication ejemplo = new Ubication();
+
+        Ubication ejemplo = APIRestController.getCoordenadasDeEstaDireccion(this.getDireccion());
+
+
         return ejemplo;
     }
 }

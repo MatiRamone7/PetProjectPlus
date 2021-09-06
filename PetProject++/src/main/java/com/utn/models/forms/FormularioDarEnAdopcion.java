@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="formularios_dar_en_adopcion")
+@Table(name="formularioDarEnAdopcion")
 public class FormularioDarEnAdopcion{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

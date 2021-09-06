@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.models.users.Usuario;
 
 @Entity
-@Table(name="mascotas_encontradas")
+@Table(name="formularioMascotasEncontradas")
 public class FormularioMascotaEncontrada{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

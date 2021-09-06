@@ -1,10 +1,13 @@
 package com.utn.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.utn.models.forms.Direccion;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.users.Usuario;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
@@ -18,8 +21,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -141,4 +148,53 @@ public class APIRestController {
 
 		return listadaAuxiliar;
 	}*/
+
+	/**
+	 * Geocoding API
+	 */
+
+	public static Ubication getCoordenadasDeEstaDireccion(Direccion direccion) {
+
+		String urlToRead = 	direccion.getCalle() + "+" +
+							String.valueOf(direccion.getNumero()) + ",+" +
+							direccion.getCiudad().getNombre() + ",+" +
+							direccion.getCiudad().getProvincia().getNombre();
+
+		URL url;
+		HttpURLConnection conn;
+		BufferedReader rd;
+		String line;
+		String result = "";
+		try {
+			url = new URL("http://maps.googleapis.com/maps/api/geocode/json?address=" + urlToRead + ",+CA&key=");
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			while ((line = rd.readLine()) != null) {
+				result += line;
+			}
+			rd.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		//En el result viene los datos con una estructura llamada JSON (que es eso de las llaves { y dentro propiedades:valores, etc...
+		//aqui abajo voy navegando por el objeto result y transformandolo hasta que llego a la "location" y ahi leo las propiedades lat y lng
+		HashMap properties = new Gson().fromJson(result, HashMap.class);
+		List resultados = (List) properties.get("results");
+		LinkedTreeMap informacion = (LinkedTreeMap) resultados.get(0); //solo debe venir un elemento y estara en la posicion 0
+		LinkedTreeMap geometryInfo = (LinkedTreeMap) informacion.get("geometry");
+		LinkedTreeMap locationInfo = (LinkedTreeMap) geometryInfo.get("location");
+		System.out.println("La latitud es: " + locationInfo.get("lat")); //LAtitud
+		System.out.println("la longitud es: " +locationInfo.get("lng")); //longitud
+		//Double aux = new Double(locationInfo.get("lat").toString());
+		//double lat = aux.doubleValue();
+
+		Ubication ubicacion = new Ubication(urlToRead,-34.6, -58.5);
+		return ubicacion;
+	}
+
+
 }

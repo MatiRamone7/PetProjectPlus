@@ -13,9 +13,6 @@ public class Direccion {
     @Column(name = "id")
     private Integer id;
 
-    @Column
-    private String provincia;
-
     @Column(name = "departamento/municipio/comuna")
     private String departamento;
 
@@ -41,7 +38,6 @@ public class Direccion {
 
     public Direccion(Integer id, String provincia, String departamento, Ciudad ciudad, String calle, int numero, String codigoPostal, double latitud, double longitud) {
         this.id = id;
-        this.provincia = provincia;
         this.departamento = departamento;
         this.ciudad = ciudad;
         this.calle = calle;
@@ -91,14 +87,6 @@ public class Direccion {
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
     }
 
     public double getLatitud() {

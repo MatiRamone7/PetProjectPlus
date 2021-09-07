@@ -17,7 +17,7 @@ public class Ciudad {
     private String nombre;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provinciaID", referencedColumnName = "id")
+    @JoinColumn(name = "provinciaId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Provincia provincia;
 

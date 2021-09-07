@@ -6,7 +6,6 @@ import com.utn.models.forms.Foto;
 import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="mascota")
-public class Mascota implements Serializable {
+public class Mascota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -30,12 +30,11 @@ public class FormularioDarEnAdopcion{
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Organizacion organizacion;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "estadosDelFormulario", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoFormularioDarEnAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "respuestasAdoptante", referencedColumnName = "id")
+    @OneToMany(mappedBy = "formulario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PreguntaRespuestaAdoptante> preguntas;
     
     public Integer getId() {

@@ -22,7 +22,7 @@ public class Organizacion {
     private String nombre;
 
     /*
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Usuario> voluntarios;
     */
 

@@ -2,6 +2,7 @@ package com.utn.models.forms;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.controllers.APIRestController;
+import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.transithomes.*;
@@ -50,16 +51,10 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private Set<CaracteristicaPet> caracteristicSet;
     */
 
-    /*
-    @Transient
-    private CaracteristicaPet tamanio = caracteristicSet.stream()
-                                        .filter(caracteristica -> caracteristica.getTipoCaracteristica().getdescripcion().equals("Tamaño"))
-                                        .findFirst()
-                                        .orElse(null);
-    */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "caracteristicasId", referencedColumnName = "id")
+    private Set<CaracteristicaPet> caracteristicas = new HashSet<>();
 
-    @Column(name = "tamanio")
-    private String tamanio;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mascotaId", referencedColumnName = "id")
@@ -67,7 +62,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private Mascota mascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "estadoFormularioId", referencedColumnName = "id")
+    @JoinColumn(name = "estadoFormularioMascotaPerdidaId")
     private List<EstadoFormulario> estado;
 
     @Enumerated(EnumType.STRING)
@@ -131,13 +126,26 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
         this.organizacion = organizacion;
     }
 
-    public String getTamanio() {
-        return tamanio;
+    public Set<CaracteristicaPet> getCaracteristicas() {
+        return caracteristicas;
     }
 
-    public void setTamanio(String tamanio) {
-        this.tamanio = tamanio;
+    public void setCaracteristicas(Set<CaracteristicaPet> caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
+
+    public String getTamanio() {
+        CaracteristicaPet caracteristica = caracteristicas.stream().
+                filter(caract ->
+                        caract.getTipoCaracteristica().getDescripcion() == "Tamanio"
+                ).
+                findFirst().orElse(null);
+        if(caracteristica == null){
+            return "";
+        }
+        return caracteristica.getvalor();
+    }
+
 
     public Mascota getMascota() {
         return mascota;
@@ -161,6 +169,14 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
 
     public void setEspecie(Mascota.Especie especie) {
         this.especie = especie;
+    }
+
+    public Mascota.Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Mascota.Sexo sexo) {
+        this.sexo = sexo;
     }
 
     public String getHogar() {

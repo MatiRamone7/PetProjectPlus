@@ -23,14 +23,12 @@ public class FormularioIntencionAdopcion {
     @JoinColumn(name = "userID")
     private Usuario solicitante;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "Caracteristica x FormularioAdoptar",
-            joinColumns = { @JoinColumn(name = "idAviso") },
-            inverseJoinColumns = { @JoinColumn(name="caracteristicaId")})
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoFormularioIntencionAdopcionId")
     private List<EstadoFormulario> estado;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "preferencias_usuario", referencedColumnName = "id")
+    @JoinColumn(name = "preferencias_formularioIntencionDeAdopcion", referencedColumnName = "id")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
 
     @Enumerated(EnumType.STRING)

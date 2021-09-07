@@ -14,12 +14,12 @@ public class PreguntaRespuestaAdoptante {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "formularioID", referencedColumnName = "id")
-    private FormularioDarEnAdopcion idFormulario;
+    @JoinColumn(name = "formularioID")
+    private FormularioDarEnAdopcion formulario;
 
     @ManyToOne
     @JoinColumn(name = "preguntaID", referencedColumnName = "id")
-    private PreguntaAdoptante idPregunta;
+    private PreguntaAdoptante pregunta;
 
     @Column(name = "respuesta")
     private String rta;
@@ -29,19 +29,19 @@ public class PreguntaRespuestaAdoptante {
     }
 
     public FormularioDarEnAdopcion getIdFormulario() {
-        return idFormulario;
+        return formulario;
     }
 
-    public void setIdFormulario(FormularioDarEnAdopcion idFormulario) {
-        this.idFormulario = idFormulario;
+    public void setIdFormulario(FormularioDarEnAdopcion formulario) {
+        this.formulario = formulario;
     }
 
     public PreguntaAdoptante getPregunta() {
-        return idPregunta;
+        return pregunta;
     }
 
     public void setPregunta(PreguntaAdoptante pregunta) {
-        this.idPregunta = pregunta;
+        this.pregunta = pregunta;
     }
 
     public String getRta() {

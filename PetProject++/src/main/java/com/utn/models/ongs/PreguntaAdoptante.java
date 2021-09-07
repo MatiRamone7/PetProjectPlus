@@ -10,8 +10,9 @@ public class PreguntaAdoptante {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_organizacion") //puede ser esto un many to one?
-    public int idOrganizacion;
+    @ManyToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    public Organizacion organizacion;
 
     @Column(name = "pregunta")
     public String pregunta;
@@ -22,12 +23,12 @@ public class PreguntaAdoptante {
 
     public PreguntaAdoptante(){}
 
-    public int getIdOrganizacion() {
-        return idOrganizacion;
+    public Organizacion getIdOrganizacion() {
+        return organizacion;
     }
 
-    public void setIdOrganizacion(int idOrganizacion) {
-        this.idOrganizacion = idOrganizacion;
+    public void setIdOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
     }
 
     public String getPregunta() {

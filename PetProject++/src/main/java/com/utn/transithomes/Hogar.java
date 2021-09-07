@@ -2,6 +2,7 @@ package com.utn.transithomes;
 
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.forms.FormularioMascotaPerdida;
+import com.utn.utils.Coordenadas;
 
 import java.util.List;
 
@@ -120,9 +121,15 @@ public class Hogar {
     private boolean cercaDelLugarEncontrado(Ubication lugarEncontrado){         //Lugar Encontrado
         Double distanciaMaximaEnKM = 15.0; //TODO VER EN QUE LUGAR SE PUEDE PEDIR ESTA VARIABLE. POSIBILIDAD 1 AL LLENAR EL FORMULARIO =)
 
-        return (distanciaCoord(this.ubicacion.getLat(), this.ubicacion.getLong(), lugarEncontrado.getLat(), lugarEncontrado.getLong()) <= distanciaMaximaEnKM);
+        return (Coordenadas.distanciaCoord(this.ubicacion.getLat(), this.ubicacion.getLong(), lugarEncontrado.getLat(), lugarEncontrado.getLong()) <= distanciaMaximaEnKM);
     }
 
+    private boolean cumpleCaracteristicas(List<String> caracteristicasDeLaPublicacion){             //Otras Caracteristicas
+        //this.caracteristicas.forEach(car -> caracteristicasDeLaPublicacion.contains(car));
+        return this.caracteristicas.stream().allMatch(car -> caracteristicasDeLaPublicacion.contains(car));
+    }
+
+    /*
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
@@ -139,10 +146,6 @@ public class Hogar {
         double distancia = radioTierra * va2;
 
         return distancia;
-    }
+    }*/
 
-    private boolean cumpleCaracteristicas(List<String> caracteristicasDeLaPublicacion){             //Otras Caracteristicas
-        //this.caracteristicas.forEach(car -> caracteristicasDeLaPublicacion.contains(car));
-        return this.caracteristicas.stream().allMatch(car -> caracteristicasDeLaPublicacion.contains(car));
-    }
 }

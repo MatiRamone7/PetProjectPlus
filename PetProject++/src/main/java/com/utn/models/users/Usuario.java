@@ -4,6 +4,8 @@ import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
+import com.utn.models.users.Comodidaes.Comodidad;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;

@@ -33,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @RestController
@@ -172,8 +173,8 @@ public class APIRestController {
 		BufferedReader rd;
 		String line;
 		String result = "";
-		try {
-			url = new URL("http://maps.googleapis.com/maps/api/geocode/json?address=" + urlToRead + ",+CA&key=");
+		/**try {
+			url = new URL("http://maps.googleapis.com/maps/api/geocode/json?address=" + urlToRead + ",+CA&key=AIzaSyDexaTiS3_UA8jB3VbhIV3WvNmTWbWlmsc");
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -197,11 +198,15 @@ public class APIRestController {
 		System.out.println("La latitud es: " + locationInfo.get("lat")); //LAtitud
 		System.out.println("la longitud es: " +locationInfo.get("lng")); //longitud
 		//Double aux = new Double(locationInfo.get("lat").toString());
-		//double lat = aux.doubleValue();
+		//double lat = aux.doubleValue();*/
 
-		Ubication ubicacion = new Ubication(urlToRead,-34.6, -58.5);
+		Random random = new Random();
+
+		Ubication ubicacion = new Ubication(urlToRead, random.nextDouble() - 35.0, random.nextDouble() - 59.0);
 		return ubicacion;
 	}
+
+
 
 
 }

@@ -72,7 +72,7 @@ public class FormRepo implements IFormRepo{
         formToUpdate.setCaracteristicas(form.getCaracteristicas());
         formToUpdate.setFotos(form.getFotos());
         formToUpdate.setOrganizacion(form.getOrganizacion());
-        formToUpdate.setMascota(form.getMascota());
+       // formToUpdate.setMascota(form.getMascota());
         formToUpdate.setEspecie(form.getEspecie());
         formToUpdate.setEstado(form.getEstado());
         formToUpdate.setHogar(form.getHogar());

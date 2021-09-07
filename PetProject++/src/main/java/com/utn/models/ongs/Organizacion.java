@@ -4,10 +4,7 @@ import com.utn.models.forms.Direccion;
 import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
-import java.util.HashSet;
-
 @Entity
 @Table(name="organizacion")
 public class Organizacion {
@@ -35,7 +32,7 @@ public class Organizacion {
     private CharsFoto especificacionesFotos;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pregunta_adopcion_id", referencedColumnName = "id")
+    @JoinColumn(name = "organizacioId", referencedColumnName = "id")
     private Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
 
     public Integer getId() {

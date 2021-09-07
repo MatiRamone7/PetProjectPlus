@@ -29,7 +29,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private List<String> caracteristicasDeLaPublicacionDelHogar;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fotoId", referencedColumnName = "id")
+    @JoinColumn(name = "formularioMascotaPerdidaId")
     private List<Foto> fotos;
 
     /*
@@ -52,14 +52,14 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     */
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "caracteristicasId", referencedColumnName = "id")
+    @JoinColumn(name = "formularioMascotaPerdidaId")
     private Set<CaracteristicaPet> caracteristicas = new HashSet<>();
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mascotaId", referencedColumnName = "id")
+  /*  @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "formularioMascotaPerdidaId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Mascota mascota;
+    private Mascota mascota;*/ /* por qué form mascota perdida tiene una mascota? si el q la encuentra no sabe q es´ta registrada?*/
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "estadoFormularioMascotaPerdidaId")
@@ -147,13 +147,13 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     }
 
 
-    public Mascota getMascota() {
+ /*   public Mascota getMascota() {
         return mascota;
     }
 
     public void setMascota(Mascota mascota) {
         this.mascota = mascota;
-    }
+    }*/
 
     public List<EstadoFormulario> getEstado() {
         return estado;

@@ -15,11 +15,11 @@ import java.util.Set;
 public class Usuario extends Persona {
 	//ver como queda esta entidad
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "comodidad_id", referencedColumnName = "id")
+	@JoinColumn(name = "usuarioId", referencedColumnName = "id")
 	private Set<Comodidad> comodidades;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "logRol_id")
+	@JoinColumn(name = "usuarioId")
 	private List<LogRol> logRol;
 
 	/*

@@ -2,6 +2,7 @@ package com.utn.services;
 
 import com.utn.models.users.Usuario;
 import com.utn.repositories.UserRepo;
+import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,16 +52,14 @@ public class UserService implements IUserService {
 
 	public Usuario Create(Usuario user)
 	{
-		/*
 		String name = user.getNombre();
-		String password = user.getPassword();
+		String password = user.getUsuario().getPassword();
 		String hpass;
 
 		if (validationSesion.validarUsuarioyPass(name, password).isStatus()) {
 			hpass = HashUtils.get_SHA_512_SecurePassword(password);
-			user.setPassword(hpass);
+			user.getUsuario().setPassword(hpass);
 		}
-		*/
 
 		return userRepo.CreateUser(user);
 	}

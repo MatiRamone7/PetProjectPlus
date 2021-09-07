@@ -7,7 +7,7 @@ public interface IOngService {
 
     public Organizacion Update (Organizacion ong, Integer id);
 
-    public Organizacion AgregarPregunta(String pregunta, Integer id);
+    public Organizacion AgregarPreguntaOng(String pregunta, Integer id);
 
-    public Organizacion QuitarPregunta(String pregunta, Integer id);
+    public Organizacion QuitarPreguntaOng(String pregunta, Integer id);
 }

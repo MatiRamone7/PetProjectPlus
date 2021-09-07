@@ -21,8 +21,10 @@ public class Organizacion {
     @Column(name = "nombre")
     private String nombre;
 
+    /*
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Usuario> voluntarios;
+    */
 
     @OneToOne
     @JoinColumn(name="direccion")
@@ -60,6 +62,7 @@ public class Organizacion {
         this.especificacionesFotos = especificacionesFotos;
     }
 
+    /*
     public void agregarVoluntario(Usuario usuario){
         voluntarios.add(usuario);
     }
@@ -67,6 +70,7 @@ public class Organizacion {
     public void quitarVoluntario(Usuario usuario){
         voluntarios.remove(usuario);
     }
+    */
 
     public void agregarPreguntaAdopcion(String pregunta){
         PreguntaAdoptante nPregunta = new PreguntaAdoptante();
@@ -80,14 +84,6 @@ public class Organizacion {
                 preguntasIntencionDeAdopcion.remove(unaPregunta);
             }
         }
-    }
-
-    public Set<Usuario> getVoluntarios() {
-        return voluntarios;
-    }
-
-    public void setVoluntarios(Set<Usuario> voluntarios) {
-        this.voluntarios = voluntarios;
     }
 
     public Direccion getDireccion() {

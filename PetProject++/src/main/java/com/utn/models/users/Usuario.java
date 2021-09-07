@@ -22,9 +22,11 @@ public class Usuario extends Persona {
 	@JoinColumn(name = "logRol_id")
 	private List<LogRol> logRol;
 
+	/*
 	@OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mascota_id", referencedColumnName = "id")
 	private Set<Mascota> mascotas;
+	*/
 
 	@ManyToOne
 	@JoinColumn(name = "organizacion_id", referencedColumnName = "id")
@@ -41,8 +43,10 @@ public class Usuario extends Persona {
 
 	public void agregarLogRol(LogRol log){ this.logRol.add(log); }
 
+	/*
 	public void agregarMascota(Mascota mascota){ this.mascotas.add(mascota); }
 	public void quitarMascota(Mascota mascota){ this.mascotas.remove(mascota); }
+	*/
 
 	public void agregarPublicacion(FormularioMascotaPerdida publicacion){ this.publicacionesAAprobar.add(publicacion); }
 	public void quitarPublicacion(FormularioMascotaPerdida publicacion){
@@ -65,10 +69,6 @@ public class Usuario extends Persona {
 		return logRol;
 	}
 
-	public Set<Mascota> getMascotas() {
-		return mascotas;
-	}
-
 	public Organizacion getOrganizacion() {
 		return organizacion;
 	}
@@ -86,10 +86,6 @@ public class Usuario extends Persona {
 
 	public void setLogRol(List<LogRol> logRol) {
 		this.logRol = logRol;
-	}
-
-	public void setMascotas(Set<Mascota> mascotas) {
-		this.mascotas = mascotas;
 	}
 
 	public void setPublicacionesAAprobar(List<FormularioMascotaPerdida> publicacionesAAprobar) {

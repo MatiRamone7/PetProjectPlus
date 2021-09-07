@@ -49,7 +49,7 @@ public class OngRepo implements IOngRepo{
 
         this.manager.getTransaction().begin();
         ongToUpdate.setNombre(ong.getNombre());
-        ongToUpdate.setVoluntarios(ong.getVoluntarios());
+        //ongToUpdate.setVoluntarios(ong.getVoluntarios());
         ongToUpdate.setDireccion(ong.getDireccion());
         ongToUpdate.setEspecificacionesFotos(ong.getEspecificacionesFotos());
         ongToUpdate.setPreguntasIntencionDeAdopcion(ong.getPreguntasIntencionDeAdopcion());
@@ -60,7 +60,7 @@ public class OngRepo implements IOngRepo{
     }
 
     @Override
-    public Organizacion AgregarPregunta(String pregunta, Integer id) {
+    public Organizacion AgregarPreguntaOng(String pregunta, Integer id) {
 
         Organizacion ongToUpdate = this.GetOngById(id);
         this.manager.getTransaction().begin();
@@ -72,7 +72,7 @@ public class OngRepo implements IOngRepo{
     };
 
     @Override
-    public Organizacion QuitarPregunta(String pregunta, Integer id) {
+    public Organizacion QuitarPreguntaOng(String pregunta, Integer id) {
 
         Organizacion ongToUpdate = this.GetOngById(id);
         this.manager.getTransaction().begin();

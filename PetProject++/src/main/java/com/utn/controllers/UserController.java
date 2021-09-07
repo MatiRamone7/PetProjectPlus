@@ -42,7 +42,7 @@ public class UserController {
         userService.Delete(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("notificarUsuario/{id}")
     public void NotifyUser(@RequestBody Map<String, Object> datos, @PathVariable Integer id) throws IOException {
         Usuario user = this.GetUserById(id);
         String cuerpo = (String) datos.get("cuerpo");

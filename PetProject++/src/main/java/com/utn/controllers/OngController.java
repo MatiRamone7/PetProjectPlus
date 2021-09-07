@@ -26,13 +26,13 @@ public class OngController {
         return ongService.Update(ong, id);
     }
 
-    @PutMapping("/{id}")
-    public Organizacion AgregarPregunta(@RequestBody String pregunta, @PathVariable Integer id) {
-        return ongService.AgregarPregunta(pregunta, id);
+    @GetMapping("agregarPregunta/{id}")
+    public Organizacion AgregarPreguntaOng(@RequestBody String pregunta, @PathVariable Integer id) {
+        return ongService.AgregarPreguntaOng(pregunta, id);
     }
 
-    @PutMapping("/{id}")
-    public Organizacion QuitarPregunta(@RequestBody String pregunta, @PathVariable Integer id) {
-        return ongService.QuitarPregunta(pregunta, id);
+    @GetMapping("quitarPregunta/{id}")
+    public Organizacion QuitarPreguntaOng(@RequestBody String pregunta, @PathVariable Integer id) {
+        return ongService.QuitarPreguntaOng(pregunta, id);
     }
 }

@@ -46,8 +46,8 @@ public class OngService implements IOngService{
      * @param pregunta a actualizar, id de la ong
      * @return ong actualizado
      */
-    public Organizacion AgregarPregunta(String pregunta, Integer id) {
-        return ongRepo.AgregarPregunta(pregunta, id);
+    public Organizacion AgregarPreguntaOng(String pregunta, Integer id) {
+        return ongRepo.AgregarPreguntaOng(pregunta, id);
     };
 
     /**
@@ -56,7 +56,7 @@ public class OngService implements IOngService{
      * @param pregunta a actualizar, id de la ong
      * @return ong actualizado
      */
-    public Organizacion QuitarPregunta(String pregunta, Integer id) {
-        return ongRepo.QuitarPregunta(pregunta, id);
+    public Organizacion QuitarPreguntaOng(String pregunta, Integer id) {
+        return ongRepo.QuitarPreguntaOng(pregunta, id);
     };
 }

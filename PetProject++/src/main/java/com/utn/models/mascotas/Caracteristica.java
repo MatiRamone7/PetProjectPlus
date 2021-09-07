@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="caracteristica")
 public class Caracteristica implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -15,4 +15,16 @@ public class Caracteristica implements Serializable {
 
     @Column(name = "descripcion")
     private String descripcion;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

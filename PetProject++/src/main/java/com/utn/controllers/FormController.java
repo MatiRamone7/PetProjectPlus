@@ -19,6 +19,10 @@ public class FormController {
     @Autowired
     IFormService formService;
 
+    public FormController(IFormService formService) {
+        this.formService = formService;
+    }
+
     @GetMapping("/mascotaPerdida")
     public Iterable<FormularioMascotaPerdida> GetFormsMascotaPerdida() {
         return formService.GetFormsMascotaPerdida();

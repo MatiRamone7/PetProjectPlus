@@ -3,6 +3,7 @@ package com.utn.models.forms;
 import javax.persistence.*;
 
 import com.utn.models.mascotas.CaracteristicaPet;
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.users.Usuario;
 
 import java.util.HashSet;
@@ -31,6 +32,28 @@ public class FormularioIntencionAdopcion {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "preferencias_usuario", referencedColumnName = "id")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    private Mascota.Especie especie;
+
+    @Enumerated(EnumType.STRING)
+    private Mascota.Sexo sexo;
+
+    public Mascota.Especie getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Mascota.Especie especie) {
+        this.especie = especie;
+    }
+
+    public Mascota.Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Mascota.Sexo sexo) {
+        this.sexo = sexo;
+    }
 
     public Integer getId() {
         return id;

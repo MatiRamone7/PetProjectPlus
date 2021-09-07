@@ -36,7 +36,7 @@ public class Direccion {
     @Transient
     private double longitud;
 
-    public Direccion(Integer id, String provincia, String departamento, Ciudad ciudad, String calle, int numero, String codigoPostal, double latitud, double longitud) {
+    public Direccion(Integer id, String departamento, Ciudad ciudad, String calle, int numero, String codigoPostal, double latitud, double longitud) {
         this.id = id;
         this.departamento = departamento;
         this.ciudad = ciudad;

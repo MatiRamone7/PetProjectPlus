@@ -28,6 +28,10 @@ public class FormService implements IFormService {
     @Autowired
     IFormRepo formRepo;
 
+    public FormService(IFormRepo formRepo) {
+        this.formRepo = formRepo;
+    }
+
     /**
      * Retorna la lista de forms.
      *

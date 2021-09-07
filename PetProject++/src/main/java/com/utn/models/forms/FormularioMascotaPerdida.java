@@ -73,6 +73,9 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     @Enumerated(EnumType.STRING)
     private Mascota.Especie especie;
 
+    @Enumerated(EnumType.STRING)
+    private Mascota.Sexo sexo;
+
     @Column
     private String hogar;
 

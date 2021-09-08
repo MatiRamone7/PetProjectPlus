@@ -11,8 +11,8 @@ public class CaracteristicaPet{
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "caracteristica_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "caracteristicaPetId")
     public Caracteristica tipoCaracteristica;
 
     @Column(name = "valor")

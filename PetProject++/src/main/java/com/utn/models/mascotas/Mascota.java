@@ -1,6 +1,5 @@
 package com.utn.models.mascotas;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import com.utn.models.forms.Foto;
 import com.utn.models.users.Usuario;
@@ -36,8 +35,8 @@ public class Mascota {
     @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
     private LocalDate fechaDeNacimiento;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fotos", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mascotaId")
     private List<Foto> fotos;
 
     /*
@@ -49,20 +48,13 @@ public class Mascota {
     @Column
     private String descripcionFisica;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne()
+    @JoinColumn(name = "duenioId")
     private Usuario duenio;
 
-   /*@OneToMany
-    @JoinTable(name = "caracteristicaxmascota", joinColumns = @JoinColumn(name="mascotaId"),
-    inverseJoinColumns = @JoinColumn(name="caracteristicaId"))
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    @ElementCollection*/
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "caracteristica_por_mascota_id", referencedColumnName = "id")
-    @NotNull
+    @JoinColumn(name = "mascotaId")
+   // @NotNull TODO: preguntar si esto va 
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,

@@ -1,7 +1,6 @@
 package com.utn.models.roles;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,9 +16,8 @@ public class Rol{
     @Column
     private String descripcion;
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY) //EAGER => los permisos se recuperan al mismo tiempo que el ROL
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Permiso> permisos;
-
 
     public Rol() { this.permisos = new ArrayList<>(); }
 

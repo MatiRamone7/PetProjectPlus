@@ -2,8 +2,6 @@ package com.utn.models.forms;
 
 import java.time.LocalDate;
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.models.users.Usuario;
 
 @Entity
@@ -19,12 +17,11 @@ public class FormularioMascotaEncontrada{
     private LocalDate fechaHora;
 
     @OneToOne
-    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
+    @JoinColumn(name="formularioMascotaPerdidaId")
     private FormularioMascotaPerdida formularioMascotaPerdida;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "usuarioId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     public Integer getId() {

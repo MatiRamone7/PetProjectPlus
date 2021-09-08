@@ -10,8 +10,8 @@ public class PreguntaAdoptante {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "organizacion_id")
     public Organizacion organizacion;
 
     @Column(name = "pregunta")

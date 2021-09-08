@@ -11,34 +11,29 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="persona")
+@Table(name="usuario")
 public class Usuario extends Persona {
-	//ver como queda esta entidad
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarioId", referencedColumnName = "id")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Set<Comodidad> comodidades;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarioId")
 	private List<LogRol> logRol;
 
-	/*
-	@OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "mascota_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Set<Mascota> mascotas;
-	*/
 
-	@ManyToOne
-	@JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "organizacionId")
 	private Organizacion organizacion;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "publicacionesAAprobar_id")
+	@JoinColumn(name = "usuarioId")
 	private List<FormularioMascotaPerdida> publicacionesAAprobar;
-
-
+	//TODO: esto que esté guardado no en usuario y que en una pantalla de gestión de publicaciones se filtren las de su ong para q apruebe
 
 	public void agregarComodidad(Comodidad comodidad){ this.comodidades.add(comodidad); }
+
 	public void quitarComodidad(Comodidad comodidad){ this.comodidades.remove(comodidad); }
 
 	public void agregarLogRol(LogRol log){ this.logRol.add(log); }

@@ -5,7 +5,6 @@ import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.forms.Direccion;
 import javax.persistence.*;
 import java.io.IOException;
-import java.io.Serializable;
 import java.time.*;
 
 @MappedSuperclass
@@ -19,8 +18,8 @@ public abstract class Persona {
     @Column(name = "apellido")
     protected String apellido;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contacto_id")
+    @OneToOne
+    @JoinColumn(name = "contactoId")
     protected ContactoUnico contacto;
 
     @Column(name = "fechaNacimiento", columnDefinition = "DATE")
@@ -35,15 +34,15 @@ public abstract class Persona {
     @Enumerated(EnumType.STRING)
     protected TipoDocumento tipoDocumento;
 
-    //TODO: no se que tipo de mapeo debe llevar
-    @Transient
-    protected Sesion usuario;
+    @OneToOne
+    @JoinColumn(name = "sesionId")
+    protected Sesion sesion;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "direccion_id")
     protected Direccion direccion;
 
-    public Persona() {     }
+    public Persona() {    }
 
     public Persona(String apellido, LocalDate fechaNacimiento, String nombre, int nroDocumento, TipoDocumento tipoDocumento, Sesion usuario) {
         this.apellido = apellido;
@@ -51,7 +50,7 @@ public abstract class Persona {
         this.nombre = nombre;
         this.nroDocumento = nroDocumento;
         this.tipoDocumento = tipoDocumento;
-        this.usuario = usuario;
+        this.sesion = usuario;
     }
 
     public void login(){
@@ -85,8 +84,8 @@ public abstract class Persona {
     public TipoDocumento getTipoDocumento() { return tipoDocumento; }
     public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipoDocumento = tipoDocumento; }
 
-    public Sesion getUsuario() { return usuario; }
-    public void setUsuario(Sesion usuario) { this.usuario = usuario; }
+    public Sesion getUsuario() { return sesion; }
+    public void setUsuario(Sesion usuario) { this.sesion = usuario; }
 
     public Direccion getDireccion() { return direccion; }
     public void setDireccion(Direccion direccion) { this.direccion = direccion; }

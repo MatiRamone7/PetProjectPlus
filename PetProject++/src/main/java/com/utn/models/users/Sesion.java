@@ -1,11 +1,23 @@
 package com.utn.models.users;
 
+import javax.persistence.*;
+
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.SesionResponse;
 
-public class Sesion { //TODO todo esto
+public class Sesion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "username")
     public String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Transient
     public IValidationSesion validationSesion;
 
     public Sesion(String username, String password) {
@@ -38,7 +50,7 @@ public class Sesion { //TODO todo esto
     }
 
     public void login(){
-
+        //TODO login logout
     }
 
     public void logout(){

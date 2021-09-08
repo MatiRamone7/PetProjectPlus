@@ -19,7 +19,7 @@ public class FormularioIntencionAdopcion {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne()
     @JoinColumn(name = "userID")
     private Usuario solicitante;
 
@@ -28,7 +28,7 @@ public class FormularioIntencionAdopcion {
     private List<EstadoFormulario> estado;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "preferencias_formularioIntencionDeAdopcion", referencedColumnName = "id")
+    @JoinColumn(name = "formularioIntencionDeAdopcionId")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
 
     @Enumerated(EnumType.STRING)

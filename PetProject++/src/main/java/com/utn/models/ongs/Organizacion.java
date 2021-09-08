@@ -2,7 +2,6 @@ package com.utn.models.ongs;
 
 import com.utn.models.forms.Direccion;
 import com.utn.models.users.Usuario;
-
 import javax.persistence.*;
 import java.util.Set;
 @Entity
@@ -18,10 +17,8 @@ public class Organizacion {
     @Column(name = "nombre")
     private String nombre;
 
-    /*
     @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Usuario> voluntarios;
-    */
 
     @OneToOne
     @JoinColumn(name="direccion")
@@ -31,8 +28,7 @@ public class Organizacion {
     @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
     private CharsFoto especificacionesFotos;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organizacioId", referencedColumnName = "id")
+    @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL)
     private Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
 
     public Integer getId() {

@@ -1,5 +1,6 @@
 package com.utn.utils;
 
+import com.utn.contactservices.mensajesPredeterminados.CSugerenciasAdopcion;
 import com.utn.controllers.FormController;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.forms.FormularioIntencionAdopcion;
@@ -25,12 +26,18 @@ public class CronTask {
         //Iterable<FormularioDarEnAdopcion> formulariosDarEnAdopcion = controller.GetFormsDarEnAdopcion();
 
 
-
         for(FormularioIntencionAdopcion formulario: formulariosIntencionAdoptar){
             Iterable<FormularioDarEnAdopcion> formulariosAceptados;
             formulariosAceptados = formulariosDarEnAdopcion.stream().filter(formularioDarEnAdopcion -> this.cumpleCaracteristicas(formulario, formularioDarEnAdopcion)).collect(Collectors.toList());
 
-            formulario.getSolicitante().getContacto().contactar("Recomendaciones semanales de mascotas para adoptar", formulariosAceptados.toString());
+            String sugerencias = null;
+
+            //TODO forEach pasarAString(formularios)
+
+            if(sugerencias != null){
+                CSugerenciasAdopcion msg = new CSugerenciasAdopcion(sugerencias);
+                formulario.getSolicitante().contactar(msg);
+            }
         }
     }
 

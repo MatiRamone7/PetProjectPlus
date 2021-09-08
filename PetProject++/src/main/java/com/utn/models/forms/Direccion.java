@@ -1,7 +1,5 @@
 package com.utn.models.forms;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 @Entity
 @Table(name="direccion")
@@ -16,9 +14,8 @@ public class Direccion {
     @Column(name = "departamento/municipio/comuna")
     private String departamento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ciudadID", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ciudadId", referencedColumnName = "id")
     private Ciudad ciudad;
 
     @Column

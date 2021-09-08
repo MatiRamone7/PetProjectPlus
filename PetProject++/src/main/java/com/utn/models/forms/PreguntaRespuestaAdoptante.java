@@ -1,9 +1,7 @@
 package com.utn.models.forms;
 
 import javax.persistence.*;
-
 import com.utn.models.ongs.PreguntaAdoptante;
-
 @Entity
 @Table(name="preguntaRespuestaAdoptante")
 public class PreguntaRespuestaAdoptante {
@@ -14,11 +12,11 @@ public class PreguntaRespuestaAdoptante {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "formularioID")
+    @JoinColumn(name = "formularioDarEnAdopcionID")
     private FormularioDarEnAdopcion formulario;
 
     @ManyToOne
-    @JoinColumn(name = "preguntaID", referencedColumnName = "id")
+    @JoinColumn(name = "preguntaID")
     private PreguntaAdoptante pregunta;
 
     @Column(name = "respuesta")

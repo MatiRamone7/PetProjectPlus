@@ -17,9 +17,8 @@ public class LogRol implements Serializable {
     private Date fechaHora;
 
     @ManyToOne
-    @JoinColumn(name = "rol_id", referencedColumnName = "id")
+    @JoinColumn(name = "logId")
     private Rol rol;
-
 
     public String generarLogRol(){
         String strDateFormat = "hh: mm: ss a dd-MMM-aaaa";

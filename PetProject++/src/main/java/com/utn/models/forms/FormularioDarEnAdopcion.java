@@ -1,6 +1,5 @@
 package com.utn.models.forms;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.users.Usuario;
@@ -16,25 +15,23 @@ public class FormularioDarEnAdopcion{
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne()
+    @JoinColumn(name = "usuarioId")
     private Usuario usuario;
 
-    @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "petID")
+    @OneToOne()
+    @JoinColumn(name = "mascotaID")
     private Mascota mascota;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "ongId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Organizacion organizacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "estadoFormularioDarEnAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(mappedBy = "formulario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "FormularioDarEnAdopcion", cascade = CascadeType.ALL)
     private List<PreguntaRespuestaAdoptante> preguntas;
     
     public Integer getId() {

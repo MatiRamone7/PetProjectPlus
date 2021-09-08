@@ -2,12 +2,9 @@ package com.utn.models.users.Comodidaes;
 
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.mascotas.CaracteristicaPet;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.util.Set;
-
 @Entity
 @DiscriminatorValue("TienePatio")
 public class TienePatio extends Comodidad{

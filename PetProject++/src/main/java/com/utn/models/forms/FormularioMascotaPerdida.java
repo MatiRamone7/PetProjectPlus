@@ -1,6 +1,5 @@
 package com.utn.models.forms;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.utn.controllers.APIRestController;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
@@ -14,9 +13,7 @@ import java.util.stream.Collectors;
 @Table(name="formularioMascotaPerdida")
 public class FormularioMascotaPerdida extends PersonaFormulario {
 
-    /*
-    Datos de Mascota
-    */
+    //DATOS MASCOTA
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -32,34 +29,19 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     @JoinColumn(name = "formularioMascotaPerdidaId")
     private List<Foto> fotos;
 
-    /*
-    Datos de FormMascotaPerdida
-    */
+    //DATOS FORMULARIO
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "ongId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Organizacion organizacion;
-
-    /*
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "caracteristicaXaviso",
-            joinColumns = {@JoinColumn(name = "idAviso")},
-            inverseJoinColumns = {@JoinColumn(name = "caracteristicaId")}
-    )
-    private Set<CaracteristicaPet> caracteristicSet;
-    */
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "formularioMascotaPerdidaId")
     private Set<CaracteristicaPet> caracteristicas = new HashSet<>();
 
-
-  /*  @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "formularioMascotaPerdidaId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Mascota mascota;*/ /* por qué form mascota perdida tiene una mascota? si el q la encuentra no sabe q es´ta registrada?*/
+    @ManyToOne()
+    @JoinColumn(name = "mascotaId")
+    private Mascota mascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "estadoFormularioMascotaPerdidaId")
@@ -78,13 +60,6 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
         HogarDeTransito hogarDeTransito = new HogarDeTransito();
         return hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
     }
-
-    /* TODO DANI
-    public Ubication getLugarEncontrado() {
-        // TODO
-        return null;
-    }
-    */
 
     public String getDescripcion() {
         return descripcion;
@@ -189,11 +164,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
 
 
     public Ubication getLugarEncontrado(){
-        //TODO: Ver la API para obtener coordenadas
-
         Ubication ejemplo = APIRestController.getCoordenadasDeEstaDireccion(this.getDireccion());
-
-
         return ejemplo;
     }
 }

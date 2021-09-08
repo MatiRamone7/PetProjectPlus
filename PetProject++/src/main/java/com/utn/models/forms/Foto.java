@@ -11,7 +11,7 @@ public class Foto {
     private Integer id;
 
     @Lob
-    @Column(name = "imagen", columnDefinition="BLOB")
+    @Column(name = "imagen", columnDefinition="VARBINARY(8000)")
     public byte[] imagenByteArray;
 
     @Column(name = "descripcion")

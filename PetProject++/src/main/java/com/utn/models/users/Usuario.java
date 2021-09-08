@@ -20,7 +20,7 @@ public class Usuario extends Persona {
 	@JoinColumn(name = "usuarioId")
 	private List<LogRol> logRol;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL)
 	private Set<Mascota> mascotas;
 
     @ManyToOne()

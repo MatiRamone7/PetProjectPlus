@@ -5,16 +5,20 @@ import javax.persistence.*;
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.SesionResponse;
 
-public class Sesion {
+import java.io.Serializable;
+
+@Entity
+@Table(name="sesion")
+public class Sesion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     public String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Transient
@@ -24,6 +28,11 @@ public class Sesion {
         this.username = username;
         this.password = password;
     }
+
+    public Sesion() {
+
+    }
+
 
     public String getUsername() {
         return username;

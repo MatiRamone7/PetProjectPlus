@@ -31,7 +31,7 @@ public class FormularioDarEnAdopcion{
     @JoinColumn(name = "estadoFormularioDarEnAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(mappedBy = "FormularioDarEnAdopcion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.ALL)
     private List<PreguntaRespuestaAdoptante> preguntas;
     
     public Integer getId() {

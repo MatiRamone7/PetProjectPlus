@@ -13,7 +13,7 @@ public class PreguntaRespuestaAdoptante {
 
     @ManyToOne
     @JoinColumn(name = "formularioDarEnAdopcionID")
-    private FormularioDarEnAdopcion formulario;
+    private FormularioDarEnAdopcion formularioDarEnAdopcion;
 
     @ManyToOne
     @JoinColumn(name = "preguntaID")
@@ -27,11 +27,11 @@ public class PreguntaRespuestaAdoptante {
     }
 
     public FormularioDarEnAdopcion getIdFormulario() {
-        return formulario;
+        return formularioDarEnAdopcion;
     }
 
     public void setIdFormulario(FormularioDarEnAdopcion formulario) {
-        this.formulario = formulario;
+        this.formularioDarEnAdopcion = formulario;
     }
 
     public PreguntaAdoptante getPregunta() {

@@ -89,27 +89,6 @@ public class APIRestController {
 	@Autowired
 	IPetService petService;
 
-	/*
-	@Autowired
-	IFormService publicationService;
-
-	@PostMapping("/informarMascotaPerdida/{idMascota}")
-	public void InformPet(@PathVariable Integer idMascota) throws IOException {
-		Mascota mascota = petService.GetPetById(idMascota);
-
-		HashMap<String, String> defaultMessage = new HashMap<>();
-		defaultMessage.put("texto", "Se le notifica al usuario que se encontró su mascota");
-
-		FormularioMascotaPerdida nuevoForm = new FormularioMascotaPerdida();
-
-		if (mascota.getQr() == null) {
-			publicationService.CreateFormMascotaPerdida(nuevoForm);
-		} else if (mascota.getQr() != null) {
-			this.NotifyUser(defaultMessage, idMascota);
-		}
-	}
-	*/
-
 	/**
 	 * Contacto con el dueño por QR de mascota.
 	 */

@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@DiscriminatorColumn(name="tipoDeComoidad")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Table(name = "comodidad")
 public abstract class Comodidad implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

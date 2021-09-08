@@ -17,6 +17,11 @@ public class Rol{
     private String descripcion;
 
     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(
+            name = "rolPermiso",
+            joinColumns = { @JoinColumn(name = "rol_id") },
+            inverseJoinColumns = { @JoinColumn(name = "permiso_id") }
+    )
     private List<Permiso> permisos;
 
     public Rol() { this.permisos = new ArrayList<>(); }

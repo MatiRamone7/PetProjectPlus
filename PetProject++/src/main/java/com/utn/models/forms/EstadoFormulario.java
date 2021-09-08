@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="estados_formulario")
+@Table(name="estadosFormulario")
 public class EstadoFormulario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@ public class Direccion {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "departamento/municipio/comuna")
+    @Column(name = "departamento_municipio_comuna")
     private String departamento;
 
     @ManyToOne(fetch = FetchType.EAGER)

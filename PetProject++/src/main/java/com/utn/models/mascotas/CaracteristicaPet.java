@@ -3,7 +3,7 @@ package com.utn.models.mascotas;
 
 import javax.persistence.*;
 @Entity
-@Table(name="caracteristicas_de_mascota")
+@Table(name="caracteristicasMascota")
 public class CaracteristicaPet{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

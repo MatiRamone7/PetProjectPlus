@@ -4,9 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @Table(name="caracteristica")
-public class Caracteristica implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Caracteristica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

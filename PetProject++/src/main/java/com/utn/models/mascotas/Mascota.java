@@ -1,6 +1,5 @@
 package com.utn.models.mascotas;
 
-import com.sun.istack.NotNull;
 import com.utn.models.forms.Foto;
 import com.utn.models.users.Usuario;
 

@@ -55,7 +55,6 @@ public class Organizacion {
         this.especificacionesFotos = especificacionesFotos;
     }
 
-    /*
     public void agregarVoluntario(Usuario usuario){
         voluntarios.add(usuario);
     }
@@ -63,7 +62,6 @@ public class Organizacion {
     public void quitarVoluntario(Usuario usuario){
         voluntarios.remove(usuario);
     }
-    */
 
     public void agregarPreguntaAdopcion(String pregunta){
         PreguntaAdoptante nPregunta = new PreguntaAdoptante();

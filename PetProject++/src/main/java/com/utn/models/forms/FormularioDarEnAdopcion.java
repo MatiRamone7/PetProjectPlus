@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="formularioDarEnAdopcion")
-public class FormularioDarEnAdopcion{
+public class FormularioDarEnAdopcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

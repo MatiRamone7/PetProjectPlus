@@ -37,11 +37,9 @@ public class Usuario extends Persona {
 	public void quitarComodidad(Comodidad comodidad){ this.comodidades.remove(comodidad); }
 
 	public void agregarLogRol(LogRol log){ this.logRol.add(log); }
-
-	/*
+	
 	public void agregarMascota(Mascota mascota){ this.mascotas.add(mascota); }
 	public void quitarMascota(Mascota mascota){ this.mascotas.remove(mascota); }
-	*/
 
 	public void agregarPublicacion(FormularioMascotaPerdida publicacion){ this.publicacionesAAprobar.add(publicacion); }
 	public void quitarPublicacion(FormularioMascotaPerdida publicacion){

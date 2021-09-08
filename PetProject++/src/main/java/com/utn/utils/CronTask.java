@@ -10,14 +10,22 @@ import com.utn.models.users.Comodidaes.Comodidad;
 import com.utn.models.users.Usuario;
 import com.utn.repositories.FormRepo;
 import com.utn.services.FormService;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class CronTask {
     FormController controller = new FormController(new FormService(new FormRepo()));
+
+    @Scheduled(initialDelay = 10000, fixedDelay = 2000) // 1 semana = 604800000
+    public void timer(){
+        System.out.println("PRUEBA PRUEBA\n");
+    }
 
     public void activarChromeTask() throws IOException {
         Iterable<FormularioIntencionAdopcion> formulariosIntencionAdoptar = controller.GetFormsIntencionAdopcion();

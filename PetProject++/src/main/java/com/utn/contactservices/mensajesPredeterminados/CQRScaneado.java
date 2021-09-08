@@ -8,7 +8,7 @@ public class CQRScaneado implements IMensajePredet {
     }
 
     public String cuerpo(){
-        String retorno = "Alguien ha escaneado el QR de tu mascota \t " + textoDeUsuario;
+        String retorno = "Alguien ha escaneado el QR de tu mascota \n " + textoDeUsuario;
         return retorno;
     };
 

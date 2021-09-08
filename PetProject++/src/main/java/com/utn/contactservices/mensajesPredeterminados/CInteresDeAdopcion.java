@@ -8,7 +8,7 @@ public class CInteresDeAdopcion implements IMensajePredet  {
     }
 
     public String cuerpo(){
-        String retorno = "Alguien ha mostrado interés en adoptar a tu mascota \t " + textoDeUsuario;
+        String retorno = "Alguien ha mostrado interés en adoptar a tu mascota \n " + textoDeUsuario;
         return retorno;
     }; 
 

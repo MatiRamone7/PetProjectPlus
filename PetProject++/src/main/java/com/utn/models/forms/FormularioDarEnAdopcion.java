@@ -81,4 +81,15 @@ public class FormularioDarEnAdopcion{
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
+
+    public String agregarAListaDeSugerencias(String sugerencias) {
+        String datosFormulario = "- Nombre de la mascota: " + this.mascota.getNombre() + '\n' 
+       + "- Especie: " + this.mascota.getEspecie() + '\n'
+       + "- Sexo: " + this.mascota.getSexo() + '\n'
+       + "- ONG responsable: " + this.organizacion.getNombre() + '\n'
+       + "- Duenio actual: "  + this.mascota.getUsuarioId().getNombre() + '\n' 
+       + " ========================================================================== " + '\n' + '\n'; 
+
+        return sugerencias + datosFormulario;
+    }
 }

@@ -8,7 +8,7 @@ public class CSugerenciasAdopcion implements IMensajePredet  {
     }
 
     public String cuerpo(){
-        String retorno = "Considerando adoptar?" + "Aquí te traemos una lista de mascotas que están buscando dueño \t " + textoDeUsuario;
+        String retorno = "Considerando adoptar?" + "Aquí te traemos una lista de mascotas que están buscando dueño \n " + textoDeUsuario;
         return retorno;
     };
 

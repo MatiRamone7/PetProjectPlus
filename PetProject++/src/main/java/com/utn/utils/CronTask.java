@@ -31,11 +31,16 @@ public class CronTask {
             formulariosAceptados = formulariosDarEnAdopcion.stream().filter(formularioDarEnAdopcion -> this.cumpleCaracteristicas(formulario, formularioDarEnAdopcion)).collect(Collectors.toList());
 
             String sugerencias = null;
-
-            //TODO forEach pasarAString(formularios)
+            for(FormularioDarEnAdopcion unFormulario : formulariosAceptados){
+                sugerencias = unFormulario.agregarAListaDeSugerencias(sugerencias);
+            }
 
             if(sugerencias != null){
                 CSugerenciasAdopcion msg = new CSugerenciasAdopcion(sugerencias);
+                formulario.getSolicitante().contactar(msg);
+            }else{
+                String mensaje = "El sistema no encontró sugerencias de acuerdo a lo que buscabas, puedes esperar o llenar otro formulario para que te podamos ayudar a encontrar una mascota";
+                CSugerenciasAdopcion msg = new CSugerenciasAdopcion(mensaje);
                 formulario.getSolicitante().contactar(msg);
             }
         }

@@ -8,7 +8,7 @@ public class CMascotaReconocida implements IMensajePredet  {
     }
 
     public String cuerpo(){
-        String retorno = "La mascota que reportaste como perdida fue reconocida por su dueño. \t " + textoDeUsuario;
+        String retorno = "La mascota que reportaste como perdida fue reconocida por su dueño. \n " + textoDeUsuario;
         return retorno;
     }; 
 

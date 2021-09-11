@@ -18,7 +18,7 @@ public abstract class Persona {
     @Column(name = "apellido")
     protected String apellido;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "contactoId")
     protected ContactoUnico contacto;
 
@@ -34,7 +34,7 @@ public abstract class Persona {
     @Enumerated(EnumType.STRING)
     protected TipoDocumento tipoDocumento;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "sesionId")
     protected Sesion sesion;
 
@@ -42,15 +42,16 @@ public abstract class Persona {
     @JoinColumn(name = "direccion_id")
     protected Direccion direccion;
 
-    public Persona() {    }
+    public Persona() {/*this.sesion = new Sesion("Daniel", "contrasenia");*/}
 
-    public Persona(String apellido, LocalDate fechaNacimiento, String nombre, int nroDocumento, TipoDocumento tipoDocumento, Sesion usuario) {
+    public Persona(String apellido, LocalDate fechaNacimiento, String nombre, int nroDocumento, TipoDocumento tipoDocumento, Sesion sesion, Direccion direccion) {
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.nroDocumento = nroDocumento;
         this.tipoDocumento = tipoDocumento;
-        this.sesion = usuario;
+        this.sesion = sesion;
+        this.direccion = direccion;
     }
 
     public void login(){
@@ -85,7 +86,7 @@ public abstract class Persona {
     public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipoDocumento = tipoDocumento; }
 
     public Sesion getUsuario() { return sesion; }
-    public void setUsuario(Sesion usuario) { this.sesion = usuario; }
+    public void setUsuario(Sesion sesion) { this.sesion = sesion; }
 
     public Direccion getDireccion() { return direccion; }
     public void setDireccion(Direccion direccion) { this.direccion = direccion; }

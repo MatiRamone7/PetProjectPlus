@@ -1,5 +1,7 @@
 package com.utn.models.users.Comodidaes;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.mascotas.CaracteristicaPet;
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("TienePatio")
+@JsonTypeName("TienePatio")
 public class TienePatio extends Comodidad{
     @Column(name = "patio")
     private boolean patio;
@@ -28,5 +31,9 @@ public class TienePatio extends Comodidad{
         if(tamanio == "Grande" || tamanio == "Mediano") {return this.patio;}
 
         return true;
+    }
+
+    public TienePatio() {
+        super();
     }
 }

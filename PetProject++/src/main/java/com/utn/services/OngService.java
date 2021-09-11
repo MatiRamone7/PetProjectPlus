@@ -1,6 +1,7 @@
 package com.utn.services;
 
 
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.repositories.IOngRepo;
 import com.utn.repositories.OngRepo;
@@ -18,6 +19,17 @@ import org.springframework.stereotype.Service;
 public class OngService implements IOngService{
     @Autowired
     IOngRepo ongRepo;
+
+    /**
+     * Busca una pet por Id.
+     *
+     * @param id id de user a buscar
+     * @return user existente
+     */
+    public Organizacion GetOngById(Integer id) {
+        return ongRepo.GetOngById(id);
+    }
+
 
     /**
      * Crea una nueva ong.

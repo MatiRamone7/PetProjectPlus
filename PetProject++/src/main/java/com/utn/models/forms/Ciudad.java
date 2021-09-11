@@ -14,7 +14,7 @@ public class Ciudad {
     @Column
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "provinciaId", referencedColumnName = "id")
     private Provincia provincia;
 

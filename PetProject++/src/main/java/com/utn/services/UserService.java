@@ -4,6 +4,7 @@ import com.utn.models.users.Usuario;
 import com.utn.repositories.UserRepo;
 import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
+import com.utn.utils.ValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class UserService implements IUserService {
 	 * @param user user a crear
 	 * @return nuevo user
 	 */
-	private IValidationSesion validationSesion;
+	private IValidationSesion validationSesion = new ValidationSesion();
 
 	public Usuario Create(Usuario user)
 	{

@@ -13,7 +13,7 @@ public class Direccion {
     @Column(name = "departamento_municipio_comuna")
     private String departamento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ciudadId", referencedColumnName = "id")
     private Ciudad ciudad;
 

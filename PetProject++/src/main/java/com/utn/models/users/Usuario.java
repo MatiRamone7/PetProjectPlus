@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name="usuario")
 public class Usuario extends Persona {
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Comodidad> comodidades;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

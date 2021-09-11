@@ -1,5 +1,7 @@
 package com.utn.models.users.Comodidaes;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.utn.controllers.APIRestController;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.transithomes.Ubication;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("RadioDeCercanía")
+@JsonTypeName("RadioDeCercanía")
 public class RadioDeCercanía extends Comodidad{
     @Column(name = "radio")
     private double radio;
@@ -24,6 +27,10 @@ public class RadioDeCercanía extends Comodidad{
                                             ubicationDarEnAdopcion.getLat(),
                                             ubicationDarEnAdopcion.getLong()
                                          ) <= radio;
+
+    }
+
+    public RadioDeCercanía() {
 
     }
 }

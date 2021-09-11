@@ -30,7 +30,7 @@ public class Usuario extends Persona {
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarioId")
 	private List<FormularioMascotaPerdida> publicacionesAAprobar;
-	//TODO: esto que esté guardado no en usuario y que en una pantalla de gestión de publicaciones se filtren las de su ong para q apruebe
+	//TODO: esto que esté guardado en ong y no en usuario
 
 	public void agregarComodidad(Comodidad comodidad){ this.comodidades.add(comodidad); }
 

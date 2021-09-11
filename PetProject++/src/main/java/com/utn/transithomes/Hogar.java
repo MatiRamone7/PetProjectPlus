@@ -119,7 +119,7 @@ public class Hogar {
     }
 
     private boolean cercaDelLugarEncontrado(Ubication lugarEncontrado){         //Lugar Encontrado
-        Double distanciaMaximaEnKM = 15.0; //TODO VER EN QUE LUGAR SE PUEDE PEDIR ESTA VARIABLE. POSIBILIDAD 1 AL LLENAR EL FORMULARIO =)
+        Double distanciaMaximaEnKM = 15.0; //TODO meter esto en el form con @transient y una pantalla especifica dps de llenar el form para cargar caract. del hogar
 
         return (Coordenadas.distanciaCoord(this.ubicacion.getLat(), this.ubicacion.getLong(), lugarEncontrado.getLat(), lugarEncontrado.getLong()) <= distanciaMaximaEnKM);
     }

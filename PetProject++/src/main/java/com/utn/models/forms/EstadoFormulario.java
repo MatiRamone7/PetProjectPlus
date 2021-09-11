@@ -1,6 +1,7 @@
 package com.utn.models.forms;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,7 +27,16 @@ public class EstadoFormulario {
     private String usuario;
 
     public String logEstado(){
-        //TODO
-        return estado.getNombre();
+        String log = "- EstadoFormID: " + this.id  + '\n'
+           + "- Estado: " + this.estado.getNombre() + '\n'
+           + "- Fecha: " + this.fechaHora + '\n'
+           + "- Usuario: " + this.usuario;
+
+        return log;
     }
+
+    public void setUsuario(Usuario user){
+        this.usuario = user.getFullName();
+    }
+
 }

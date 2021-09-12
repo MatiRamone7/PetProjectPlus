@@ -66,6 +66,9 @@ public abstract class Persona {
     public Integer getId() {
         return id;
     }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
@@ -85,8 +88,12 @@ public abstract class Persona {
     public TipoDocumento getTipoDocumento() { return tipoDocumento; }
     public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipoDocumento = tipoDocumento; }
 
-    public Sesion getUsuario() { return sesion; }
-    public void setUsuario(Sesion sesion) { this.sesion = sesion; }
+    public Sesion getSesion() {
+        return sesion;
+    }
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
+    }
 
     public Direccion getDireccion() { return direccion; }
     public void setDireccion(Direccion direccion) { this.direccion = direccion; }

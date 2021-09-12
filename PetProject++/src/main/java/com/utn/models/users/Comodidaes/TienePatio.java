@@ -36,4 +36,12 @@ public class TienePatio extends Comodidad{
     public TienePatio() {
         super();
     }
+
+    public boolean isPatio() {
+        return patio;
+    }
+
+    public void setPatio(boolean patio) {
+        this.patio = patio;
+    }
 }

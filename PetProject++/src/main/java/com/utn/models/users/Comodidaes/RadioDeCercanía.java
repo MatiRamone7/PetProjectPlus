@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("RadioDeCercanía")
 @JsonTypeName("RadioDeCercanía")
 public class RadioDeCercanía extends Comodidad{
+
     @Column(name = "radio")
     private double radio;
 
@@ -33,4 +34,13 @@ public class RadioDeCercanía extends Comodidad{
     public RadioDeCercanía() {
 
     }
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
+
 }

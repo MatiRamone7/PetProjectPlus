@@ -1,5 +1,6 @@
 package com.utn.models.users;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Table(name="usuario")
 public class Usuario extends Persona {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Comodidad> comodidades;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

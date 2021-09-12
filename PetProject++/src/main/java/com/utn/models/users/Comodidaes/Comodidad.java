@@ -1,5 +1,6 @@
 package com.utn.models.users.Comodidaes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.utn.models.forms.FormularioDarEnAdopcion;
@@ -26,6 +27,7 @@ public abstract class Comodidad implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "usuarioId", referencedColumnName = "id")
+    @JsonBackReference
     private Usuario usuario;
 
     public abstract Boolean cumpleComodidad(FormularioDarEnAdopcion formularioDarEnAdopcion);

@@ -1,5 +1,6 @@
 package com.utn.controllers;
 
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,11 @@ public class OngController {
 
     @Autowired
     IOngService ongService;
+
+    @GetMapping("/{id}")
+    public Organizacion GetOngById(@PathVariable Integer id) {
+        return ongService.GetOngById(id);
+    }
 
     @PostMapping
     public Organizacion Create(@RequestBody Organizacion ong) throws IOException {

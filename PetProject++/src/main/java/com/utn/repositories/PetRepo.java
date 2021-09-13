@@ -66,7 +66,7 @@ public class PetRepo implements IPetRepo{
         petToUpdate.setFechaDeNacimiento(pet.getFechaDeNacimiento());
         petToUpdate.setFoto(pet.getFotos());
         petToUpdate.setQr(pet.getQr());
-        petToUpdate.setUsuarioId(pet.getUsuarioId());
+        petToUpdate.setDuenio(pet.getDuenio());
         petToUpdate.setCaracteristicSet(pet.getCaracteristicSet());
         this.manager.flush();
         this.manager.getTransaction().commit();

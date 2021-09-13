@@ -87,7 +87,7 @@ public class FormularioDarEnAdopcion {
        + "- Especie: " + this.mascota.getEspecie() + '\n'
        + "- Sexo: " + this.mascota.getSexo() + '\n'
        + "- ONG responsable: " + this.organizacion.getNombre() + '\n'
-       + "- Duenio actual: "  + this.mascota.getUsuarioId().getNombre() + '\n' 
+       + "- Duenio actual: "  + this.mascota.getDuenio().getNombre() + '\n'
        + " ========================================================================== " + '\n' + '\n'; 
 
         return sugerencias + datosFormulario;

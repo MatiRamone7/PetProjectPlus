@@ -95,7 +95,7 @@ public class APIRestController {
 	public void NotifyUser(HashMap map, Integer idMascota) throws IOException {
 		String texto = (String) map.get("texto");
 		Mascota mascota = petService.GetPetById(idMascota);
-		Usuario usuarioAContactar = mascota.getUsuarioId();
+		Usuario usuarioAContactar = mascota.getDuenio();
 
 		//TODO meter el input de usuario de alguna manera 
 		CQRScaneado msg = new CQRScaneado("Input de usuario aca");

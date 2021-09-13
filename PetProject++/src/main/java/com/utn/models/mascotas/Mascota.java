@@ -1,5 +1,6 @@
 package com.utn.models.mascotas;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utn.models.forms.Foto;
 import com.utn.models.users.Usuario;
 
@@ -47,8 +48,11 @@ public class Mascota {
     @Column
     private String descripcionFisica;
 
+
+
     @ManyToOne()
     @JoinColumn(name = "duenioId")
+    @JsonBackReference
     private Usuario duenio;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -138,12 +142,19 @@ public class Mascota {
         return (qr != null) ? true : false;
     }
 
-    public Usuario getUsuarioId() {
-        return duenio;
+    public String getDescripcionFisica() {
+        return descripcionFisica;
     }
 
-    public void setUsuarioId(Usuario usuarioId) {
-        this.duenio = usuarioId;
+    public void setDescripcionFisica(String descripcionFisica) {
+        this.descripcionFisica = descripcionFisica;
+    }
+
+    public Usuario getDuenio() {
+        return duenio;
+    }
+    public void setDuenio(Usuario duenio) {
+        this.duenio = duenio;
     }
 
     public Set<CaracteristicaPet> getCaracteristicSet() {

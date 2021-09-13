@@ -23,6 +23,7 @@ public class Usuario extends Persona {
 	private List<LogRol> logRol;
 
     @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Mascota> mascotas;
 
     @ManyToOne()

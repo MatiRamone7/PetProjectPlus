@@ -1,5 +1,7 @@
 package com.utn.models.ongs;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 @Entity
 @Table(name="preguntasAdopcion")
@@ -10,12 +12,14 @@ public class PreguntaAdoptante {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne()
-    @JoinColumn(name = "organizacion_id")
+    @ManyToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    @JsonBackReference
     public Organizacion organizacion;
 
     @Column(name = "pregunta")
     public String pregunta;
+
 
     @Enumerated(EnumType.STRING)
     public TipoPregunta tipoPregunta;
@@ -23,11 +27,11 @@ public class PreguntaAdoptante {
 
     public PreguntaAdoptante(){}
 
-    public Organizacion getIdOrganizacion() {
+    public Organizacion getOrganizacion() {
         return organizacion;
     }
 
-    public void setIdOrganizacion(Organizacion organizacion) {
+    public void setOrganizacion(Organizacion organizacion) {
         this.organizacion = organizacion;
     }
 

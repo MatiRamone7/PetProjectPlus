@@ -122,13 +122,13 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     }
 
 
- /*   public Mascota getMascota() {
+    public Mascota getMascota() {
         return mascota;
     }
 
     public void setMascota(Mascota mascota) {
         this.mascota = mascota;
-    }*/
+    }
 
     public List<EstadoFormulario> getEstado() {
         return estado;

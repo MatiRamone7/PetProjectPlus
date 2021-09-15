@@ -26,8 +26,8 @@ public class Usuario extends Persona {
 	@JsonManagedReference
 	private Set<Mascota> mascotas;
 
-    @ManyToOne()
-    @JoinColumn(name = "organizacionId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "organizacionId", referencedColumnName = "id")
 	private Organizacion organizacion;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

@@ -11,8 +11,8 @@ public class CaracteristicaPet{
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne()
-    @JoinColumn(name = "caracteristicaPetId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "caracteristicaPetId", referencedColumnName = "id")
     public Caracteristica tipoCaracteristica;
 
     @Column(name = "valor")

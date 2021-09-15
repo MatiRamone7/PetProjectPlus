@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class CronTask {
     FormController controller = new FormController(new FormService(new FormRepo()));
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 2000) // 1 semana = 604800000
+    @Scheduled(initialDelay = 10000, fixedDelay = 200000) // 1 semana = 604800000
     public void timer(){
         System.out.println("PRUEBA PRUEBA\n");
     }

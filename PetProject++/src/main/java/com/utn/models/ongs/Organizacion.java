@@ -1,5 +1,6 @@
 package com.utn.models.ongs;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.forms.Direccion;
 import com.utn.models.users.Usuario;
 import javax.persistence.*;
@@ -20,15 +21,16 @@ public class Organizacion {
     @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Usuario> voluntarios;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="direccion")
     private Direccion direccion;
 
-    @OneToOne
-    @JoinColumn(name="caracteristicas_foto", referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="caracteristicas_foto")
     private CharsFoto especificacionesFotos;
 
-    @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
 
     public Integer getId() {

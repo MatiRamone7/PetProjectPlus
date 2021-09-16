@@ -98,7 +98,7 @@ public class Hogar {
     public boolean cumpleRequisitosDelHogar(/*FormLostPet*/FormularioMascotaPerdida formularioMascotaPerdida){
         return (aceptaEspecie(formularioMascotaPerdida.getEspecie()) &&                                      //Especie
                 validacionPatio(formularioMascotaPerdida.getTamanio()) &&                                    //Tamaño
-                cercaDelLugarEncontrado(formularioMascotaPerdida.getLugarEncontrado()) &&                    //Lugar Encontrado
+                cercaDelLugarEncontrado(formularioMascotaPerdida.getLugarEncontrado(), formularioMascotaPerdida.getDistanciaMaximaEnKM()) &&                    //Lugar Encontrado
                 cumpleCaracteristicas(formularioMascotaPerdida.getCaracteristicasDeLaPublicacionDelHogar()));        //Otras Caracteristicas
     }
 
@@ -118,9 +118,7 @@ public class Hogar {
         return true;
     }
 
-    private boolean cercaDelLugarEncontrado(Ubication lugarEncontrado){         //Lugar Encontrado
-        Double distanciaMaximaEnKM = 15.0; //TODO meter esto en el form con @transient y una pantalla especifica dps de llenar el form para cargar caract. del hogar
-
+    private boolean cercaDelLugarEncontrado(Ubication lugarEncontrado, Double distanciaMaximaEnKM){         //Lugar Encontrado
         return (Coordenadas.distanciaCoord(this.ubicacion.getLat(), this.ubicacion.getLong(), lugarEncontrado.getLat(), lugarEncontrado.getLong()) <= distanciaMaximaEnKM);
     }
 

@@ -20,4 +20,7 @@ public class MMail implements IMedio{
         String remitente = "";  //Lo que va adelante del @gmail.com
         mail.enviarMail(contacto.mail,asunto,cuerpo,remitente);
     }
+
+    public MMail() {
+    }
 }

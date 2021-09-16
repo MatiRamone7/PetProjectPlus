@@ -48,8 +48,6 @@ public class Mascota {
     @Column
     private String descripcionFisica;
 
-
-
     @ManyToOne()
     @JoinColumn(name = "duenioId")
     @JsonBackReference
@@ -57,7 +55,6 @@ public class Mascota {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "mascotaId")
-   // @NotNull TODO: preguntar si esto va 
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,

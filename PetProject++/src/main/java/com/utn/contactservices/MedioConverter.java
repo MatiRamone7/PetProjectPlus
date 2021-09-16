@@ -1,7 +1,9 @@
 package com.utn.contactservices;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter(autoApply = true)
 public class MedioConverter implements AttributeConverter<IMedio, String>{
 
     @Override
@@ -14,7 +16,7 @@ public class MedioConverter implements AttributeConverter<IMedio, String>{
         IMedio medio = null;
         try{
             Class c = Class.forName(dbData);
-            medio = (IMedio) c.newInstance();
+            medio = (MMail) c.newInstance();
         }catch (ClassNotFoundException e) {
             e.printStackTrace();    
         } catch (InstantiationException e) {

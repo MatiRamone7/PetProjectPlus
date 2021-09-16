@@ -25,26 +25,29 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     @Transient
     private List<String> caracteristicasDeLaPublicacionDelHogar;
 
+    @Transient
+    private Double distanciaMaximaEnKM;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "formularioMascotaPerdidaId")
     private List<Foto> fotos;
 
     //DATOS FORMULARIO
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "ongId")
     private Organizacion organizacion;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "formularioMascotaPerdidaId")
     private Set<CaracteristicaPet> caracteristicas = new HashSet<>();
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "mascotaId")
     private Mascota mascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "estadoFormularioMascotaPerdidaId")
+    @JoinColumn(name = "formularioMascotaPerdidaId")
     private List<EstadoFormulario> estado;
 
     @Enumerated(EnumType.STRING)
@@ -160,6 +163,14 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
 
     public void setHogar(String hogar) {
         this.hogar = hogar;
+    }
+
+    public Double getDistanciaMaximaEnKM() {
+        return distanciaMaximaEnKM;
+    }
+
+    public void setDistanciaMaximaEnKM(Double distanciaMaximaEnKM) {
+        this.distanciaMaximaEnKM = distanciaMaximaEnKM;
     }
 
 

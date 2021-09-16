@@ -9,4 +9,7 @@ public class MSMS implements IMedio{
     public static void contactar(String asunto, String cuerpo, ContactoUnico contacto){
         sms.enviarMensaje(contacto.celular,cuerpo);
     }
+
+    public MSMS() {
+    }
 }

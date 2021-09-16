@@ -1,6 +1,8 @@
 package com.utn.models.forms;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utn.models.ongs.PreguntaAdoptante;
 @Entity
 @Table(name="preguntaRespuestaAdoptante")
@@ -12,26 +14,28 @@ public class PreguntaRespuestaAdoptante {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "formularioDarEnAdopcionID")
+    @JoinColumn(name = "formularioDarEnAdopcionID", referencedColumnName = "id")
+    @JsonBackReference
     private FormularioDarEnAdopcion formularioDarEnAdopcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "preguntaID")
     private PreguntaAdoptante pregunta;
 
     @Column(name = "respuesta")
     private String rta;
-    
+
+
     public Integer getId() {
         return id;
     }
 
-    public FormularioDarEnAdopcion getIdFormulario() {
+    public FormularioDarEnAdopcion getFormularioDarEnAdopcion() {
         return formularioDarEnAdopcion;
     }
 
-    public void setIdFormulario(FormularioDarEnAdopcion formulario) {
-        this.formularioDarEnAdopcion = formulario;
+    public void setFormularioDarEnAdopcion(FormularioDarEnAdopcion formularioDarEnAdopcion) {
+        this.formularioDarEnAdopcion = formularioDarEnAdopcion;
     }
 
     public PreguntaAdoptante getPregunta() {
@@ -49,4 +53,4 @@ public class PreguntaRespuestaAdoptante {
     public void setRta(String rta) {
         this.rta = rta;
     }
-}
+    }

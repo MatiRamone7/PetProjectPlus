@@ -20,7 +20,7 @@ public class FormularioMascotaEncontrada{
     @JoinColumn(name="formularioMascotaPerdidaId")
     private FormularioMascotaPerdida formularioMascotaPerdida;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "usuarioId", referencedColumnName = "id")
     private Usuario usuario;
 

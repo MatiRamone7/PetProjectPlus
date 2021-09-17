@@ -21,8 +21,8 @@ public class ContactoUnico implements Serializable {
     @Column(name = "celular")
     public String celular;
 
-    @Convert(converter = MedioConverter.class)
-    public IMedio medio;
+    /*@Convert(converter = MedioConverter.class)
+    public IMedio medio;*/
 
     public ContactoUnico(String unMail, String unCelular){
         this.mail = unMail;
@@ -47,13 +47,15 @@ public class ContactoUnico implements Serializable {
 
     public String getCelular() { return celular; }
 
-
+/*
     public void cambiarMedio(IMedio nmedio){
         medio = nmedio;
     }
-
+*/
     public void contactar(String asunto, String cuerpo) throws IOException {
-        IMedio.contactar(asunto,cuerpo,this);
+        //IMedio.contactar(asunto,cuerpo,this);
+        MMail.contactar(asunto,cuerpo,this);
+        MSMS.contactar(asunto,cuerpo,this);
     }
 
 }

@@ -1,7 +1,9 @@
 package com.utn.contactservices;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter(autoApply = true)
 public class MedioConverter implements AttributeConverter<IMedio, String>{
 
     @Override

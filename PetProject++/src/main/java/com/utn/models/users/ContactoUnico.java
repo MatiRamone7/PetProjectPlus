@@ -48,14 +48,20 @@ public class ContactoUnico implements Serializable {
     public String getCelular() { return celular; }
 
 /*
-    public void cambiarMedio(IMedio nmedio){
-        medio = nmedio;
+    public IMedio getMedio() {
+        return medio;
+    }
+
+    public void setMedio(IMedio medio) {
+        this.medio = medio;
     }
 */
     public void contactar(String asunto, String cuerpo) throws IOException {
         //IMedio.contactar(asunto,cuerpo,this);
-        MMail.contactar(asunto,cuerpo,this);
-        MSMS.contactar(asunto,cuerpo,this);
+        MMail m = new MMail();
+        MSMS s = new MSMS();
+        m.contactar(asunto,cuerpo,this);
+        s.contactar(asunto,cuerpo,this);
     }
 
 }

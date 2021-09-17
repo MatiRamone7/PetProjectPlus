@@ -1,5 +1,6 @@
 package com.utn.models.forms;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.users.Usuario;
@@ -15,23 +16,24 @@ public class FormularioDarEnAdopcion {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne()
-    @JoinColumn(name = "usuarioId")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
     private Usuario usuario;
 
-    @OneToOne()
-    @JoinColumn(name = "mascotaID")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "mascotaID", referencedColumnName = "id")
     private Mascota mascota;
 
-    @ManyToOne()
-    @JoinColumn(name = "ongId")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ongId", referencedColumnName = "id")
     private Organizacion organizacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "estadoFormularioDarEnAdopcionId")
+    @JoinColumn(name = "formularioDarEnAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<PreguntaRespuestaAdoptante> preguntas;
     
     public Integer getId() {

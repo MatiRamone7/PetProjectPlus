@@ -2,8 +2,11 @@ package com.utn.models.forms;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
+import com.utn.models.roles.LogRol;
+import com.utn.models.users.Comodidaes.Comodidad;
 import com.utn.models.users.Usuario;
 
 import java.util.HashSet;
@@ -19,15 +22,15 @@ public class FormularioIntencionAdopcion {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne()
-    @JoinColumn(name = "userID")
+    @OneToOne
+    @JoinColumn(name = "userID", referencedColumnName = "id")
     private Usuario solicitante;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "estadoFormularioIntencionAdopcionId")
+    @JoinColumn(name = "formularioIntencionAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "formularioIntencionDeAdopcionId")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
 

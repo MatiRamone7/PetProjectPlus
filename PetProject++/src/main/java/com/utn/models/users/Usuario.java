@@ -22,18 +22,13 @@ public class Usuario extends Persona {
 	@JoinColumn(name = "usuarioId")
 	private List<LogRol> logRol;
 
-    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<Mascota> mascotas;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizacionId", referencedColumnName = "id")
 	private Organizacion organizacion;
-
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarioId")
-	private List<FormularioMascotaPerdida> publicacionesAAprobar;
-	//TODO: esto que esté guardado en ong y no en usuario
 
 	public void agregarComodidad(Comodidad comodidad){ this.comodidades.add(comodidad); }
 
@@ -44,18 +39,10 @@ public class Usuario extends Persona {
 	public void agregarMascota(Mascota mascota){ this.mascotas.add(mascota); }
 	public void quitarMascota(Mascota mascota){ this.mascotas.remove(mascota); }
 
-	public void agregarPublicacion(FormularioMascotaPerdida publicacion){ this.publicacionesAAprobar.add(publicacion); }
-	public void quitarPublicacion(FormularioMascotaPerdida publicacion){
-		this.publicacionesAAprobar.remove(publicacion);
-	}
-
 	public boolean eliminarpublicacionesinncesarias(){
 		//this.publicacionesAAprobar.forEach(p-> );  TODO: Se puede poner el filtrado de las publicaciones en el controller
 		return true;
 	}
-
-	public List<FormularioMascotaPerdida> getPublicacionesAAprobar() { return publicacionesAAprobar; }
-
 
 	public Set<Comodidad> getComodidades() {
 		return comodidades;
@@ -84,7 +71,4 @@ public class Usuario extends Persona {
 		this.logRol = logRol;
 	}
 
-	public void setPublicacionesAAprobar(List<FormularioMascotaPerdida> publicacionesAAprobar) {
-		this.publicacionesAAprobar = publicacionesAAprobar;
-	}
 }

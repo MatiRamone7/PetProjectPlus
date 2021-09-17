@@ -25,4 +25,7 @@ public class MWhatsapp implements IMedio{
         return rta;
     }
     //no anda al no haber cuenta de wabox
+
+    public MWhatsapp() {
+    }
 }

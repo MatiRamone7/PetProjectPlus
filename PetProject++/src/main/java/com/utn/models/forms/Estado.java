@@ -7,7 +7,7 @@ public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "nombre")

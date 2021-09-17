@@ -66,7 +66,7 @@ public class UserRepo implements IUserRepo {
 		userToUpdate.setLogRol(user.getLogRol());
 		//userToUpdate.setMascotas(user.getMascotas());
 		userToUpdate.setOrganizacion(user.getOrganizacion());
-		userToUpdate.setPublicacionesAAprobar(user.getPublicacionesAAprobar());
+
 		// Persona
 		userToUpdate.setApellido(user.getApellido());
 		userToUpdate.setContacto(user.getContacto());

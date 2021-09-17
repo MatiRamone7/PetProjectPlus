@@ -16,7 +16,7 @@ public class MedioConverter implements AttributeConverter<IMedio, String>{
         IMedio medio = null;
         try{
             Class c = Class.forName(dbData);
-            medio = (MMail) c.newInstance();
+            medio = (IMedio) c.newInstance();
         }catch (ClassNotFoundException e) {
             e.printStackTrace();    
         } catch (InstantiationException e) {

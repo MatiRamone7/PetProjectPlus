@@ -1,6 +1,5 @@
 package com.utn.models.mascotas;
 
-import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @Table(name="caracteristica")

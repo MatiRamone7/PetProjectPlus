@@ -1,13 +1,13 @@
 package com.utn.utils;
 
-import com.utn.contactservices.mensajesPredeterminados.CSugerenciasAdopcion;
 import com.utn.controllers.FormController;
+import com.utn.models.contactservices.mensajesPredeterminados.CSugerenciasAdopcion;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.forms.FormularioIntencionAdopcion;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
-import com.utn.models.users.Comodidaes.Comodidad;
 import com.utn.models.users.Usuario;
+import com.utn.models.users.Comodidades.Comodidad;
 import com.utn.repositories.FormRepo;
 import com.utn.services.FormService;
 import org.springframework.scheduling.annotation.Scheduled;

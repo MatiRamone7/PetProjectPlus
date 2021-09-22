@@ -1,10 +1,9 @@
 package com.utn.models.users;
 
 import javax.persistence.*;
-
-import com.utn.models.contactservices.*;
-
 import java.io.Serializable;
+import com.utn.contactservices.*;
+
 import java.io.IOException;
 @Entity
 @Table(name="contacto")

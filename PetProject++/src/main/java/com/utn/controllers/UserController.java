@@ -1,7 +1,7 @@
 package com.utn.controllers;
 
-import com.utn.models.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
-import com.utn.models.contactservices.mensajesPredeterminados.IMensajePredet;
+import com.utn.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
+import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.users.Usuario;
 import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,8 +4,7 @@ import com.utn.controllers.APIRestController;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
-import com.utn.models.transithomes.*;
-
+import com.utn.transithomes.*;
 import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;

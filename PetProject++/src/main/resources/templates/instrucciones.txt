@@ -1,2 +1,0 @@
--Meter acá todos los html cambiando la extensión por .hbs
--Poner los css, js e imágenes adentro de public

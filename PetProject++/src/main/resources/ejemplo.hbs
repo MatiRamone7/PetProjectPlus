@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/27517fada0.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Usuarios</title>
+  </head>
+  <body id="body">
+    <header>
+        {{#each usuarios}}
+            <div>
+                <label>¡Hola {{nombre}} {{apellido}}!</label>
+                <label>Su numero de {{tipoDocumento}} es {{nroDocumento}}!</label>
+            </div>
+        {{/each}}
+    </header>
+  </body>
+
+
+  <!-- ================= MODAL ELIMINACION ================== -->
+  <!-- ================= FIN MODAL ELIMINACION ================== -->
+
+</html>

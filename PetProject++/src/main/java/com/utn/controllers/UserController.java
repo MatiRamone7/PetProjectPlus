@@ -1,13 +1,21 @@
 package com.utn.controllers;
 
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
 import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.users.Usuario;
 import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -17,9 +25,16 @@ public class UserController {
     @Autowired
     IUserService userService;
 
+    /**EJEMPLO DE COMO SINCRONIZAMOS HANDLEBARS CON SPRING*/
     @GetMapping
-    public Iterable<Usuario> GetUsers() {
-        return userService.GetUsers();
+    public String GetUsers() throws IOException {
+
+        Handlebars handlebars = new Handlebars();
+        Template template = handlebars.compile("formularioUsuario");
+        Map<String, Object> model = new HashMap<>();
+        model.put("usuarios", userService.GetUsers());
+
+        return template.apply(model);
     }
 
     @GetMapping("/{id}")

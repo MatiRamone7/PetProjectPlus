@@ -1,7 +1,5 @@
 package com.utn.services;
 
-
-import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.repositories.IOngRepo;
 import com.utn.repositories.OngRepo;
@@ -71,4 +69,13 @@ public class OngService implements IOngService{
     public Organizacion QuitarPreguntaOng(String pregunta, Integer id) {
         return ongRepo.QuitarPreguntaOng(pregunta, id);
     };
+
+    /**
+     * Borra ong existente.
+     *
+     * @param id id de pet a eliminar
+     */
+    public void DeleteOng(Integer id) {
+        ongRepo.DeleteOng(id);
+    }
 }

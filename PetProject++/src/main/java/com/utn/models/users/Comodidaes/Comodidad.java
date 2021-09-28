@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.users.Usuario;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;

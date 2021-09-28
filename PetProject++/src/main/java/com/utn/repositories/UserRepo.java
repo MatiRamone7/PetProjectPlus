@@ -55,16 +55,13 @@ public class UserRepo implements IUserRepo {
 
 	@Override
 	public Usuario UpdateUser(Usuario user, Integer id) {
-
 		Usuario userToUpdate = this.GetUserById(id);
-
-		/* TODO poner los parametros correctos */
 
 		this.manager.getTransaction().begin();
 		// User
 		userToUpdate.setComodidades(user.getComodidades());
 		userToUpdate.setLogRol(user.getLogRol());
-		//userToUpdate.setMascotas(user.getMascotas());
+		userToUpdate.setMascotas(user.getMascotas());
 		userToUpdate.setOrganizacion(user.getOrganizacion());
 
 		// Persona

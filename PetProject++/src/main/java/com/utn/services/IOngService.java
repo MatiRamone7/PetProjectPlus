@@ -12,4 +12,6 @@ public interface IOngService {
     public Organizacion AgregarPreguntaOng(String pregunta, Integer id);
 
     public Organizacion QuitarPreguntaOng(String pregunta, Integer id);
+
+    public void DeleteOng(Integer id);
 }

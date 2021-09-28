@@ -1,6 +1,5 @@
 package com.utn.controllers;
 
-import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +37,10 @@ public class OngController {
     @GetMapping("quitarPregunta/{id}")
     public Organizacion QuitarPreguntaOng(@RequestBody String pregunta, @PathVariable Integer id) {
         return ongService.QuitarPreguntaOng(pregunta, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void Delete(@PathVariable Integer id) {
+        ongService.DeleteOng(id);
     }
 }

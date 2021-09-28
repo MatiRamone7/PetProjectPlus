@@ -1,7 +1,6 @@
 package com.utn.models.users;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
@@ -37,38 +36,48 @@ public class Usuario extends Persona {
 	public void agregarLogRol(LogRol log){ this.logRol.add(log); }
 	
 	public void agregarMascota(Mascota mascota){ this.mascotas.add(mascota); }
+	
 	public void quitarMascota(Mascota mascota){ this.mascotas.remove(mascota); }
-
+	
 	public boolean eliminarpublicacionesinncesarias(){
 		//this.publicacionesAAprobar.forEach(p-> );  TODO: Se puede poner el filtrado de las publicaciones en el controller
 		return true;
 	}
-
+	
 	public Set<Comodidad> getComodidades() {
 		return comodidades;
 	}
-
+	
 	public List<LogRol> getLogRol() {
 		return logRol;
 	}
-
+	
+	public Set<Mascota> getMascotas() {
+		return mascotas;
+	}
+	
 	public Organizacion getOrganizacion() {
 		return organizacion;
 	}
+
 	public void setOrganizacion(Organizacion organizacion) {
 		this.organizacion = organizacion;
 	}
-
-	//Login y Logout
-
-	public String getFullName() { return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido(); } //TODO: completar funcion
-
+	
 	public void setComodidades(Set<Comodidad> comodidades) {
 		this.comodidades = comodidades;
 	}
-
+	
 	public void setLogRol(List<LogRol> logRol) {
 		this.logRol = logRol;
 	}
-
+	
+	public void setMascotas(Set<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+	
+	//TODO Login y Logout
+	
+	public String getFullName() { return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido(); }
+	
 }

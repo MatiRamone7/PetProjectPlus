@@ -2,9 +2,8 @@ package com.utn.repositories;
 
 
 import com.utn.models.ongs.Organizacion;
-import com.utn.models.users.Usuario;
 import org.springframework.stereotype.Repository;
-
+import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -49,7 +48,7 @@ public class OngRepo implements IOngRepo{
 
         this.manager.getTransaction().begin();
         ongToUpdate.setNombre(ong.getNombre());
-        //ongToUpdate.setVoluntarios(ong.getVoluntarios());
+        ongToUpdate.setVoluntarios(ong.getVoluntarios());
         ongToUpdate.setDireccion(ong.getDireccion());
         ongToUpdate.setEspecificacionesFotos(ong.getEspecificacionesFotos());
         ongToUpdate.setPreguntasIntencionDeAdopcion(ong.getPreguntasIntencionDeAdopcion());
@@ -81,6 +80,16 @@ public class OngRepo implements IOngRepo{
         this.manager.getTransaction().commit();
 
         return ongToUpdate;
+    }
+
+    @Override
+    public void DeleteOng(Integer id) {
+
+        this.manager.getTransaction().begin();
+		Query query = this.manager.createQuery("delete from Organizacion WHERE id = " + id.toString());
+		query.executeUpdate();
+		this.manager.getTransaction().commit();
+        
     };
 
 

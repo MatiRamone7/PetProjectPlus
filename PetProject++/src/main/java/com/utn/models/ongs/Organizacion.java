@@ -94,4 +94,13 @@ public class Organizacion {
     public void setPreguntasIntencionDeAdopcion(Set<PreguntaAdoptante> preguntasIntencionDeAdopcion) {
         this.preguntasIntencionDeAdopcion = preguntasIntencionDeAdopcion;
     }
+
+    public Set<Usuario> getVoluntarios() {
+        return voluntarios;
+    }
+
+    public void setVoluntarios(Set<Usuario> v) {
+        this.voluntarios = v;
+    }
+
 }

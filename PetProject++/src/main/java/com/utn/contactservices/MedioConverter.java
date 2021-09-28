@@ -14,7 +14,7 @@ public class MedioConverter implements AttributeConverter<IMedio, String>{
     @Override
     public IMedio convertToEntityAttribute(String dbData) {
         IMedio medio = null;
-        try{
+       /* try{ esto al final no se usa
             Class c = Class.forName(dbData);
             medio = (IMedio) c.newInstance();
         }catch (ClassNotFoundException e) {
@@ -23,7 +23,7 @@ public class MedioConverter implements AttributeConverter<IMedio, String>{
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        }
+        }*/
         return medio;
     }
 

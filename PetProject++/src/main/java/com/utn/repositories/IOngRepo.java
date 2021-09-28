@@ -1,8 +1,6 @@
 package com.utn.repositories;
 
-
 import com.utn.models.ongs.Organizacion;
-import com.utn.models.users.Usuario;
 
 public interface IOngRepo {
     public Organizacion GetOngById(Integer id);
@@ -14,4 +12,7 @@ public interface IOngRepo {
     public Organizacion AgregarPreguntaOng(String pregunta, Integer id);
 
     public Organizacion QuitarPreguntaOng(String pregunta, Integer id);
+
+    public void DeleteOng(Integer id);
+
 }

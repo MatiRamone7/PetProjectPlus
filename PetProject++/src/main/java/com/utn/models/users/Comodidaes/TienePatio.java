@@ -1,6 +1,5 @@
 package com.utn.models.users.Comodidaes;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.mascotas.CaracteristicaPet;

@@ -18,6 +18,7 @@ public class Admin extends Persona implements Serializable {
 
     public void agregarCaracteristica(CaracteristicaPet caracteristica){
         //TODO: patear el comportamiento al metodo del controller que agregue al caracteristica a la tabal en BD
+        //esto sería un característica controller?
     }
     public void quitarCaracteristica(CaracteristicaPet caractersitica){
         //TODO: LO MISMO AQUI

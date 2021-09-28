@@ -1,12 +1,8 @@
 package com.utn.models.forms;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
-import com.utn.models.roles.LogRol;
-import com.utn.models.users.Comodidaes.Comodidad;
 import com.utn.models.users.Usuario;
 
 import java.util.HashSet;

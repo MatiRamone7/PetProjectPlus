@@ -61,18 +61,16 @@ public class UserController {
     @GetMapping("notificarUsuario/{id}")
     public void NotifyUser(@RequestBody Map<String, Object> datos, @PathVariable Integer id) throws IOException {
         Usuario user = this.GetUserById(id);
-        String cuerpo = (String) datos.get("cuerpo");
-        String asunto = (String) datos.get("asunto");
 
         IMensajePredet mensaje = new IMensajePredet() {
             @Override
             public String cuerpo() {
-                return cuerpo;
+                return (String) datos.get("cuerpo");
             }
 
             @Override
             public String asunto() {
-                return asunto;
+                return (String) datos.get("asunto");
             }
 
             @Override

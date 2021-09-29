@@ -28,8 +28,8 @@ public class UserController {
     /**EJEMPLO DE COMO SINCRONIZAMOS HANDLEBARS CON SPRING*/
     @GetMapping
     public String GetUsers() throws IOException {
-
-        Handlebars handlebars = new Handlebars();       //se crea la instancia de handlebars
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);       //se crea la instancia de handlebars
         Template template = handlebars.compile("formularioUsuario");  //se crea el template sobre el .hbs que querés enviar (ej: formularioUsuario.hbs)
         Map<String, Object> model = new HashMap<>();    //en este map se ponen todas las variables o clases que quieras usar luego en el handlebars
         model.put("usuarios", userService.GetUsers());  //acá pones las cosas dentro del map (en este ejemplo estoy poniendo una lista de usuarios

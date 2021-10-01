@@ -4,71 +4,71 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
-import com.utn.models.mascotas.Caracteristica;
+import com.utn.models.roles.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CaracteristicaRepo implements ICaracteristicaRepo{
+public class RolRepo implements IRolRepo{
 
 	private EntityManagerFactory emf;
 	private EntityManager manager;
 
-	public CaracteristicaRepo() {
+	public RolRepo() {
 		this.emf = Persistence.createEntityManagerFactory("Persistencia");
 		this.manager = emf.createEntityManager();
 	}
     
 	@SuppressWarnings("unchecked")
     @Override
-    public Iterable<Caracteristica> GetCaracteristica() {
-        Iterable<Caracteristica> aux;
+    public Iterable<Rol> GetRol() {
+        Iterable<Rol> aux;
 
         this.manager.getTransaction().begin();
-        aux = this.manager.createQuery("FROM Caracteristica").getResultList();
+        aux = this.manager.createQuery("FROM Rol").getResultList();
         this.manager.getTransaction().commit();
 
         return aux;
     }
 
     @Override
-    public Caracteristica GetCaracteristicaById(Integer id) {
-        Caracteristica aux;
+    public Rol GetRolById(Integer id) {
+        Rol aux;
 
         this.manager.getTransaction().begin();
-        aux = (Caracteristica) this.manager.createQuery("FROM Caracteristica u WHERE u.id = " + id.toString()).getSingleResult();
+        aux = (Rol) this.manager.createQuery("FROM Rol u WHERE u.id = " + id.toString()).getSingleResult();
         this.manager.getTransaction().commit();
 
         return aux;
     }
 
     @Override
-    public Caracteristica CreateCaracteristica(Caracteristica c) {
+    public Rol CreateRol(Rol rol) {
 
         this.manager.getTransaction().begin();
-        this.manager.persist(c);
+        this.manager.persist(rol);
         this.manager.flush();
         this.manager.getTransaction().commit();
 
-        return c;
+        return rol;
     }
 
     @Override
-    public Caracteristica UpdateCaracteristica(Caracteristica c, Integer id) {
-        Caracteristica caractToUpdate = this.GetCaracteristicaById(id);
+    public Rol UpdateRol(Rol rol, Integer id) {
+        Rol rolToUpdate = this.GetRolById(id);
 
         this.manager.getTransaction().begin();
-        caractToUpdate.setDescripcion(c.getDescripcion());
+        rolToUpdate.setDescripcion(rol.getDescripcion());
+        rolToUpdate.setPermisos(rol.getPermisos());
         this.manager.flush();
         this.manager.getTransaction().commit();
 
-        return caractToUpdate;
+        return rolToUpdate;
     }
 
     @Override
-    public void DeleteCaracteristica(Integer id) {
+    public void DeleteRol(Integer id) {
         this.manager.getTransaction().begin();
-        Query query = this.manager.createQuery("delete from Caracteristica WHERE id = " + id.toString());
+        Query query = this.manager.createQuery("delete from Rol WHERE id = " + id.toString());
         query.executeUpdate();
         this.manager.getTransaction().commit();
     }

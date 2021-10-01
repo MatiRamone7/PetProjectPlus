@@ -4,9 +4,6 @@ import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.roles.Rol;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.time.*;
-import java.util.List;
 
 @Entity
 @Table(name="admin")
@@ -16,12 +13,19 @@ public class Admin extends Persona implements Serializable {
     @JoinColumn(name = "rolId")
     private Rol rol;
 
+    public Rol getRol() {
+        return rol;
+    }
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    //TODO mirar si esto vuela o no
     public void agregarCaracteristica(CaracteristicaPet caracteristica){
-        //TODO: patear el comportamiento al metodo del controller que agregue al caracteristica a la tabal en BD
-        //esto sería un característica controller?
+
     }
     public void quitarCaracteristica(CaracteristicaPet caractersitica){
-        //TODO: LO MISMO AQUI
+
     }
 
 }

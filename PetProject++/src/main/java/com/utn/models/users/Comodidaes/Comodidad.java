@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.users.Usuario;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,7 +14,7 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo( use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = RadioDeCercanía.class, name = "RadioDeCercanía"),
+        @JsonSubTypes.Type(value = RadioDeCercania.class, name = "RadioDeCercania"),
         @JsonSubTypes.Type(value = TienePatio.class, name = "TienePatio")
 })
 public abstract class Comodidad implements Serializable{

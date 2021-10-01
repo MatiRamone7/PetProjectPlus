@@ -13,6 +13,10 @@ public class TienePatio extends Comodidad{
     @Column(name = "patio")
     private boolean patio;
 
+    public void setPatio(boolean patio) {
+        this.patio = patio;
+    }
+
     @Override
     public Boolean cumpleComodidad(FormularioDarEnAdopcion formularioDarEnAdopcion){
         CaracteristicaPet caracteristica = formularioDarEnAdopcion.getMascota().
@@ -40,7 +44,4 @@ public class TienePatio extends Comodidad{
         return patio;
     }
 
-    public void setPatio(boolean patio) {
-        this.patio = patio;
-    }
 }

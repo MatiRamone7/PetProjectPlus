@@ -5,7 +5,6 @@ import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
 import com.utn.models.users.Comodidaes.Comodidad;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -39,11 +38,6 @@ public class Usuario extends Persona {
 	
 	public void quitarMascota(Mascota mascota){ this.mascotas.remove(mascota); }
 	
-	public boolean eliminarpublicacionesinncesarias(){
-		//this.publicacionesAAprobar.forEach(p-> );  TODO: Se puede poner el filtrado de las publicaciones en el controller
-		return true;
-	}
-	
 	public Set<Comodidad> getComodidades() {
 		return comodidades;
 	}
@@ -75,8 +69,6 @@ public class Usuario extends Persona {
 	public void setMascotas(Set<Mascota> mascotas) {
 		this.mascotas = mascotas;
 	}
-	
-	//TODO Login y Logout
 	
 	public String getFullName() { return  "Id: " + String.valueOf(this.getNroDocumento()) + " - Nombre: " + this.getNombre() + " " + this.getApellido(); }
 	

@@ -4,7 +4,6 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
-import com.utn.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
 import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.users.Usuario;
 import com.utn.services.IUserService;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController

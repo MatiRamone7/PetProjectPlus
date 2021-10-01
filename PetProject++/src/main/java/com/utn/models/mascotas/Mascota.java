@@ -40,7 +40,7 @@ public class Mascota {
     private List<Foto> fotos;
 
     /*
-        TODO NICO QR
+        TODO NICO GENERAR QR
     */
     @Column(name = "qr")
     private String qr;

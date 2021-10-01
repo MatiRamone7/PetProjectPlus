@@ -4,7 +4,7 @@ import com.utn.models.mascotas.Caracteristica;
 
 public interface ICaracteristicaRepo {
     /*
-        Form Mascota Perdida
+        Caracteristica
     */
 
     public Iterable<Caracteristica> GetCaracteristica();

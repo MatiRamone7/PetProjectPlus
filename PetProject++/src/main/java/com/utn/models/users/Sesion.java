@@ -57,9 +57,10 @@ public class Sesion implements Serializable {
     public void setValidationSesion(IValidationSesion validationSesion) {
         this.validationSesion = validationSesion;
     }
+    
+    //TODO login logout registrarse y ver todo esto de acá abajo (jose)
 
     public void login(){
-        //TODO login logout
     }
 
     public void logout(){

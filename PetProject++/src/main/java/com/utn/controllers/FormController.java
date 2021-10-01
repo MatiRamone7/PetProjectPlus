@@ -47,17 +47,6 @@ public class FormController {
         formService.DeleteFormMascotaPerdida(id);
     }
 
-   /* @PutMapping("/mascotaPerdida/{id}") 
-   
-   TODO: metodo cambiar estado para cada formulario, no se como se pasarían los params en la url
-   el estado formulario tiene id, estado (dentro nombre y ID), usuario y fechaHora
-   no se que parámetros deberían pasarse en la url para poder buscar y settear todo eso
-
-    public FormularioMascotaPerdida CambiarEstadoFormMascotaPerdida(@RequestBody FormularioMascotaPerdida form, @PathVariable Integer id) {
-        return formService.CambiarEstadoFormMascotaPerdida(form, id);
-    }*/
-
-
     /*
         Form Mascota Encontrada
     */

@@ -7,9 +7,9 @@ public interface ICaracteristicaService {
 
     public Caracteristica GetCaracteristicaById(Integer id);
 
-    public Caracteristica CreateCaracteristica(Caracteristica pet);
+    public Caracteristica CreateCaracteristica(Caracteristica c);
 
-    public Caracteristica UpdateCaracteristica(Caracteristica pet, Integer id);
+    public Caracteristica UpdateCaracteristica(Caracteristica c, Integer id);
 
     public void DeleteCaracteristica(Integer id);
 }

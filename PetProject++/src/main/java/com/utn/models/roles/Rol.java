@@ -24,6 +24,14 @@ public class Rol{
     )
     private List<Permiso> permisos;
 
+    public List<Permiso> getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(List<Permiso> permisos) {
+        this.permisos = permisos;
+    }
+
     public Rol() { this.permisos = new ArrayList<>(); }
 
     public void agregarPermiso(Permiso permiso){
@@ -34,6 +42,8 @@ public class Rol{
         this.permisos.remove(indice);
     }
 
+
+    
     public List<Permiso> listarPermisos() {
         return permisos;
     }
@@ -43,5 +53,6 @@ public class Rol{
     }
 
     public String getDescripcion() { return descripcion; }
+    
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

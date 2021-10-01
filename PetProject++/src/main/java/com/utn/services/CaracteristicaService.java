@@ -44,8 +44,8 @@ public class CaracteristicaService implements ICaracteristicaService{
      * @param caracteristica caract a crear
      * @return nuevo caract
      */
-    public Caracteristica CreateCaracteristica(Caracteristica pet) {
-        return caracteristicaRepo.CreateCaracteristica(pet);
+    public Caracteristica CreateCaracteristica(Caracteristica c) {
+        return caracteristicaRepo.CreateCaracteristica(c);
     }
 
     /**
@@ -54,8 +54,8 @@ public class CaracteristicaService implements ICaracteristicaService{
      * @param caracteristica caract a actualizar
      * @return caract actualizado
      */
-    public Caracteristica UpdateCaracteristica(Caracteristica pet, Integer id) {
-        return caracteristicaRepo.UpdateCaracteristica(pet, id);
+    public Caracteristica UpdateCaracteristica(Caracteristica c, Integer id) {
+        return caracteristicaRepo.UpdateCaracteristica(c, id);
     }
 
     /**

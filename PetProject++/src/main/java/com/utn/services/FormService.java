@@ -6,8 +6,6 @@ import com.utn.models.forms.FormularioMascotaEncontrada;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.repositories.FormRepo;
 import com.utn.repositories.IFormRepo;
-import com.utn.repositories.IPetRepo;
-import com.utn.repositories.PetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

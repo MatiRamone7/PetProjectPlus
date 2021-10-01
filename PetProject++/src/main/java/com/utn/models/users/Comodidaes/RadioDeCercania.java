@@ -10,9 +10,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("RadioDeCercanía")
-@JsonTypeName("RadioDeCercanía")
-public class RadioDeCercanía extends Comodidad{
+@DiscriminatorValue("RadioDeCercania")
+@JsonTypeName("RadioDeCercania")
+public class RadioDeCercania extends Comodidad{
 
     @Column(name = "radio")
     private double radio;
@@ -30,7 +30,7 @@ public class RadioDeCercanía extends Comodidad{
 
     }
 
-    public RadioDeCercanía() {
+    public RadioDeCercania() {
 
     }
 

@@ -1,4 +1,4 @@
-package com.utn.contactservices.services;
+package com.utn.models.contactservices.services;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -6,7 +6,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
+import java.util.*;
 
 public class JavaMail {
     public void enviarMail(String destinatario, String asunto, String cuerpo, String remitente){

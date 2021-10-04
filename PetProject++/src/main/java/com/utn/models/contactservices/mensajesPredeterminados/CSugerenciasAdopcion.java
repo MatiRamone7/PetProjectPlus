@@ -1,4 +1,4 @@
-package com.utn.contactservices.mensajesPredeterminados;
+package com.utn.models.contactservices.mensajesPredeterminados;
 
 public class CSugerenciasAdopcion implements IMensajePredet  {
     public String textoDeUsuario = null;

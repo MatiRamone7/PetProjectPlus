@@ -1,9 +1,9 @@
-package com.utn.contactservices;
+package com.utn.models.contactservices;
 
 import java.io.IOException;
 
-import com.utn.contactservices.services.Wabox;
-import com.utn.contactservices.services.WhatsappRespuesta;
+import com.utn.models.contactservices.services.Wabox;
+import com.utn.models.contactservices.services.WhatsappRespuesta;
 import com.utn.models.users.ContactoUnico;
 public class MWhatsapp implements IMedio{
     private String numero;

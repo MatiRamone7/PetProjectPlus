@@ -7,21 +7,17 @@ import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.utn.contactservices.mensajesPredeterminados.CQRScaneado;
+import com.utn.models.contactservices.mensajesPredeterminados.CQRScaneado;
 import com.utn.models.forms.Direccion;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.users.Usuario;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
 import com.utn.transithomes.Hogar;
-import com.utn.transithomes.ListadoDeRefugios;
 import com.utn.transithomes.Ubication;
 import com.utn.models.mascotas.Mascota;
-import com.utn.services.FormService;
-import com.utn.services.IFormService;
-import com.utn.services.IPetService;
+import com.utn.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -30,7 +26,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -45,6 +40,13 @@ public class APIRestController {
 	private static final String formato = "png";
 	private static final String ruta = "C:\\Users\\matil\\Desktop\\miCodigoQR3.png";
 	private static final String pathFormulario = "https://aulasvirtuales.frba.utn.edu.ar/";
+
+	@Autowired
+	IFormService formService;
+
+	public APIRestController(IFormService formService) {
+        this.formService = formService;
+    }
 
 	@GetMapping("generarQRFormulario")
 	public void GenerateQR() throws IOException {
@@ -104,37 +106,28 @@ public class APIRestController {
 
 	/**
 	 * Llamar a API de hogares de transito. Esto se movió a el FormularioMascotaPerdida pero dejo esto por si tenemos problemas con el formulario
+*/
 
-	@GetMapping("getHogaresTransito")
-	public static List<Hogar>  getHogaresTransito() throws IOException {
+	@GetMapping("forms/mascotaPerdida/{id}/getHogaresTransito")
+	public List<Hogar> getHogaresTransito(@PathVariable Integer id) throws IOException {
 		AdapterApiRestHogaresDeTransito serviciosRefugios = AdapterApiRestHogaresDeTransito.getInstancia();
 
-		List<String> listaDeCaracteristicas = new ArrayList<>();
-		listaDeCaracteristicas.add("manso");
-		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
-		FormularioMascotaPerdida unaFormularioMascotaPerdida = new FormularioMascotaPerdida("Perro", "Grande", lugar, listaDeCaracteristicas);	 //ejemplo de formulario que ya no se va ausar creo --> ver la clase Hogar
-		List<Hogar> listadaAuxiliar = new ArrayList<>();
+		FormularioMascotaPerdida unaFormularioMascotaPerdida = formService.GetFormMascotaPerdidaById(id);
 
-		ListadoDeRefugios listadoDeRefugios;
+		List<Hogar> lista = serviciosRefugios.obtenerHogaresTransito();
 
-		List listaFiltrada;
-		int offset = 0;
-		try {
-			while (true) {
-				offset++;
+		List<Hogar> listaFiltrada = lista.stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(unaFormularioMascotaPerdida)).collect(Collectors.toList());
 
-				listadoDeRefugios = serviciosRefugios.listadoDeRefugios(offset);
+		/*TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);       //se crea la instancia de handlebars
+        Template template = handlebars.compile("hogaresDeTransito");  //se crea el template sobre el .hbs que querés enviar (ej: formularioUsuario.hbs)
+        Map<String, Object> model = new HashMap<>();    //en este map se ponen todas las variables o clases que quieras usar luego en el handlebars
+        model.put("hogares", listaFiltrada);
+		return template.apply(model);  */
+//TODO: HTML de los hogares de transito
 
-				listaFiltrada = listadoDeRefugios.hogares.stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(unaFormularioMascotaPerdida)).collect(Collectors.toList());
-
-				listadaAuxiliar.addAll(listaFiltrada);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return listadaAuxiliar;
-	}*/
+		return listaFiltrada;
+	}
 
 	/**
 	 * Geocoding API
@@ -147,12 +140,12 @@ public class APIRestController {
 							direccion.getCiudad().getNombre() + ",+" +
 							direccion.getCiudad().getProvincia().getNombre();
 
-		URL url;
+		/*URL url;
 		HttpURLConnection conn;
 		BufferedReader rd;
 		String line;
 		String result = "";
-		/**try {
+		try {
 			url = new URL("http://maps.googleapis.com/maps/api/geocode/json?address=" + urlToRead + ",+CA&key=AIzaSyDexaTiS3_UA8jB3VbhIV3WvNmTWbWlmsc");
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -186,6 +179,29 @@ public class APIRestController {
 	}
 
 
-
-
 }
+
+/*
+		AdapterApiRestHogaresDeTransito serviciosRefugios = AdapterApiRestHogaresDeTransito.getInstancia();
+
+		List<String> listaDeCaracteristicas = new ArrayList<>();
+		listaDeCaracteristicas.add("manso");
+		Ubication lugar = new Ubication("Siempre Viva", -34.634306, -58.511310);
+		FormularioMascotaPerdida unaFormularioMascotaPerdida = new FormularioMascotaPerdida("Perro", "Grande", lugar, listaDeCaracteristicas);	 //ejemplo de formulario que ya no se va ausar creo --> ver la clase Hogar
+		List<Hogar> listadaAuxiliar = new ArrayList<>();
+
+		ListadoDeRefugios listadoDeRefugios;
+
+		List listaFiltrada;
+		int offset = 0;
+		try {
+			while (true) {
+				offset++;
+				listadoDeRefugios = serviciosRefugios.listadoDeRefugios(offset);
+				listaFiltrada = listadoDeRefugios.hogares.stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(unaFormularioMascotaPerdida)).collect(Collectors.toList());
+				listadaAuxiliar.addAll(listaFiltrada);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+*/

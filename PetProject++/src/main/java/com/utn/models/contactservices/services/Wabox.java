@@ -1,4 +1,4 @@
-package com.utn.contactservices.services;
+package com.utn.models.contactservices.services;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
-import com.utn.contactservices.MWhatsapp;
+import com.utn.models.contactservices.MWhatsapp;
 
 public class Wabox {
     private static MWhatsapp instancia = null;

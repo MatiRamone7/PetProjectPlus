@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.models.contactservices;
 
 import com.utn.models.users.ContactoUnico;
 

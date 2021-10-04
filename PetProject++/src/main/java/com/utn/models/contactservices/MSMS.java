@@ -1,6 +1,6 @@
-package com.utn.contactservices;
+package com.utn.models.contactservices;
 
-import com.utn.contactservices.services.Vonage;
+import com.utn.models.contactservices.services.Vonage;
 import com.utn.models.users.ContactoUnico;
 
 public class MSMS implements IMedio{

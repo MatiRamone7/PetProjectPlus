@@ -1,7 +1,6 @@
 package com.utn.models.users;
 
-import com.utn.contactservices.mensajesPredeterminados.IMensajePredet;
-
+import com.utn.models.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.forms.Direccion;
 import javax.persistence.*;
 import java.io.IOException;

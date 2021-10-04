@@ -49,6 +49,7 @@ public class AdapterApiRestHogaresDeTransito implements AdapterRefugios{
                 offset++;
 
                 listadoDeRefugios = this.listadoDeRefugios(offset);
+                
                 listadaAuxiliar.addAll(listadoDeRefugios.hogares);
             }
         }

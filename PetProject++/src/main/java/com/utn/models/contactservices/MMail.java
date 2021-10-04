@@ -1,6 +1,6 @@
-package com.utn.contactservices;
+package com.utn.models.contactservices;
 
-import com.utn.contactservices.services.JavaMail;
+import com.utn.models.contactservices.services.JavaMail;
 import com.utn.models.users.ContactoUnico;
 
 /*

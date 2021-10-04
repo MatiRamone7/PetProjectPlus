@@ -1,4 +1,4 @@
-package com.utn.contactservices.services;
+package com.utn.models.contactservices.services;
 public class Vonage {
     public void enviarMensaje(String destinatario, String cuerpo) {
     /*

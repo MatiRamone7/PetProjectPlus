@@ -1,4 +1,4 @@
-package com.utn.contactservices;
+package com.utn.models.contactservices;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

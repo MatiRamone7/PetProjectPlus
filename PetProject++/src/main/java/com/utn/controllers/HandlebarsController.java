@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+//NOMENCLATURA PARA MAPPINGS
+//TODO: JSON-> en inglés, in english  // HTML -> en español, in spanish
+
 public class HandlebarsController {
 
     @Autowired

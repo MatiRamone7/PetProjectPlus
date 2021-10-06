@@ -30,7 +30,7 @@ public class CaracteristicaService implements ICaracteristicaService{
     /**
      * Busca una caract por Id.
      *
-     * @param id caract de user a buscar
+     * @param id caract de caract. a buscar
      * @return caract existente
      */
     @Override

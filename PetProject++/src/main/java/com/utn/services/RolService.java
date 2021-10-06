@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Servicios de pets.
+ * Servicios de roles.
  *
  * @author Grupo 14
  * @see Rol
@@ -18,9 +18,9 @@ public class RolService implements IRolService{
     IRolRepo RolRepo;
 
     /**
-     * Retorna la lista de caract.
+     * Retorna la lista de rol.
      *
-     * @return lista de caract
+     * @return lista de rol
      */
     @Override
     public Iterable<Rol> GetRols() {
@@ -28,10 +28,10 @@ public class RolService implements IRolService{
     }
 
     /**
-     * Busca una caract por Id.
+     * Busca una rol por Id.
      *
-     * @param id caract de user a buscar
-     * @return caract existente
+     * @param id rol de user a buscar
+     * @return rol existente
      */
     @Override
     public Rol GetRolById(Integer id) {
@@ -39,29 +39,29 @@ public class RolService implements IRolService{
     }
 
     /**
-     * Crea un nuevo caract.
+     * Crea un nuevo rol.
      *
-     * @param Rol caract a crear
-     * @return nuevo caract
+     * @param Rol rol a crear
+     * @return nuevo rol
      */
     public Rol CreateRol(Rol c) {
         return RolRepo.CreateRol(c);
     }
 
     /**
-     * Actualiza caract existente.
+     * Actualiza rol existente.
      *
-     * @param Rol caract a actualizar
-     * @return caract actualizado
+     * @param Rol rol a actualizar
+     * @return rol actualizado
      */
     public Rol UpdateRol(Rol c, Integer id) {
         return RolRepo.UpdateRol(c, id);
     }
 
     /**
-     * Borra caract existente.
+     * Borra rol existente.
      *
-     * @param id id de caract a eliminar
+     * @param id id de rol a eliminar
      */
     public void DeleteRol(Integer id) {
         RolRepo.DeleteRol(id);

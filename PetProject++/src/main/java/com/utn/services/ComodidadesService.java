@@ -31,7 +31,7 @@ public class ComodidadesService implements IComodidadesService{
     /**
      * Busca una comodidad por Id.
      *
-     * @param id comodidad de user a buscar
+     * @param id comodidad de comodidad a buscar
      * @return comodidad existente
      */
     @Override

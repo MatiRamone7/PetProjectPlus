@@ -1,3 +1,3 @@
 function validar() {
-    window.location.href = 'inicio.html';
+    window.location.href = 'logIn.html';
   }

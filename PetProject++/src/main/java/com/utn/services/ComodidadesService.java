@@ -1,7 +1,7 @@
 package com.utn.services;
 
-import com.utn.models.users.Comodidaes.RadioDeCercania;
-import com.utn.models.users.Comodidaes.TienePatio;
+import com.utn.models.users.Comodidades.RadioDeCercania;
+import com.utn.models.users.Comodidades.TienePatio;
 import com.utn.repositories.IComodidadesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

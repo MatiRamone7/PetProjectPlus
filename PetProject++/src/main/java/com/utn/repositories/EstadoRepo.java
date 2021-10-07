@@ -5,7 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import com.utn.models.forms.Estado;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class EstadoRepo implements IEstadoRepo{
     
 	private EntityManagerFactory emf;

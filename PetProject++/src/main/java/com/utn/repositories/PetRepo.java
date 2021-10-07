@@ -25,7 +25,7 @@ public class PetRepo implements IPetRepo{
         Iterable<Mascota> aux;
 
         this.manager.getTransaction().begin();
-        aux = this.manager.createQuery("FROM Pet").getResultList();
+        aux = this.manager.createQuery("FROM Mascota ").getResultList();
         this.manager.getTransaction().commit();
 
         return aux;
@@ -36,7 +36,7 @@ public class PetRepo implements IPetRepo{
         Mascota aux;
 
         this.manager.getTransaction().begin();
-        aux = (Mascota) this.manager.createQuery("FROM Pet u WHERE u.id = " + id.toString()).getSingleResult();
+        aux = (Mascota) this.manager.createQuery("FROM Mascota u WHERE u.id = " + id.toString()).getSingleResult();
         this.manager.getTransaction().commit();
 
         return aux;
@@ -78,7 +78,7 @@ public class PetRepo implements IPetRepo{
     public void DeletePet(Integer id) {
 
         this.manager.getTransaction().begin();
-        Query query = this.manager.createQuery("delete from Pet WHERE id = " + id.toString());
+        Query query = this.manager.createQuery("delete from Mascota WHERE id = " + id.toString());
         query.executeUpdate();
         this.manager.getTransaction().commit();
 

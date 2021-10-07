@@ -1,6 +1,6 @@
 package com.utn.services;
 
-import com.utn.models.users.Comodidaes.*;
+import com.utn.models.users.Comodidades.*;
 
 public interface IComodidadesService {
     public Iterable<RadioDeCercania> GetRadioDeCercania();

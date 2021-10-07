@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import com.utn.models.users.Comodidaes.*;
+import com.utn.models.users.Comodidades.*;
 import org.springframework.stereotype.Repository;
 
 @Repository

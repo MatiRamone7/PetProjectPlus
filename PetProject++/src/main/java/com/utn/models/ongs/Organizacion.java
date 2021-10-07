@@ -1,5 +1,6 @@
 package com.utn.models.ongs;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.forms.Direccion;
 import com.utn.models.users.Usuario;
@@ -19,6 +20,7 @@ public class Organizacion {
     private String nombre;
 
     @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Usuario> voluntarios;
 
     @OneToOne(cascade=CascadeType.ALL)

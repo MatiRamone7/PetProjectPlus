@@ -1,4 +1,4 @@
-package com.utn.models.users.Comodidaes;
+package com.utn.models.users.Comodidades;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.utn.models.forms.FormularioDarEnAdopcion;

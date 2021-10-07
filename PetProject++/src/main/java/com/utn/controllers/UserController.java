@@ -23,6 +23,11 @@ public class UserController {
     @Autowired
     IUserService userService;
 
+    @GetMapping
+    public Iterable<Usuario> GetUsers() {
+        return userService.GetUsers();
+    }
+
     @GetMapping("/{id}")
     public Usuario GetUserById(@PathVariable Integer id) {
         return userService.GetUserById(id);
@@ -43,7 +48,7 @@ public class UserController {
         userService.Delete(id);
     }
 
-    @GetMapping("notificarUsuario/{id}")
+    @GetMapping("/notificarUsuario/{id}")
     public void NotifyUser(@RequestBody Map<String, Object> datos, @PathVariable Integer id) throws IOException {
         Usuario user = this.GetUserById(id);
 

@@ -1,10 +1,11 @@
 package com.utn.models.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import com.utn.models.roles.LogRol;
-import com.utn.models.users.Comodidaes.Comodidad;
+import com.utn.models.users.Comodidades.Comodidad;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -24,8 +25,9 @@ public class Usuario extends Persona {
 	@JsonManagedReference
 	private Set<Mascota> mascotas;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "organizacionId", referencedColumnName = "id")
+	//@JsonManagedReference
 	private Organizacion organizacion;
 
 	public void agregarComodidad(Comodidad comodidad){ this.comodidades.add(comodidad); }

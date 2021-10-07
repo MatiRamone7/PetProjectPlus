@@ -1,6 +1,6 @@
 package com.utn.repositories;
 
-import com.utn.models.users.Comodidaes.*;
+import com.utn.models.users.Comodidades.*;
 
 public interface IComodidadesRepo{
     /*

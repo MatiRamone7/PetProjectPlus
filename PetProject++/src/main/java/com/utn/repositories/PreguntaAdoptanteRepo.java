@@ -6,7 +6,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.utn.models.ongs.PreguntaAdoptante;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PreguntaAdoptanteRepo implements IPreguntaAdoptanteRepo{
     private EntityManagerFactory emf;
 	private EntityManager manager;

@@ -1,4 +1,4 @@
-package com.utn.models.users.Comodidaes;
+package com.utn.models.users.Comodidades;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.utn.controllers.APIRestController;
@@ -31,7 +31,7 @@ public class RadioDeCercania extends Comodidad{
     }
 
     public RadioDeCercania() {
-
+        super();
     }
 
     public double getRadio() {

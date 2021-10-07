@@ -1,5 +1,5 @@
 .prueba {
-    background: url(img/1.png);
+    background: url(../img/1.png);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -5,7 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import com.utn.models.forms.*;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class GeoRepo implements IGeoRepo{
     
 	private EntityManagerFactory emf;

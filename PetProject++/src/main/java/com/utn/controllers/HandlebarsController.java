@@ -46,6 +46,73 @@ public class HandlebarsController {
     }
 
     /**EJEMPLO DE COMO SINCRONIZAMOS HANDLEBARS CON SPRING*/
+
+
+
+    // NUEVOS HBS AGREGADOS
+    @GetMapping("Dar-en-Adopcion")
+    public String GetDarEnAdopcion() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("dar-en-adopcion");
+
+        return template.text();
+    }
+
+    @GetMapping("Detalle-Mascota-Encontrada")
+    public String GetDetalleMascotaEncontrada() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("detalle-mascota-encontrada");
+
+        return template.text();
+    }
+
+    @GetMapping("Editor-de-Formularios")
+    public String GetEditorDeFormularios() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("editor_de_formularios");
+
+        return template.text();
+    }
+
+    @GetMapping("Formulario-Quiero-Adoptar")
+    public String GetFormularioQuieroAdoptar() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("formularioQuieroAdoptar");
+
+        return template.text();
+    }
+
+    @GetMapping("Formulario-Usuario")
+    public String GetFormularioUsuario() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("formularioUsuario");
+
+        return template.text();
+    }
+
+    @GetMapping("Hogares-Transito")
+    public String GetHogaresTransito() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("hogares-transito");
+
+        return template.text();
+    }
+
+    @GetMapping("Log-In")
+    public String GetLogIn() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("logIn");
+
+        return template.text();
+    }
+
     @GetMapping("Mascota-Perdida")
     public String GetMascotasPerdidas() throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
@@ -55,14 +122,48 @@ public class HandlebarsController {
         return template.text();                   //aplicas las variables del template y las envías
     }
 
-    @GetMapping("Log-In")
-    public String GetLogIn() throws IOException {
+    @GetMapping("Mascotas-Encontradas")
+    public String GetMascotasEncontradas() throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
-        Handlebars handlebars = new Handlebars(loader);       //se crea la instancia de handlebars
-        Template template = handlebars.compile("logIn");  //se crea el template sobre el .hbs que querés enviar (ej: formularioUsuario.hbs)
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("mascotas-encontradas");
 
-        return template.text();                   //aplicas las variables del template y las envías
+        return template.text();
     }
 
+    @GetMapping("Admin-Perfiles-ONG")
+    public String GetAdminPerfilesONG() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("pantallaAdmin");
 
+        return template.text();
+    }
+
+    @GetMapping("Admin-Preguntas-ONG")
+    public String GetAdminPreguntasONG() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("pantallaAdmin2");
+
+        return template.text();
+    }
+
+    @GetMapping("Perfil-Usuario")
+    public String GetPerfilUsuario() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("perfil");
+
+        return template.text();
+    }
+
+    @GetMapping("Registrar-Mascota")
+    public String GetRegistrarMascota() throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("registrarMascota");
+
+        return template.text();
+    }
 }

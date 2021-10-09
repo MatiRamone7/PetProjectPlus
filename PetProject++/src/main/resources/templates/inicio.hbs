@@ -16,32 +16,32 @@
   <!--========================================================== -->
                         <!-- ENCABEZADO -->
   <!--========================================================== -->
-  <nav class="navbar navbar-expand-lg navbar-light p-3"  id="menu" style="background-image: url('img/banner.PNG');  height: 110px">
+    <nav class="navbar navbar-expand-lg navbar-light p-3"  id="menu" style="background-image: url('img/banner.PNG');  height: 110px">
       <a class="navbar-brand" rel="home" href="#">
         <img style="max-width:100px;"
             src="./img/Logo/negro2.png">
       </a>
-    </div>
-    <div class="container">
-      <a class="navbar-brand" href="./inicio.html">
-          <span class="fs-5 text-dark fw-bold">Rescate De Patitas</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="container">
+        <a class="navbar-brand" href="#">
+            <span class="fs-5 text-dark fw-bold">Rescate De Patitas</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../Mascotas-Encontradas">Mascotas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#intro">Sistema</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#seccion-contacto">Contactos</a>
+            </li>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#servicios-mascotas">Mascotas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#seccion-contacto">Contactos</a>
-          </li>
-        </ul>
-          <form class="d-flex">
-            <button class="btn btn-dark" type="button" onclick="location.href = 'logIn.html';">LogIn</button>
-          </form>
+          </ul>
+          <a href="perfil.html"class="nav-item nav-link" aria-expanded="false"><img src="img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
         </div>
       </div>
     </nav>
@@ -86,7 +86,7 @@
     <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-50 m-auto" id="intro">
       <h1 class="p-3 fs-2 border-top border-3">Encontra una mascota para tu hogar</h1>
        <p class="p-3  fs-4">
-        <span class="text" style="color: blueviolet;">Rescate de patitas</span> es una organizacion sin fines de lucro que busca poder rescatar, rehabilitar y luego dar en adopción aquellos perros, gatos abandonados o maltratados     
+           <span class="text" style="color: blueviolet;">Rescate de patitas</span> es una organizacion sin fines de lucro que busca poder rescatar, rehabilitar y luego dar en adopción aquellos perros, gatos abandonados o maltratados     
        </p>   
       </section>
 
@@ -162,39 +162,39 @@
                       <!-- CONTENEDOR DEL FORMULARIO -->
 <!--========================================================== -->
 
-  <div class="container  border-top" style="max-width: 400px; color: blueviolet;" id="contenedor-formulario">
-      <div class="text-center mb-4" id="titulo-formulario">
-        <div></div>
-        <h2>Contactanos</h2>
+<div class="container  border-top" style="max-width: 400px; color: blueviolet;" id="contenedor-formulario">
+  <div class="text-center mb-4" id="titulo-formulario">
+    <div></div>
+    <h2>Contactanos</h2>
+  </div>
+
+ 
+
+  <form action="">     
+        <div class= "mb-3">           
+          <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
+        </div>
+
+      
+        <div class="mb-3">            
+          <input type="input" class="form-control" id="nombre" placeholder="Adrian Sanchez">
+        </div>
+  
+
+        <div class="mb-3">
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Teléfono">
+        </div>
+
+      <div class="mb-3">       
+        <textarea class="form-control" id="msj" rows="4"></textarea>
       </div>
 
-     
+      <div class="mb-3">
+        <button type="button" class=" btn btn-dark w-100 fs-5" style="background-color: blueviolet;">Enviar Mensaje</button>
+      </div>
+  </form>
 
-      <form action="">     
-            <div class= "mb-3">           
-              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
-            </div>
- 
-          
-            <div class="mb-3">            
-              <input type="input" class="form-control" id="nombre" placeholder="Adrian Sanchez">
-            </div>
-      
-
-            <div class="mb-3">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Teléfono">
-            </div>
-
-          <div class="mb-3">       
-            <textarea class="form-control" id="msj" rows="4"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <button type="button" class=" btn btn-dark w-100 fs-5" style="background-color: blueviolet;">Enviar Mensaje</button>
-          </div>
-      </form>
-  
-  </div>
+</div>
 </section>
 
 

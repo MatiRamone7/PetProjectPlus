@@ -8,6 +8,8 @@ public interface IGeoService {
 
         public Ciudad GetCiudadById(Integer id);
 
+        public Iterable<Ciudad> GetCiudades();
+
         public Ciudad CreateCiudad(Ciudad c);
     
         public Ciudad UpdateCiudad(Ciudad c, Integer id);
@@ -17,6 +19,8 @@ public interface IGeoService {
         //PROVINCIA
     
         public Provincia GetProvinciaById(Integer id);
+
+        public Iterable<Provincia> GetProvincias();
     
         public Provincia CreateProvincia(Provincia p);
     

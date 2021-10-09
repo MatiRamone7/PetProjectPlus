@@ -30,6 +30,10 @@ public class GeoService implements IGeoService{
         return GeoRepo.GetCiudadById(id);
     }
 
+    public Iterable<Ciudad> GetCiudades(){
+        return GeoRepo.GetCiudades();
+    }
+
     /**
      * Crea un nuevo lugar.
      *
@@ -74,6 +78,10 @@ public class GeoService implements IGeoService{
     @Override
     public Provincia GetProvinciaById(Integer id) {
         return GeoRepo.GetProvinciaById(id);
+    }
+
+    public Iterable<Provincia> GetProvincias(){
+        return GeoRepo.GetProvincias();
     }
 
     /**

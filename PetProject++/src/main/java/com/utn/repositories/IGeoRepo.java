@@ -6,6 +6,8 @@ import com.utn.models.forms.Provincia;
 public interface IGeoRepo {
     //CIUDAD
 
+    public Iterable<Ciudad> GetCiudades();
+
     public Ciudad GetCiudadById(Integer id);
 
     public Ciudad CreateCiudad(Ciudad c);
@@ -15,6 +17,8 @@ public interface IGeoRepo {
     public void DeleteCiudad(Integer id);
 
     //PROVINCIA
+
+    public Iterable<Provincia> GetProvincias();
 
     public Provincia GetProvinciaById(Integer id);
 

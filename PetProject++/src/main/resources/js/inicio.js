@@ -1,7 +1,7 @@
 function login() {
-    window.location.href = 'index.html';
+    window.location.href = 'inicio.html';
   }
 
 function registrarse() {
-  window.location.href = 'formularioUsuario.hbs';
+  window.location.href = 'formularioUsuario';
 }

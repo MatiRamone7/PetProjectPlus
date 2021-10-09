@@ -19,6 +19,17 @@ public class GeoRepo implements IGeoRepo{
 	}
 
     @Override
+    public Iterable<Ciudad> GetCiudades(){
+        Iterable<Ciudad> aux;
+
+        this.manager.getTransaction().begin();
+        aux = this.manager.createQuery("FROM Ciudad").getResultList();
+        this.manager.getTransaction().commit();
+
+        return aux;
+    }
+
+    @Override
     public Ciudad GetCiudadById(Integer id) {
         Ciudad aux;
 
@@ -62,7 +73,17 @@ public class GeoRepo implements IGeoRepo{
     }
 
 
+/** PROVINCIAS */
+    @Override
+    public Iterable<Provincia> GetProvincias(){
+        Iterable<Provincia> aux;
 
+        this.manager.getTransaction().begin();
+        aux = this.manager.createQuery("FROM Provincia").getResultList();
+        this.manager.getTransaction().commit();
+
+        return aux;
+    }
 
     @Override
     public Provincia GetProvinciaById(Integer id) {

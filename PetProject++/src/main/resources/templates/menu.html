@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Hello World!</title>
+</head>
+<body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>  <!-- indica que usuario esta logeado -->
+<form th:action="@{/logout}" method="post"> <!-- lleva al log out de la aplicacion , esto lo pone spring security automatico-->
+  <input type="submit" value="Cerrar Sesion"/>
+</form>
+<h1><a th:href="@{/admin}"> pantallaAdmin</a> | <a th:href="@{/user}"> perfil</a></h1>
+</body>
+</html>

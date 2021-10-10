@@ -5,10 +5,7 @@ import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.mascotas.Mascota;
-import com.utn.services.IFormService;
-import com.utn.services.IGeoService;
-import com.utn.services.IPetService;
-import com.utn.services.IUserService;
+import com.utn.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +35,9 @@ public class HandlebarsController {
 
     @Autowired
     IGeoService geoService;
+
+    @Autowired
+    ICaracteristicaService caracteristicaService;
 
 
     @GetMapping("Adopcion-de-Mascotas")
@@ -121,8 +121,11 @@ public class HandlebarsController {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);       //se crea la instancia de handlebars
         Template template = handlebars.compile("mascotaPerdida");  //se crea el template sobre el .hbs que querés enviar (ej: formularioUsuario.hbs)
+        Map<String, Object> model = new HashMap<>();
+        model.put("provincias", geoService.GetProvincias());
+        model.put("caracteristicas", caracteristicaService.GetCaracteristicas());
 
-        return template.text();                   //aplicas las variables del template y las envías
+        return template.apply(model);                   //aplicas las variables del template y las envías
     }
 
     @GetMapping("Mascotas-Encontradas")

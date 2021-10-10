@@ -51,7 +51,7 @@ public class OngRepo implements IOngRepo{
         ongToUpdate.setVoluntarios(ong.getVoluntarios());
         ongToUpdate.setDireccion(ong.getDireccion());
         ongToUpdate.setEspecificacionesFotos(ong.getEspecificacionesFotos());
-        ongToUpdate.setPreguntasIntencionDeAdopcion(ong.getPreguntasIntencionDeAdopcion());
+        ongToUpdate.setPreguntasDarEnAdopcion(ong.getPreguntasDarEnAdopcion());
         this.manager.flush();
         this.manager.getTransaction().commit();
 

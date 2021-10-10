@@ -59,6 +59,7 @@ public class CaracteristicaRepo implements ICaracteristicaRepo{
 
         this.manager.getTransaction().begin();
         caractToUpdate.setDescripcion(c.getDescripcion());
+        caractToUpdate.setOpciones(c.getOpciones());
         this.manager.flush();
         this.manager.getTransaction().commit();
 

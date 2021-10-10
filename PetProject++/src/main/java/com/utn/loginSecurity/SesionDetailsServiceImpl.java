@@ -17,13 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SesionDetailsServiceImpl implements UserDetailsService {
 
-  //  @Autowired
+    @Autowired
     SesionRepository sesionRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        //Buscar el usuario con el repositorio y si no existe lanzar una exepcion
         Sesion appSesion =
                 sesionRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 

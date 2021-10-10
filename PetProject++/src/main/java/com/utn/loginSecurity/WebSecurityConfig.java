@@ -25,31 +25,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
                 .antMatchers("/","/index").permitAll()
-                .antMatchers("/admin*").access("hasRole('ADMIN')")
-                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')")
-                .anyRequest().authenticated()
-                .and()
+                .antMatchers("/Inicio*").permitAll()
+                .antMatchers("/Mascota-Perdida*").permitAll()
+                .antMatchers("/Formulario-Usuario*").permitAll()
+
+                .antMatchers("/Hogares-Transito*").access("hasRole('ADMIN')")
+                .antMatchers("/Editor-de-Formularios*").access("hasRole('ADMIN')")
+                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')")
+                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')")
+                .antMatchers("/Mascotas-Encontradas*").access("hasRole('ADMIN') or hasRole('VOLUNTARIO')")
+
+                .antMatchers("/Adopcion-de-Mascotas*").access("hasRole('USER')")
+                .antMatchers("/Registrar-Mascota*").access("hasRole('USER')")
+                .antMatchers("/Dar-en-Adopcion*").access("hasRole('USER')")
+                .antMatchers("/Formulario-Quiero-Adoptar*").access("hasRole('USER')")
+                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN') or hasRole('VOLUNTARIO')")
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/menu")
-                .failureUrl("/login?error=true")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and()
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/menu")
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/login?logout");
+                    .permitAll()
+                    .logoutSuccessUrl("/");
     }
     BCryptPasswordEncoder bCryptPasswordEncoder;
-    //Crea el encriptador de contraseñas
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-//El numero 4 representa que tan fuerte quieres la encriptacion.
-//Se puede en un rango entre 4 y 31.
-//Si no pones un numero el programa utilizara uno aleatoriamente cada vez
-//que inicies la aplicacion, por lo cual tus contrasenas encriptadas no funcionaran bien
+        //El numero 4 representa que tan fuerte quieres la encriptacion.
+
         return bCryptPasswordEncoder;
     }
 

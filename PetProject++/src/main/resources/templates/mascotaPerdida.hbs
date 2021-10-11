@@ -50,7 +50,7 @@
         <h1>Mascota Perdida</h1>
         <div class="row mt-4">
             <div class="col-12">
-                <form action="">
+                <form action="../forms/mascotaPerdida" method="post">
                     <div class="row">
                         <div class="col-6">
                             <label for="nombre" class="form-label "> Nombre</label>
@@ -230,37 +230,26 @@
                                 </div>
                             </div>
                             <br>
+
                             <div class="row">
-                                <label for="" class="form-label">Caracteristicas</label>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="Tranquilo" name="caracteristicasHogares" id="Tranquilo">
-                                    <label class="form-check-label" for="Tranquilo">
-                                      Tranquilo
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="Pacífico" name="caracteristicasHogares" id="Pacifico">
-                                    <label class="form-check-label" for="Pacifico">
-                                      Pacifico
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="Manso" name="caracteristicasHogares" id="Manso">
-                                    <label class="form-check-label" for="Manso">
-                                      Manso
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="Delgado" name="caracteristicasHogares" id="Delgado">
-                                    <label class="form-check-label" for="Delgado">
-                                      Delgado
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="Amistoso" name="caracteristicasHogares" id="Amistoso">
-                                    <label class="form-check-label" for="Amistoso">
-                                      Amistoso
-                                    </label>
+                                <div class="col-12">
+                                    <label for="" class="form-label">Caracteristicas</label>
+                                    <ul style="list-style: none">
+                                        <li><input class="form-check-input" type="checkbox" value="Tranquilo" name="Tranquilo" id="Tranquilo">
+                                            <label class="form-check-label" for="Tranquilo">Tranquilo</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Pacífico" name="Pacifico" id="Pacifico">
+                                            <label class="form-check-label" for="Pacifico">Pacífico</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Manso" name="Manso" id="Manso">
+                                            <label class="form-check-label" for="Manso">Manso</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Delgado" name="Delgado" id="Delgado">
+                                            <label class="form-check-label" for="Delgado">Delgado</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Amistoso" name="Amistoso" id="Amistoso">
+                                            <label class="form-check-label" for="Amistoso">Amistoso</label></li>
+                                    </ul>
                                 </div>
                             </div>
                             <br>
@@ -269,7 +258,7 @@
                                 {{#each caracteristicas}}
                                     <label for="" class="form-label">{{descripcion}}</label>
                                     {{#if opciones}}
-                                        <select class="form-select" name="sexo">
+                                        <select class="form-select" name="{{descripcion}}">
                                             <option value="null">Desconoce</option>
                                         {{#each opciones}}
                                             <option value="{{valor}}">{{valor}}</option>
@@ -281,11 +270,11 @@
                                 {{/each}}
                             </div>
                             <br>
-                            <label for=" " class="form-label "> Descripcion de la mascota</label>
-                            <textarea name="" id="" class="form-control"></textarea>
+                            <label for="descripcion" class="form-label "> Descripcion de la mascota</label>
+                            <textarea id="descripcion" class="form-control" name="descripcion"></textarea>
                             <br>
-                            <label for="exampleFormControlInput1 " class="form-label ">Direccion donde se encontro</label>
-                            <input type="text " class="form-control ">
+                            <label for="direccionEncontrada " class="form-label ">Direccion donde se encontro</label>
+                            <input type="text " class="form-control " name="lugarEncuentroMascota" id="direccionEncontrada">
                             <div class="row mt-5">
                                 <div class="col-12 d-flex justify-content-center">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3035.277999585691!2d-58.52786464485551!3d-34.49496291787473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1629774484236!5m2!1ses-419!2sar" width="450" height="350" style="border:0;"
@@ -295,7 +284,7 @@
                             <div class="row mt-6">
                                 <div class="col-12 d-flex justify-content-center">
                                     <div>
-                                        <button type="button" class="col-12 btn btn-secondary mb-3 mt-5" onclick="enviar()" style="background-color: blueviolet;">Enviar</button>
+                                        <button type="submit" class="col-12 btn btn-secondary mb-3 mt-5" onclick="enviar()" style="background-color: blueviolet;">Enviar</button>
                                     </div>
                                 </div>
                             </div>

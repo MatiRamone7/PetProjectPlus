@@ -89,4 +89,10 @@ INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 ('No', 7),
 (null, 7);
 
-INSERT INTO Authority (authority) VALUES ('ADMIN'), ('USER'), ('VOLUNTARIO');
+ INSERT INTO Authority (authority) VALUES ('ADMIN'), ('USER'), ('VOLUNTARIO');
+
+ INSERT INTO sesion (enabled,password,username) VALUES 
+(1,'$2a$04$N/AOZpRELtGEPeDwJoI8wuT9O1qbZbnnoLc1tnTQWEhFkmpFJ6WTG', 'administrador'),
+(1,'$2a$04$N/AOZpRELtGEPeDwJoI8wuT9O1qbZbnnoLc1tnTQWEhFkmpFJ6WTG', 'usuario');
+
+INSERT INTO authorities_users (usuario_id, authority_id) VALUES (1,1), (2,2);

@@ -24,7 +24,10 @@ public class SesionDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        System.out.println("123456789");
         Sesion appSesion = sesionRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
+        System.out.println("USERNAME" + appSesion.getUsername());
+        System.out.println("PASS" + appSesion.getPassword());
 
         //Mapear nuestra lista de Authority con la de spring security
         List grantList = new ArrayList();
@@ -36,6 +39,9 @@ public class SesionDetailsServiceImpl implements UserDetailsService {
 
         //Crear El objeto UserDetails que va a ir en sesion y retornarlo.
         UserDetails sesion = (UserDetails) new User(appSesion.getUsername(), appSesion.getPassword(), grantList);
+
+        System.out.println("USERDETAILS NAME" + sesion.getUsername());
+        System.out.println("USERDETAILS PASS" + sesion.getPassword());
         return sesion;
     }
 }

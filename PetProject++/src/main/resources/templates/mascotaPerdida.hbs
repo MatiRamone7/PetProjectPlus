@@ -259,13 +259,13 @@
                                     <label for="" class="form-label">{{descripcion}}</label>
                                     {{#if opciones}}
                                         <select class="form-select" name="{{descripcion}}">
-                                            <option value="null">Desconoce</option>
+                                            <option value="">Desconoce</option>
                                         {{#each opciones}}
                                             <option value="{{valor}}">{{valor}}</option>
                                         {{/each}}
                                         </select>
                                     {{else}}
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="{{descripcion}}">
                                     {{/if}}
                                 {{/each}}
                             </div>

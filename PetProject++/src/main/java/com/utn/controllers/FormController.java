@@ -1,9 +1,13 @@
 package com.utn.controllers;
 
 import com.utn.models.forms.*;
+import com.utn.models.mascotas.Caracteristica;
+import com.utn.models.mascotas.CaracteristicaPet;
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.users.ContactoUnico;
 import com.utn.models.users.Sesion;
 import com.utn.models.users.TipoDocumento;
+import com.utn.services.ICaracteristicaService;
 import com.utn.services.IFormService;
 import com.utn.services.IPetService;
 import com.utn.transithomes.Hogar;
@@ -13,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/forms")
@@ -29,6 +31,9 @@ public class FormController {
 
     @Autowired
     IPetService petService;
+
+    @Autowired
+    ICaracteristicaService caracteristicaService;
 
     public FormController(IFormService formService) {
         this.formService = formService;
@@ -53,9 +58,9 @@ public class FormController {
     public void CreateFormMascotaPerdida(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
         FormularioMascotaPerdida form = new FormularioMascotaPerdida();
 
-        System.out.println(body.get("caracteristicasHogares"));
 
-        form.setCaracteristicasDeLaPublicacionDelHogar(Hogar.asignarCaracteristicasHogar(body));
+
+
 
 
         form.setNombre(body.get("nombre"));
@@ -89,19 +94,35 @@ public class FormController {
 
         ContactoUnico contacto = new ContactoUnico(body.get("contacto.mail"), body.get("contacto.celular"));
         form.setContacto(contacto);
-        List<String> caracteristicasHogar = new ArrayList<>();
+        form.setCaracteristicasDeLaPublicacionDelHogar(Hogar.asignarCaracteristicasHogar(body));
 
-
-        if(body.get("mascota") != null){
+        if(!body.get("mascota").isEmpty()){
             form.setMascota(petService.GetPetById(Integer.valueOf(body.get("mascota"))));
         }
         else{
+            form.setEspecie(Mascota.Especie.valueOf(body.get("especie")));
+            form.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
+
+            Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
+            Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
+            for(Caracteristica caracteristica : caracteristicas){
+                if(!body.get(caracteristica.getDescripcion()).isEmpty()) {
+                    CaracteristicaPet caracteristicaPet = new CaracteristicaPet();
+                    Caracteristica caract = new Caracteristica();
+                    caract.setId(caracteristica.getId());
+                    caracteristicaPet.setTipoCaracteristica(caract);
+                    caracteristicaPet.setValor(body.get(caracteristica.getDescripcion()));
+                    caracteristicasPets.add(caracteristicaPet);
+                }
+            }
+            form.setCaracteristicas(caracteristicasPets);
 
         }
 
+        form.setDescripcion(body.get("descripcion"));
+        //form.setLugarEncuentroMascota(body.get("lugarEncuentroMascota"));
 
-
-        //formService.CreateFormMascotaPerdida(form);
+        formService.CreateFormMascotaPerdida(form);
         response.sendRedirect("/Inicio");
     }
 

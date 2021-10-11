@@ -30,7 +30,7 @@ public class TienePatio extends Comodidad{
             return false;
         }
 
-        String tamanio = caracteristica.getvalor();
+        String tamanio = caracteristica.getValor();
         if(tamanio == "Grande" || tamanio == "Mediano") {return this.patio;}
 
         return true;

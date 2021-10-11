@@ -21,12 +21,12 @@ public abstract class PersonaFormulario{
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="contactoID", referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "contactoId")
     private ContactoUnico contacto;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="direccionID", referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "direccionId")
     private Direccion direccion;
 
     @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")

@@ -19,7 +19,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private String descripcion;
 
     @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "direccionID", insertable = false, updatable = false)
+    @JoinColumn(name = "lugarEncuentroMascotaID", insertable = false, updatable = false)
     private Direccion lugarEncuentroMascota;
 
     @Transient
@@ -121,7 +121,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
         if(caracteristica == null){
             return "";
         }
-        return caracteristica.getvalor();
+        return caracteristica.getValor();
     }
 
 

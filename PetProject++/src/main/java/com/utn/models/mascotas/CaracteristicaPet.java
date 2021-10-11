@@ -11,18 +11,26 @@ public class CaracteristicaPet{
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "caracteristicaPetId", referencedColumnName = "id")
     public Caracteristica tipoCaracteristica;
 
     @Column(name = "valor")
     public String valor;
 
-    public String getvalor() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getValor() {
         return valor;
     }
 
-    public void setvalor(String valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 

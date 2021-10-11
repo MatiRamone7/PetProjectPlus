@@ -11,7 +11,9 @@ DROP TABLE dbo.preguntaRespuestaAdoptante
 DROP TABLE dbo.preguntasAdopcion
 DROP TABLE dbo.rolPermiso
 DROP TABLE dbo.rol
+DROP TABLE dbo.opcionesCaracteristicas
 DROP TABLE dbo.caracteristica
+
 
 DROP TABLE dbo.formularioDarEnAdopcion
 DROP TABLE dbo.formularioIntencionDeAdopcion

@@ -43,6 +43,13 @@ public class UserController {
         return userService.Create(user);
     }
 
+/*
+    @RequestMapping(method = RequestMethod.POST,
+            consumes = {"application/x-www-form-urlencoded"})
+    public void Creates(@RequestBody Usuario user) {
+        userService.Create(user);
+    }*/
+
     @PostMapping
     public void Create(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
         Usuario user = new Usuario();

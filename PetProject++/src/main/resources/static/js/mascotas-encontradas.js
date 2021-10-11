@@ -1,3 +1,3 @@
 function encontreUnaMascota() {
-    window.location.href = 'mascotaPerdida.html';
+    window.location.href = 'Mascota-Perdida';
   }

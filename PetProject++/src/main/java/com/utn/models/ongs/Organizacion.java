@@ -33,7 +33,7 @@ public class Organizacion {
 
     @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private Set<PreguntaAdoptante> preguntasIntencionDeAdopcion;
+    private Set<PreguntaAdoptante> preguntasDarEnAdopcion;
 
     public Integer getId() {
         return id;
@@ -70,13 +70,13 @@ public class Organizacion {
     public void agregarPreguntaAdopcion(String pregunta){
         PreguntaAdoptante nPregunta = new PreguntaAdoptante();
         nPregunta.setPregunta(pregunta);
-        preguntasIntencionDeAdopcion.add(nPregunta);
+        preguntasDarEnAdopcion.add(nPregunta);
     }
 
     public void quitarPreguntaAdopcion(String pregunta){
-        for (PreguntaAdoptante unaPregunta : preguntasIntencionDeAdopcion){
+        for (PreguntaAdoptante unaPregunta : preguntasDarEnAdopcion){
             if (unaPregunta.getPregunta().equals(pregunta)){
-                preguntasIntencionDeAdopcion.remove(unaPregunta);
+                preguntasDarEnAdopcion.remove(unaPregunta);
             }
         }
     }
@@ -89,12 +89,12 @@ public class Organizacion {
         this.direccion = direccion;
     }
 
-    public Set<PreguntaAdoptante> getPreguntasIntencionDeAdopcion() {
-        return preguntasIntencionDeAdopcion;
+    public Set<PreguntaAdoptante> getPreguntasDarEnAdopcion() {
+        return preguntasDarEnAdopcion;
     }
 
-    public void setPreguntasIntencionDeAdopcion(Set<PreguntaAdoptante> preguntasIntencionDeAdopcion) {
-        this.preguntasIntencionDeAdopcion = preguntasIntencionDeAdopcion;
+    public void setPreguntasDarEnAdopcion(Set<PreguntaAdoptante> preguntasIntencionDeAdopcion) {
+        this.preguntasDarEnAdopcion = preguntasIntencionDeAdopcion;
     }
 
     public Set<Usuario> getVoluntarios() {

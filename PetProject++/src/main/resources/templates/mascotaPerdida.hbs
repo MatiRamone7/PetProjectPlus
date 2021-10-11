@@ -50,49 +50,151 @@
         <h1>Mascota Perdida</h1>
         <div class="row mt-4">
             <div class="col-12">
-                <form action="">
+                <form action="../forms/mascotaPerdida" method="post">
                     <div class="row">
                         <div class="col-6">
-                            <label for="" class="form-label "> Nombre</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label "> Apellido</label>
-                            <input type="text" class="form-control">
-                            <label for="Fecha" class="form-label ">Fecha de nacimiento</label>
-                            <input type="date" class="form-control">
+                            <label for="nombre" class="form-label "> Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre">
+                            <label for="apellido" class="form-label "> Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido">
+                            <label for="fechaNacimiento" class="form-label ">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
                         </div>
                         <div class="col-6">
-                            <label for="" class="form-label "> Tipo de Documento</label>
-                            <select name="dni" id="" class="form-select">
-                                <option value="dni">Dni</option>
-                                <option value="dni">Dni</option>
-                                <option value="dni">Dni</option>
+                            <label for="tipoDocumento" class="form-label "> Tipo de Documento</label>
+                            <select name="tipoDocumento" id="tipoDocumento" class="form-select">
+                                <option value="DNI">DNI</option>
+                                <option value="PASAPORTE">Pasaporte</option>
+                                <option value="PRECARIA">Precaria</option>
                             </select>
-                            <label for="" class="form-label mt-2 "> Numero</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label "> Direccion</label>
-                            <input type="text" class="form-control">
+                            <label for="nroDocumento" class="form-label mt-2 "> Numero de Documento</label>
+                            <input type="text" class="form-control" name="nroDocumento" id="nroDocumento">
                         </div>
                     </div>
                     <h3 class="mt-4">Datos de Contacto</h3>
                     <div class="row border-top border-secondary">
+                        <div class="row mt-3">
+                            <div class="col-6">
 
-                        <div class="col-12 ">
-                            <label for="exampleFormControlInput1 " class="form-label ">Email </label>
-                            <input type="email " class="form-control " id="exampleFormControlInput1 " placeholder="nombre@ejemplo.com ">
-                            <label for=" " class="form-label "> Telefono</label>
-                            <input type="text " class="form-control" placeholder="ej:12345678">
-                            <label for="Fecha" class="form-label ">Preferencia de contacto</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hembra">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  telefono
-                                </label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Calle</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="direccion.calle">
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  mail
-                                </label>
+                            <div class="col-6">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Numero</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="direccion.numero">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Departamento, Municipio o Comuna</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="direccion.departamento">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Codigo postal</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="direccion.codigoPostal">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Ciudad</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="direccion.ciudad.nombre">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="calle" class="form-label">Provincia</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="direccion.ciudad.provincia.id" id="" class="form-select">
+                                            <option value="none" selected disabled hidden>
+                                                Select an Option
+                                            </option>
+                                            {{#each provincias}}
+                                                <option value="{{id}}">{{nombre}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="row ">
+                                    <div class="col-3">
+                                        <label for="" class="form-label">
+                                            Telefono*
+                                        </label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" name="contacto.celular">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="row ">
+                                    <div class="col-3">
+                                        <label for="" class="form-label">
+                                            Correo*
+                                        </label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Ejemplo@gmail.com" name="contacto.mail">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -100,11 +202,19 @@
                     <div class="row border-top border-secondary">
                         <div class="col-12 ">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-4">
                                     <label for="" class="form-label ">Especie</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="especie">
                                         <option value="PERRO">Perro</option>
                                         <option value="GATO">Gato</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="" class="form-label ">Sexo</label>
+                                    <select class="form-select" name="sexo">
+                                        <option value="null">Desconoce</option>
+                                        <option value="MACHO">Macho</option>
+                                        <option value="HEMBRA">Hembra</option>
                                     </select>
                                 </div>
                             </div>
@@ -116,84 +226,55 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="" class="form-label "> ID Mascota</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="mascota">
                                 </div>
                             </div>
                             <br>
+
                             <div class="row">
-                                <label for="" class="form-label">Sexo</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hembra" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                      Hembra
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                      Macho
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Desconoce" >
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                      Desconoce
-                                    </label>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <label for="" class="form-label">Caracteristicas</label>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Tranquilo
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Pacifico
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Manso
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Delgado
-                                    </label>
-                                </div>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Amistoso
-                                    </label>
+                                <div class="col-12">
+                                    <label for="" class="form-label">Caracteristicas</label>
+                                    <ul style="list-style: none">
+                                        <li><input class="form-check-input" type="checkbox" value="Tranquilo" name="Tranquilo" id="Tranquilo">
+                                            <label class="form-check-label" for="Tranquilo">Tranquilo</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Pacífico" name="Pacifico" id="Pacifico">
+                                            <label class="form-check-label" for="Pacifico">Pacífico</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Manso" name="Manso" id="Manso">
+                                            <label class="form-check-label" for="Manso">Manso</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Delgado" name="Delgado" id="Delgado">
+                                            <label class="form-check-label" for="Delgado">Delgado</label></li>
+
+                                        <li><input class="form-check-input" type="checkbox" value="Amistoso" name="Amistoso" id="Amistoso">
+                                            <label class="form-check-label" for="Amistoso">Amistoso</label></li>
+                                    </ul>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <h3>Caracteristicas especificas</h3>
-                                <label for="" class="form-label">Raza</label>
-                                <input type="text" class="form-control">
-                                <label for="" class="form-label">Color Principal</label>
-                                <input type="text" class="form-control">
-                                <label for="" class="form-label">Color Secundario</label>
-                                <input type="text" class="form-control">
-                                <label for="" class="form-label">Patrondistintivo</label>
-                                <input type="text" class="form-control">
-
+                                {{#each caracteristicas}}
+                                    <label for="" class="form-label">{{descripcion}}</label>
+                                    {{#if opciones}}
+                                        <select class="form-select" name="{{descripcion}}">
+                                            <option value="null">Desconoce</option>
+                                        {{#each opciones}}
+                                            <option value="{{valor}}">{{valor}}</option>
+                                        {{/each}}
+                                        </select>
+                                    {{else}}
+                                        <input type="text" class="form-control">
+                                    {{/if}}
+                                {{/each}}
                             </div>
                             <br>
-                            <label for=" " class="form-label "> Descripcion de la mascota</label>
-                            <textarea name="" id="" class="form-control"></textarea>
+                            <label for="descripcion" class="form-label "> Descripcion de la mascota</label>
+                            <textarea id="descripcion" class="form-control" name="descripcion"></textarea>
                             <br>
-                            <label for="exampleFormControlInput1 " class="form-label ">Direccion donde se encontro</label>
-                            <input type="text " class="form-control ">
+                            <label for="direccionEncontrada " class="form-label ">Direccion donde se encontro</label>
+                            <input type="text " class="form-control " name="lugarEncuentroMascota" id="direccionEncontrada">
                             <div class="row mt-5">
                                 <div class="col-12 d-flex justify-content-center">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3035.277999585691!2d-58.52786464485551!3d-34.49496291787473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1629774484236!5m2!1ses-419!2sar" width="450" height="350" style="border:0;"
@@ -203,7 +284,7 @@
                             <div class="row mt-6">
                                 <div class="col-12 d-flex justify-content-center">
                                     <div>
-                                        <button type="button" class="col-12 btn btn-secondary mb-3 mt-5" onclick="enviar()" style="background-color: blueviolet;">Enviar</button>
+                                        <button type="submit" class="col-12 btn btn-secondary mb-3 mt-5" onclick="enviar()" style="background-color: blueviolet;">Enviar</button>
                                     </div>
                                 </div>
                             </div>

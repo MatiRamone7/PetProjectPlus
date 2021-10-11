@@ -25,7 +25,10 @@ DROP TABLE dbo.permiso
 DROP TABLE dbo.usuario
 DROP TABLE dbo.organizacion
 DROP TABLE dbo.caracteristicasFoto
+DROP TABLE dbo.authorities_users
 DROP TABLE dbo.sesion
+DROP TABLE dbo.Authority
+DROP TABLE dbo.hibernate_sequence
 DROP TABLE dbo.contacto
 DROP TABLE dbo.direccion
 DROP TABLE dbo.ciudad

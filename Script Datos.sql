@@ -88,3 +88,5 @@ INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 ('Si', 7),
 ('No', 7),
 (null, 7);
+
+INSERT INTO Authority (authority) VALUES ('ADMIN'), ('USER'), ('VOLUNTARIO');

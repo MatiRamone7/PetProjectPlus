@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
                 .antMatchers("/","/index2").permitAll() //HTML
-                .antMatchers("/Sign-up*").permitAll() //anotar como en el formulario
+                .antMatchers("/Sign-Up*").permitAll() //anotar como en el formulario
                 .antMatchers("/Mascota-Perdida*").permitAll() //TODO probar en localhost como se ve esquina superior, logeado vs no 
                 .antMatchers("/Hogares-Transito*").permitAll()
                 .antMatchers("/Formulario-Usuario*").permitAll()
@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                     .loginPage("/login")
                     .permitAll()
                     .defaultSuccessUrl("/menu")
-                    .failureUrl("/login?error=true")
+                    .failureUrl("/Mascota-Perdida") //TODO cambiar
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .and()

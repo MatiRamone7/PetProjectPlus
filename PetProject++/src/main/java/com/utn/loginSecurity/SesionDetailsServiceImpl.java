@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 public class SesionDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    SesionRepository sesionRepository;
+    ISesionRepositoryAlt sesionRepository;
+    //SesionRepository sesionRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

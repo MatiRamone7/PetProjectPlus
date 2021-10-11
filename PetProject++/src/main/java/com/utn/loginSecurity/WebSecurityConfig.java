@@ -24,24 +24,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
-                .antMatchers("/","/index").permitAll()
-                .antMatchers("/Inicio*").permitAll()
-                .antMatchers("/Mascota-Perdida*").permitAll()
+                .antMatchers("/","/index2").permitAll() //HTML
+                .antMatchers("/Sign-up*").permitAll() //anotar como en el formulario
+                .antMatchers("/Mascota-Perdida*").permitAll() //TODO probar en localhost como se ve esquina superior, logeado vs no 
+                .antMatchers("/Hogares-Transito*").permitAll()
                 .antMatchers("/Formulario-Usuario*").permitAll()
-
-                .antMatchers("/Hogares-Transito*").access("hasRole('ADMIN')")
+                
                 .antMatchers("/Editor-de-Formularios*").access("hasRole('ADMIN')")
-                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')")
-                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')")
-                .antMatchers("/Mascotas-Encontradas*").access("hasRole('ADMIN') or hasRole('VOLUNTARIO')")
-
+                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')") //pantallaAdmin
+                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')") //pantallaAdmin2
+                
                 .antMatchers("/Adopcion-de-Mascotas*").access("hasRole('USER')")
                 .antMatchers("/Registrar-Mascota*").access("hasRole('USER')")
                 .antMatchers("/Dar-en-Adopcion*").access("hasRole('USER')")
                 .antMatchers("/Formulario-Quiero-Adoptar*").access("hasRole('USER')")
-                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN') or hasRole('VOLUNTARIO')")
-                    .anyRequest().authenticated()
-                    .and()
+
+                //TODO fALTA pantalal de aprobar formularios como voluntario
+                
+                .antMatchers("/Inicio*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
+                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
+                .antMatchers("/Mascotas-Encontradas*").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/Perfil*").access("hasRole('USER') or hasRole('ADMIN')") 
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
@@ -52,14 +57,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                     .and()
                 .logout()
                     .permitAll()
-                    .logoutSuccessUrl("/");
+                    .logoutSuccessUrl("/login?logout=true");
     }
+
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-        //El numero 4 representa que tan fuerte quieres la encriptacion.
 
         return bCryptPasswordEncoder;
     }
@@ -70,7 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     //Registra el service para usuarios y el encriptador de contrasena
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
         // Setting Service to find User in the database.
         // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());

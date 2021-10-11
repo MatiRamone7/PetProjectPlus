@@ -72,6 +72,10 @@ public class Sesion implements Serializable {
         this.authority = authority;
     }
 
+    public void setAuthority(Authority authority) {
+        this.authority.add(authority);
+    }
+
     public IValidationSesion getValidationSesion() {
         return validationSesion;
     }

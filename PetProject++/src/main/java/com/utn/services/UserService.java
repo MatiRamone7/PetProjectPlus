@@ -1,11 +1,8 @@
 package com.utn.services;
 
-import com.utn.loginSecurity.AuthorityRepo;
-import com.utn.loginSecurity.IAuthorityRepo;
-import com.utn.models.users.Authority;
+import com.utn.repositories.IAuthorityRepo;
 import com.utn.models.users.Usuario;
 import com.utn.repositories.UserRepo;
-import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.ValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;

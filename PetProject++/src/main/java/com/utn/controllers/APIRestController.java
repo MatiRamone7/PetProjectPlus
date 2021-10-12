@@ -99,7 +99,7 @@ public class APIRestController {
 		Mascota mascota = petService.GetPetById(idMascota);
 		Usuario usuarioAContactar = mascota.getDuenio();
 
-		//TODO meter el input de usuario de alguna manera 
+		//TODO meter el input de usuario de alguna manera  (esto lo pasé a formcontroller, sigue válido?)
 		CQRScaneado msg = new CQRScaneado("Input de usuario aca");
 		usuarioAContactar.contactar(msg);
 	}

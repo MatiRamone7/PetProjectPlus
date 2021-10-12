@@ -10,11 +10,48 @@
     margin-left: 10px;
     font-size: 18px;
 }
-
+.s-padd{
+    padding: 0px;
+}
 .volver:hover {
     color: #7C7C7C;
+
+}
+.item-filtro{
+    font-size: 20px;
+    border: 1px solid #7C7C7C;
+    padding-top: 10px;
+    padding-left: 10px;
+
 }
 
+.item-filtro p{
+    margin-bottom: 10px;
+
+}
+.item-filtro:hover{background-color: #E0DEDE;}
+.clase-prueba{
+    margin-right: 0px;
+    margin-top: 0px;
+}
+.lista-f li{
+    list-style:none;
+    margin: 10px;
+    font-size: 18px;
+}
+.filtrar{
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.lista-filtro{
+    background-color: white;
+    height:700px;
+    padding-top: 15px;
+    border-left: 1px solid;
+    border-color: #C4C1C1;
+}
 .paso {
     background-color: #F9F6F6;
     width: 40px;
@@ -73,9 +110,9 @@ main form {
 }
 
 form label {
-    font-size: 17px;
-    padding-left: 15px;
-    padding-top: 0px;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-top: 5px;
 }
 
 .botonesRegistro {
@@ -100,27 +137,65 @@ form input {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif
 }
-
+.contenedor-de-movimiento{
+    margin-left: 10px;
+    width: 20px;
+    display:grid;
+    align-content: space-around;
+    justify-content: flex-end;
+}
+.selecTipo{
+    width:400px;
+    border: 1px solid rgba(0, 0, 0, 0.6); ;
+    border-radius: 0px;
+    background-color: #EEEEEE;
+}
+.subir{
+    align-items: center;
+}
+.contrasenaInvalida{
+    border: 1px solid red;;
+}
 .datos {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 100;
-    height: 50;
-    padding-top: 12;
+    width: 100px;
+    height: 50px;
+    padding-top: 12px;
     margin-left: 10px;
     background-color: #D2D2D2;
 }
 
 .caja_opcion:hover {
     background-color: rgb(145, 136, 136);
-    width: 300px;
-    height: 300px;
+
 }
 
+.comentariocontrasena{
+    width: 400px;
+    background-color:red;
+    text-align: center;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    display: none;
+}
+.comentariocontrasena{
+    width: 400px;
+    background-color:red;
+    text-align: center;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+
+}
 .pregunta {
     font-size: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    border-right: 0px;
     margin-right: 0px;
     width: 500px;
     height: 50px;
@@ -131,9 +206,81 @@ form input {
     padding-left: 10px;
     margin-left: 5px;
 }
+.cardEstado{
+    width: 450px;
+    height: 150px;
+    background-color: #E8E8E8;
+    border-radius: 15px;
+    margin: 20px;
+    border: 1px solid;
+    border-color: #757575;
+    padding: 10px;
+    box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.05);
 
+}
+.texto-card{
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight:500;
+}
+.boton-Ver{
+    background-color: blueviolet;
+    color: white;
+    width: 100px;
+    height:40px;
+    border-radius: 10px;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+}
+.estado-aprobado{
+    background-color:transparent;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 1px solid ;
+    border-color: #22FC30;
+    margin-bottom: 15px;
+}
+.estado-rechazado{
+    background-color:transparent;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 1px solid ;
+    border-color:red;
+    margin-bottom: 15px;
+}
+.estado-pendiente{
+    background-color:transparent;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 1px solid ;
+    border-color:#3EC1E8;
+    margin-bottom: 15px;
+}
+.texto-estado-aprobado{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color:#22FC30;
+}
+.texto-estado-rechazado{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color:red;
+}
+.texto-estado-pendiente{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color:#3EC1E8;
+}
 .preguntas {
-    border: 1px solid rgba(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.6);
     height: 300px;
     border-radius: 15px;
     overflow: hidden;
@@ -163,9 +310,15 @@ form input {
 
 .prueba {
     display: flex;
+    padding-left: 10px;
+}
+.check-estado-estado{
+    display: none;
+}
+.check-filto{
+    display: none;
 }
 
-.tituloFormulario {
-    margin-top: -40px;
-    margin-bottom: 20px;
+.form-select-seguido{
+    margin-bottom: 10px;
 }

@@ -23,6 +23,22 @@ public class Hogar {
     public class Admisiones{
         public boolean perros;
         public boolean gatos;
+
+        public boolean isPerros() {
+            return perros;
+        }
+
+        public void setPerros(boolean perros) {
+            this.perros = perros;
+        }
+
+        public boolean isGatos() {
+            return gatos;
+        }
+
+        public void setGatos(boolean gatos) {
+            this.gatos = gatos;
+        }
     }
 
     public String getId() {

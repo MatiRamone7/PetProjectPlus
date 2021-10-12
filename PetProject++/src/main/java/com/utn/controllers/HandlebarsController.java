@@ -6,6 +6,8 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.mascotas.Mascota;
 import com.utn.services.*;
+import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
+import com.utn.transithomes.AdapterRefugios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,7 +106,11 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("hogares-transito");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        AdapterRefugios adapter = AdapterApiRestHogaresDeTransito.getInstancia();
+        model.put("hogares", adapter.obtenerHogaresTransito());
+
+        return template.apply(model);
     }
 
     @GetMapping("Inicio")

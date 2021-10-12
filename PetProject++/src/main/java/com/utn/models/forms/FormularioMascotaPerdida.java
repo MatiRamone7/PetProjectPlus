@@ -115,7 +115,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     public String getTamanio() {
         CaracteristicaPet caracteristica = caracteristicas.stream().
                 filter(caract ->
-                        caract.getTipoCaracteristica().getDescripcion() == "Tamanio"
+                        caract.getTipoCaracteristica().getDescripcion() == "Tamaño"
                 ).
                 findFirst().orElse(null);
         if(caracteristica == null){

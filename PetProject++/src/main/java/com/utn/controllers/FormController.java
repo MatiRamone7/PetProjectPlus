@@ -13,6 +13,7 @@ import com.utn.services.IPetService;
 import com.utn.transithomes.Hogar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -55,10 +56,10 @@ public class FormController {
     }
 
     @PostMapping("/mascotaPerdida")
-    public void CreateFormMascotaPerdida(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
+    public void CreateFormMascotaPerdida(@RequestParam Map<String, String> body, @RequestParam("imagen") MultipartFile img, HttpServletResponse response) throws IOException {
         FormularioMascotaPerdida form = new FormularioMascotaPerdida();
 
-
+        byte[] imagen = img.getBytes();
 
 
 

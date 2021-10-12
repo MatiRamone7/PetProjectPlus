@@ -41,6 +41,9 @@ public class HandlebarsController {
     @Autowired
     ICaracteristicaService caracteristicaService;
 
+    @Autowired
+    IOngService ongService;
+
 
     @GetMapping("Adopcion-de-Mascotas")
     public String GetAdopcionMasotas() throws IOException {
@@ -61,13 +64,16 @@ public class HandlebarsController {
 
 
     // NUEVOS HBS AGREGADOS
-    @GetMapping("Dar-en-Adopcion")
-    public String GetDarEnAdopcion() throws IOException {
+    @GetMapping("Dar-en-Adopcion/{petId}")
+    public String GetDarEnAdopcion(@PathVariable Integer petId) throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("dar-en-adopcion");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("preguntasDarEnAdopcion", petService.GetPetById(petId).getDuenio().getOrganizacion().getPreguntasDarEnAdopcion());
+
+        return template.apply(model);
     }
 
     @GetMapping("Editor-de-Formularios")

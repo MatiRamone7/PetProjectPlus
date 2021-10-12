@@ -180,13 +180,16 @@ public class HandlebarsController {
         return template.text();
     }
 
-    @GetMapping("Perfil")
-    public String GetPerfilUsuario() throws IOException {
+    @GetMapping("Perfil/{userId}")
+    public String GetPerfilUsuario(@PathVariable Integer userId) throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("perfil");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("usuario", userService.GetUserById(userId));
+
+        return template.apply(model);
     }
 
     @GetMapping("Registrar-Mascota")

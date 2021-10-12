@@ -1,5 +1,6 @@
-package com.utn.loginSecurity;
+package com.utn.loginSecurity.config;
 
+import com.utn.loginSecurity.service.SesionDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

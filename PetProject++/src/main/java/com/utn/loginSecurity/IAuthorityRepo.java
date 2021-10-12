@@ -1,4 +1,4 @@
-package com.utn.repositories;
+package com.utn.loginSecurity;
 
 import com.utn.models.users.Authority;
 

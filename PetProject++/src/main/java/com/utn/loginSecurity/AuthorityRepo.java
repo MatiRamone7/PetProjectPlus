@@ -1,4 +1,4 @@
-package com.utn.repositories;
+package com.utn.loginSecurity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -7,7 +7,7 @@ import com.utn.models.users.Authority;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AuthorityRepo implements IAuthorityRepo {
+public class AuthorityRepo implements IAuthorityRepo{
     private EntityManagerFactory emf;
     private EntityManager manager;
 

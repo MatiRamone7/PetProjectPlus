@@ -1,4 +1,4 @@
-package com.utn.loginSecurity;
+package com.utn.loginSecurity.repository;
 
 import java.util.Optional;
 import com.utn.models.users.Sesion;

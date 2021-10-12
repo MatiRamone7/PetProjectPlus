@@ -1,4 +1,4 @@
-package com.utn.loginSecurity;
+package com.utn.loginSecurity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

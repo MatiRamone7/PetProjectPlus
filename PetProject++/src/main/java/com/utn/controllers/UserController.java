@@ -1,5 +1,6 @@
 package com.utn.controllers;
 
+import com.utn.models.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.forms.Ciudad;
 import com.utn.models.forms.Direccion;
 import com.utn.models.forms.Provincia;
@@ -101,4 +102,27 @@ public class UserController {
         userService.Delete(id);
     }
 
+    @GetMapping("/notificarUsuario/{id}")
+    public void NotifyUser(@RequestBody Map<String, Object> datos, @PathVariable Integer id) throws IOException {
+        Usuario user = this.GetUserById(id);
+
+        IMensajePredet mensaje = new IMensajePredet() {
+            @Override
+            public String cuerpo() {
+                return (String) datos.get("cuerpo");
+            }
+
+            @Override
+            public String asunto() {
+                return (String) datos.get("asunto");
+            }
+
+            @Override
+            public void cambiarTexto(String input) {
+
+            }
+        };
+
+        user.contactar(mensaje);
+    }
 }

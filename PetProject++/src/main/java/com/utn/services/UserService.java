@@ -1,8 +1,11 @@
 package com.utn.services;
 
-import com.utn.repositories.IAuthorityRepo;
+import com.utn.loginSecurity.AuthorityRepo;
+import com.utn.loginSecurity.IAuthorityRepo;
+import com.utn.models.users.Authority;
 import com.utn.models.users.Usuario;
 import com.utn.repositories.UserRepo;
+import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.ValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +60,7 @@ public class UserService implements IUserService {
 
 	public Usuario Create(Usuario user)
 	{
-		String name = user.getNombre();
+	/*	String name = user.getNombre();
 		String password = user.getSesion().getPassword();
 		String username = user.getContacto().getMail();
 		String hpass;
@@ -72,7 +75,7 @@ public class UserService implements IUserService {
 			user.getSesion().setUsername(username);
 			user.getSesion().setAuthority(authorityRepo.GetAuthorityById(1));
 		}
-
+*/
 		return userRepo.CreateUser(user);
 	}
 

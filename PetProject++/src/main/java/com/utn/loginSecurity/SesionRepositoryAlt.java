@@ -1,20 +1,21 @@
-package com.utn.repositories;
+package com.utn.loginSecurity;
 
 import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.users.Sesion;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SesionRepository implements ISesionRepository {
+public class SesionRepositoryAlt implements ISesionRepositoryAlt {
 
     private EntityManagerFactory emf;
     private EntityManager manager;
 
-    public SesionRepository() {
+    public SesionRepositoryAlt() {
         this.emf = Persistence.createEntityManagerFactory("Persistencia");
         this.manager = emf.createEntityManager();
     }

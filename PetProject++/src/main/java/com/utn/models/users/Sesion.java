@@ -6,6 +6,7 @@ import com.utn.utils.IValidationSesion;
 import com.utn.utils.SesionResponse;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,6 +32,12 @@ public class Sesion implements Serializable {
 
     @Transient
     public IValidationSesion validationSesion;
+
+    public Sesion(String username, String password, List grantList) {
+        this.username = username;
+        this.password = password;
+        this.authority = (Set<Authority>) grantList;
+    }
 
     public Integer getId() {
         return id;
@@ -70,10 +77,6 @@ public class Sesion implements Serializable {
 
     public void setAuthority(Set<Authority> authority) {
         this.authority = authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority.add(authority);
     }
 
     public IValidationSesion getValidationSesion() {
@@ -122,6 +125,11 @@ public class Sesion implements Serializable {
     public Sesion() {
     }
 
+    public Sesion(String username, String password, Set<Authority> authority) {
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+    }
 //TODO login logout registrarse y ver todo esto de acá abajo (jose)
 
     public void login(){

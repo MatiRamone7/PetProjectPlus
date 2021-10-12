@@ -1,11 +1,9 @@
 package com.utn.controllers;
 
-import com.utn.models.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
-import com.utn.models.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.forms.*;
 import com.utn.models.users.ContactoUnico;
+import com.utn.models.users.Sesion;
 import com.utn.models.users.TipoDocumento;
-import com.utn.models.users.Usuario;
 import com.utn.services.IFormService;
 import com.utn.services.IPetService;
 import com.utn.transithomes.Hogar;
@@ -117,15 +115,6 @@ public class FormController {
         formService.DeleteFormMascotaPerdida(id);
     }
 
-    @GetMapping("/mascotaPerdida/notificarUsuario/{id}")
-    public void NotificarRescatista(@RequestBody Map<String, String> datos, @PathVariable Integer id) throws IOException {
-        ContactoUnico contacto = this.GetFormMascotaPerdidaById(id).getContacto();
-
-        IMensajePredet msg = new CInteresDeAdopcion(datos.get("mailDeUsuario"));
-
-        contacto.contactar(msg.asunto(),msg.cuerpo());
-    }
-
     /*
         Form Mascota Encontrada
     */
@@ -184,6 +173,7 @@ public class FormController {
         formService.DeleteFormIntencionAdopcion(id);
     }
 
+
     /*
         Form Dar En Adopcion
     */
@@ -210,14 +200,5 @@ public class FormController {
     @DeleteMapping("/darEnAdopcion/{id}")
     public void DeleteFormDarEnAdopcion(@PathVariable Integer id) {
         formService.DeleteFormDarEnAdopcion(id);
-    }
-
-    @GetMapping("/darEnAdopcion/notificarUsuario/{id}")
-    public void NotificarDuenioMascota(@RequestBody Map<String, String> datos, @PathVariable Integer id) throws IOException {
-        Usuario user = this.GetFormDarEnAdopcionById(id).getUsuario();
-
-        IMensajePredet msg = new CInteresDeAdopcion(datos.get("mailDeUsuario"));
-
-        user.contactar(msg);
     }
 }

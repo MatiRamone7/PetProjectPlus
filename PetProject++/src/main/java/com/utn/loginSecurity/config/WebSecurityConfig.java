@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
-                .antMatchers("/","/index2").permitAll() //HTML
+                .antMatchers("/","/index").permitAll() //HTML
                 .antMatchers("/Sign-Up*").permitAll() //anotar como en el formulario
                 .antMatchers("/Mascota-Perdida*").permitAll() //TODO probar en localhost como se ve esquina superior, logeado vs no 
                 .antMatchers("/Hogares-Transito*").permitAll()
@@ -46,19 +46,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
                 .antMatchers("/Mascotas-Encontradas*").access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/Perfil*").access("hasRole('USER') or hasRole('ADMIN')") 
-                .anyRequest().authenticated()
-                .and()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
                     .defaultSuccessUrl("/menu")
-                    .failureUrl("/Mascota-Perdida") //TODO cambiar
+                    .failureUrl("/login?error=true")
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .and()
                 .logout()
                     .permitAll()
-                    .logoutSuccessUrl("/login?logout=true");
+                    .logoutSuccessUrl("/login?logout");
     }
 
     BCryptPasswordEncoder bCryptPasswordEncoder;

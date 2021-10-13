@@ -11,9 +11,9 @@ public class AppController {
         return "indexPrueba";
     }
 
-    @GetMapping({"/index2"})
+    @GetMapping({"/index"})
     public String index2() {
-        return "index2";
+        return "index_General";
     }
 
     @GetMapping("/menu")

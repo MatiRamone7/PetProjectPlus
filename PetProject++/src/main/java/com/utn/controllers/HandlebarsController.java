@@ -7,12 +7,14 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.mascotas.Mascota;
 import com.utn.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,7 +110,8 @@ public class HandlebarsController {
     }
 
     @GetMapping("Inicio")
-    public String GetInicio() throws IOException {
+    public String GetInicio(Principal http) throws Exception {
+       // http.formLogin().usernameParameter();
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("inicio");

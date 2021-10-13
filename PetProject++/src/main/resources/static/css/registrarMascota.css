@@ -41,3 +41,14 @@ form {
 .formularioSecundario {
     background-color: #F9F6F6;
 }
+
+.form-select-seguido{
+    margin-bottom: 10px;
+}
+
+form input {
+    margin-bottom: 10px;
+    background: #C1BFBF;
+    border: 1px solid #EBEBEB;
+}
+

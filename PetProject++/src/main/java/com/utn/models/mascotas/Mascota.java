@@ -123,6 +123,10 @@ public class Mascota {
         return fotos;
     }
 
+    public void setFotos(List<Foto> fotos){
+        this.fotos = fotos;
+    }
+
     public void setFoto(List<Foto> list) {
          list.stream().forEach((unaFoto)-> {fotos.add(unaFoto);});
     }

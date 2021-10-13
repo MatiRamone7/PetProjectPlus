@@ -1,11 +1,21 @@
 package com.utn.controllers;
 
+import com.utn.models.forms.Ciudad;
+import com.utn.models.forms.Direccion;
+import com.utn.models.forms.Provincia;
 import com.utn.models.ongs.Organizacion;
+import com.utn.models.users.ContactoUnico;
+import com.utn.models.users.Sesion;
+import com.utn.models.users.TipoDocumento;
+import com.utn.models.users.Usuario;
 import com.utn.services.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ongs")
@@ -19,9 +29,14 @@ public class OngController {
         return ongService.GetOngById(id);
     }
 
-    @PostMapping
+    @PostMapping("/json")
     public Organizacion Create(@RequestBody Organizacion ong) throws IOException {
         return ongService.Create(ong);
+    }
+
+    @PostMapping
+    public void Create(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/Inicio");
     }
 
     @PutMapping("/{id}")

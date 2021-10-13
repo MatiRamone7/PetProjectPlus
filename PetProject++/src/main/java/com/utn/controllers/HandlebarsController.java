@@ -4,11 +4,15 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Mascota;
+import com.utn.models.users.Usuario;
 import com.utn.services.*;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
 import com.utn.transithomes.AdapterRefugios;
+import javassist.bytecode.ByteArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -187,7 +191,10 @@ public class HandlebarsController {
         Template template = handlebars.compile("perfil");
 
         Map<String, Object> model = new HashMap<>();
-        model.put("usuario", userService.GetUserById(userId));
+        Usuario usuario = userService.GetUserById(userId);
+        model.put("usuario", usuario);
+        byte[] foto = petService.GetPetById(1).getFotos().stream().findFirst().get().getImagenByteArray();
+        model.put("bytearray", Base64Utils.encodeToString(foto));
 
         return template.apply(model);
     }

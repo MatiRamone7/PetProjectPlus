@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/pantallaAdmin.css">
     <link rel="stylesheet" href="./css/registrarMascota.css">
-    <script src="js/formulario-quiero-adoptar.js"></script>
+    <script src="../static/js/formulario-quiero-adoptar.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -47,25 +47,59 @@
         <h1>ONG</h1>
         <div class="row mt-4">
             <div class="col-12">
-                <form action="">
+                <form action="../ongs" method="post">
                     <div class="row">
                         <div class="col-6">
                             <label for="" class="form-label ">Nombre</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="nombre">
+
+                            <label for="calle" class="form-label">Calle</label>
+                            <input type="text" class="form-control" name="direccion.calle">
+
+                            <label for="calle" class="form-label">Ciudad</label>
+                            <input type="text" class="form-control" name="direccion.ciudad.nombre">
+
+                            <label for="calle" class="form-label">Provincia</label>
+                            <select name="direccion.ciudad.provincia.id" id="" class="form-select">
+                                <option value="none" selected disabled hidden>
+                                    Select an Option
+                                </option>
+                                {{#each provincias}}
+                                    <option value="{{id}}">{{nombre}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="col-6">
-                            <label for="" class="form-label ">Direccion</label>
-                            <input type="text" class="form-control">
+                            <label for="calle" class="form-label">Codigo postal</label>
+                            <input type="text" class="form-control" name="direccion.codigoPostal">
+
+                            <label for="calle" class="form-label">Numero</label>
+                            <input type="text" class="form-control" name="direccion.numero">
+
+                            <label for="calle" class="form-label">Departamento, Municipio o Comuna</label>
+                            <input type="text" class="form-control" name="direccion.departamento">
                         </div>
                     </div>
-                    <div class="row mt-3">
 
+                    <div class="row mt-3">
                         <div class="col-6">
                             <h3>Formato fotos</h3>
-                            <label for="" class="form-label ">Alto</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label ">Ancho</label>
-                            <input type="text" class="form-control">
+                            <label for="" class="form-label ">Nivel de calidad</label>
+                            <input type="text" class="form-control" name="nivelCalidad">
+                            <label for="" class="form-label ">Tamaño de la foto</label>
+                            <input type="text" class="form-control" name="sizeFoto">
+                        </div>
+                        <div class="col-6">
+                            <h3>agregar vonluntario</h3>
+                            <label for="" class="form-label ">Mail del voluntario</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control mb-0" placeholder="Ej.: nombre@gmail.com" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                              </div>
+                              <div class="contains-boton mt-4 d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" style="margin-right: 10px;">agregar</button>
+                                <button type="button" class="btn btn-primary">eliminar</button>
+                              </div>
                         </div>
 
                     </div>
@@ -76,7 +110,7 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="col-2">
-                            <input type="button" class="boton " value="AGREGAR">
+                            <input type="button" class="boton " value="AGREGAR" onclick="agregar()">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -86,7 +120,7 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>
@@ -94,7 +128,7 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>
@@ -102,24 +136,18 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>
-
-
-
-
-
-
 
                             </div>
                         </div>
                     </div>
                     <div class="row mt-3 mb-5">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="button" class="boton " value="ACEPTAR">
-                            <input type="button" class="botonEliminar" value="CANCELAR">
+                            <input type="submit" class="boton " value="ACEPTAR">
+                            <a href="../Admin-Perfiles-ONG"><input type="button" class="botonEliminar" value="CANCELAR" href></a>
                         </div>
                     </div>
                 </form>

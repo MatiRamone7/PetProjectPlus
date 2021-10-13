@@ -20,6 +20,16 @@ body {
      color:#3f3f3f;
      
  }
+ .logOut{
+    margin: 3px;
+    border-radius: 10px;
+    background-color:rgba(149,40,184,0.4);
+    border: 1px solid black;
+    color:#1a1919;
+}
+.logOut:hover{
+    opacity: 0.5;
+}
 /*===================SLIDER DE IMAGENES==========================*/
 
 .carousel-inner {

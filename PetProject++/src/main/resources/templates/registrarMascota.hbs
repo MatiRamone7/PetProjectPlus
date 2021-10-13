@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/registrarMascota.css">
+    <script src="./js/registrarMascota.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -55,110 +56,69 @@
         <h1>Registro de Mascota</h1>
         <div class="row mt-4">
             <div class="col-12">
-                <form action="">
+                <form action="../pets" method="post" id="formulario">
                     <div class="row">
                         <div class="col-6">
                             <div class="row mb-4">
                                 <div class="col-12 d-flex justify-content-center">
-                                    <div class="divImagen"></div>
+                                    <img class="divImagen" id="blah" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label for="" class="form-label">Agregar Imagen</label>
-                                    <input type="file" class="form-control">
+                                    <input accept="image/*" id="imgInp" type="file" class="form-control" onchange="imgImpChange()">
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="" class="form-label ">Nombre</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label ">Especie</label>
-                            <input type="text" class="form-control">
-                            <label for="Fecha" class="form-label ">Fecha de nacimiento</label>
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre">
+                            <label class="form-label">Apodo</label>
+                            <input type="text" class="form-control"  name="apodo">
+                            <label class="form-label ">Especie</label>
+                            <select name="especie" id="" class="form-select">
+                                <option value="PERRO">Perro</option>
+                                <option value="GATO">Gato</option>
+                            </select>
+                            <label class="form-label ">Fecha de nacimiento</label>
                             <input type="date" class="form-control">
-                            <label for="Fecha" class="form-label ">sexo</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hembra">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  Hembra
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  Macho
-                                </label>
-                            </div>
-
+                            <label for="" class="form-label ">Sexo</label>
+                            <select class="form-select" name="sexo">
+                                <option value="null">Desconoce</option>
+                                <option value="MACHO">Macho</option>
+                                <option value="HEMBRA">Hembra</option>
+                            </select>
                         </div>
                     </div>
-
-
-                </form>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                <form action="" class="formularioSecundario">
-                    <div class="row">
-
-                        <div class="col-6">
-                            <h3>Caracteristicas generales</h3>
-                            <label for="" class="form-label">Tamano</label>
-                            <input type="text" class="form-control">
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  Vacunado
-                                </label>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div class="row">
+                                <h3>Caracteristicas especificas</h3>
+                                {{#each caracteristicas}}
+                                    <label for="" class="form-label">{{descripcion}}</label>
+                                    {{#if opciones}}
+                                        <select class="form-select" name="select">
+                                            <option value="null">Desconoce</option>
+                                        {{#each opciones}}
+                                            <option value="{{valor}}">{{valor}}</option>
+                                        {{/each}}
+                                        </select>
+                                    {{else}}
+                                        <input type="text" class="form-control">
+                                    {{/if}}
+                                {{/each}}
                             </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  Esterilizado
-                                </label>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  Rabo
-                                </label>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  Enfermeada
-                                </label>
-                            </div>
-                            <label for="" class="form-label mt-2">Cual?</label>
-                            <input type="text" class="form-control">
-
-                        </div>
-                        <div class="col-6">
-                            <h3>Caracteristicas especificas</h3>
-                            <label for="" class="form-label">raza</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label">Color Principal</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label">Color Secundario</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label">Patrondistintivo</label>
-                            <input type="text" class="form-control">
-
                         </div>
                     </div>
                     <div class="row mt-6">
                         <div class="col-12 d-flex justify-content-center">
                             <div>
                                 <button type="submit" class="col-12 btn btn-dark mb-3 mt-5" style="background-color: blueviolet;">Enviar</button>
-
-
                             </div>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </main>

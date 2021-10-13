@@ -5,6 +5,10 @@ import com.utn.services.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/pets")
 public class PetController {
@@ -23,8 +27,18 @@ public class PetController {
     }
 
     @PostMapping
-    public Mascota CreatePet(@RequestBody Mascota pet) {
-        return petService.CreatePet(pet);
+    public void CreatePet(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
+    Mascota mascota = new Mascota();
+        mascota.setApodo(body.get("apodo"));
+        mascota.setNombre(body.get("nombre"));
+        mascota.setEspecie(Mascota.Especie.valueOf(body.get("especie")));
+        mascota.setDescripcionFisica(body.get("descripcionFisica"));
+        mascota.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
+
+
+        petService.CreatePet(mascota);
+
+        response.sendRedirect("/Perfil");
     }
 
     @PutMapping("/{id}")

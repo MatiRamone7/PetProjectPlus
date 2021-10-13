@@ -182,8 +182,10 @@ public class HandlebarsController {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("registrarMascota");
+        Map<String, Object> model = new HashMap<>();
+        model.put("caracteristicas", caracteristicaService.GetCaracteristicas());
 
-        return template.text();
+        return template.apply(model);
     }
 
     @GetMapping("Sign-Up")
@@ -195,3 +197,4 @@ public class HandlebarsController {
         return template.text();
     }
 }
+

@@ -73,7 +73,7 @@ public class CronTask {
                     ).
                     findFirst().orElse(null);
 
-            if(caracteristica == null || preferencia.getvalor() != caracteristica.getvalor()){
+            if(caracteristica == null || preferencia.getValor() != caracteristica.getValor()){
                 return false;
             }
 

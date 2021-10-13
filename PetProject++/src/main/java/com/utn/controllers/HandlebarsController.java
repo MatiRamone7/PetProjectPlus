@@ -6,6 +6,8 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.mascotas.Mascota;
 import com.utn.services.*;
+import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
+import com.utn.transithomes.AdapterRefugios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +41,9 @@ public class HandlebarsController {
     @Autowired
     ICaracteristicaService caracteristicaService;
 
+    @Autowired
+    IOngService ongService;
+
 
     @GetMapping("Adopcion-de-Mascotas")
     public String GetAdopcionMasotas() throws IOException {
@@ -59,13 +64,16 @@ public class HandlebarsController {
 
 
     // NUEVOS HBS AGREGADOS
-    @GetMapping("Dar-en-Adopcion")
-    public String GetDarEnAdopcion() throws IOException {
+    @GetMapping("Dar-en-Adopcion/{petId}")
+    public String GetDarEnAdopcion(@PathVariable Integer petId) throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("dar-en-adopcion");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("preguntasDarEnAdopcion", petService.GetPetById(petId).getDuenio().getOrganizacion().getPreguntasDarEnAdopcion());
+
+        return template.apply(model);
     }
 
     @GetMapping("Editor-de-Formularios")
@@ -104,7 +112,11 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("hogares-transito");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        AdapterRefugios adapter = AdapterApiRestHogaresDeTransito.getInstancia();
+        model.put("hogares", adapter.obtenerHogaresTransito());
+
+        return template.apply(model);
     }
 
     @GetMapping("Inicio")
@@ -168,13 +180,16 @@ public class HandlebarsController {
         return template.text();
     }
 
-    @GetMapping("Perfil")
-    public String GetPerfilUsuario() throws IOException {
+    @GetMapping("Perfil/{userId}")
+    public String GetPerfilUsuario(@PathVariable Integer userId) throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("perfil");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("usuario", userService.GetUserById(userId));
+
+        return template.apply(model);
     }
 
     @GetMapping("Registrar-Mascota")

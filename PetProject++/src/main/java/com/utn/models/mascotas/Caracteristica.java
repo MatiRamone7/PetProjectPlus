@@ -15,7 +15,7 @@ public class Caracteristica {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @OneToMany(mappedBy = "caracteristica", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "caracteristica", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CaracteristicaFiltrable> opciones;
 
     public Integer getId() {

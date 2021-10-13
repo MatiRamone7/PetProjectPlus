@@ -19,7 +19,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private String descripcion;
 
     @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "direccionID", insertable = false, updatable = false)
+    @JoinColumn(name = "lugarEncuentroMascotaID", insertable = false, updatable = false)
     private Direccion lugarEncuentroMascota;
 
     @Transient
@@ -115,13 +115,13 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     public String getTamanio() {
         CaracteristicaPet caracteristica = caracteristicas.stream().
                 filter(caract ->
-                        caract.getTipoCaracteristica().getDescripcion() == "Tamanio"
+                        caract.getTipoCaracteristica().getDescripcion() == "Tamaño"
                 ).
                 findFirst().orElse(null);
         if(caracteristica == null){
             return "";
         }
-        return caracteristica.getvalor();
+        return caracteristica.getValor();
     }
 
 

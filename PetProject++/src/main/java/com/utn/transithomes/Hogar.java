@@ -4,7 +4,9 @@ import com.utn.models.mascotas.Mascota;
 import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.utils.Coordenadas;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Hogar {
 
@@ -21,6 +23,22 @@ public class Hogar {
     public class Admisiones{
         public boolean perros;
         public boolean gatos;
+
+        public boolean isPerros() {
+            return perros;
+        }
+
+        public void setPerros(boolean perros) {
+            this.perros = perros;
+        }
+
+        public boolean isGatos() {
+            return gatos;
+        }
+
+        public void setGatos(boolean gatos) {
+            this.gatos = gatos;
+        }
     }
 
     public String getId() {
@@ -145,5 +163,25 @@ public class Hogar {
 
         return distancia;
     }*/
+    public static List<String> asignarCaracteristicasHogar(Map<String, String> body){
+        List<String> caracteristicas = new ArrayList<>();
 
+        if(body.get("Tranquilo") != null){
+            caracteristicas.add(body.get("Tranquilo"));
+        }
+        if(body.get("Pacifico") != null){
+            caracteristicas.add(body.get("Pacifico"));
+        }
+        if(body.get("Manso") != null){
+            caracteristicas.add(body.get("Manso"));
+        }
+        if(body.get("Delgado") != null){
+            caracteristicas.add(body.get("Delgado"));
+        }
+        if(body.get("Amistoso") != null){
+            caracteristicas.add(body.get("Amistoso"));
+        }
+
+        return caracteristicas;
+    }
 }

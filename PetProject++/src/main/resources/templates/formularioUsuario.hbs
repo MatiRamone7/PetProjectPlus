@@ -60,10 +60,11 @@
 
                 <div class="row mb-4 mt-3 ">
                     <div class="col-6">
-                        <label for="Nombre" class="form-label">Nombre*</label>
+                        <label for="Nombre" class="form-label" >Nombre*</label>
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" name="nombre">
+
+                        <input type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -71,7 +72,8 @@
                         <label for="apellido" class="form-label">Apellido*</label>
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" name="apellido">
+                     
+                        <input type="text" class="form-control" name="apellido" id='apellido'>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -88,7 +90,8 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <input type="text" class="form-control" name="nroDocumento">
+                                <input type="text" class="form-control" name="nroDocumento" id='nroDocumento'>
+                                
                             </div>
                         </div>
 
@@ -99,7 +102,7 @@
                         <label for="Contraseña" class="form-label">Nombre de usuario*</label>
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" name="sesion.username">
+                        <input type="text" class="form-control" name="sesion.username" id='nombreUsu'>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -107,7 +110,10 @@
                         <label for="Contraseña" class="form-label">Contraseña*</label>
                     </div>
                     <div class="col-6">
-                        <input type="password" class="form-control" name="sesion.password">
+                        <input type="password" class="form-control" name="sesion.password" id='password' onblur='validarContrasena()'>
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            Las contraseñas debe contener al menos un numero, una mayuscula , una minuscula y un caracter especial
+                          </div>
                     </div>
                 </div>
 
@@ -116,7 +122,10 @@
                         <label for="Contraseña" class="form-label">Confirmar contraseña*</label>
                     </div>
                     <div class="col-6">
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" id='confCont'  onblur="confirmarContrasena()">
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            Las contraseñas son distintas
+                          </div>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -124,7 +133,7 @@
                         <label for="Fecha" class="form-label">Fecha de nacimiento</label>
                     </div>
                     <div class="col-6">
-                        <input type="date" class="form-control" name="fechaNacimiento">
+                        <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
                     </div>
                 </div>
 
@@ -233,7 +242,8 @@
                                 </label>
                             </div>
                             <div class="col-9">
-                                <input type="text" class="form-control" name="contacto.celular">
+                                <input type="text" class="form-control" name="contacto.celular" id='telefono'>
+                             
                             </div>
                         </div>
 
@@ -248,7 +258,7 @@
                                 </label>
                             </div>
                             <div class="col-9">
-                                <input type="text" class="form-control" placeholder="Ejemplo@gmail.com" name="contacto.mail">
+                                <input type="text" class="form-control" placeholder="Ejemplo@gmail.com" name="contacto.mail" id='email'>
                             </div>
                         </div>
 
@@ -269,7 +279,7 @@
                     <div class="col-12 d-flex justify-content-center">
                         <div>
                             <div class="form-check mb-3 ">
-                                <input type="checkbox" name="terminos" class="form-check-input">
+                                <input type="checkbox" name="terminos" class="form-check-input" id='check'>
                                 <label for="terminos" class="form-check-label terminos">Terminos y condiciones</label>
                             </div>
                         </div>

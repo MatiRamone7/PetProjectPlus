@@ -25,6 +25,16 @@ body {
 .carousel-inner {
     max-height:39rem !important;
 }
+.logOut{
+    margin: 3px;
+    border-radius: 10px;
+    background-color:rgba(149,40,184,0.4);
+    border: 1px solid black;
+    color:#1a1919;
+}
+.logOut:hover{
+    opacity: 0.5;
+}
 
 /*===================SECCION NUESTRO EQUIPO IMAGEN==========================*/
 
@@ -43,6 +53,7 @@ body {
     display:flex;
     justify-content: center; 
     padding-bottom: 300px; 
+
 }
 
 .mapa {

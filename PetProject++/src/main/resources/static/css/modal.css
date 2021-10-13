@@ -1,0 +1,65 @@
+.pop-up{
+    background: rgba(48, 48, 48, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.pop-wrap{
+    background-color: white;
+    width: 600px;
+    height: 300px;
+    border-radius: 10px;
+   
+}
+.verModal{
+    visibility: hidden;
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+}
+.salir{
+    display:flex;
+    justify-content: flex-end;
+   margin-bottom: 40px;
+    width: 600px;
+}
+textArea{
+    height: 60px;
+}
+.boton{
+    display: flex;
+    justify-content: center;
+}
+.enviar{
+    width: 30px;
+    height: 15px;
+}
+.sal-mod{
+    display: flex;
+    justify-content:center;
+    color: red;
+    margin:10px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    border-color: red;
+    border-radius: 50%;
+}
+.sal-mod p{
+    padding-bottom: 10px;
+}
+.textArea{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 40px;
+}
+
+.sal-mod:hover{background-color: red;
+color:white}

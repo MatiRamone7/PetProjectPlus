@@ -24,6 +24,7 @@ INSERT INTO provincia (nombre) VALUES
 ('Tierra del Fuego'),
 ('Tucumán');
 
+
 INSERT INTO caracteristica (descripcion) VALUES
 ('Raza'),
 ('Color Principal'),
@@ -34,6 +35,7 @@ INSERT INTO caracteristica (descripcion) VALUES
 
 ('Esterilizado'),
 ('Enfermedades');
+
 
 INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 --Raza Perro
@@ -88,3 +90,18 @@ INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 ('Si', 7),
 ('No', 7),
 (null, 7);
+
+
+INSERT INTO [organizacion] (nombre) VALUES
+('ONG 1'),
+('ONG 2'),
+('ONG 3');
+
+
+INSERT INTO [preguntasAdopcion] (pregunta, organizacion_id) VALUES
+('¿cuanto pesa la mascota?',1),
+('¿Porque decisdiste darla en adopcion?',1),
+('¿cuanto pesa la mascota?',2),
+('¿Era un animal callejero antes de que lo tuvieras?',2),
+('¿Cómo ha sido su temperamento ulimamente?',3),
+('¿Porque decisdiste darla en adopcion?',3);

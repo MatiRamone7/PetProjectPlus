@@ -146,3 +146,7 @@ function validarContrasena(){
     inputApellido.classList.add('is-invalid')
   }
 }
+
+function verOpciones(caracteristica){
+  window.location.href = '/Preguntas-Mascotas/Respuestas/' + caracteristica.toString();
+}

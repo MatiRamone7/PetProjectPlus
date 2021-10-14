@@ -124,7 +124,7 @@ public class FormController {
         //form.setLugarEncuentroMascota(body.get("lugarEncuentroMascota"));
 
         formService.CreateFormMascotaPerdida(form);
-        response.sendRedirect("/Inicio");
+        response.sendRedirect("/Hogares-Transito");
     }
 
     @PutMapping("/mascotaPerdida/{id}")

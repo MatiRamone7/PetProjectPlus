@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="formularioUsuario.css">
-    <script src="js/formularioUsuario.js"></script>
+    <link rel="stylesheet" href="./css/formularioUsuario.css">
+    <script src="./js/formularioUsuario.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -77,67 +77,34 @@
     <main class="container">
         <div class="row mt-3">
             <div class="col-12">
-                <div class="preguntas">
-                    <div class="prueba mt-3">
-                        <div class="contenedor-de-movimiento">
-                            
-                                <i class="fas fa-angle-up"></i>
-                         
-                                <i class="fas fa-angle-down"></i>
-                         
-                        </div>
+                <div class="preguntas" id='padre'>
+                    <div class="prueba mt-3" id="1">
+                      
                         <div class="pregunta ">
                             <p> pregunta de la ONG</p>
                         </div>
-                        <select class="form-select selecTipo" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                        <div class="eliminarPregunta">
+                       
+                        <div class="eliminarPregunta" onclick="prueba(this)">
                             <p> x</p>
                         </div>
                     </div>
                     <div class="prueba mt-3">
-                        <div class="contenedor-de-movimiento">
-                            
-                            <i class="fas fa-angle-up"></i>
                      
-                            <i class="fas fa-angle-down"></i>
-                     
-                    </div>
                         <div class="pregunta ">
                             <p> pregunta de la ONG</p>
                         </div>
-                        <select class="form-select selecTipo" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                        <div class="eliminarPregunta">
+                        
+                        <div class="eliminarPregunta" onclick="prueba(this)">
                             <p> x</p>
                         </div>
                     </div>
                     <div class="prueba mt-3">
-                        <div class="contenedor-de-movimiento">
-                            
-                            <i class="fas fa-angle-up"></i>
-                     
-                            <i class="fas fa-angle-down"></i>
-                     
-                    </div>
+                        
                         <div class="pregunta ">
                             <p> pregunta de la ONG</p>
                         </div>
-                        <select class="form-select selecTipo" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                        <div class="eliminarPregunta">
+                       
+                        <div class="eliminarPregunta" onclick="prueba(this)">
                             <p> x</p>
                         </div>
                     </div>
@@ -150,10 +117,10 @@
                 <label for="apellido" class="form-label">Pregunta a agregar</label>
                 <div class="row">
                     <div class="col-8">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id='nuevaPregunta'>
                     </div>
                     <div class="col-4">
-                        <button type="button" class="col-12 btn btn-dark onclick="validar()" style="background-color :blueviolet; width: 150px;">Agregar</button>
+                        <button type="button" class="col-12 btn btn-dark" onclick="agregar()" style="background-color :blueviolet; width: 150px;">Agregar</button>
                     </div>
                 </div>
             </div>

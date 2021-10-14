@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/pantallaAdmin.css">
     <link rel="stylesheet" href="./css/registrarMascota.css">
-    <script src="js/formulario-quiero-adoptar.js"></script>
+    <script src="../static/js/formulario-quiero-adoptar.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -22,11 +22,11 @@
     <!-- ENCABEZADO -->
     <!--========================================================== -->
     <nav class="navbar navbar-expand-lg navbar-light p-3" id="menu" style="background-image: url('img/banner.PNG');  height: 110px">
-        <a class="navbar-brand" rel="home" href="#">
+        <a class="navbar-brand" rel="home" href="../Inicio">
             <img style="max-width:100px;" src="./img/Logo/negro2.png">
         </a>
         <div class="container">
-            <a class="navbar-brand" href="./index.html">
+            <a class="navbar-brand" href="../Inicio">
                 <span class="fs-5 text-dark fw-bold">Rescate De Patitas</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#seccion-contacto">Sistema</a>
+                        <a class="nav-link" href="../Inicio#intro">Sistema</a>
                     </li>
                 </ul>
                 <a href="perfil.html" class="nav-item nav-link" aria-expanded="false"><img src="img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
@@ -110,7 +110,7 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="col-2">
-                            <input type="button" class="boton " value="AGREGAR">
+                            <input type="button" class="boton " value="AGREGAR" onclick="agregar()">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -120,7 +120,7 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                     <div class="pregunta ">
                                         <p> pregunta de la ONG</p>
                                     </div>
-                                    <div class="eliminarPregunta">
+                                    <div class="eliminarPregunta" onclick="prueba(this)">
                                         <p> x</p>
                                     </div>
                                 </div>

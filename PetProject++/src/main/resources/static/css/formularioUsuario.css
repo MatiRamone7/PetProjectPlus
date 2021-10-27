@@ -322,3 +322,8 @@ form input {
 .form-select-seguido{
     margin-bottom: 10px;
 }
+
+.form-agregar-pregunta{
+    margin-left: 0px;
+    background-color: white;
+}

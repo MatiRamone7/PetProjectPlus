@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/formularioUsuario.css">
-    <script src="../../js/formularioUsuario.js"></script>
+    <script src="../../js/formulario-quiero-adoptar.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -21,7 +21,7 @@
         <!--========================================================== -->
         <!-- ENCABEZADO -->
         <!--========================================================== -->
-        <nav class="navbar navbar-expand-lg navbar-light p-3" id="menu" style="background-image: url('../img/banner.PNG');  height: 110px">
+        <nav class="navbar navbar-expand-lg navbar-light p-3" id="menu" style="background-image: url('../../img/banner.PNG');  height: 110px">
             <a class="navbar-brand" rel="home" href="#">
                 <img style="max-width:100px;" src="../../img/Logo/negro2.png">
             </a>
@@ -69,7 +69,7 @@
                         
                     </ul>
 
-                    <a href="../../Perfil/1" class="nav-item nav-link" aria-expanded="false"><img src="../img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
+                    <a href="../../Perfil/1" class="nav-item nav-link" aria-expanded="false"><img src="../../img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
                 </div>
             </div>
         </nav>
@@ -81,53 +81,37 @@
                 <div class="preguntas" id='padre'>
 
                     {{#each caracteristicaFiltrable}}
-                    <div class="prueba mt-3" id="1">
-                      
-                        <div class="pregunta ">
-                            <p>{{valor}}</p>
+                    <form action="../../../caracteristicas/{{caracteristica.id}}/{{id}}" method="post" class="form-agregar-pregunta">
+                        <div class="prueba mt-3" id="Form{{id}}">
+
+                            <label class="pregunta" name="opcion">
+                                {{valor}}
+                            </label>
+
+                            <button type="submit" class="eliminarPregunta">
+                                <p> x</p>
+                            </button>
                         </div>
-                       
-                        <div class="eliminarPregunta" onclick="prueba(this)">
-                            <p> x</p>
-                        </div>
-                    </div>
+                    </form>
                     {{/each}}
-
-                    <div class="prueba mt-3">
-                     
-                        <div class="pregunta ">
-                            <p> pregunta de la ONG</p>
-                        </div>
-                        
-                        <div class="eliminarPregunta" onclick="prueba(this)">
-                            <p> x</p>
-                        </div>
-                    </div>
-                    <div class="prueba mt-3">
-                        
-                        <div class="pregunta ">
-                            <p> pregunta de la ONG</p>
-                        </div>
-                       
-                        <div class="eliminarPregunta" onclick="prueba(this)">
-                            <p> x</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
         <div class="row mt-5 mb-3">
             <div class="col-12">
-                <label for="apellido" class="form-label">Pregunta a agregar</label>
+                <label for="apellido" class="form-label">Respuesta a agregar</label>
                 <div class="row">
-                    <div class="col-8">
-                        <input type="text" class="form-control" id='nuevaPregunta'>
-                    </div>
-                    <div class="col-4">
-                        <button type="button" class="col-12 btn btn-dark" onclick="agregar()" style="background-color :blueviolet; width: 150px;">Agregar</button>
-                        <button type="submit" class="col-12 btn btn-dark" style="background-color :blueviolet; width: 150px;margin-left: 10px;">Guardar</button>
-                    </div>
+                    <form action="../../../caracteristicas/{{caracteristica.id}}" method="post" class="col-12 form-agregar-pregunta" id="formulario">
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" class="form-control" id='nuevaPregunta' name="descripcion">
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="col-12 btn btn-dark" style="background-color :blueviolet; width: 150px;">Agregar</button>
+                                <!--<button type="submit" class="col-12 btn btn-dark" style="background-color :blueviolet; width: 150px;margin-left: 10px;">Guardar</button>-->
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

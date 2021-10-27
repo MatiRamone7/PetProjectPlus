@@ -74,4 +74,13 @@ public class CaracteristicaRepo implements ICaracteristicaRepo{
         this.manager.getTransaction().commit();
     }
 
+    @Override
+    public void DeleteCaracteristicaFiltrable(Integer id){
+        this.manager.getTransaction().begin();
+        Query query = this.manager.createQuery("delete from CaracteristicaFiltrable WHERE id = " + id.toString());
+        query.executeUpdate();
+        this.manager.flush();
+        this.manager.getTransaction().commit();
+    }
+
 }

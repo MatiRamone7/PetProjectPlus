@@ -12,4 +12,6 @@ public interface ICaracteristicaService {
     public Caracteristica UpdateCaracteristica(Caracteristica c, Integer id);
 
     public void DeleteCaracteristica(Integer id);
+
+    public void DeleteCaracteristicaFiltrable(Integer id);
 }

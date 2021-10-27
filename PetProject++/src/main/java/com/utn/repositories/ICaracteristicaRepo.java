@@ -17,4 +17,6 @@ public interface ICaracteristicaRepo {
 
     public void DeleteCaracteristica(Integer id);
 
+    public void DeleteCaracteristicaFiltrable(Integer id);
+
 }

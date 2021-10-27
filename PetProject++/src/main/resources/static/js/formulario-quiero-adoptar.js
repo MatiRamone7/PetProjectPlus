@@ -38,7 +38,12 @@ function enviar() {
     padre.appendChild(cajacontent);
     elemento.value="";
   }
-   
-    
-  
-  }
+}
+
+function verOpciones(caracteristica){
+  window.location.href = '/Preguntas-Mascotas/Respuestas/' + caracteristica.toString();
+}
+
+function subirPost(caracteristica){
+  document.getElementById('Form'+caracteristica).submit();
+}

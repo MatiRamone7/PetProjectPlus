@@ -67,4 +67,5 @@ public class CaracteristicaService implements ICaracteristicaService{
         caracteristicaRepo.DeleteCaracteristica(id);
     }
 
+    public void DeleteCaracteristicaFiltrable(Integer id){caracteristicaRepo.DeleteCaracteristicaFiltrable(id);}
 }

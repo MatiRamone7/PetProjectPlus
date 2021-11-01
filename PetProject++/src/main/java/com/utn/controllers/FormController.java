@@ -1,5 +1,7 @@
 package com.utn.controllers;
 
+import com.utn.models.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
+import com.utn.models.contactservices.mensajesPredeterminados.CMascotaReconocida;
 import com.utn.models.forms.*;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.CaracteristicaPet;
@@ -164,7 +166,17 @@ public class FormController {
     public void DeleteFormMascotaEncontrada(@PathVariable Integer id) {
         formService.DeleteFormMascotaEncontrada(id);
     }
+    
+    @GetMapping("/mascotaEncontrada/contactar/{id}")
+    public void notificarRescatista(@RequestBody Map<String, String> datos, @PathVariable Integer id) {
+        CMascotaReconocida mensaje = new CMascotaReconocida(datos.get("input"));
 
+        try {
+            formService.GetFormMascotaEncontradaById(id).getFormularioMascotaPerdida().getContacto().contactar(mensaje.asunto(), mensaje.cuerpo());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     /*
@@ -222,5 +234,16 @@ public class FormController {
     @DeleteMapping("/darEnAdopcion/{id}")
     public void DeleteFormDarEnAdopcion(@PathVariable Integer id) {
         formService.DeleteFormDarEnAdopcion(id);
+    }
+
+   @GetMapping("/darEnAdopcion/contactar/{id}")
+    public void notificarDuenioActual(@RequestBody Map<String, String> datos, @PathVariable Integer id) {
+        CInteresDeAdopcion mensaje = new CInteresDeAdopcion(datos.get("input"));
+
+        try {
+            formService.GetFormDarEnAdopcionById(id).getUsuario().contactar(mensaje);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

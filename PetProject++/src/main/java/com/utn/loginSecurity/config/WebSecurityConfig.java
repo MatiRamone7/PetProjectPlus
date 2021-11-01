@@ -39,13 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/Registrar-Mascota*").access("hasRole('USER')")
                 .antMatchers("/Dar-en-Adopcion*").access("hasRole('USER')")
                 .antMatchers("/Formulario-Quiero-Adoptar*").access("hasRole('USER')")
+                .antMatchers("/Perfil*").access("hasRole('USER') ")
 
                 //TODO fALTA pantalal de aprobar formularios como voluntario
-                
                 .antMatchers("/Inicio*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
-                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
+               // .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
                 .antMatchers("/Mascotas-Encontradas*").access("hasRole('USER') or hasRole('ADMIN')")
-                .antMatchers("/Perfil*").access("hasRole('USER') or hasRole('ADMIN')") 
+
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

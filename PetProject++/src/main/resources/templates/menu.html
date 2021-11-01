@@ -10,6 +10,15 @@
 <form th:action="@{/logout}" method="post"> <!-- lleva al log out de la aplicacion , esto lo pone spring security automatico-->
   <input type="submit" value="Cerrar Sesion"/>
 </form>
-<h1><a th:href="@{/admin}"> pantallaAdmin</a> | <a th:href="@{/user}"> Perfil</a></h1>
+<h1 th:inline="text">Accesos de admin </h1>
+<h1><a th:href="@{/Editor-de-Formularios}"> Editor de Formularios</a> | <a th:href="@{/Admin-Perfiles-ONG}"> Perfiles ONG</a> | <a th:href="@{/Admin-Preguntas-ONG}"> Preguntas-ONG</a></h1>
+
+<h1 th:inline="text"> </h1>
+<h1 th:inline="text">Accesos de User </h1>
+<h1><a th:href="@{/Perfil}"> Perfil</a> | <a th:href="@{/Adopcion-de-Mascotas}"> Adopcion de Mascotas</a> | <a th:href="@{/Registrar-Mascota}"> Registrar Mascota</a> | <a th:href="@{/Dar-en-Adopcion}"> Dar en Adopcion</a> | <a th:href="@{/Formulario-Quiero-Adoptar}"> Quiero Adoptar</a></h1>
+
+<h1 th:inline="text"> </h1>
+<h1 th:inline="text">Accesos ALL </h1>
+<h1><a th:href="@{/Mascotas-Encontradas}"> Mascotas Encontradas</a> | <a th:href="@{/Inicio}"> Inicio</a></h1>
 </body>
 </html>

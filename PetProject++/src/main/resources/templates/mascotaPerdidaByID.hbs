@@ -209,21 +209,6 @@
                         <h3 class="mt-4">Datos de la Mascota</h3>
                         <div class="col-12 ">
                             <div class="row">
-                                <div class="col-6">
-                                    <label for="especie" class="form-label ">Especie</label>
-                                    <select class="form-select" name="especie" id="especie">
-                                        <option value="PERRO">Perro</option>
-                                        <option value="GATO">Gato</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <label for="sexo" class="form-label ">Sexo</label>
-                                    <select class="form-select" name="sexo" id="sexo">
-                                        <option value="null">Desconoce</option>
-                                        <option value="MACHO">Macho</option>
-                                        <option value="HEMBRA">Hembra</option>
-                                    </select>
-                                </div>
                             </div>
                             <br>
                             <div class="row">
@@ -233,30 +218,13 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="" class="form-label "> ID Mascota</label>
-                                    <input type="text" class="form-control" name="mascota">
+                                    <input type="text" class="form-control" name="mascota" value="{{mascota.id}}" readonly><br><br>
                                 </div>
                             </div>
                             <br>
 
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="" class="form-label">Personalidad</label>
-                                    <ul style="list-style: none">
-                                        <li><input class="form-check-input" type="checkbox" value="Tranquilo" name="Tranquilo" id="Tranquilo">
-                                            <label class="form-check-label" for="Tranquilo">Tranquilo</label></li>
-
-                                        <li><input class="form-check-input" type="checkbox" value="Pacífico" name="Pacifico" id="Pacifico">
-                                            <label class="form-check-label" for="Pacifico">Pacífico</label></li>
-
-                                        <li><input class="form-check-input" type="checkbox" value="Manso" name="Manso" id="Manso">
-                                            <label class="form-check-label" for="Manso">Manso</label></li>
-
-                                        <li><input class="form-check-input" type="checkbox" value="Delgado" name="Delgado" id="Delgado">
-                                            <label class="form-check-label" for="Delgado">Delgado</label></li>
-
-                                        <li><input class="form-check-input" type="checkbox" value="Amistoso" name="Amistoso" id="Amistoso">
-                                            <label class="form-check-label" for="Amistoso">Amistoso</label></li>
-                                    </ul>
                                 </div>
                             </div>
                             <br>

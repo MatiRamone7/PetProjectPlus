@@ -364,8 +364,8 @@ public class HandlebarsController {
         Map<String, Object> model = new HashMap<>();
         model.put("provincias", geoService.GetProvincias());
 
-       /* Mascota mascota = petService.GetPetById(id);
-        model.put("mascota", mascota);*/
+        Mascota mascota = petService.GetPetById(id);
+        model.put("mascota", mascota);
 
         return template.apply(model);
     }

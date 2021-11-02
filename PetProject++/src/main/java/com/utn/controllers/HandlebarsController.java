@@ -240,5 +240,20 @@ public class HandlebarsController {
 
         return template.text();
     }
+
+    @GetMapping("Mascota-Perdida/{id}")
+    public String GetMascotaPerdidaByID(@PathVariable Integer id) throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("mascotaPerdidaByID");
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("provincias", geoService.GetProvincias());
+
+       /* Mascota mascota = petService.GetPetById(id);
+        model.put("mascota", mascota);*/
+
+        return template.apply(model);
+    }
 }
 

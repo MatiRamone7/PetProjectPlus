@@ -9,9 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/formularioUsuario.css">
-    <script src="js/mascota-perdida.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/formularioUsuario.css">
+    <script src="../js/mascota-perdida.js"></script>
     <script src="https://kit.fontawesome.com/7fcb757e78.js" crossorigin="anonymous"></script>
     <title>Diseño de sistemas</title>
 </head>
@@ -20,9 +20,9 @@
     <!--========================================================== -->
     <!-- ENCABEZADO -->
     <!--========================================================== -->
-    <nav class="navbar navbar-expand-lg navbar-light p-3" id="menu" style="background-image: url('img/banner.PNG');  height: 110px">
+    <nav class="navbar navbar-expand-lg navbar-light p-3" id="menu" style="background-image: url('../img/banner.PNG');  height: 110px">
         <a class="navbar-brand" rel="home" href="../Inicio">
-            <img style="max-width:100px;" src="./img/Logo/negro2.png">
+            <img style="max-width:100px;" src="../img/Logo/negro2.png">
         </a>
         <div class="container">
             <a class="navbar-brand" href="../Inicio">
@@ -43,7 +43,7 @@
                         <a class="nav-link" href="../Inicio#seccion-contacto">Contactos</a>
                     </li>
                 </ul>
-                <a href="../Perfil/1" class="nav-item nav-link" aria-expanded="false"><img src="img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
+                <a href="../Perfil/1" class="nav-item nav-link" aria-expanded="false"><img src="../img/Avatar/avatar-gato.png" class="avatar" alt="Avatar" height="50" width="50"><b class="fs-5 text-dark fw-bold">Tom Hanks</b></a>
             </div>
         </div>
     </nav>
@@ -57,6 +57,27 @@
         <div class="row mt-4">
             <div class="col-12">
                 <form action="../forms/mascotaPerdida" method="post" class="border-top border-2 border-dark" enctype="multipart/form-data" id="form">
+                    <h3 class="mt-4">Datos de Personales</h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="nombre" class="form-label "> Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre">
+                            <label for="apellido" class="form-label "> Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido">
+                            <label for="fechaNacimiento" class="form-label ">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
+                        </div>
+                        <div class="col-6">
+                            <label for="tipoDocumento" class="form-label "> Tipo de Documento</label>
+                            <select name="tipoDocumento" id="tipoDocumento" class="form-select">
+                                <option value="DNI">DNI</option>
+                                <option value="PASAPORTE">Pasaporte</option>
+                                <option value="PRECARIA">Precaria</option>
+                            </select>
+                            <label for="nroDocumento" class="form-label mt-2 "> Numero de Documento</label>
+                            <input type="text" class="form-control" name="nroDocumento" id="nroDocumento">
+                        </div>
+                    </div>
                     <div class="row border-top border-secondary">
                         <h3 class="mt-4">Datos de Contacto</h3>
                         <div class="row mt-3">
@@ -239,6 +260,44 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="row border-top border-secondary">
+                                <h3 class="mt-4">Caracteristicas especificas</h3>
+                                <div class="col-12">
+                                {{#each caracteristicas}}
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="" class="form-label">{{descripcion}}</label>
+                                        </div>
+                                        <div class="col-7">
+                                            {{#if opciones}}
+                                                <select class="form-select form-select-seguido" name="{{descripcion}}">
+                                                    <option value="">Desconoce</option>
+                                                {{#each opciones}}
+                                                    <option value="{{valor}}">{{valor}}</option>
+                                                {{/each}}
+                                                </select>
+                                            {{else}}
+                                                <input type="text" class="form-control" name="{{descripcion}}">
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                   
+                                {{/each}}
+                                </div>
+                                
+                            </div>
+                            <br>
+                            <label for="descripcion" class="form-label "> Descripcion de la mascota</label>
+                            <textarea id="descripcion" class="form-control" name="descripcion"></textarea>
+                            <br>
+                            <label for="direccionEncontrada " class="form-label ">Direccion donde se encontro</label>
+                            <input type="text " class="form-control " name="lugarEncuentroMascota" id="direccionEncontrada">
+                            <div class="row mt-5">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3035.277999585691!2d-58.52786464485551!3d-34.49496291787473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1629774484236!5m2!1ses-419!2sar" width="450" height="350" style="border:0;"
+                                        allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
                             <div class="row mt-6">
                                 <div class="col-12 d-flex justify-content-center">
                                     <div>

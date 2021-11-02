@@ -7,6 +7,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.Mascota;
+import com.utn.models.mascotas.Mascota.Especie;
 import com.utn.models.users.Usuario;
 import com.utn.services.*;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 //NOMENCLATURA PARA MAPPINGS
 //TODO: JSON-> en inglés, in english  // HTML -> en español, in spanish
@@ -55,9 +57,69 @@ public class HandlebarsController {
         Map<String, Object> model = new HashMap<>();    //en este map se ponen todas las variables o clases que quieras usar luego en el handlebars
         List<Mascota> mascotas = new ArrayList<Mascota>();
         petService.GetPets().forEach(mascotas::add); //TODO: solo mascotas en adopción - Traer los formularios dar en adopcion
-        model.put("mascotas1", mascotas.subList(0, (int)(mascotas.size()/2)));
-        model.put("mascotas2", mascotas.subList((int)(mascotas.size()/2 + 1), mascotas.size()));//acá pones las cosas dentro del map (en este ejemplo estoy poniendo una lista de usuarios
-                                                                                                //con una etiqueta llama "mascotas")
+
+        class ConjuntoMascotas{
+            boolean active;
+            List<Mascota> mascotas;
+
+            public boolean isActive() {
+                return active;
+            }
+
+            public void setActive(boolean active) {
+                this.active = active;
+            }
+
+            public List<Mascota> getMascotas() {
+                return mascotas;
+            }
+
+            public void setMascotas(List<Mascota> mascotas) {
+                this.mascotas = mascotas;
+            }
+
+            public ConjuntoMascotas(boolean active, List<Mascota> mascotas) {
+                this.active = active;
+                this.mascotas = mascotas;
+            }
+        }
+        List<Mascota> perros = mascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO).collect(Collectors.toList());
+        List<ConjuntoMascotas> conjuntoPerros = new ArrayList<>();
+        for (int i = 0; i < perros.size(); i++) {
+            List<Mascota> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < perros.size(); y++) {
+                pets.add(perros.get(i));
+                i++;
+            }
+            if(i<4){
+                conjuntoPerros.add(new ConjuntoMascotas(true, pets));
+            }
+            else{
+                conjuntoPerros.add(new ConjuntoMascotas(false, pets));
+            }
+        }
+
+        List<Mascota> gatos = mascotas.stream().filter(a -> a.getEspecie() == Especie.GATO).collect(Collectors.toList());
+        List<ConjuntoMascotas> conjuntoGatos = new ArrayList<>();
+        for (int i = 0; i < gatos.size(); i++) {
+            List<Mascota> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < gatos.size(); y++) {
+                pets.add(gatos.get(i));
+                i++;
+            }
+            if(i<4){
+                conjuntoGatos.add(new ConjuntoMascotas(true, pets));
+            }
+            else{
+                conjuntoGatos.add(new ConjuntoMascotas(false, pets));
+            }
+        }
+
+        model.put("perros", conjuntoPerros);
+        model.put("gatos", conjuntoGatos);
+
+
+
         return template.apply(model);                   //aplicas las variables del template y las envías
     }
 
@@ -188,11 +250,62 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("perfil");
 
+        class CarrouselMascotas{
+            boolean active;
+            Mascota mascota;
+            String foto;
+
+            public CarrouselMascotas(boolean active, Mascota mascota, String foto) {
+                this.active = active;
+                this.mascota = mascota;
+                this.foto = foto;
+            }
+
+            public boolean isActive() {
+                return active;
+            }
+
+            public void setActive(boolean active) {
+                this.active = active;
+            }
+
+            public Mascota getMascota() {
+                return mascota;
+            }
+
+            public void setMascota(Mascota mascota) {
+                this.mascota = mascota;
+            }
+
+            public String getFoto() {
+                return foto;
+            }
+
+            public void setFoto(String foto) {
+                this.foto = foto;
+            }
+        }
+
         Map<String, Object> model = new HashMap<>();
         Usuario usuario = userService.GetUserById(userId);
         model.put("usuario", usuario);
-        byte[] foto = petService.GetPetById(1).getFotos().stream().findFirst().get().getImagenByteArray();
-        model.put("bytearray", Base64Utils.encodeToString(foto));
+        List<CarrouselMascotas> carrousel = new ArrayList<>();
+        List<Mascota> mascotas = usuario.getMascotas().stream().collect(Collectors.toList());
+        for(int i = 0; i < usuario.getMascotas().size(); i++){
+            boolean activo;
+            if(i == 0) {
+                activo = true;
+            }
+            else{
+                activo = false;
+            }
+            carrousel.add(new CarrouselMascotas(activo,
+                    mascotas.get(i),
+                    Base64Utils.encodeToString(
+                            mascotas.get(i).getFotos().stream().findFirst().get().getImagenByteArray()
+                    )));
+        }
+        model.put("carrousel", carrousel);
 
         return template.apply(model);
     }
@@ -221,13 +334,14 @@ public class HandlebarsController {
         return template.apply(model);
     }
 
-    @GetMapping("Registrar-Mascota")
-    public String GetRegistrarMascota() throws IOException {
+    @GetMapping("Registrar-Mascota/{duenioId}")
+    public String GetRegistrarMascota(@PathVariable Integer duenioId) throws IOException {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("registrarMascota");
         Map<String, Object> model = new HashMap<>();
         model.put("caracteristicas", caracteristicaService.GetCaracteristicas());
+        model.put("duenioId", duenioId);
 
         return template.apply(model);
     }

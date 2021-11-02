@@ -6,6 +6,7 @@ import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
 import com.utn.services.ICaracteristicaService;
 import com.utn.services.IPetService;
+import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,9 @@ public class PetController {
     @Autowired
     ICaracteristicaService caracteristicaService;
 
+    @Autowired
+    IUserService userService;
+
     @GetMapping
     public Iterable<Mascota> GetPets() {
         return petService.GetPets();
@@ -35,8 +39,8 @@ public class PetController {
         return petService.GetPetById(id);
     }
 
-    @PostMapping
-    public void CreatePet(@RequestParam Map<String, String> body, @RequestParam("imagen") MultipartFile img, HttpServletResponse response) throws IOException {
+    @PostMapping("/{duenioId}")
+    public void CreatePet(@RequestParam Map<String, String> body, @PathVariable Integer duenioId, @RequestParam("imagen") MultipartFile img, HttpServletResponse response) throws IOException {
     Mascota mascota = new Mascota();
         mascota.setApodo(body.get("apodo"));
         mascota.setNombre(body.get("nombre"));
@@ -44,6 +48,8 @@ public class PetController {
         mascota.setDescripcionFisica(body.get("descripcionFisica"));
         mascota.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
         mascota.setFechaDeNacimiento(LocalDate.parse(body.get("fechaDeNacimiento")));
+
+        mascota.setDuenio(userService.GetUserById(duenioId));
 
         Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
         Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
@@ -66,7 +72,7 @@ public class PetController {
 
         petService.CreatePet(mascota);
 
-        response.sendRedirect("/Perfil");
+        response.sendRedirect("/Perfil/" + duenioId.toString());
     }
 
     @PutMapping("/{id}")

@@ -2,6 +2,7 @@ package com.utn.models.mascotas;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utn.models.forms.Foto;
+import com.utn.models.ongs.Organizacion;
 import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
@@ -52,6 +53,11 @@ public class Mascota {
     @JoinColumn(name = "duenioId")
     @JsonBackReference
     private Usuario duenio;
+
+    @ManyToOne()
+    @JoinColumn(name = "organizacionId")
+    @JsonBackReference
+    private Organizacion ong;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "mascotaId")
@@ -164,6 +170,14 @@ public class Mascota {
 
     public void setCaracteristicSet(Set<CaracteristicaPet> caracteristicSet) {
         this.caracteristicSet = caracteristicSet;
+    }
+
+    public Organizacion getOng() {
+        return ong;
+    }
+
+    public void setOng(Organizacion ong) {
+        this.ong = ong;
     }
 
     public enum Especie {

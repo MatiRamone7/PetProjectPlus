@@ -129,6 +129,18 @@ public class FormController {
         response.sendRedirect("/Hogares-Transito");
     }
 
+    @PostMapping("/mascotaPerdida/{id}")
+    public void CreateFormMascotaPerdidaByID(@RequestParam Map<String, String> body, @RequestParam("imagen") MultipartFile img,  @PathVariable Integer id, HttpServletResponse response) throws IOException {
+        FormularioMascotaPerdida form = new FormularioMascotaPerdida();
+
+        if(!body.get("mascota").isEmpty()){
+            form.setMascota(petService.GetPetById(id));
+        }
+        //TODO esto
+        formService.CreateFormMascotaPerdida(form);
+        response.sendRedirect("/Hogares-Transito");
+    }
+
     @PutMapping("/mascotaPerdida/{id}")
     public FormularioMascotaPerdida UpdateFormMascotaPerdida(@RequestBody FormularioMascotaPerdida form, @PathVariable Integer id) {
         return formService.UpdateFormMascotaPerdida(form, id);

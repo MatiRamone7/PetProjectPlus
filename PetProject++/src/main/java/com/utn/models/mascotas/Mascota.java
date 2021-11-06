@@ -49,7 +49,7 @@ public class Mascota {
     @Column
     private String descripcionFisica;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "duenioId")
     @JsonBackReference
     private Usuario duenio;
@@ -188,5 +188,6 @@ public class Mascota {
     public enum Sexo {
         MACHO,
         HEMBRA,
+        NULL
     }
 }

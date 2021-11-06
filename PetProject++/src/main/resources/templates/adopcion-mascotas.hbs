@@ -123,65 +123,33 @@
     </div>
 
     <!-- Single item -->
-    <div class="carousel-item">
+    {{#each perros}}
+    <div class="carousel-item {{#if active}}active{{/if}}">
       <div class="container">
         <div class="row">
+        {{#each mascotaFoto}}
           <div class="col-lg-4 col-md-12">
             <div class="card">
               <img
-                src="./img/MascotasAdopcion/Luna.jpg"
+                src="data:image/png;base64,{{foto}}"
                 class="card-img-top"
                 alt="..."
                 height="300"
               />
               <div class="card-body">
-                <h5 class="card-title">Luna</h5>
+                <h5 class="card-title">{{mascota.nombre}}</h5>
                 <p class="card-text">
-                  Descripcion
+                  {{mascota.descripcionFisica}}
                 </p>
                 <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Adoptar</a>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasAdopcion/Nala.jpg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nala</h5>
-                <p class="card-text">
-                  Descripcion
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Adoptar</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasAdopcion/Rocky.jpg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Rocky</h5>
-                <p class="card-text">
-                  Descricion
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Adoptar</a>
-              </div>
-            </div>
-          </div>
+        {{/each}}
         </div>
       </div>
     </div>
+    {{/each}}
 
   </div>
   

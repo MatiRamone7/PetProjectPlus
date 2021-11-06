@@ -58,9 +58,36 @@ public class HandlebarsController {
         List<Mascota> mascotas = new ArrayList<Mascota>();
         petService.GetPets().forEach(mascotas::add); //TODO: solo mascotas en adopción - Traer los formularios dar en adopcion
 
+        class MascotaFoto{
+            Mascota mascota;
+            String foto;
+
+            public MascotaFoto(Mascota mascota, String foto) {
+                this.mascota = mascota;
+                this.foto = foto;
+            }
+
+            public Mascota getMascota() {
+                return mascota;
+            }
+
+            public void setMascota(Mascota mascota) {
+                this.mascota = mascota;
+            }
+
+            public String getFoto() {
+                return foto;
+            }
+
+            public void setFoto(String foto) {
+                this.foto = foto;
+            }
+
+        }
+
         class ConjuntoMascotas{
             boolean active;
-            List<Mascota> mascotas;
+            List<MascotaFoto> mascotaFoto;
 
             public boolean isActive() {
                 return active;
@@ -70,25 +97,30 @@ public class HandlebarsController {
                 this.active = active;
             }
 
-            public List<Mascota> getMascotas() {
-                return mascotas;
+            public List<MascotaFoto> getMascotas() {
+                return mascotaFoto;
             }
 
-            public void setMascotas(List<Mascota> mascotas) {
-                this.mascotas = mascotas;
+            public void setMascotas(List<MascotaFoto> mascotaFoto) {
+                this.mascotaFoto = mascotaFoto;
             }
 
-            public ConjuntoMascotas(boolean active, List<Mascota> mascotas) {
+            public ConjuntoMascotas(boolean active, List<MascotaFoto> mascotaFoto) {
                 this.active = active;
-                this.mascotas = mascotas;
+                this.mascotaFoto = mascotaFoto;
             }
         }
         List<Mascota> perros = mascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO).collect(Collectors.toList());
         List<ConjuntoMascotas> conjuntoPerros = new ArrayList<>();
         for (int i = 0; i < perros.size(); i++) {
-            List<Mascota> pets = new ArrayList<>();
+            List<MascotaFoto> pets = new ArrayList<>();
             for (int y = 0; y < 3 && i < perros.size(); y++) {
-                pets.add(perros.get(i));
+                Mascota unPerro = perros.get(i);
+
+                pets.add(new MascotaFoto(unPerro,
+                        Base64Utils.encodeToString(
+                            unPerro.getFotos().stream().findFirst().get().getImagenByteArray()
+                        )));
                 i++;
             }
             if(i<4){
@@ -102,9 +134,14 @@ public class HandlebarsController {
         List<Mascota> gatos = mascotas.stream().filter(a -> a.getEspecie() == Especie.GATO).collect(Collectors.toList());
         List<ConjuntoMascotas> conjuntoGatos = new ArrayList<>();
         for (int i = 0; i < gatos.size(); i++) {
-            List<Mascota> pets = new ArrayList<>();
+            List<MascotaFoto> pets = new ArrayList<>();
             for (int y = 0; y < 3 && i < gatos.size(); y++) {
-                pets.add(gatos.get(i));
+                Mascota unGato = gatos.get(i);
+
+                pets.add(new MascotaFoto(unGato,
+                        Base64Utils.encodeToString(
+                                unGato.getFotos().stream().findFirst().get().getImagenByteArray()
+                        )));
                 i++;
             }
             if(i<4){

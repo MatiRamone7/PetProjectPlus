@@ -4,6 +4,7 @@ import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
+import com.utn.models.users.Usuario;
 import com.utn.services.ICaracteristicaService;
 import com.utn.services.IPetService;
 import com.utn.services.IUserService;
@@ -49,7 +50,9 @@ public class PetController {
         mascota.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
         mascota.setFechaDeNacimiento(LocalDate.parse(body.get("fechaDeNacimiento")));
 
-        mascota.setDuenio(userService.GetUserById(duenioId));
+        Usuario duenio = userService.GetUserById(duenioId);
+
+        mascota.setDuenio(duenio);
 
         Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
         Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
@@ -71,6 +74,12 @@ public class PetController {
         mascota.setDescripcionFisica(body.get("descripcionFisica"));
 
         petService.CreatePet(mascota);
+
+        Set<Mascota> mascotasDuenio = duenio.getMascotas();
+        mascotasDuenio.add(mascota);
+        duenio.setMascotas(mascotasDuenio);
+
+        userService.Update(duenio, duenioId);
 
         response.sendRedirect("/Perfil/" + duenioId.toString());
     }

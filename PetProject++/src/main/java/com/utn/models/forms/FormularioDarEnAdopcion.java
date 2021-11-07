@@ -16,15 +16,15 @@ public class FormularioDarEnAdopcion {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuarioId", referencedColumnName = "id")
     private Usuario usuario;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "mascotaID", referencedColumnName = "id")
     private Mascota mascota;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ongId", referencedColumnName = "id")
     private Organizacion organizacion;
 
@@ -32,7 +32,7 @@ public class FormularioDarEnAdopcion {
     @JoinColumn(name = "formularioDarEnAdopcionId")
     private List<EstadoFormulario> estado;
 
-    @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<PreguntaRespuestaAdoptante> preguntas;
     

@@ -4,6 +4,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.utn.models.forms.FormularioDarEnAdopcion;
 import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.Mascota;
@@ -55,12 +56,50 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);       //se crea la instancia de handlebars
         Template template = handlebars.compile("adopcion-mascotas");  //se crea el template sobre el .hbs que querés enviar (ej: formularioUsuario.hbs)
         Map<String, Object> model = new HashMap<>();    //en este map se ponen todas las variables o clases que quieras usar luego en el handlebars
-        List<Mascota> mascotas = new ArrayList<Mascota>();
-        petService.GetPets().forEach(mascotas::add); //TODO: solo mascotas en adopción - Traer los formularios dar en adopcion
+        List<FormularioDarEnAdopcion> formulariosMascotas = new ArrayList<FormularioDarEnAdopcion>();
+        formService.GetFormsDarEnAdopcion().forEach(formulariosMascotas::add);
+        //petService.GetPets().forEach(mascotas::add); //TODO: solo mascotas en adopción - Traer los formularios dar en adopcion
+
+        class MascotaFoto{
+            Mascota mascota;
+            String foto;
+            Integer formId;
+
+            public MascotaFoto(Mascota mascota, String foto, Integer formId) {
+                this.mascota = mascota;
+                this.foto = foto;
+                this.formId = formId;
+            }
+
+            public Mascota getMascota() {
+                return mascota;
+            }
+
+            public void setMascota(Mascota mascota) {
+                this.mascota = mascota;
+            }
+
+            public String getFoto() {
+                return foto;
+            }
+
+            public void setFoto(String foto) {
+                this.foto = foto;
+            }
+
+            public Integer getFormId() {
+                return formId;
+            }
+
+            public void setFormId(Integer formId) {
+                this.formId = formId;
+            }
+
+        }
 
         class ConjuntoMascotas{
             boolean active;
-            List<Mascota> mascotas;
+            List<MascotaFoto> mascotaFoto;
 
             public boolean isActive() {
                 return active;
@@ -70,25 +109,33 @@ public class HandlebarsController {
                 this.active = active;
             }
 
-            public List<Mascota> getMascotas() {
-                return mascotas;
+            public List<MascotaFoto> getMascotaFoto() {
+                return mascotaFoto;
             }
 
-            public void setMascotas(List<Mascota> mascotas) {
-                this.mascotas = mascotas;
+            public void setMascotaFoto(List<MascotaFoto> mascotaFoto) {
+                this.mascotaFoto = mascotaFoto;
             }
 
-            public ConjuntoMascotas(boolean active, List<Mascota> mascotas) {
+            public ConjuntoMascotas(boolean active, List<MascotaFoto> mascotaFoto) {
                 this.active = active;
-                this.mascotas = mascotas;
+                this.mascotaFoto = mascotaFoto;
             }
         }
-        List<Mascota> perros = mascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO).collect(Collectors.toList());
+        List<FormularioDarEnAdopcion> formsPerros = formulariosMascotas.stream().filter(a -> a.getMascota().getEspecie() == Especie.PERRO).collect(Collectors.toList());
+
+                //mascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO).collect(Collectors.toList());
         List<ConjuntoMascotas> conjuntoPerros = new ArrayList<>();
-        for (int i = 0; i < perros.size(); i++) {
-            List<Mascota> pets = new ArrayList<>();
-            for (int y = 0; y < 3 && i < perros.size(); y++) {
-                pets.add(perros.get(i));
+        for (int i = 0; i < formsPerros.size();) {
+            List<MascotaFoto> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < formsPerros.size(); y++) {
+                Mascota unPerro = formsPerros.get(i).getMascota();
+
+                pets.add(new MascotaFoto(unPerro,
+                        Base64Utils.encodeToString(
+                            unPerro.getFotos().stream().findFirst().get().getImagenByteArray()
+                        ),
+                        formsPerros.get(i).getId()));
                 i++;
             }
             if(i<4){
@@ -99,12 +146,18 @@ public class HandlebarsController {
             }
         }
 
-        List<Mascota> gatos = mascotas.stream().filter(a -> a.getEspecie() == Especie.GATO).collect(Collectors.toList());
+        List<FormularioDarEnAdopcion> formsGatos = formulariosMascotas.stream().filter(a -> a.getMascota().getEspecie() == Especie.GATO).collect(Collectors.toList());
         List<ConjuntoMascotas> conjuntoGatos = new ArrayList<>();
-        for (int i = 0; i < gatos.size(); i++) {
-            List<Mascota> pets = new ArrayList<>();
-            for (int y = 0; y < 3 && i < gatos.size(); y++) {
-                pets.add(gatos.get(i));
+        for (int i = 0; i < formsGatos.size();) {
+            List<MascotaFoto> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < formsGatos.size(); y++) {
+                Mascota unGato = formsGatos.get(i).getMascota();
+
+                pets.add(new MascotaFoto(unGato,
+                        Base64Utils.encodeToString(
+                                unGato.getFotos().stream().findFirst().get().getImagenByteArray()
+                        ),
+                        formsGatos.get(i).getId()));
                 i++;
             }
             if(i<4){
@@ -136,6 +189,7 @@ public class HandlebarsController {
 
         Map<String, Object> model = new HashMap<>();
         model.put("preguntasDarEnAdopcion", petService.GetPetById(petId).getDuenio().getOrganizacion().getPreguntasDarEnAdopcion());
+        model.put("mascotaId", petId);
 
         return template.apply(model);
     }

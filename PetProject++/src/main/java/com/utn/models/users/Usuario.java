@@ -21,7 +21,7 @@ public class Usuario extends Persona {
 	@JoinColumn(name = "usuarioId")
 	private List<LogRol> logRol;
 
-    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "duenio", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<Mascota> mascotas;
 

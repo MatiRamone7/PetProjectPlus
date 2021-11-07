@@ -53,4 +53,5 @@ public class PreguntaRespuestaAdoptante {
     public void setRta(String rta) {
         this.rta = rta;
     }
-    }
+
+}

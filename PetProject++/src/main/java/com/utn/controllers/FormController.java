@@ -6,11 +6,14 @@ import com.utn.models.forms.*;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.CaracteristicaPet;
 import com.utn.models.mascotas.Mascota;
+import com.utn.models.ongs.Organizacion;
+import com.utn.models.ongs.PreguntaAdoptante;
 import com.utn.models.users.ContactoUnico;
 import com.utn.models.users.Sesion;
 import com.utn.models.users.TipoDocumento;
 import com.utn.services.ICaracteristicaService;
 import com.utn.services.IFormService;
+import com.utn.services.IOngService;
 import com.utn.services.IPetService;
 import com.utn.transithomes.Hogar;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,9 @@ public class FormController {
 
     @Autowired
     ICaracteristicaService caracteristicaService;
+
+    @Autowired
+    IOngService ongService;
 
     public FormController(IFormService formService) {
         this.formService = formService;
@@ -237,6 +243,36 @@ public class FormController {
     public FormularioDarEnAdopcion CreateFormDarEnAdopcion(@RequestBody FormularioDarEnAdopcion form) {
         return formService.CreateFormDarEnAdopcion(form);
     }
+
+    @PostMapping("/darEnAdopcion/{mascotaId}")
+    public void CreateFormDarEnAdopcion(@RequestParam Map<String, String> body, @PathVariable Integer mascotaId, HttpServletResponse response) throws IOException {
+        FormularioDarEnAdopcion form = new FormularioDarEnAdopcion();
+        Mascota mascota = petService.GetPetById(Integer.valueOf(mascotaId));
+
+        form.setMascota(mascota);
+        form.setUsuario(mascota.getDuenio());
+        Organizacion organizacion = ongService.GetOngById(Integer.valueOf(body.get("organizacion")));
+        form.setOrganizacion(organizacion);
+
+        //Set<PreguntaAdoptante> preguntas = organizacion.getPreguntasDarEnAdopcion();
+        List<PreguntaRespuestaAdoptante> respuestas = new ArrayList<>();
+
+        Iterator<PreguntaAdoptante> preguntas = organizacion.getPreguntasDarEnAdopcion().iterator();
+        while(preguntas.hasNext()){
+            PreguntaAdoptante pregunta = preguntas.next();
+            PreguntaRespuestaAdoptante respuesta = new PreguntaRespuestaAdoptante();
+            respuesta.setPregunta(pregunta);
+            respuesta.setRta(body.get(pregunta.getPregunta()));
+            respuestas.add(respuesta);
+        }
+
+
+        form.setPreguntas(respuestas);
+
+        formService.CreateFormDarEnAdopcion(form);
+        response.sendRedirect("/Inicio");
+    }
+
 
     @PutMapping("/darEnAdopcion/{id}")
     public FormularioDarEnAdopcion UpdateFormDarEnAdopcion(@RequestBody FormularioDarEnAdopcion form, @PathVariable Integer id) {

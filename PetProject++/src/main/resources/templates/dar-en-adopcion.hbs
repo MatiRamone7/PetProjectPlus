@@ -55,7 +55,8 @@
         <h1>Dar mascota en adopcion</h1>
         <div class="row mt-4">
             <div class="col-12">
-                <form action="">
+                <form action="../forms/darEnAdopcion/{{mascotaId}}" method="post">
+                    <input type="hidden" name="organizacion" value="1">
                     <div class="row">
                         <div class="col-12 mb-4">
                             <h5 for="" class="form-label ">¿Ha encontrado la mascota en la calle?</h5>
@@ -72,7 +73,7 @@
                         <div class="col-9"></div>
                         <div class="col-3">
                             <div>
-                                <button type="button" onclick="enviar()" class="col-12 btn btn-dark mb-3 mt-5" style="background-color: blueviolet;">Publicar</button>
+                                <button type="submit" class="col-12 btn btn-dark mb-2 mt-2" style="background-color: blueviolet; line-height: 2.5;">Publicar</button>
                             </div>
                         </div>
                     </div>

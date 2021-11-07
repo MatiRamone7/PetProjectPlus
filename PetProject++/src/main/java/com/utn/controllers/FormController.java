@@ -132,12 +132,52 @@ public class FormController {
     @PostMapping("/mascotaPerdida/{id}")
     public void CreateFormMascotaPerdidaByID(@RequestParam Map<String, String> body, @RequestParam("imagen") MultipartFile img,  @PathVariable Integer id, HttpServletResponse response) throws IOException {
         FormularioMascotaPerdida form = new FormularioMascotaPerdida();
+        form.setNombre(body.get("nombre"));
+        form.setApellido(body.get("apellido"));
+        form.setTipoDocumento(TipoDocumento.valueOf(body.get("tipoDocumento")));
+        form.setFechaNacimiento(LocalDate.parse(body.get("fechaNacimiento")));
 
-        if(!body.get("mascota").isEmpty()){
-            form.setMascota(petService.GetPetById(id));
+        Direccion direccion = new Direccion();
+        direccion.setCalle(body.get("direccion.calle"));
+        direccion.setDepartamento(body.get("direccion.departamento"));
+        direccion.setCodigoPostal(body.get("direccion.codigoPostal"));
+        Ciudad ciudad = new Ciudad();
+        ciudad.setNombre(body.get("direccion.ciudad.nombre"));
+        Provincia provincia = new Provincia();
+        try{
+            form.setNroDocumento(Integer.parseInt(body.get("nroDocumento")));
+            direccion.setNumero(Integer.parseInt(body.get("direccion.numero")));
+            provincia.setId(Integer.valueOf(body.get("direccion.ciudad.provincia.id")));
         }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        ciudad.setProvincia(provincia);
+        direccion.setCiudad(ciudad);
+        form.setDireccion(direccion);
+
+        ContactoUnico contacto = new ContactoUnico(body.get("contacto.mail"), body.get("contacto.celular"));
+        form.setContacto(contacto);
+
+        //Mascota mascota = petService.GetPetById(id);
+        if(!body.get("mascota").isEmpty()){
+            Mascota mascota = petService.GetPetById(id);
+            form.setMascota(mascota);
+            form.setEspecie(mascota.getEspecie());
+            form.setSexo(mascota.getSexo());
+            //form.setCaracteristicas(mascota.getCaracteristicSet());
+        }
+
+        form.setDescripcion(body.get("descripcion"));
+        //form.setLugarEncuentroMascota(body.get("lugarEncuentroMascota"));
         //TODO esto
         formService.CreateFormMascotaPerdida(form);
+       /*System.out.println(form.getId().toString());
+        if(!body.get("mascota").isEmpty()){
+            Mascota mascota = petService.GetPetById(id);
+            form.setCaracteristicas(mascota.getCaracteristicSet());
+        }
+        formService.UpdateFormMascotaPerdida(form,form.getId());*/
         response.sendRedirect("/Hogares-Transito");
     }
 

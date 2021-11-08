@@ -65,7 +65,7 @@
 <div id="carousel" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
   <div class="carousel-inner py-4">
     <!-- Single item -->
-    <div class="carousel-item active">
+    <div class="carousel-item">
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
@@ -81,7 +81,7 @@
                 <p class="card-text">
                     Encontrado el 21/05/2021
                 </p>
-                <a href="detalle-mascota-encontrada.html" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+                <a href="./Mascotas-Encontradas/1" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
                 <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
               </div>
             </div>
@@ -100,7 +100,7 @@
                 <p class="card-text">
                     Encontrado el 01/01/2021
                 </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+                <a href="./Mascotas-Encontradas/1" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
                  <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
               </div>
             </div>
@@ -119,7 +119,7 @@
                 <p class="card-text">
                     Encontrado el 01/01/2021
                 </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+                <a href="./Mascotas-Encontradas/1" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
                  <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
               </div>
             </div>
@@ -129,68 +129,42 @@
     </div>
 
     <!-- Single item -->
-    <div class="carousel-item">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-12">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/perros/Moncho/Moncho.jpg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Moncho</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
-                 <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
+      {{#if perros}}
+          {{#each perros}}
+              <div class="carousel-item {{#if active}}active{{/if}}">
+                  <div class="container">
+                      <div class="row">
+                          {{#each mascotaFoto}}
+                              <div class="col-lg-4 col-md-12">
+                                  <div class="card">
+                                      <img
+                                              src="data:image/png;base64,{{foto}}"
+                                              class="card-img-top"
+                                              alt="..."
+                                              height="300"
+                                      />
+                                      <div class="card-body">
+                                          <h5 class="card-title">{{mascota.nombre}}</h5>
+                                          <p class="card-text">
+                                              {{#if mascota.descripcionFisica}}
+                                                {{mascota.descripcionFisica}}
+                                              {{else}}
+                                                <br>
+                                              {{/if}}
+                                          </p>
+                                          <a href="./Mascotas-Encontradas/{{mascota.id}}" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+                                          <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          {{/each}}
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/perros/Petaca/Petaca.png"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Petaca</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
-                 <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/perros/SN/Sin nombre.jpg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Sin Nombre</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
-                 <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          {{/each}}
+      {{else}}
+          <h2>En este momento no tenemos perros encontrados!</h2>
+      {{/if}}
   </div>
   
   <button class="carousel-control-prev" type="button" data-bs-target="#carousel"  data-bs-slide="prev">
@@ -207,7 +181,7 @@
 <div id="carouselGatos" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
   <div class="carousel-inner py-4">
     <!-- Single item -->
-    <div class="carousel-item active">
+    <div class="carousel-item">
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
@@ -271,65 +245,42 @@
     </div>
 
     <!-- Single item -->
-    <div class="carousel-item">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-12">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/gatos/SN1/SinNombre1.jpg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Sin Nombre</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+      {{#if gatos}}
+          {{#each gatos}}
+              <div class="carousel-item {{#if active}}active{{/if}}">
+                  <div class="container">
+                      <div class="row">
+                          {{#each mascotaFoto}}
+                              <div class="col-lg-4 col-md-12">
+                                  <div class="card">
+                                      <img
+                                              src="data:image/png;base64,{{foto}}"
+                                              class="card-img-top"
+                                              alt="..."
+                                              height="300"
+                                      />
+                                      <div class="card-body">
+                                          <h5 class="card-title">{{mascota.nombre}}</h5>
+                                          <p class="card-text">
+                                              {{#if mascota.descripcionFisica}}
+                                                  {{mascota.descripcionFisica}}
+                                              {{else}}
+                                                  <br>
+                                              {{/if}}
+                                          </p>
+                                          <a href="./Mascotas-Encontradas/{{mascota.id}}" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
+                                          <button class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">Contactar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          {{/each}}
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/gatos/SN2/SinNombre2.jpeg"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Sin Nombre</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-              <img
-                src="./img/MascotasEncontradas/gatos/SN3/SinNombre3.png"
-                class="card-img-top"
-                alt="..."
-                height="300"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Sin Nombre</h5>
-                <p class="card-text">
-                    Encontrado el 01/01/2021
-                </p>
-                <a href="#!" class="btn btn-secondary" style="background-color: blueviolet;">Detalle</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          {{/each}}
+      {{else}}
+          <h2>En este momento no tenemos gatos encontrados!</h2>
+      {{/if}}
   </div>
   
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselGatos"  data-bs-slide="prev">

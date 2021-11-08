@@ -5,6 +5,7 @@ import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.forms.FormularioDarEnAdopcion;
+import com.utn.models.forms.FormularioMascotaPerdida;
 import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.Mascota;
@@ -266,6 +267,112 @@ public class HandlebarsController {
         Map<String, Object> model = new HashMap<>();
         model.put("formMascotaPerdida", formService.GetFormsMascotaPerdida());
 
+
+
+        List<FormularioMascotaPerdida> formulariosMascotas = new ArrayList<FormularioMascotaPerdida>();
+        formService.GetFormsMascotaPerdida().forEach(formulariosMascotas::add);
+        //petService.GetPets().forEach(mascotas::add); //TODO: solo mascotas en adopción - Traer los formularios dar en adopcion
+
+        class MascotaFoto{
+            FormularioMascotaPerdida mascota;
+            String foto;
+
+            public MascotaFoto(FormularioMascotaPerdida mascota, String foto) {
+                this.mascota = mascota;
+                this.foto = foto;
+            }
+
+            public FormularioMascotaPerdida getMascota() {
+                return mascota;
+            }
+
+            public void setMascota(FormularioMascotaPerdida mascota) {
+                this.mascota = mascota;
+            }
+
+            public String getFoto() {
+                return foto;
+            }
+
+            public void setFoto(String foto) {
+                this.foto = foto;
+            }
+        }
+
+        class ConjuntoMascotas{
+            boolean active;
+            List<MascotaFoto> mascotaFoto;
+
+            public boolean isActive() {
+                return active;
+            }
+
+            public void setActive(boolean active) {
+                this.active = active;
+            }
+
+            public List<MascotaFoto> getMascotaFoto() {
+                return mascotaFoto;
+            }
+
+            public void setMascotaFoto(List<MascotaFoto> mascotaFoto) {
+                this.mascotaFoto = mascotaFoto;
+            }
+
+            public ConjuntoMascotas(boolean active, List<MascotaFoto> mascotaFoto) {
+                this.active = active;
+                this.mascotaFoto = mascotaFoto;
+            }
+        }
+        List<FormularioMascotaPerdida> formsPerros = formulariosMascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO && a.getMascota() == null).collect(Collectors.toList());
+
+        //mascotas.stream().filter(a -> a.getEspecie() == Especie.PERRO).collect(Collectors.toList());
+        List<ConjuntoMascotas> conjuntoPerros = new ArrayList<>();
+        for (int i = 0; i < formsPerros.size();) {
+            List<MascotaFoto> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < formsPerros.size(); y++) {
+                FormularioMascotaPerdida unPerro = formsPerros.get(i);
+
+                pets.add(new MascotaFoto(unPerro,
+                        Base64Utils.encodeToString(
+                                unPerro.getFotos().stream().findFirst().get().getImagenByteArray()
+                        )));
+                i++;
+            }
+            if(i<4){
+                conjuntoPerros.add(new ConjuntoMascotas(true, pets));
+            }
+            else{
+                conjuntoPerros.add(new ConjuntoMascotas(false, pets));
+            }
+        }
+
+        List<FormularioMascotaPerdida> formsGatos = formulariosMascotas.stream().filter(a -> a.getEspecie() == Especie.GATO && a.getMascota() == null).collect(Collectors.toList());
+        List<ConjuntoMascotas> conjuntoGatos = new ArrayList<>();
+        for (int i = 0; i < formsGatos.size();) {
+            List<MascotaFoto> pets = new ArrayList<>();
+            for (int y = 0; y < 3 && i < formsGatos.size(); y++) {
+                FormularioMascotaPerdida unGato = formsGatos.get(i);
+
+                pets.add(new MascotaFoto(unGato,
+                        Base64Utils.encodeToString(
+                                unGato.getFotos().stream().findFirst().get().getImagenByteArray()
+                        )));
+                i++;
+            }
+            if(i<4){
+                conjuntoGatos.add(new ConjuntoMascotas(true, pets));
+            }
+            else{
+                conjuntoGatos.add(new ConjuntoMascotas(false, pets));
+            }
+        }
+
+        model.put("perros", conjuntoPerros);
+        model.put("gatos", conjuntoGatos);
+
+
+
         return template.apply(model);
     }
 
@@ -275,7 +382,15 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("detalle-mascota-encontrada");
         Map<String, Object> model = new HashMap<>();
-        model.put("formMascotaPerdida", formService.GetFormMascotaPerdidaById(id));
+        FormularioMascotaPerdida form = formService.GetFormMascotaPerdidaById(id);
+        model.put("formMascotaPerdida", form);
+        List<String> fotos = new ArrayList<>();
+        List<Foto> fotosClase = form.getFotos();
+        for(int i = 0; i < fotosClase.size(); i++){
+            fotos.add(Base64Utils.encodeToString(fotosClase.get(i).getImagenByteArray()));
+        }
+        model.put("fotos", fotos);
+
 
         return template.apply(model);
     }

@@ -225,15 +225,16 @@ public class FormController {
         formService.DeleteFormMascotaEncontrada(id);
     }
     
-    @GetMapping("/mascotaEncontrada/contactar/{id}")
+    @PostMapping("/mascotaEncontrada/{id}")
     public void notificarRescatista(@RequestBody Map<String, String> datos, @PathVariable Integer id) {
         CMascotaReconocida mensaje = new CMascotaReconocida(datos.get("input"));
 
-        try {
+       /* try {
             formService.GetFormMascotaEncontradaById(id).getFormularioMascotaPerdida().getContacto().contactar(mensaje.asunto(), mensaje.cuerpo());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        System.out.println("MENSAJE ENVIADO AL RESCATISTA");
     }
 
 

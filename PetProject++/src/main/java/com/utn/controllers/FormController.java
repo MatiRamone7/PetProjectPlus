@@ -67,9 +67,10 @@ public class FormController {
     public void CreateFormMascotaPerdida(@RequestParam Map<String, String> body, @RequestParam("imagen") MultipartFile img, HttpServletResponse response) throws IOException {
         FormularioMascotaPerdida form = new FormularioMascotaPerdida();
 
-        byte[] imagen = img.getBytes();
 
-
+        List<Foto> fotos = new ArrayList<>();
+        fotos.add(new Foto(img.getBytes(), img.getName()));
+        form.setFotos(fotos);
 
 
         form.setNombre(body.get("nombre"));
@@ -105,28 +106,25 @@ public class FormController {
         form.setContacto(contacto);
         form.setCaracteristicasDeLaPublicacionDelHogar(Hogar.asignarCaracteristicasHogar(body));
 
-        if(!body.get("mascota").isEmpty()){
-            form.setMascota(petService.GetPetById(Integer.valueOf(body.get("mascota"))));
-        }
-        else{
-            form.setEspecie(Mascota.Especie.valueOf(body.get("especie")));
-            form.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
 
-            Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
-            Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
-            for(Caracteristica caracteristica : caracteristicas){
-                if(!body.get(caracteristica.getDescripcion()).isEmpty()) {
-                    CaracteristicaPet caracteristicaPet = new CaracteristicaPet();
-                    Caracteristica caract = new Caracteristica();
-                    caract.setId(caracteristica.getId());
-                    caracteristicaPet.setTipoCaracteristica(caract);
-                    caracteristicaPet.setValor(body.get(caracteristica.getDescripcion()));
-                    caracteristicasPets.add(caracteristicaPet);
-                }
+        form.setEspecie(Mascota.Especie.valueOf(body.get("especie")));
+        form.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
+
+        Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
+        Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
+        for(Caracteristica caracteristica : caracteristicas){
+            if(!body.get(caracteristica.getDescripcion()).isEmpty()) {
+                CaracteristicaPet caracteristicaPet = new CaracteristicaPet();
+                Caracteristica caract = new Caracteristica();
+                caract.setId(caracteristica.getId());
+                caracteristicaPet.setTipoCaracteristica(caract);
+                caracteristicaPet.setValor(body.get(caracteristica.getDescripcion()));
+                caracteristicasPets.add(caracteristicaPet);
             }
-            form.setCaracteristicas(caracteristicasPets);
-
         }
+        form.setCaracteristicas(caracteristicasPets);
+
+
 
         form.setDescripcion(body.get("descripcion"));
         //form.setLugarEncuentroMascota(body.get("lugarEncuentroMascota"));

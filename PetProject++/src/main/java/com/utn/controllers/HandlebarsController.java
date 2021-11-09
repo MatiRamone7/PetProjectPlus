@@ -538,5 +538,19 @@ public class HandlebarsController {
 
         return template.apply(model);
     }
+
+    @GetMapping("Adopcion-de-Mascotas/{id}")
+    public String GetMascotaEnAdopcionByID(@PathVariable Integer id) throws IOException {
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("detalle-mascota-en-adopcion");
+
+        Map<String, Object> model = new HashMap<>();
+
+        FormularioDarEnAdopcion form = formService.GetFormDarEnAdopcionById(id);
+        model.put("form", form);
+
+        return template.apply(model);
+    }
 }
 

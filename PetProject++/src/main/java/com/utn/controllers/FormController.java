@@ -321,7 +321,7 @@ public class FormController {
         formService.DeleteFormDarEnAdopcion(id);
     }
 
-   @PostMapping("/darEnAdopcion/{id}")
+    @PostMapping("/darEnAdopcion/detalles/{id}")
     public void notificarDuenioActual(@RequestParam Map<String, String> datos, @PathVariable Integer id, HttpServletResponse response) throws IOException {
         CInteresDeAdopcion mensaje = new CInteresDeAdopcion(datos.get("input"));
 

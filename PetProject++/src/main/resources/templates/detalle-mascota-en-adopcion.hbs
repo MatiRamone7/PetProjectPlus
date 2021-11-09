@@ -44,7 +44,7 @@
                         <!--TITULO-->
 <!--========================================================== -->
 <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-50 m-auto" id="intro">
-    <h1 class="p-3 fs-2 border-top border-3">Mascota Encontrada el 25/05/2021</h1>
+    <h1 class="p-3 fs-2 border-top border-3">Mascota en adopcion: {{form.mascota.nombre}}</h1>
 </section>
 <!--========================================================== -->
                         <!--GALLERIA-->
@@ -61,7 +61,7 @@
           <div class="carousel-item active" data-bs-interval="3000">
             <img src="../img/MascotasEncontradas/perros/Alfred/Alfred.jpg" class="d-block w-100" height="400"  alt="">
           </div>
-        {{#each fotos}}
+        {{#each form.mascota.fotos}}
           <div class="carousel-item" data-bs-interval="3000">
             <img src="data:image/png;base64,{{this}}" class="d-block w-100" height="400" alt="...">
           </div>
@@ -98,18 +98,18 @@
         <div class="col-sm">
           <div class="container">
              <div class="row">
-                Mascota encontrada por: {{formMascotaPerdida.nombre}}
+                Dueño actual: {{form.usuario.nombre}}
              </div>
             <div class="row">
-                Descripcion: {{formMascotaPerdida.descripcion}} {{formMascotaPerdida.lugarEncuentroMascota.calle}}
+                Ubicacion: {{form.usuario.direccion.departamento}}, {{form.usuario.direccion.ciudad.nombre}}
             </div>
             <div class="row">
-                Ubicacion: Encontrado en {{formMascotaPerdida.direccion.departamento}}, {{formMascotaPerdida.direccion.ciudad.nombre}}
+                Descripcion: {{form.mascota.descripcionFisica}}
             </div>
             <div class="row">
-                Especie: {{formMascotaPerdida.especie}}
+                Especie: {{form.mascota.especie}}
             </div>
-            {{#each formMascotaPerdida.caracteristicas}}
+            {{#each form.mascota.caracteristicSet}}
                 <div class="row">
                     {{tipoCaracteristica.descripcion}}: {{valor}}
                 </div>
@@ -126,7 +126,7 @@
     <div class="col-sm">
     </div>
     <div class="col-sm">
-      <button type="button" class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()" >Contactar rescatista</button>
+      <button type="button" class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()" >Contactar dueño</button>
     </div>
   </div>
   <br>
@@ -159,12 +159,12 @@
 
             </div>
             <div class="titulo">
-              <h3>Mensaje para Rescatista</h3>
+              <h3>Mensaje para dueño actual</h3>
             </div>
-              <div class="titulo">
-                <center>No olvides poner algún dato de contacto para que el rescatista te pueda responder<center>
-              </div>
-            <form action="../forms/mascotaEncontrada/{{formMascotaPerdida.id}}" method="post" class="form">
+             <div class="titulo">
+               <center>No olvides poner algún dato de contacto para que el dueño te pueda responder<center>
+             </div>
+            <form action="../forms/darEnAdopcion/detalles/{{form.id}}" method="post" class="form">
               <div class="textArea">
                 <textarea class="form-control" aria-label="With textarea" cols="40" rows="5" placeholder="Redacte su mensaje" name="input" id='input'></textarea>
               </div>

@@ -5,6 +5,8 @@ import com.utn.models.ongs.Organizacion;
 public interface IOngService {
     public Organizacion Create (Organizacion ong);
 
+    public Iterable<Organizacion> GetOngs();
+
     public Organizacion GetOngById(Integer id);
 
     public Organizacion Update (Organizacion ong, Integer id);

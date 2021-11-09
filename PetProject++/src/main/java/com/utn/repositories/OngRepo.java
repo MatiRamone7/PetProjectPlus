@@ -1,6 +1,7 @@
 package com.utn.repositories;
 
 
+import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
@@ -17,6 +18,17 @@ public class OngRepo implements IOngRepo{
     public OngRepo() {
         this.emf = Persistence.createEntityManagerFactory("Persistencia");
         this.manager = emf.createEntityManager();
+    }
+
+    @Override
+    public Iterable<Organizacion> GetOngs() {
+        Iterable<Organizacion> aux;
+
+        this.manager.getTransaction().begin();
+        aux = this.manager.createQuery("FROM Organizacion ").getResultList();
+        this.manager.getTransaction().commit();
+
+        return aux;
     }
 
     @Override

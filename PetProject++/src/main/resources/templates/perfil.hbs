@@ -9,7 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <script src="../js/perfil.js"></script>
+    <script src="../js/mascota-perdida.js"></script>
+    <script src="../js/mascotas-encontradas.js"></script>
     <title>Diseño de sistemas</title>
   </head>
   <body>
@@ -145,7 +148,8 @@
                                                     {{/if}}
                                                     <a href="#!" class="btn btn-secondary"  style="background-color: blueviolet;">Editar</a>
                                                     <a href="../Dar-en-Adopcion/{{mascota.id}}" class="btn btn-secondary"  style="background-color: blueviolet;">Dar en Adopcion</a>
-                                                    <a href="#!" class="btn btn-secondary"  style="background-color: blueviolet;">Mostrar QR</a>
+                                                   <!-- <a href="#!" class="btn btn-secondary"  style="background-color: blueviolet;" onclick="enviarMensaje()">Mostrar QR</a> -->
+                                                   <button type="button" class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()" >Mostrar QR</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,5 +191,31 @@
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <!--<script src="./js/main.js"></script>-->
     <script src="../js/bootstrap.bundle.min.js "></script>
+    <script src="../main.js"></script>
+
+        <div class="pop-up verModal" id='popUp'>
+        <div class="pop-wrap">
+          <div class="pop-mensaje">
+            <div class="salir">
+              <div class="sal-mod" onclick="salir()">
+                <p>x</p>
+              </div>
+
+            </div>
+                <div class="titulo">
+                  <h3>Codigo QR de la mascota</h3>
+                </div>
+                      <img
+                       <!--src="data:image/png;base64,{{mascota.1.fotos}}"-->
+                      src="../img/Avatar/avatar-gato.png"
+                      class="card-img-top"
+                      alt="..."
+                      height="300"
+                      />
+                     <div class="card-body">
+              </div>
+          </div>
+        </div>
+      </div>
   </body>
 </html>

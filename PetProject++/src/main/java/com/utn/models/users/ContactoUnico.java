@@ -59,10 +59,13 @@ public class ContactoUnico implements Serializable {
 */
     public void contactar(String asunto, String cuerpo) throws IOException {
         //IMedio.contactar(asunto,cuerpo,this);
-        MMail m = new MMail();
+       /* MMail m = new MMail();
         MSMS s = new MSMS();
         m.contactar(asunto,cuerpo,this);
-        s.contactar(asunto,cuerpo,this);
+        s.contactar(asunto,cuerpo,this);*/
+        System.out.println(" \n MENSAJE ENVIADO AL RESCATISTA -------------------------------------------   \n ");
+        System.out.println(asunto);
+        System.out.println(cuerpo);
     }
 
 }

@@ -224,17 +224,16 @@ public class FormController {
     }
     
     @PostMapping("/mascotaEncontrada/{id}")
-    public void notificarRescatista(@RequestBody Map<String, String> datos, @PathVariable Integer id) {
+    public void notificarRescatista(@RequestParam Map<String, String> datos, @PathVariable Integer id, HttpServletResponse response) throws IOException {
         CMascotaReconocida mensaje = new CMascotaReconocida(datos.get("input"));
 
-       /* try {
+       try {
             formService.GetFormMascotaEncontradaById(id).getFormularioMascotaPerdida().getContacto().contactar(mensaje.asunto(), mensaje.cuerpo());
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        System.out.println("MENSAJE ENVIADO AL RESCATISTA");
+        }
+        response.sendRedirect("/Mascotas-Encontradas/"+ id.toString());
     }
-
 
     /*
         Form Intencion Adopcion
@@ -305,7 +304,6 @@ public class FormController {
             respuestas.add(respuesta);
         }
 
-
         form.setPreguntas(respuestas);
 
         formService.CreateFormDarEnAdopcion(form);
@@ -323,8 +321,8 @@ public class FormController {
         formService.DeleteFormDarEnAdopcion(id);
     }
 
-   @GetMapping("/darEnAdopcion/contactar/{id}")
-    public void notificarDuenioActual(@RequestBody Map<String, String> datos, @PathVariable Integer id) {
+   @PostMapping("/darEnAdopcion/{id}")
+    public void notificarDuenioActual(@RequestParam Map<String, String> datos, @PathVariable Integer id, HttpServletResponse response) throws IOException {
         CInteresDeAdopcion mensaje = new CInteresDeAdopcion(datos.get("input"));
 
         try {
@@ -332,5 +330,6 @@ public class FormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+       response.sendRedirect("/Adopcion-de-Mascotas/" + id.toString());
     }
 }

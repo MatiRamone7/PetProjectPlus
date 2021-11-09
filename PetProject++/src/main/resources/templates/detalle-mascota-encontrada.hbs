@@ -161,12 +161,12 @@
             <div class="titulo">
               <h3>Mensaje para Rescatista</h3>
             </div>
-            <form action="../mascotaEncontrada/{id}" method="post" class="form">
+            <form action="../forms/mascotaEncontrada/{{formMascotaPerdida.id}}" method="post" class="form">
               <div class="textArea">
-                <textarea class="form-control" aria-label="With textarea" cols="40" rows="5" placeholder="Redacte su mensaje"></textarea>
+                <textarea class="form-control" aria-label="With textarea" cols="40" rows="5" placeholder="Redacte su mensaje" name="input" id='input'></textarea>
               </div>
               <div class="boton">
-                <button type="button" class="btn btn-secondary" style="background-color: blueviolet;" onclick="enviarMensaje()">enviar</button>
+                <button type="submit" class="btn btn-secondary" style="background-color: blueviolet;">Enviar</button>
               </div>
 
             </form>

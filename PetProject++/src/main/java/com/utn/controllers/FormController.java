@@ -2,6 +2,7 @@ package com.utn.controllers;
 
 import com.utn.models.contactservices.mensajesPredeterminados.CInteresDeAdopcion;
 import com.utn.models.contactservices.mensajesPredeterminados.CMascotaReconocida;
+import com.utn.models.contactservices.mensajesPredeterminados.CQRScaneado;
 import com.utn.models.forms.*;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.CaracteristicaPet;
@@ -182,6 +183,8 @@ public class FormController {
             form.setCaracteristicas(mascota.getCaracteristicSet());
         }
         formService.UpdateFormMascotaPerdida(form,form.getId());*/
+        CQRScaneado msg = new CQRScaneado(form);
+        form.getMascota().getDuenio().contactar(msg);
         response.sendRedirect("/Hogares-Transito");
     }
 

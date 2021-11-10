@@ -40,11 +40,9 @@ public class Mascota {
     @JoinColumn(name = "mascotaId")
     private List<Foto> fotos;
 
-    /*
-        TODO NICO GENERAR QR
-    */
-    @Column(name = "qr")
-    private String qr;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "qrId")
+    private Foto qr;
 
     @Column
     private String descripcionFisica;
@@ -137,11 +135,11 @@ public class Mascota {
          list.stream().forEach((unaFoto)-> {fotos.add(unaFoto);});
     }
 
-    public String getQr() {
+    public Foto getQr() {
         return qr;
     }
 
-    public void setQr(String qr) {
+    public void setQr(Foto qr) {
         this.qr = qr;
     }
 

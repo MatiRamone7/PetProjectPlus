@@ -64,7 +64,7 @@ public class PetRepo implements IPetRepo{
         petToUpdate.setSexo(pet.getSexo());
         petToUpdate.setEspecie(pet.getEspecie());
         petToUpdate.setFechaDeNacimiento(pet.getFechaDeNacimiento());
-        petToUpdate.setFoto(pet.getFotos());
+        petToUpdate.setFotos(pet.getFotos());
         petToUpdate.setQr(pet.getQr());
         petToUpdate.setDuenio(pet.getDuenio());
         petToUpdate.setCaracteristicSet(pet.getCaracteristicSet());

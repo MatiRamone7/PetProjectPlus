@@ -61,7 +61,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
 
     public List<Hogar> mostrarHogares(){
         HogarDeTransito hogarDeTransito = new HogarDeTransito();
-        return hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());//TODO: Mostrarlos en el html
+        return hogarDeTransito.hogaresTransito().stream().filter(hogar -> hogar.cumpleRequisitosDelHogar(this)).collect(Collectors.toList());
     }
 
     public String getDescripcion() {

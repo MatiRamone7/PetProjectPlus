@@ -1,5 +1,6 @@
 package com.utn.controllers;
 
+import com.google.zxing.WriterException;
 import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.CaracteristicaPet;
@@ -8,6 +9,8 @@ import com.utn.models.users.Usuario;
 import com.utn.services.ICaracteristicaService;
 import com.utn.services.IPetService;
 import com.utn.services.IUserService;
+import com.utn.utils.GeneradorQR;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,7 +76,21 @@ public class PetController {
         mascota.setFotos(fotos);
         mascota.setDescripcionFisica(body.get("descripcionFisica"));
 
+        GeneradorQR generadorQR = new GeneradorQR();
+        Foto qr = new Foto();
+
         petService.CreatePet(mascota);
+        Mascota pet = petService.GetPetById(mascota.getId());
+
+        try {
+            byte[] array = generadorQR.generar("http://localhost:8080/Mascota-Perdida/" + mascota.getId().toString(), "UTF-8", 300, 300);
+            qr.setImagenByteArray(array); //TODO poner bien la url cuando esté (y mostrar por pantalla)
+            qr.setDescripcion("QR de mascota");
+            pet.setQr(qr);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+        petService.UpdatePet(pet,pet.getId());
 
         Set<Mascota> mascotasDuenio = duenio.getMascotas();
         mascotasDuenio.add(mascota);

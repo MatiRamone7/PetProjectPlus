@@ -53,7 +53,7 @@
     </nav>
     <main class="container">
         <div class="fixed-action-btn">
-            <a href="" class="btn-floating blue btn">
+            <a href="./Admin-Preguntas-ONG" class="btn-floating blue btn">
                 <i class="material-icons large">add</i>
             </a>
         </div>
@@ -78,16 +78,17 @@
                     </div>
 
                 </div>
+
+                {{#each ONG}}
                 <div class="row mt-5 cardOng">
                     <div class="col-4 prueba d-flex justify-content-center align-items-center">
                         <img src="./img/ong.jpeg" class="img-thumbnail img-ong" alt="...">
                     </div>
                     <div class="col-8 ">
                         <div class="row">
-                            <p class="mt-4">Nombre de la ong</p>
-                            <p>Direccion / ubicacion </p>
-                            <p>informacion adicional de cada una: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quae illum blanditiis nihil <br> obcaecati earum ad quam dolores iste, quo sunt aliquid laborum distinctio, dicta, veniam ipsa
-                                et esse minus?</p>
+                            <p class="mt-4">{{nombre}}</p>
+                            <p>{{direccion.calle}} {{direccion.numero}}, {{direccion.departamento}}, {{direccion.ciudad.nombre}}, Provincia de {{direccion.ciudad.provincia.nombre}}</p>
+                            <p>{{descripcion}}</p>
                         </div>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end">
@@ -102,6 +103,7 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
                 <div class="row mt-5 cardOng">
                     <div class="col-4 prueba d-flex justify-content-center align-items-center">
                         <img src="./img/ong.jpeg" class="img-thumbnail img-ong" alt="...">

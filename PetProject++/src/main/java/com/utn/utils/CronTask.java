@@ -10,6 +10,8 @@ import com.utn.models.users.Comodidades.Comodidad;
 import com.utn.models.users.Usuario;
 import com.utn.repositories.FormRepo;
 import com.utn.services.FormService;
+import com.utn.services.IFormService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class CronTask {
-    FormController controller = new FormController(new FormService(new FormRepo()));
+    @Autowired
+    IFormService formService;
 
     @Scheduled(initialDelay = 10000, fixedDelay = 200000) // 1 semana = 604800000
     public void timer(){
@@ -28,9 +31,9 @@ public class CronTask {
     }
 
     public void activarChromeTask() throws IOException {
-        Iterable<FormularioIntencionAdopcion> formulariosIntencionAdoptar = controller.GetFormsIntencionAdopcion();
+        Iterable<FormularioIntencionAdopcion> formulariosIntencionAdoptar = formService.GetFormsIntencionAdopcion();
         List<FormularioDarEnAdopcion> formulariosDarEnAdopcion = new ArrayList<>();
-        controller.GetFormsDarEnAdopcion().forEach(formulariosDarEnAdopcion::add);
+        formService.GetFormsDarEnAdopcion().forEach(formulariosDarEnAdopcion::add);
         //Iterable<FormularioDarEnAdopcion> formulariosDarEnAdopcion = controller.GetFormsDarEnAdopcion();
 
 
@@ -38,12 +41,12 @@ public class CronTask {
             Iterable<FormularioDarEnAdopcion> formulariosAceptados;
             formulariosAceptados = formulariosDarEnAdopcion.stream().filter(formularioDarEnAdopcion -> this.cumpleCaracteristicas(formulario, formularioDarEnAdopcion)).collect(Collectors.toList());
 
-            String sugerencias = null;
+            String sugerencias = "";
             for(FormularioDarEnAdopcion unFormulario : formulariosAceptados){
                 sugerencias = unFormulario.agregarAListaDeSugerencias(sugerencias);
             }
 
-            if(sugerencias != null){
+            if(sugerencias != ""){
                 CSugerenciasAdopcion msg = new CSugerenciasAdopcion(sugerencias);
                 formulario.getSolicitante().contactar(msg);
             }else{
@@ -62,7 +65,7 @@ public class CronTask {
         if(formularioIntencionAdoptar.getEspecie() != mascota.getEspecie()){
             return false;
         }
-        if(formularioIntencionAdoptar.getSexo() != mascota.getSexo()){
+        if(formularioIntencionAdoptar.getSexo() != mascota.getSexo() && formularioIntencionAdoptar.getSexo() != Mascota.Sexo.NULL){
             return false;
         }
 
@@ -77,11 +80,11 @@ public class CronTask {
                 return false;
             }
 
-            for(Comodidad comodidad: usuarioIntencionAdoptar.getComodidades()){
+            /*for(Comodidad comodidad: usuarioIntencionAdoptar.getComodidades()){
                 if(!comodidad.cumpleComodidad(formularioDarEnAdopcion)){
                     return false;
                 }
-            }
+            }*/
         }
 
         return true;

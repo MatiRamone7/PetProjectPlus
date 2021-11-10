@@ -28,12 +28,23 @@ public class Organizacion {
     private Direccion direccion;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="caracteristicas_foto")
+    @JoinColumn(name="caracteristicasFoto")
     private CharsFoto especificacionesFotos;
 
     @OneToMany(mappedBy = "organizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<PreguntaAdoptante> preguntasDarEnAdopcion;
+
+    @Column
+    private String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public Integer getId() {
         return id;

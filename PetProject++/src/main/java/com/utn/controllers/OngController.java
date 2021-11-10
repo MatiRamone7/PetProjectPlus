@@ -71,7 +71,9 @@ public class OngController {
         direccion.setCiudad(ciudad);
         ong.setDireccion(direccion);
 
+        ong.setDescripcion(body.get("descripcion"));
 
+        ongService.Create(ong);
 
         response.sendRedirect("/Inicio");
     }

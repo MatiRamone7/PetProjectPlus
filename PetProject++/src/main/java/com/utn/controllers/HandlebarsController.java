@@ -10,6 +10,7 @@ import com.utn.models.forms.Foto;
 import com.utn.models.mascotas.Caracteristica;
 import com.utn.models.mascotas.Mascota;
 import com.utn.models.mascotas.Mascota.Especie;
+import com.utn.models.ongs.Organizacion;
 import com.utn.models.users.Usuario;
 import com.utn.services.*;
 import com.utn.transithomes.AdapterApiRestHogaresDeTransito;
@@ -210,7 +211,10 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("formularioQuieroAdoptar");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("caracteristicas", caracteristicaService.GetCaracteristicas());
+
+        return template.apply(model);
     }
 
     @GetMapping("Formulario-Usuario")
@@ -401,7 +405,14 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("pantallaAdmin");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        List<Organizacion> ongs = new ArrayList<>();
+        ongService.GetOngs().forEach(ongs::add);
+
+        model.put("ONG", ongs);
+
+
+        return template.apply(model);
     }
 
     @GetMapping("Admin-Preguntas-ONG")
@@ -409,8 +420,10 @@ public class HandlebarsController {
         TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("pantallaAdmin2");
+        Map<String, Object> model = new HashMap<>();
+        model.put("provincias", geoService.GetProvincias());
 
-        return template.text();
+        return template.apply(model);
     }
 
     @GetMapping("Perfil/{userId}")

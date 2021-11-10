@@ -11,10 +11,7 @@ import com.utn.models.ongs.PreguntaAdoptante;
 import com.utn.models.users.ContactoUnico;
 import com.utn.models.users.Sesion;
 import com.utn.models.users.TipoDocumento;
-import com.utn.services.ICaracteristicaService;
-import com.utn.services.IFormService;
-import com.utn.services.IOngService;
-import com.utn.services.IPetService;
+import com.utn.services.*;
 import com.utn.transithomes.Hogar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +40,9 @@ public class FormController {
 
     @Autowired
     IOngService ongService;
+
+    @Autowired
+    IUserService userService;
 
     public FormController(IFormService formService) {
         this.formService = formService;
@@ -248,9 +248,36 @@ public class FormController {
         return formService.GetFormIntencionAdopcionById(id);
     }
 
-    @PostMapping("/intencionAdopcion")
-    public FormularioIntencionAdopcion CreateFormIntencionAdopcion(@RequestBody FormularioIntencionAdopcion form) {
+    @PostMapping("/intencionAdopcion/json")
+    public FormularioIntencionAdopcion CreateFormIntencionAdopcionJson(@RequestBody FormularioIntencionAdopcion form) {
         return formService.CreateFormIntencionAdopcion(form);
+    }
+
+    @PostMapping("/intencionAdopcion")
+    public void CreateFormIntencionAdopcion(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
+        FormularioIntencionAdopcion form = new FormularioIntencionAdopcion();
+        form.setEspecie(Mascota.Especie.valueOf(body.get("especie")));
+        form.setSexo(Mascota.Sexo.valueOf(body.get("sexo")));
+
+        Iterable<Caracteristica> caracteristicas = caracteristicaService.GetCaracteristicas();
+        Set<CaracteristicaPet> caracteristicasPets = new HashSet<>();
+        for(Caracteristica caracteristica : caracteristicas){
+            if(body.get(caracteristica.getDescripcion()) != null && !body.get(caracteristica.getDescripcion()).isEmpty()) {
+                CaracteristicaPet caracteristicaPet = new CaracteristicaPet();
+                Caracteristica caract = new Caracteristica();
+                caract.setId(caracteristica.getId());
+                caracteristicaPet.setTipoCaracteristica(caract);
+                caracteristicaPet.setValor(body.get(caracteristica.getDescripcion()));
+                caracteristicasPets.add(caracteristicaPet);
+            }
+        }
+        form.setPreferencias(caracteristicasPets);
+
+        //TODO: Buscar al usuario correcto con la sesion
+        form.setSolicitante(userService.GetUserById(1));
+
+        formService.CreateFormIntencionAdopcion(form);
+        response.sendRedirect("/Inicio");
     }
 
     @PutMapping("/intencionAdopcion/{id}")

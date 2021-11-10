@@ -13,3 +13,6 @@ function encontreUnaMascota() {
     const popUp= document.getElementById('popUp');
     popUp.classList.remove('verModal')
   }
+  function quieroAdoptar() {
+    window.location.href = 'Formulario-Quiero-Adoptar';
+  }

@@ -48,89 +48,62 @@
     <main class="container">
         <h1>Rasgos de la mascota a adoptar</h1>
         <div class="row mt-4">
-            <div class="col-12">
-                <form action="">
+            <div class="col-12 border-top border-2 border-dark" style="background-color: #F9F6F6;">
+                <form action="../forms/intencionAdopcion" method="post" class="" enctype="multipart/form-data" id="form">
                     <div class="row">
-                        <div class="col-12">
-                            <label for="" class="form-label ">Especie</label>
-                            <input type="text" class="form-control">
-                            <label for="" class="form-label ">Raza</label>
-                            <input type="text" class="form-control">
-                            <label for="Fecha" class="form-label ">Edad</label>
+                        <div class="col-10">
+
                             <div class="row">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="MIN">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="MAX">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="Fecha" class="form-label mt-3">Sexo</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hembra">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                      Hembra
-                                    </label>
+                                <h3 class="mt-4">Caracteristicas especificas</h3>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="especie" class="form-label ">Especie</label>
+                                        <select class="form-select form-select-seguido" name="especie" id="especie">
+                                            <option value="PERRO">Perro</option>
+                                            <option value="GATO">Gato</option>
+                                        </select>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                      Macho
-                                    </label>
+                                    <div class="col-4">
+                                        <label for="sexo" class="form-label ">Sexo</label>
+                                        <select class="form-select form-select-seguido" name="sexo" id="sexo">
+                                            <option value="NULL">Desconoce</option>
+                                            <option value="MACHO">Macho</option>
+                                            <option value="HEMBRA">Hembra</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="" class="form-label mt-3">Tamaño</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hembra">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                    Chico
-                                  </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                    Mediano
-                                  </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Macho" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                  Grande
-                                </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <label for="" class="form-label mt-3">Color</label>
-                            <div class="input-group mb-3">
-                                <select class="form-select" id="inputGroupSelect01">
-                                <option value="1">marron</option>
-                                <option value="2">negro</option>
-                                <option value="3">blanco</option>
-                                <option value="3">indistinto</option>
-                              </select>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                              castrado
-                                </label>
+
+                                    {{#each caracteristicas}}
+                                        {{#if opciones}}
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="{{descripcion}}" class="form-label">{{descripcion}}</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <select id="{{descripcion}}" class="form-select form-select-seguido" name="{{descripcion}}">
+                                                    <option value="">Desconoce</option>
+                                                {{#each opciones}}
+                                                    <option value="{{valor}}">{{valor}}</option>
+                                                {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                    {{/each}}
 
                             </div>
-                            <label for="" class="form-label mt-3">Radio de busqueda</label>
-                            <input type="number" class="form-control">
                             <div class="row mt-6">
                                 <div class="col-12 d-flex justify-content-center">
                                     <div>
-                                        <button type="button" onclick="enviar()" class="col-12 btn btn-dark mb-3 mt-5" style="background-color: blueviolet;">Publicar</button>
+                                        <button type="submit" class="col-12 btn btn-dark mb-3 mt-5" style="background-color: blueviolet;">Publicar</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 </form>
-                </div>
-                </div>
+            </div>
+        </div>
 
     </main>
 

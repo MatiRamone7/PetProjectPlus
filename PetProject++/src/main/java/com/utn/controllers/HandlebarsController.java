@@ -211,7 +211,10 @@ public class HandlebarsController {
         Handlebars handlebars = new Handlebars(loader);
         Template template = handlebars.compile("formularioQuieroAdoptar");
 
-        return template.text();
+        Map<String, Object> model = new HashMap<>();
+        model.put("caracteristicas", caracteristicaService.GetCaracteristicas());
+
+        return template.apply(model);
     }
 
     @GetMapping("Formulario-Usuario")

@@ -30,3 +30,8 @@ DROP TABLE dbo.contacto
 DROP TABLE dbo.direccion
 DROP TABLE dbo.ciudad
 DROP TABLE dbo.provincia
+
+/*COSAS DE LOGIN Y SESION NO TOCAR POR AHORA*/
+DROP TABLE dbo.authorities_users
+DROP TABLE dbo.Authority
+DROP TABLE dbo.hibernate_sequence

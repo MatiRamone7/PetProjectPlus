@@ -58,6 +58,7 @@ public class UserController {
         user.setTipoDocumento(TipoDocumento.valueOf(body.get("tipoDocumento")));
 
         Sesion sesion = new Sesion(body.get("sesion.username"),body.get("sesion.password"));
+
         user.setSesion(sesion);
         user.setFechaNacimiento(LocalDate.parse(body.get("fechaNacimiento")));
 

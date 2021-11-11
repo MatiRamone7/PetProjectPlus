@@ -4,17 +4,17 @@ INSERT INTO provincia (nombre) VALUES
 ('Catamarca'),
 ('Chaco'),
 ('Chubut'),
-('Córdoba'),
+('Cï¿½rdoba'),
 ('Corrientes'),
-('Entre Ríos'),
+('Entre Rï¿½os'),
 ('Formosa'),
 ('Jujuy'),
 ('La Pampa'),
 ('La Rioja'),
 ('Mendoza'),
 ('Misiones'),
-('Neuquén'),
-('Río Negro'),
+('Neuquï¿½n'),
+('Rï¿½o Negro'),
 ('Salta'),
 ('San Juan'),
 ('San Luis'),
@@ -22,16 +22,16 @@ INSERT INTO provincia (nombre) VALUES
 ('Santa Fe'),
 ('Santiago del Estero'),
 ('Tierra del Fuego'),
-('Tucumán');
+('Tucumï¿½n');
 
 
 INSERT INTO caracteristica (descripcion) VALUES
 ('Raza'),
 ('Color Principal'),
 ('Color Secundario'),
-('Tamaño'),
+('Tamaï¿½o'),
 ('Rabo'),
-('Patrón distintivo'),
+('Patrï¿½n distintivo'),
 
 ('Esterilizado'),
 ('Enfermedades');
@@ -40,23 +40,23 @@ INSERT INTO caracteristica (descripcion) VALUES
 INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 --Raza Perro
 ('Beagle', 1),
-('Bóxer', 1),
+('Bï¿½xer', 1),
 ('Bulldog', 1),
 ('Caniche', 1),
 ('Chihuahua', 1),
 ('Golden', 1),
-('Dálmata', 1),
+('Dï¿½lmata', 1),
 ('Husky siberiano', 1),
-('Obejero Alemán', 1),
+('Obejero Alemï¿½n', 1),
 ('Yorkshire terrier', 1),
 
 --Raza Gato
 ('Angora turco', 1),
 ('Azul ruso', 1),
-('Bengalí', 1),
+('Bengalï¿½', 1),
 ('Maine Coon', 1),
 ('Maine Coon', 1),
-('Siamés', 1),
+('Siamï¿½s', 1),
 ('Siberiano', 1),
 
 --Color Principal
@@ -64,20 +64,20 @@ INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 ('Blanco', 2),
 ('Gris', 2),
 ('Naranja', 2),
-('Marrón', 2),
+('Marrï¿½n', 2),
 ('Rosado', 2),
-('Café con leche', 2),
+('Cafï¿½ con leche', 2),
 
 --Color Secundario
 ('Negro', 3),
 ('Blanco', 3),
 ('Gris', 3),
 ('Naranja', 3),
-('Marrón', 3),
+('Marrï¿½n', 3),
 ('Rosado', 3),
-('Café con leche', 3),
+('Cafï¿½ con leche', 3),
 
---Tamaño
+--Tamaï¿½o
 ('Grande', 4),
 ('Mediano', 4),
 ('Chico', 4),
@@ -91,7 +91,6 @@ INSERT INTO [opcionesCaracteristicas] (valor, caracteristicaId) VALUES
 ('No', 7),
 (null, 7);
 
-
 INSERT INTO [organizacion] (nombre) VALUES
 ('ONG 1'),
 ('ONG 2'),
@@ -99,9 +98,22 @@ INSERT INTO [organizacion] (nombre) VALUES
 
 
 INSERT INTO [preguntasAdopcion] (pregunta, organizacion_id) VALUES
-('¿cuanto pesa la mascota?',1),
-('¿Porque decisdiste darla en adopcion?',1),
-('¿cuanto pesa la mascota?',2),
-('¿Era un animal callejero antes de que lo tuvieras?',2),
-('¿Cómo ha sido su temperamento ulimamente?',3),
-('¿Porque decisdiste darla en adopcion?',3);
+('ï¿½cuanto pesa la mascota?',1),
+('ï¿½Porque decisdiste darla en adopcion?',1),
+('ï¿½cuanto pesa la mascota?',2),
+('ï¿½Era un animal callejero antes de que lo tuvieras?',2),
+('ï¿½Cï¿½mo ha sido su temperamento ulimamente?',3),
+('ï¿½Porque decisdiste darla en adopcion?',3);
+
+
+
+/*COSAS DE LOGIN Y SESION NO TOCAR POR AHORA*/
+
+ INSERT INTO Authority (authority) VALUES ('ADMIN'), ('USER'), ('VOLUNTARIO');
+
+ INSERT INTO sesion (enabled,password,username) VALUES 
+(1,'$2a$04$N/AOZpRELtGEPeDwJoI8wuT9O1qbZbnnoLc1tnTQWEhFkmpFJ6WTG', 'administrador'),
+(1,'$2a$04$N/AOZpRELtGEPeDwJoI8wuT9O1qbZbnnoLc1tnTQWEhFkmpFJ6WTG', 'usuario');
+
+INSERT INTO authorities_users (usuario_id, authority_id) VALUES (1,1), (2,2);
+

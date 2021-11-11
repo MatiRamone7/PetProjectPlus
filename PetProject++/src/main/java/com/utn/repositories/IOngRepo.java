@@ -1,6 +1,5 @@
 package com.utn.repositories;
 
-import com.utn.models.mascotas.Mascota;
 import com.utn.models.ongs.Organizacion;
 
 public interface IOngRepo {

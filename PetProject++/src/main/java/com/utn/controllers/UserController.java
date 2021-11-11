@@ -1,9 +1,5 @@
 package com.utn.controllers;
 
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
-import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
-import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.contactservices.mensajesPredeterminados.IMensajePredet;
 import com.utn.models.forms.Ciudad;
 import com.utn.models.forms.Direccion;
@@ -15,15 +11,11 @@ import com.utn.models.users.Usuario;
 import com.utn.services.IGeoService;
 import com.utn.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController

@@ -90,8 +90,7 @@
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars</artifactId>
 			<version>4.2.0</version>
-		</dependency>
-		<dependency>
+		</dependency>		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
 			<version>3.3.0</version>
@@ -101,7 +100,27 @@
 			<artifactId>javase</artifactId>
 			<version>3.3.0</version>
 		</dependency>
-  
+		<!-- dependendias para login -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- *** -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 

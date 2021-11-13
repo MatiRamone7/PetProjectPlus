@@ -1,13 +1,20 @@
 package com.utn.services;
 
+import com.utn.models.users.Authority;
 import com.utn.models.users.Usuario;
+//import com.utn.repositories.IAuthorityRepo;
 import com.utn.repositories.UserRepo;
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.ValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.utn.repositories.IUserRepo;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Servicios de users.
@@ -21,7 +28,8 @@ public class UserService implements IUserService {
 	@Autowired
 	IUserRepo userRepo;
 
-
+	/*@Autowired
+	IAuthorityRepo authorityRepo;*/
 
 	/**
 	 * Retorna la lista de users.
@@ -66,8 +74,11 @@ public class UserService implements IUserService {
 			//hpass = HashUtils.get_SHA_512_SecurePassword(password);
 
 			user.getSesion().setPassword(hpass);
-			user.getSesion().setUsername(username);
-			user.getSesion().setAuthority(authorityRepo.GetAuthorityById(1));
+			user.getSesion().setEnabled(true);
+			Set<Authority> lista = new HashSet();
+			lista.add(authorityRepo.GetAuthorityById(1));
+			user.getSesion().setAuthority(lista);
+
 		}
 */
 		return userRepo.CreateUser(user);

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Admin extends Persona implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "rolId")
+    @JoinColumn(name = "rol_id")
     private Rol rol;
 
     public Rol getRol() {

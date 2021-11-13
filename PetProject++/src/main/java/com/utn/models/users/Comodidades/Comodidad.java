@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "comodidad")
-@DiscriminatorColumn(name="tipoDeComodidad")
+@DiscriminatorColumn(name="tipo_de_comodidad")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo( use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -24,7 +24,7 @@ public abstract class Comodidad implements Serializable{
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonBackReference
     private Usuario usuario;
 

@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name="formularioMascotaPerdida")
+@Table(name="formulario_mascota_perdida")
 public class FormularioMascotaPerdida extends PersonaFormulario {
 
     //DATOS MASCOTA
@@ -19,7 +19,7 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private String descripcion;
 
     @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "direccionID", insertable = false, updatable = false)
+    @JoinColumn(name = "lugar_encuentro_mascota_id", insertable = false, updatable = false)
     private Direccion lugarEncuentroMascota;
 
     @Transient
@@ -29,25 +29,25 @@ public class FormularioMascotaPerdida extends PersonaFormulario {
     private Double distanciaMaximaEnKM;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "formularioMascotaPerdidaId")
+    @JoinColumn(name = "formulario_mascota_perdida_id")
     private List<Foto> fotos;
 
     //DATOS FORMULARIO
 
     @ManyToOne
-    @JoinColumn(name = "ongId")
+    @JoinColumn(name = "ong_id")
     private Organizacion organizacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "formularioMascotaPerdidaId")
+    @JoinColumn(name = "formulario_mascota_perdida_id")
     private Set<CaracteristicaPet> caracteristicas = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "mascotaId")
+    @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "formularioMascotaPerdidaId")
+    @JoinColumn(name = "formulario_mascota_perdida_id")
     private List<EstadoFormulario> estado;
 
     @Enumerated(EnumType.STRING)

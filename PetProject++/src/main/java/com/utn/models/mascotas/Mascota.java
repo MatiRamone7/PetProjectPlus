@@ -2,6 +2,7 @@ package com.utn.models.mascotas;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utn.models.forms.Foto;
+import com.utn.models.ongs.Organizacion;
 import com.utn.models.users.Usuario;
 
 import javax.persistence.*;
@@ -32,29 +33,32 @@ public class Mascota {
     @Enumerated(EnumType.STRING)
     private Especie especie;
 
-    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_de_nacimiento", columnDefinition = "DATE")
     private LocalDate fechaDeNacimiento;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "mascotaId")
+    @JoinColumn(name = "mascota_id")
     private List<Foto> fotos;
 
-    /*
-        TODO NICO GENERAR QR
-    */
-    @Column(name = "qr")
-    private String qr;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "qr_id")
+    private Foto qr;
 
-    @Column
+    @Column(name = "descripcion_fisica")
     private String descripcionFisica;
 
-    @ManyToOne()
-    @JoinColumn(name = "duenioId")
+    @ManyToOne
+    @JoinColumn(name = "duenio_id")
     @JsonBackReference
     private Usuario duenio;
 
+    @ManyToOne()
+    @JoinColumn(name = "organizacion_id")
+    @JsonBackReference
+    private Organizacion ong;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "mascotaId")
+    @JoinColumn(name = "mascota_id")
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,
@@ -127,11 +131,11 @@ public class Mascota {
          list.stream().forEach((unaFoto)-> {fotos.add(unaFoto);});
     }
 
-    public String getQr() {
+    public Foto getQr() {
         return qr;
     }
 
-    public void setQr(String qr) {
+    public void setQr(Foto qr) {
         this.qr = qr;
     }
 

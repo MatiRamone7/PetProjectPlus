@@ -14,7 +14,7 @@ public class Direccion {
     private String departamento;
 
     @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ciudadId", referencedColumnName = "id")
+    @JoinColumn(name = "ciudad_id", referencedColumnName = "id")
     private Ciudad ciudad;
 
     @Column
@@ -23,7 +23,7 @@ public class Direccion {
     @Column
     private int numero;
 
-    @Column
+    @Column(name = "codigo_postal")
     private String codigoPostal;
 
     @Transient

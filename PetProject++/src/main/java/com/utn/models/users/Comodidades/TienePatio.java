@@ -7,8 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 @Entity
-@DiscriminatorValue("TienePatio")
-@JsonTypeName("TienePatio")
+@DiscriminatorValue("tiene_patio")
+@JsonTypeName("tiene_patio")
 public class TienePatio extends Comodidad{
     @Column(name = "patio")
     private boolean patio;

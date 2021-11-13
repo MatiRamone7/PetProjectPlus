@@ -1,10 +1,7 @@
 package com.utn.models.users;
 
 import javax.persistence.*;
-
 import com.utn.utils.IValidationSesion;
-import com.utn.utils.SesionResponse;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +36,9 @@ public class Sesion implements Serializable {
         this.authority = (Set<Authority>) grantList;
     }
 
+    public Sesion(String username) {
+        this.username = username;
+    }
     public Integer getId() {
         return id;
     }
@@ -131,27 +131,4 @@ public class Sesion implements Serializable {
         this.authority = authority;
     }
 //TODO login logout registrarse y ver todo esto de acá abajo (jose)
-
-    public void login(){
-    }
-
-    public void logout(){
-
-    }
-
-    public SesionResponse validarUsuarioYPass(String user, String pass){
-        return null;
-    }
-
-    public SesionResponse registrar(IValidationSesion sesion){
-        return null;
-    }
-
-    public void registrarse(IValidationSesion sesion){
-
-    }
-
-    public void sesion(IValidationSesion sesion){
-
-    }
 }

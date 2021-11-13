@@ -2,7 +2,7 @@ package com.utn.models.ongs;
 
 import javax.persistence.*;
 @Entity
-@Table(name="caracteristicasFoto")
+@Table(name="caracteristicas_foto")
 public class CharsFoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

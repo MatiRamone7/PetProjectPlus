@@ -7,6 +7,8 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import com.utn.models.mascotas.Mascota;
 import com.utn.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Base64Utils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

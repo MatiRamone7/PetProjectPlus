@@ -21,22 +21,23 @@ public abstract class PersonaFormulario{
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="contactoID", referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "contacto_id")
     private ContactoUnico contacto;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="direccionID", referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "direccion_id")
+
     private Direccion direccion;
 
-    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_de_nacimiento", columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
 
-    @Column(name = "nroDocumento")
+    @Column(name = "nro_documento")
     private int nroDocumento;
 
     @Enumerated(EnumType.STRING)
-    private TipoDocumento tipoDocumento;
+    private TipoDocumento tipo_documento;
 
     public Integer getId() {
         return id;
@@ -95,11 +96,11 @@ public abstract class PersonaFormulario{
     }
 
     public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
+        return tipo_documento;
     }
 
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+        this.tipo_documento = tipoDocumento;
     }
 
     public String getFullName() {

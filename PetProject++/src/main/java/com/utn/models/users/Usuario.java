@@ -18,7 +18,7 @@ public class Usuario extends Persona {
 	private Set<Comodidad> comodidades;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarioId")
+	@JoinColumn(name = "usuario_id")
 	private List<LogRol> logRol;
 
     @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -26,7 +26,7 @@ public class Usuario extends Persona {
 	private Set<Mascota> mascotas;
 
     @ManyToOne
-    @JoinColumn(name = "organizacionId", referencedColumnName = "id")
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
 	//@JsonManagedReference
 	private Organizacion organizacion;
 

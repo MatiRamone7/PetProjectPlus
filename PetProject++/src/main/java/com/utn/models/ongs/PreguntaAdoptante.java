@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 @Entity
-@Table(name="preguntasAdopcion")
+@Table(name="preguntas_adopcion")
 public class PreguntaAdoptante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class PreguntaAdoptante {
 
 
     @Enumerated(EnumType.STRING)
-    public TipoPregunta tipoPregunta;
+    public TipoPregunta tipo_pregunta;
 
 
     public PreguntaAdoptante(){}
@@ -44,11 +44,11 @@ public class PreguntaAdoptante {
     }
 
     public TipoPregunta getTipoPregunta() {
-        return tipoPregunta;
+        return tipo_pregunta;
     }
 
     public void setTipoPregunta(TipoPregunta tipoPregunta) {
-        this.tipoPregunta = tipoPregunta;
+        this.tipo_pregunta = tipoPregunta;
     }
 
 

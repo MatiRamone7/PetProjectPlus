@@ -101,8 +101,15 @@
 			<artifactId>javase</artifactId>
 			<version>3.3.0</version>
 		</dependency>
-  
-	</dependencies>
+
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.4.5</version>
+        </dependency>
+
+    </dependencies>
 
 
 	<build>

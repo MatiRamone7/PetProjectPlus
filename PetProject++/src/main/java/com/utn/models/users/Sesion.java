@@ -6,6 +6,7 @@ import com.utn.utils.IValidationSesion;
 import com.utn.utils.SesionResponse;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="sesion")
@@ -24,15 +25,35 @@ public class Sesion implements Serializable {
     @Transient
     public IValidationSesion validationSesion;
 
+
+    @Column
+    private boolean enabled;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+    private Set<Authority> authority;
+
     public Sesion(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+    public Sesion(String username, String password, Set<Authority> authority) {
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+    }
     public Sesion() {
 
     }
 
+    public Set<Authority> getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Set<Authority> authority) {
+        this.authority = authority;
+    }
 
     public String getUsername() {
         return username;
@@ -57,6 +78,17 @@ public class Sesion implements Serializable {
     public void setValidationSesion(IValidationSesion validationSesion) {
         this.validationSesion = validationSesion;
     }
+
+
+
+
+
+
+
+
+
+
+
     
     //TODO login logout registrarse y ver todo esto de acá abajo (jose)
 

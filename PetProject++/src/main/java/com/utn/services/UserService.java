@@ -1,14 +1,20 @@
 package com.utn.services;
 
+import com.utn.models.users.Authority;
 import com.utn.models.users.Usuario;
+import com.utn.repositories.IAuthorityRepo;
 import com.utn.repositories.UserRepo;
 import com.utn.utils.HashUtils;
 import com.utn.utils.IValidationSesion;
 import com.utn.utils.ValidationSesion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.utn.repositories.IUserRepo;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Servicios de users.
@@ -21,6 +27,9 @@ import com.utn.repositories.IUserRepo;
 public class UserService implements IUserService {
 	@Autowired
 	IUserRepo userRepo;
+
+	@Autowired
+	IAuthorityRepo authorityRepo;
 
 	/**
 	 * Retorna la lista de users.
@@ -57,10 +66,21 @@ public class UserService implements IUserService {
 		String password = user.getSesion().getPassword();
 		String hpass;
 
+		System.out.println("AFUERA             ");
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		hpass = bCryptPasswordEncoder.encode(password);
+		user.getSesion().setPassword(hpass);
+
+		Authority auth = authorityRepo.GetAuthorityById(2);
+		Set<Authority> auths = new HashSet<>();
+		auths.add(auth);
+		user.getSesion().setAuthority(auths);
+
+/*
 		if (validationSesion.validarUsuarioyPass(name, password).isStatus()) {
 			hpass = HashUtils.get_SHA_512_SecurePassword(password);
 			user.getSesion().setPassword(hpass);
-		}
+		}*/ // TODO noanda
 
 		return userRepo.CreateUser(user);
 	}

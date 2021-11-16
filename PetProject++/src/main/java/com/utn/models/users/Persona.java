@@ -18,23 +18,23 @@ public abstract class Persona {
     protected String apellido;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "contactoId")
+    @JoinColumn(name = "contacto_id")
     protected ContactoUnico contacto;
 
-    @Column(name = "fechaNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_nacimiento", columnDefinition = "DATE")
     protected LocalDate fechaNacimiento;
 
     @Column(name = "nombre")
     protected String nombre;
 
-    @Column(name = "nroDocumento")
+    @Column(name = "nro_documento")
     protected int nroDocumento;
 
     @Enumerated(EnumType.STRING)
-    protected TipoDocumento tipoDocumento;
+    protected TipoDocumento tipo_documento;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "sesionId")
+    @JoinColumn(name = "sesion_id")
     protected Sesion sesion;
 
     @OneToOne(cascade=CascadeType.ALL)
@@ -48,7 +48,7 @@ public abstract class Persona {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.nroDocumento = nroDocumento;
-        this.tipoDocumento = tipoDocumento;
+        this.tipo_documento = tipoDocumento;
         this.sesion = sesion;
         this.direccion = direccion;
     }
@@ -84,8 +84,8 @@ public abstract class Persona {
     public int getNroDocumento() {return nroDocumento;}
     public void setNroDocumento(int nroDocumento) {this.nroDocumento = nroDocumento;}
 
-    public TipoDocumento getTipoDocumento() { return tipoDocumento; }
-    public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipoDocumento = tipoDocumento; }
+    public TipoDocumento getTipoDocumento() { return tipo_documento; }
+    public void setTipoDocumento(TipoDocumento tipoDocumento) { this.tipo_documento = tipoDocumento; }
 
     public Sesion getSesion() {
         return sesion;

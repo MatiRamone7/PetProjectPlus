@@ -50,6 +50,15 @@ public class HandlebarsController {
     @Autowired
     IOngService ongService;
 
+    @GetMapping("/login")
+    public String index() throws IOException {
+        System.out.println("ENTRA POR ACA");
+        TemplateLoader loader = new ClassPathTemplateLoader("/templates", ".hbs");
+        Handlebars handlebars = new Handlebars(loader);
+        Template template = handlebars.compile("indexPrueba");
+
+        return template.text();
+    }
 
     @GetMapping("Adopcion-de-Mascotas")
     public String GetAdopcionMasotas() throws IOException {

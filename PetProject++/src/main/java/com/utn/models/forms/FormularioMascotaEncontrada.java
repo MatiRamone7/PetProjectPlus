@@ -5,7 +5,7 @@ import javax.persistence.*;
 import com.utn.models.users.Usuario;
 
 @Entity
-@Table(name="formularioMascotasEncontradas")
+@Table(name="formulario_mascotas_encontradas")
 public class FormularioMascotaEncontrada{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,15 +13,15 @@ public class FormularioMascotaEncontrada{
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "fechaEncontrada", columnDefinition = "DATE")
+    @Column(name = "fecha_encontrada", columnDefinition = "DATE")
     private LocalDate fechaHora;
 
     @OneToOne
-    @JoinColumn(name="formularioMascotaPerdidaId")
+    @JoinColumn(name="formulario_mascota_perdida_id")
     private FormularioMascotaPerdida formularioMascotaPerdida;
 
     @ManyToOne
-    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     public Integer getId() {

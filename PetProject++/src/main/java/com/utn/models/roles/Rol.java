@@ -18,7 +18,7 @@ public class Rol{
 
     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(
-            name = "rolPermiso",
+            name = "rol_permiso",
             joinColumns = { @JoinColumn(name = "rol_id") },
             inverseJoinColumns = { @JoinColumn(name = "permiso_id") }
     )

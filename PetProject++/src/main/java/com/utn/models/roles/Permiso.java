@@ -15,7 +15,7 @@ public class Permiso implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "nombreTecnico")
+    @Column(name = "nombre_tecnico")
     private String nombreTecnico;
 
 

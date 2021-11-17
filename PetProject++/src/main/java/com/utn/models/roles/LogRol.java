@@ -13,11 +13,11 @@ public class LogRol implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "fechaNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_nacimiento", columnDefinition = "DATE")
     private Date fechaHora;
 
     @ManyToOne
-    @JoinColumn(name = "logId")
+    @JoinColumn(name = "log_id")
     private Rol rol;
 
     public String generarLogRol(){

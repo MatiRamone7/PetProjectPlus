@@ -4,8 +4,13 @@ import com.utn.login.service.SesionDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/*
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -15,20 +20,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
     };
 
-    @Override
+   @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .antMatcher("/api/**")
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
+                .antMatchers("/","/index").permitAll() //HTML
                 .antMatchers("/Sign-Up*").permitAll() //anotar como en el formulario
+                .antMatchers("/Mascota-Perdida*").permitAll() //TODO probar en localhost como se ve esquina superior, logeado vs no
+                .antMatchers("/Hogares-Transito*").permitAll()
+                .antMatchers("/Formulario-Usuario*").permitAll()
+                .antMatchers("/Inicio*").permitAll() //HTML
+                .antMatchers("/users*").permitAll()
+                .antMatchers("/Perfil*").permitAll()//HTML
+                .antMatchers(HttpMethod.POST, "/api/users*").permitAll()
+
+                .antMatchers("/Editor-de-Formularios*").access("hasRole('ADMIN')")
+                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')") //pantallaAdmin
+                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')") //pantallaAdmin2
 
                 .antMatchers("/Adopcion-de-Mascotas*").access("hasRole('USER')")
                 .antMatchers("/Registrar-Mascota*").access("hasRole('USER')")
                 .antMatchers("/Dar-en-Adopcion*").access("hasRole('USER')")
                 .antMatchers("/Formulario-Quiero-Adoptar*").access("hasRole('USER')")
-                .antMatchers("/Perfil*").access("hasRole('USER') ")
+                //.antMatchers("/Perfil*").access("hasRole('USER') ")
 
-                .antMatchers("/Inicio*").access("hasRole('USER') or hasRole('ADMIN')")
+               // .antMatchers("/Inicio*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
+                // .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
+                .antMatchers("/Mascotas-Encontradas*").access("hasRole('USER') or hasRole('ADMIN')")
 
                 .anyRequest().authenticated()
                 .and()
@@ -45,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/login?logout");
     }
 
+
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
@@ -57,14 +78,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     SesionDetailsServiceImpl userDetailsService;
 
-    //Registra el service para usuarios y el encriptador de contrasena
+   //Registra el service para usuarios y el encriptador de contrasena
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        // Setting Service to find User in the database.
+        // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-}*/
-
+}
+/*
 public class WebSecurityConfig{
 
-}
+}*/
 

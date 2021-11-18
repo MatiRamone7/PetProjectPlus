@@ -75,6 +75,7 @@ public class UserService implements IUserService {
 		Set<Authority> auths = new HashSet<>();
 		auths.add(auth);
 		user.getSesion().setAuthority(auths);
+		user.getSesion().setEnabled(true);
 
 /*
 		if (validationSesion.validarUsuarioyPass(name, password).isStatus()) {

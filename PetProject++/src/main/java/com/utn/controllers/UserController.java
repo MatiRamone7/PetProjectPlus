@@ -60,6 +60,7 @@ public class UserController {
 
     @PostMapping
     public void Create(@RequestParam Map<String, String> body, HttpServletResponse response) throws IOException {
+        System.out.println("ENTRA A CREATE");
         Usuario user = new Usuario();
         user.setNombre(body.get("nombre"));
         user.setApellido(body.get("apellido"));

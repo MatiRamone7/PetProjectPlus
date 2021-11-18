@@ -18,7 +18,6 @@ public class AuthorityRepo implements IAuthorityRepo {
         this.manager = emf.createEntityManager();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Iterable<Authority> GetAuthority() {
         Iterable<Authority> aux;

@@ -114,4 +114,12 @@ public class Sesion implements Serializable {
     public void sesion(IValidationSesion sesion){
 
     }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }

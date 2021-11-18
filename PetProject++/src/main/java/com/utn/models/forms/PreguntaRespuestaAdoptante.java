@@ -5,7 +5,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utn.models.ongs.PreguntaAdoptante;
 @Entity
-@Table(name="preguntaRespuestaAdoptante")
+@Table(name="pregunta_respuesta_adoptante")
 public class PreguntaRespuestaAdoptante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,17 +14,16 @@ public class PreguntaRespuestaAdoptante {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "formularioDarEnAdopcionID", referencedColumnName = "id")
+    @JoinColumn(name = "formulario_dar_en_adopcion_id", referencedColumnName = "id")
     @JsonBackReference
     private FormularioDarEnAdopcion formularioDarEnAdopcion;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "preguntaID")
+    @JoinColumn(name = "pregunta_id")
     private PreguntaAdoptante pregunta;
 
     @Column(name = "respuesta")
     private String rta;
-
 
     public Integer getId() {
         return id;

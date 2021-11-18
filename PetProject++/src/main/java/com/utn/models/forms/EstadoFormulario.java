@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="estadosFormulario")
+@Table(name="estados_formulario")
 public class EstadoFormulario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +16,11 @@ public class EstadoFormulario {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "estadoID", referencedColumnName = "id")
+    @JoinColumn(name = "estado_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Estado estado;
 
-    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_de_nacimiento", columnDefinition = "DATE")
     private LocalDate fechaHora;
 
     @Column(name = "usuario")

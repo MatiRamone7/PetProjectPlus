@@ -10,8 +10,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("RadioDeCercania")
-@JsonTypeName("RadioDeCercania")
+@DiscriminatorValue("radio_de_cercania")
+@JsonTypeName("radio_de_cercania")
 public class RadioDeCercania extends Comodidad{
 
     @Column(name = "radio")

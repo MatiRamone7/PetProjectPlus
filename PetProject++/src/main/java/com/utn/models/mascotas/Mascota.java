@@ -33,32 +33,32 @@ public class Mascota {
     @Enumerated(EnumType.STRING)
     private Especie especie;
 
-    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    @Column(name = "fecha_de_nacimiento", columnDefinition = "DATE")
     private LocalDate fechaDeNacimiento;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "mascotaId")
+    @JoinColumn(name = "mascota_id")
     private List<Foto> fotos;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "qrId")
+    @JoinColumn(name = "qr_id")
     private Foto qr;
 
-    @Column
+    @Column(name = "descripcion_fisica")
     private String descripcionFisica;
 
     @ManyToOne
-    @JoinColumn(name = "duenioId")
+    @JoinColumn(name = "duenio_id")
     @JsonBackReference
     private Usuario duenio;
 
     @ManyToOne()
-    @JoinColumn(name = "organizacionId")
+    @JoinColumn(name = "organizacion_id")
     @JsonBackReference
     private Organizacion ong;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "mascotaId")
+    @JoinColumn(name = "mascota_id")
     private Set<CaracteristicaPet> caracteristicSet = new HashSet<>();
 
     public Mascota(String nombre, String apodo, Sexo sexo, Especie especie, LocalDate fechaDeNacimiento,

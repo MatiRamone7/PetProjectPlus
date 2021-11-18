@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="formularioIntencionDeAdopcion")
+@Table(name="formulario_intencion_de_adopcion")
 public class FormularioIntencionAdopcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +19,15 @@ public class FormularioIntencionAdopcion {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "userID", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Usuario solicitante;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "formularioIntencionAdopcionId")
+    @JoinColumn(name = "formulario_intencion_de_adopcion_id")
     private List<EstadoFormulario> estado;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "formularioIntencionDeAdopcionId")
+    @JoinColumn(name = "formulario_intencion_de_adopcion_id")
     private Set<CaracteristicaPet> preferencias = new HashSet<>();
 
     @Enumerated(EnumType.STRING)

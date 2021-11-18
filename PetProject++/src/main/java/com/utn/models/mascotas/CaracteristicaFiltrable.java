@@ -3,7 +3,7 @@ package com.utn.models.mascotas;
 import javax.persistence.*;
 
 @Entity
-@Table(name="opcionesCaracteristicas")
+@Table(name="opciones_caracteristicas")
 public class CaracteristicaFiltrable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +11,7 @@ public class CaracteristicaFiltrable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "caracteristicaId", referencedColumnName = "id")
+    @JoinColumn(name = "caracteristica_id", referencedColumnName = "id")
     public Caracteristica caracteristica;
 
     @Column(name = "valor")

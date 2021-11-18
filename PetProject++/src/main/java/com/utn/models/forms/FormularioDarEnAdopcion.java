@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="formularioDarEnAdopcion")
+@Table(name="formulario_dar_en_adopcion")
 public class FormularioDarEnAdopcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,19 +17,19 @@ public class FormularioDarEnAdopcion {
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "usuarioId", referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "mascotaID", referencedColumnName = "id")
+    @JoinColumn(name = "mascota_id", referencedColumnName = "id")
     private Mascota mascota;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "ongId", referencedColumnName = "id")
+    @JoinColumn(name = "ong_id", referencedColumnName = "id")
     private Organizacion organizacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "formularioDarEnAdopcionId")
+    @JoinColumn(name = "formulario_dar_en_adopcion_id")
     private List<EstadoFormulario> estado;
 
     @OneToMany(mappedBy = "formularioDarEnAdopcion", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

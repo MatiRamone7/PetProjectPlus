@@ -26,29 +26,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatcher("/api/**")
                 .authorizeRequests() //quienes estan autorizados y de que manera
                 .antMatchers(resources).permitAll()
-                .antMatchers("/","/index").permitAll() //HTML
-                .antMatchers("/Sign-Up*").permitAll() //anotar como en el formulario
+                .antMatchers("/index").permitAll()
+                .antMatchers("/Sign-Up*").permitAll()
                 .antMatchers("/Mascota-Perdida*").permitAll() //TODO probar en localhost como se ve esquina superior, logeado vs no
                 .antMatchers("/Hogares-Transito*").permitAll()
                 .antMatchers("/Formulario-Usuario*").permitAll()
-                .antMatchers("/Inicio*").permitAll() //HTML
+                .antMatchers("/Inicio*").permitAll()
+                .antMatchers("/Mascotas-Encontradas*").permitAll()
+                .antMatchers("/Adopcion-de-Mascotas*").permitAll()
                 .antMatchers("/users*").permitAll()
-                .antMatchers("/Perfil*").permitAll()//HTML
+                .antMatchers("/pets*").permitAll()
+                .antMatchers("/ongs*").permitAll()
+                .antMatchers("/forms*").permitAll()
+                .antMatchers("/caracteristicas*").permitAll()
+                .antMatchers("/forms*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users*").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/users*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users*").permitAll()
 
                 .antMatchers("/Editor-de-Formularios*").access("hasRole('ADMIN')")
-                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')") //pantallaAdmin
-                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')") //pantallaAdmin2
+                .antMatchers("/Admin-Perfiles-ONG*").access("hasRole('ADMIN')")
+                .antMatchers("/Admin-Preguntas-ONG*").access("hasRole('ADMIN')")
 
-                .antMatchers("/Adopcion-de-Mascotas*").access("hasRole('USER')")
                 .antMatchers("/Registrar-Mascota*").access("hasRole('USER')")
                 .antMatchers("/Dar-en-Adopcion*").access("hasRole('USER')")
                 .antMatchers("/Formulario-Quiero-Adoptar*").access("hasRole('USER')")
-                //.antMatchers("/Perfil*").access("hasRole('USER') ")
+                .antMatchers("/Perfil*").access("hasRole('USER') ")
 
-               // .antMatchers("/Inicio*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
-                // .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')") //HTML
-                .antMatchers("/Mascotas-Encontradas*").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/Preguntas-Mascotas*").access("hasRole('USER') or hasRole('ADMIN')")
 
                 .anyRequest().authenticated()
                 .and()

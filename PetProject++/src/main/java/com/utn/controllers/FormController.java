@@ -231,7 +231,7 @@ public class FormController {
         CMascotaReconocida mensaje = new CMascotaReconocida(datos.get("input"));
 
        try {
-            formService.GetFormMascotaEncontradaById(id).getFormularioMascotaPerdida().getContacto().contactar(mensaje.asunto(), mensaje.cuerpo());
+            formService.GetFormMascotaPerdidaById(id).getContacto().contactar(mensaje.asunto(), mensaje.cuerpo());
         } catch (IOException e) {
             e.printStackTrace();
         }
